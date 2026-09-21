@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "project": "CausalGeometry",
+  "toolchains": {},
+  "hydration": [],
+  "obligations": [
+    {
+      "id": "SRC-ARCH",
+      "level": "source",
+      "kind": "manual",
+      "required": true,
+      "description": "Review CausalGeometry architecture, dependency boundaries, invariants and obligation-to-implementation mapping without delegating closure to scripts."
+    },
+    {
+      "id": "ADV-REVIEW",
+      "level": "adversarial",
+      "kind": "manual",
+      "required": true,
+      "description": "Perform an obligation-by-obligation adversarial review, including negative cases and accidental-complexity inspection."
+    },
+    {
+      "id": "PERF-LEDGER",
+      "level": "performance",
+      "kind": "manual",
+      "required": true,
+      "description": "Run representative scaling/resource measurements and record time, peak memory, allocations/copies and empirical scaling; compilation alone is not performance certification."
+    },
+    {
+      "id": "REL-CLOSURE",
+      "level": "release",
+      "kind": "manual",
+      "required": true,
+      "description": "Manually reconcile planned obligations against implementation and executable evidence before declaring a campaign or release closed."
+    },
+    {
+      "id": "SRC-THEORY",
+      "level": "source",
+      "kind": "manual",
+      "required": true,
+      "description": "Maintain explicit definitions, theorem statements, dependencies and proof obligations for the causal-geometry theory."
+    },
+    {
+      "id": "FORMAL-FUTURE",
+      "level": "formal",
+      "kind": "manual",
+      "required": false,
+      "description": "When executable or formal artifacts are introduced, add their toolchain here rather than marking prose-level arguments as machine-checked."
+    }
+  ]
+}
