@@ -36,3 +36,9 @@ import CausalGeometry.Models.RelationArithmeticExample
 import CausalGeometry.Number.PrimaryDecomposition
 import CausalGeometry.Number.FactorizationPrimeRealization
 import CausalGeometry.Models.NatArithmetic
+import CausalGeometry.Number.Incidence
+import CausalGeometry.Number.FactorizationConvolution
+import CausalGeometry.Number.CanonicalAtomicDomain
+import CausalGeometry.Models.NatDivisorIncidence
+import CausalGeometry.Models.NatMobiusRegression
+import CausalGeometry.Models.NatIncidenceMobiusComparison
