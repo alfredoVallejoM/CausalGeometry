@@ -25,3 +25,4 @@ import CausalGeometry.Number.AdditiveEnvelope
 import CausalGeometry.Process.BoundarySemantics
 import CausalGeometry.Number.ArithmeticSector
 import CausalGeometry.Completion.FinitePrimaryTower
+import CausalGeometry.Number.FactorizationProfile
