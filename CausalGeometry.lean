@@ -12,3 +12,12 @@ import CausalGeometry.Calculus.Difference
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Number.Residual
+import CausalGeometry.Foundation.CorrelativeRestriction
+import CausalGeometry.Number.Divisibility
+import CausalGeometry.Number.GCDLCM
+import CausalGeometry.Number.Prime
+import CausalGeometry.Number.Factorization
+import CausalGeometry.Number.Valuation
+import CausalGeometry.Number.NatShadow
+import CausalGeometry.Completion.InverseTower
+import CausalGeometry.Completion.SharedDepth
