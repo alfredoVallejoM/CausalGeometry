@@ -94,10 +94,32 @@ def presentation (n : ℕ) :
     · rintro ⟨c, hc⟩
       exact ⟨c, hc.symm⟩
 
+/-- The same classical divisor poset is also a presentation of right
+divisibility because natural multiplication is commutative. -/
+def rightPresentation (n : ℕ) :
+    CausalIncidence.RightDivisorPresentation ℕ (Divisor n) where
+  realize := fun d => d.1
+  realize_injective := Subtype.coe_injective
+  le_iff_rightDivides := by
+    intro a b
+    constructor
+    · intro hab
+      rcases hab with ⟨c, hc⟩
+      exact ⟨c, by simpa [Nat.mul_comm] using hc.symm⟩
+    · rintro ⟨c, hc⟩
+      refine ⟨c, ?_⟩
+      simpa [Nat.mul_comm] using hc.symm
+
 /-- Mobius coefficient in the finite divisor poset of n. -/
 def mobius (n : ℕ) :
     IncidenceAlgebra ℤ (Divisor n) :=
   (presentation n).mobius
+
+/-- Left and right incidence Mobius functions coincide in the commutative
+natural-number realization. -/
+theorem left_mobius_eq_right_mobius (n : ℕ) :
+    (presentation n).mobius =
+      (rightPresentation n).mobius := rfl
 
 /-- Incidence inversion on all divisors of a nonzero natural n. -/
 theorem inversion
