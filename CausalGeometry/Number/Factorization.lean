@@ -39,6 +39,17 @@ theorem factorization_append {xs ys : List α} {x y : α}
   unfold IsFactorization at hx hy ⊢
   rw [eval_append, hx, hy]
 
+theorem atomicFactorization_append {xs ys : List α} {x y : α}
+    (hx : IsAtomicFactorization xs x)
+    (hy : IsAtomicFactorization ys y) :
+    IsAtomicFactorization (xs ++ ys) (x * y) := by
+  constructor
+  · exact factorization_append hx.1 hy.1
+  · intro p hp
+    rcases List.mem_append.mp hp with hp | hp
+    · exact hx.2 p hp
+    · exact hy.2 p hp
+
 /-- Every nonempty factorization exposes a left divisor. -/
 theorem head_leftDivides {p : α} {xs : List α} {x : α}
     (h : IsFactorization (p :: xs) x) :
