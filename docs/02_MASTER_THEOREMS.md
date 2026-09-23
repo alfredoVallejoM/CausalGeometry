@@ -1,0 +1,503 @@
+# Master theorem corpus
+
+This corpus organizes the 300 atomic obligations.  Theorems are targets until
+their corresponding campaign closes.
+
+## A. Events and histories
+
+**T01 — Enabled extension.**
+If \(e\) is enabled at configuration \(C\), then \(C\cup\{e\}\) is a valid
+configuration.
+
+**T02 — Concurrency symmetry.**
+\[
+e\parallel_C f\Rightarrow f\parallel_C e.
+\]
+
+**T03 — Concurrent diamond endpoint.**
+Executing concurrent \(e,f\) in either order gives the same extensional
+configuration.
+
+**T04 — Swap endpoint invariance.**
+An elementary concurrent swap preserves source and target.
+
+**T05 — Trace endpoint invariance.**
+Trace-equivalent executions have equal endpoints.
+
+**T06 — Completed-history embedding.**
+Finite configurations embed order-reflectingly into the chosen ideal/directed
+completion.
+
+**T07 — Directed-history completeness.**
+Directed compatible approximations have a supremum history.
+
+**T08 — Scott observation.**
+Declared continuous observables preserve directed suprema.
+
+## B. Diaries and coherence
+
+**T09 — Sequential gluing.**
+Compatible \(A\rightsquigarrow B\) and \(B\rightsquigarrow C\) diaries glue.
+
+**T10 — Identity diary.**
+Each boundary has a two-sided identity diary.
+
+**T11 — Associator.**
+\[
+(Z\circ Y)\circ X\simeq Z\circ(Y\circ X).
+\]
+
+**T12 — Pentagon coherence.**
+The associator satisfies the pentagon law.
+
+**T13 — Triangle coherence.**
+Associator and unitors satisfy the triangle law.
+
+**T14 — Dagger involution.**
+\[
+(X^\dagger)^\dagger\simeq X.
+\]
+
+**T15 — Dagger reversal.**
+\[
+(Y\circ X)^\dagger\simeq X^\dagger\circ Y^\dagger.
+\]
+
+**T16 — Parallel/sequential separation.**
+Parallel product and sequential composition are not identified in a
+discriminating model.
+
+**T17 — Closure cyclicity.**
+Changing the cut of a closed compatible endodiary gives an equivalent cyclic
+object.
+
+## C. Causal numbers and arithmetic shadow
+
+**T18 — Endodiary multiplication.**
+Admissible endodiaries form a unital weak monoid at the fixed equivalence level.
+
+**T19 — Noncommutative witness.**
+\[
+\exists X,Y,\quad X\circ Y\not\simeq Y\circ X.
+\]
+
+**T20 — Prime-profile unit.**
+\[
+\nu(1)=0.
+\]
+
+**T21 — Prime-profile multiplicativity.**
+\[
+\nu(XY)=\nu(X)+\nu(Y).
+\]
+
+**T22 — Arithmetic-shadow multiplicativity.**
+\[
+\chi(XY)=\chi(X)\chi(Y).
+\]
+
+**T23 — Natural-number lift.**
+There is a coherent
+\[
+\iota:\mathbb N_{>0}\to CNum(A).
+\]
+
+**T24 — Arithmetic retract.**
+\[
+\chi(\iota(n))=n.
+\]
+
+**T25 — Nonfaithful shadow.**
+\[
+\exists X\not\simeq Y,\quad\chi(X)=\chi(Y).
+\]
+
+**T26 — Fiber richness.**
+At least one arithmetic fiber \(\mathcal N_n\) has non-equivalent inhabitants.
+
+**T27 — Arithmetic surjectivity.**
+Every selected positive integer is the shadow of a causal number.
+
+## D. Divisibility, additive envelope and factorization
+
+**T28 — Left divisibility soundness.**
+\(X\mid_LY\Rightarrow\chi(X)\mid\chi(Y)\).
+
+**T29 — Right divisibility soundness.**
+\(X\mid_RY\Rightarrow\chi(X)\mid\chi(Y)\).
+
+**T30 — Unit characterization.**
+Causal units are exactly the appropriate universally invertible divisors.
+
+**T31 — Prime soundness.**
+Causal irreducibility maps to the declared arithmetic irreducibility predicate
+under explicit factorization hypotheses.
+
+**T32 — GCD comparison.**
+Existing causal gcd maps to classical gcd in the stated domain.
+
+**T33 — LCM comparison.**
+Existing causal lcm maps to classical lcm in the stated domain.
+
+**T34 — Additive decategorification.**
+The additive envelope maps to ordinary addition.
+
+**T35 — Integer recovery.**
+The Grothendieck completion recovers the declared integer shadow.
+
+**T36 — Directed distributivity.**
+Distributivity is represented by the required comparison map and becomes the
+ordinary semiring law only after the declared decategorification.
+
+## E. Fractions, valuations and scales
+
+**T37 — Localization universal property.**
+The fraction construction satisfies its proved universal property.
+
+**T38 — Ore boundary.**
+No noncommutative fraction object is exported outside a proved Ore domain.
+
+**T39 — Rational shadow.**
+The commutative fraction sector maps multiplicatively to the declared rational
+domain.
+
+**T40 — Valuation additivity.**
+\[
+v_p(XY)=v_p(X)+v_p(Y).
+\]
+
+**T41 — Valuation inverse.**
+\[
+v_p(X^{-1})=-v_p(X).
+\]
+
+**T42 — Scale tower.**
+A \(\mathbb Z\)-indexed causal scale tower exists on the proved arithmetic
+sector.
+
+**T43 — Scale duality.**
+The declared scale involution realizes \(k\mapsto-k\).
+
+**T44 — Arithmetic length.**
+\[
+L_{arith}(XY)=L_{arith}(X)+L_{arith}(Y).
+\]
+
+**T45 — Logarithmic natural lift.**
+\[
+L_{arith}(\iota(n))=\log n.
+\]
+
+## F. Cyclic geometry and zeta
+
+**T46 — Cyclic shadow.**
+\[
+Sh(XY)\simeq Sh(YX).
+\]
+
+**T47 — Cyclicity weaker than commutativity.**
+T46 holds in a model where T19 remains nontrivial.
+
+**T48 — Primitive decomposition.**
+Closed histories decompose into primitive powers on the declared finite domain.
+
+**T49 — Period law.**
+Powers of a primitive history have predictable period/weight.
+
+**T50 — Transfer trace.**
+\[
+Tr(T^n)
+\]
+counts the declared length-\(n\) closed histories.
+
+**T51 — Formal Euler product.**
+Primitive decomposition implies the formal Euler product.
+
+**T52 — Finite determinant identity.**
+\[
+Z_C(u)=\det(I-uT)^{-1}
+\]
+in the finite matrix domain.
+
+**T53 — Ihara realization.**
+Graph-like diaries transport T48--T52 to the Hashimoto/Ihara target.
+
+**T54 — Burnside cycle realization.**
+Finite cyclic diaries map to the existing finite-cycle/Burnside semantics.
+
+**T55 — Frobenius/Verschiebung comparison.**
+Iteration and reindexing map to F/V under explicit finite-cycle hypotheses.
+
+**T56 — Prime/primitive comparison boundary.**
+Causal prime, primitive cycle and arithmetic prime remain separate predicates
+until a comparison theorem is proved.
+
+## G. Causal calculus
+
+**T57 — Difference naturality.**
+Causal finite difference is natural under admitted history maps.
+
+**T58 — Flat square zero.**
+The causal cochain differential squares to zero on the flat concurrency
+complex.
+
+**T59 — Connection curvature.**
+\[
+\Omega=\nabla^2.
+\]
+
+**T60 — Bianchi law.**
+The selected graded commutator satisfies the Bianchi identity.
+
+**T61 — Three-axis calculus.**
+The declared domain supports
+\[
+D=d_v+d_h+d_\mu
+\]
+without identifying the axes.
+
+**T62 — Quotient factorization.**
+Every semantic map annihilating certified relations factors through the
+quotient.
+
+**T63 — Residual vanishing.**
+Under exactness,
+\[
+\ker S/\operatorname{im}\rho=0
+\iff
+\operatorname{im}\rho=\ker S.
+\]
+
+## H. Predictive memory, renormalization and local-global
+
+**T64 — Predictive equivalence.**
+Future-observer indistinguishability is an equivalence in its declared domain.
+
+**T65 — Predictive congruence.**
+Predictive equivalence is compatible with admitted future continuation.
+
+**T66 — Minimal predictive quotient.**
+Every admitted future predictor factors through \(Q_\Omega\), with the stated
+minimality property.
+
+**T67 — Renormalization composition.**
+Compatible observer regimes induce composable coarse-graining maps.
+
+**T68 — Local-global fiber.**
+The causal local-admissibility fiber is the inverse image of the local
+condition subobject.
+
+**T69 — Globalization residual criterion.**
+The residual class vanishes exactly for globally realized compatible local
+data under the exact setup.
+
+**T70 — Source-mixing rejection.**
+A tuple of outputs produced from unrelated causal sources cannot satisfy a
+common-source compatibility object.
+
+## I. Realization and ECIA
+
+**T71 — Realization pseudofunctor.**
+The ECIA adapter preserves identities and composition up to coherent
+isomorphism.
+
+**T72 — Dagger preservation.**
+\[
+R(X^\dagger)\simeq R(X)^\dagger.
+\]
+
+**T73 — Shadow preservation.**
+\[
+R(Sh_CX)\simeq Sh_E(RX).
+\]
+
+**T74 — ECIA soundness.**
+Every admitted causal number maps to an ECIA structural number.
+
+**T75 — Profile square.**
+The causal and ECIA prime-profile maps commute.
+
+**T76 — Natural-lift square.**
+The causal lift of \(n\) maps to the existing ECIA arithmetic inclusion.
+
+**T77 — Fiber preservation/loss.**
+An equal-shadow causal pair is either separated in the target or accompanied by
+an explicit loss theorem.
+
+**T78 — ENV derivation.**
+ENV01--ENV10 are realized from bounded diaries, coherence, dagger, shadow and
+loss.
+
+**T79 — SN derivation.**
+SN01--SN12 are realized from endodiaries, arithmetic shadow and realization
+coherence.
+
+## J. Tate, local-global, operatorial, ribbon and spectral
+
+**T80 — Tate rational realization.**
+\[
+X/Y\mapsto L_{\chi(X)/\chi(Y)}.
+\]
+
+**T81 — Tate valuation comparison.**
+Causal valuation equals lattice scale degree in the proved Tate target.
+
+**T82 — Tate dagger/polarity comparison.**
+Causal inversion/dagger maps to the proved lattice polarity theorem; the actual
+Pontryagin theorem remains target-specific.
+
+**T83 — Mordell--Weil action realization.**
+Causal iteration maps to \([n]\)-multiplication in the target.
+
+**T84 — Selmer comparison [conditional].**
+Classical Selmer requires an explicit target equivalence from the causal
+local-admissibility fiber.
+
+**T85 — Sha comparison [conditional].**
+Classical Sha requires an explicit comparison from the globalization residual.
+
+**T86 — Operatorial dagger.**
+\[
+\pi(X^\dagger)=\pi(X)^*.
+\]
+
+**T87 — Energy comparison.**
+\[
+E(\pi(\iota(n)))=\log n.
+\]
+
+**T88 — Frobenius--KMS law.**
+\[
+\sigma_t(u_n)=n^{it}u_n.
+\]
+
+**T89 — Braided/ribbon realization.**
+Ribbon data derives only from braided causal diaries, not from ordinary
+symmetric concurrency.
+
+**T90 — Finite spectral realization.**
+Primitive/trace/determinant identities map to the finite ECIA spectral sector.
+
+**T91 — Global spectral boundary.**
+Nuclearity, Fredholm determinant and exact completed-zeta identification remain
+separate prerequisites.
+
+## K. SYS and strong unification
+
+**T92 — Common-source dependent family.**
+Every integrated realization branch is indexed by one explicit causal source.
+
+**T93 — Mixed-source impossibility.**
+An incompatible tuple \(R_i(X_i)\) cannot fake a common-source object.
+
+**T94 — Loss matrix.**
+The ECIA information-loss matrix is expressed by factorization/implication
+between realization-induced equivalence relations.
+
+**T95 — Joint conservativity [open target].**
+\[
+(\forall i,\ R_iX\simeq R_iY)\Rightarrow X\simeq Y
+\]
+on a named causal domain.
+
+**T96 — Reconstruction [open target].**
+A reconstruction construction recovers \(X\) from a compatible family of
+realizations.
+
+## L. Wilderber generalized restrictions
+
+**T97 — Pullback identity.**
+\[
+id^*A=A.
+\]
+
+**T98 — Pullback composition.**
+\[
+(\phi\circ\psi)^*A=\psi^*(\phi^*A).
+\]
+
+**T99 — Affine restriction realization.**
+For \(\phi(t)=p+Lt\),
+\[
+\phi^*F=R_{F,p,L}.
+\]
+
+**T100 — Nested restriction.**
+Composition of causal probes maps to nested Wilderber restrictions.
+
+**T101 — Degree bound.**
+\[
+\deg R_{F,p,L}\le\deg F.
+\]
+
+**T102 — Contained-subspace criterion.**
+\[
+p+\operatorname{im}L\subseteq V(F)
+\iff
+R_{F,p,L}\equiv0.
+\]
+
+**T103 — Hasse/restriction commutation.**
+Hasse layers of \(R_{F,p,L}\) equal transported directional Hasse data.
+
+**T104 — Causal derivative comparison.**
+Polynomial causal variations along realized event directions agree with the
+corresponding directional Hasse/restriction data at the proved order.
+
+**T105 — Symmetry orbit invariance.**
+Automorphism-related probes have equivalent restricted invariant profiles.
+
+**T106 — Orbit compression soundness.**
+Evaluation on orbit representatives plus orbit/stabilizer data reconstructs
+the full finite probe family.
+
+**T107 — Grassmann probe invariance.**
+Subspace restrictions depend on the intrinsic \(Gr(k,V)\) point, not a chosen
+basis, up to the target \(GL(k)\)-action.
+
+**T108 — Plücker realization.**
+Exterior representatives of causal subspace probes satisfy the target
+Grassmann--Plücker relations.
+
+**T109 — Finite-field slicing.**
+The exact point-count slicing identity is realized as a sum over a
+causal/restriction decomposition.
+
+**T110 — Extension-field count diary.**
+Repeating the diary over \(\mathbf F_{q^r}\) produces the standard \(N_r\)
+sequence.
+
+**T111 — Zeta-count realization.**
+\[
+Z_X(T)=\exp\left(\sum_{r\ge1}N_rT^r/r\right)
+\]
+is obtained from the extension-field count diary.
+
+**T112 — Frobenius separation.**
+Frobenius is represented as a distinguished target endomorphism and is not
+identified with causal time in the kernel.
+
+**T113 — \(\mathbf F_q\to\mathbf F_1\) skeleton [research].**
+An explicit functor must preserve the proved incidence/Weyl/Coxeter/matroid/
+Plücker-support skeleton before an \(\mathbf F_1\) claim closes.
+
+**T114 — Arithmetic-geometry bridge.**
+Causal source + restriction diary + finite-field realization gives a typed
+route to point counts, Frobenius traces and local zeta factors.
+
+## Terminal theorem
+
+**T115 — Provenance ledger.**
+Every promoted external result is machine-classified by a chain
+\[
+\text{causal theorem}
++
+\text{realization coherence}
++
+\text{target theorem}
++
+\text{analytic/open boundary}.
+\]
+
+T115 is the terminal semantic requirement; no name similarity can substitute
+for it.
