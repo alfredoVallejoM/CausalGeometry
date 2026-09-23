@@ -1,6 +1,6 @@
 # Master theorem corpus
 
-This corpus organizes the 300 atomic obligations.  Theorems are targets until
+This corpus organizes the 428 atomic obligations.  Theorems are targets until
 their corresponding campaign closes.
 
 ## A. Events and histories
@@ -627,8 +627,10 @@ Finite factorization intervals carry a Möbius function whose classical shadow
 is arithmetic Möbius inversion.
 
 **T137 — Dirichlet convolution theorem.**
-Incidence convolution on the factorization category decategorifies to
-Dirichlet convolution.
+Finite convolution over ordered causal factorization pairs realizes ordinary
+Dirichlet convolution in the natural-number model. Incidence convolution is a
+distinct interval-kernel operation and is related through the divisor-poset
+realization rather than identified by definition.
 
 **T138 — Causal CRT theorem.**
 Independent primary restriction channels realize the Chinese remainder
