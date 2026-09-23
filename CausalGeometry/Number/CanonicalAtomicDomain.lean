@@ -82,7 +82,7 @@ theorem valuation_pos_iff_mem_support
     0 < D.valuation p x ↔
       p ∈ (D.canonicalProfile x).support := by
   rw [Finsupp.mem_support_iff]
-  omega
+  exact Nat.pos_iff_ne_zero
 
 end CanonicalAtomicDomain
 end CausalFactorization
