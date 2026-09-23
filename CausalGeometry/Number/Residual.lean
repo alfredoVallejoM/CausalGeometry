@@ -1,3 +1,4 @@
+import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Number.Divisibility
 import Mathlib.Order.Basic
 
@@ -80,6 +81,24 @@ theorem exactRightDivision_iff_rightDivides [PartialOrder α] (z x : α) :
     apply le_antisymm
     · exact R.rightCounit (y * x) x
     · exact R.monotone_rightMul x (R.rightUnit x y)
+
+/-- Multiplication on the left is an extension operation and left residual is
+its correlative restriction. -/
+def leftExtensionRestriction (x : α) :
+    ExtensionRestriction α α where
+  extend := fun y => x * y
+  restrict := R.leftResidual x
+  adjunction := R.leftAdjunction x
+
+/-- Multiplication on the right is an extension operation and right residual
+is its correlative restriction. -/
+def rightExtensionRestriction (x : α) :
+    ExtensionRestriction α α where
+  extend := fun y => y * x
+  restrict := fun z => R.rightResidual z x
+  adjunction := by
+    intro y z
+    exact R.rightAdjunction x y z
 
 end ResiduatedMultiplication
 end CausalGeometry
