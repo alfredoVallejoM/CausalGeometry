@@ -1,4 +1,4 @@
-import CausalGeometry.Completion.InverseTower
+import CausalGeometry.Completion.FinitePrimaryTower
 import Mathlib.NumberTheory.Padics.RingHoms
 import Mathlib.SetTheory.Cardinal.Finite
 
@@ -17,6 +17,23 @@ def zmodPrimeTower (p : ℕ) : InverseTower where
 namespace zmodPrimeTower
 
 variable (p : ℕ) [Fact p.Prime]
+
+/-- The same residue tower packaged with its finite-level structure. -/
+def finiteTower : FiniteInverseTower where
+  Obj n := ZMod (p ^ (n + 1))
+  drop n := fun x => ZMod.cast x
+  finite n := by
+    letI : NeZero (p ^ (n + 1)) :=
+      ⟨pow_ne_zero _ (Fact.out : Nat.Prime p).ne_zero⟩
+    infer_instance
+
+/-- A prime residue tower is a primary finite tower with residue cardinal p. -/
+def primaryTower : (finiteTower p).Primary where
+  q := p
+  q_ge_two := (Fact.out : Nat.Prime p).two_le
+  card_law := by
+    intro n
+    simp [finiteTower, FiniteInverseTower.card, ZMod.card]
 
 /-- Every p-adic integer determines a coherent history through the finite
 primary restriction tower. -/
