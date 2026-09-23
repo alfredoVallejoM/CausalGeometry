@@ -64,5 +64,32 @@ theorem correlated_iff (r : α → β → Prop) (P : Set α) (Q : Set β) :
     Correlated r P Q ↔ P ⊆ relRestrict r Q :=
   relAdjunction r P Q
 
+/-- Relational composition, matching sequential causal composition. -/
+def comp {γ : Type*} (r : α → β → Prop) (s : β → γ → Prop) :
+    α → γ → Prop :=
+  fun a c => ∃ b, r a b ∧ s b c
+
+theorem relExtend_comp {γ : Type*}
+    (r : α → β → Prop) (s : β → γ → Prop) (P : Set α) :
+    relExtend (comp r s) P = relExtend s (relExtend r P) := by
+  ext c
+  constructor
+  · rintro ⟨a, ha, b, hab, hbc⟩
+    exact ⟨b, ⟨a, ha, hab⟩, hbc⟩
+  · rintro ⟨b, ⟨a, ha, hab⟩, hbc⟩
+    exact ⟨a, ha, b, hab, hbc⟩
+
+theorem relRestrict_comp {γ : Type*}
+    (r : α → β → Prop) (s : β → γ → Prop) (Q : Set γ) :
+    relRestrict (comp r s) Q =
+      relRestrict r (relRestrict s Q) := by
+  ext a
+  constructor
+  · intro h b hab c hbc
+    exact h c ⟨b, hab, hbc⟩
+  · intro h c hc
+    rcases hc with ⟨b, hab, hbc⟩
+    exact h b hab c hbc
+
 end CorrelativeRestriction
 end CausalGeometry
