@@ -56,9 +56,12 @@ theorem shadow_eq_primeWordValue :
     S x = S (eval xs) := congrArg S heval.symm
     _ = (xs.map S).prod := R.shadow_eval
     _ = (xs.map (fun p => (R.primeOf p).1)).prod := by
-      apply List.prod_congr
-      intro p hp
-      exact R.factor_shadow p hp
+      have hmap :
+          xs.map S = xs.map (fun p => (R.primeOf p).1) := by
+        apply List.map_congr_left
+        intro p hp
+        exact R.factor_shadow p hp
+      rw [hmap]
     _ = R.primeWordValue := rfl
 
 /-- The prime profile is therefore explicitly downstream of the causal
