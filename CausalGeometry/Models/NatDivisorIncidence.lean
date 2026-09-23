@@ -65,10 +65,9 @@ theorem map_Iic_val
   · intro hm
     rw [Finset.mem_map] at hm
     rcases hm with ⟨e, he, rfl⟩
-    have hed : e.1 ∣ d.1 := (Finset.mem_Iic.mp he).2
+    have hed : e.1 ∣ d.1 := Finset.mem_Iic.mp he
     exact Nat.mem_divisors.mpr
-      ⟨hed, Nat.ne_zero_of_dvd_ne_zero
-        (Nat.ne_zero_of_mem_divisors d.2) hed⟩
+      ⟨hed, (Nat.pos_of_mem_divisors d.2).ne'⟩
   · intro hm
     have hmd : m ∣ d.1 := Nat.dvd_of_mem_divisors hm
     have hdn : d.1 ∣ n := Nat.dvd_of_mem_divisors d.2
@@ -78,7 +77,7 @@ theorem map_Iic_val
     let e : Divisor n := ⟨m, hmN⟩
     rw [Finset.mem_map]
     refine ⟨e, ?_, rfl⟩
-    exact Finset.mem_Iic.mpr ⟨bot_le, hmd⟩
+    exact Finset.mem_Iic.mpr hmd
 
 /-- The divisor poset is a concrete antisymmetric presentation of causal left
 divisibility in the natural-number multiplication model. -/
