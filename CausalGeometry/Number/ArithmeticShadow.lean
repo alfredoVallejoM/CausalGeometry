@@ -40,8 +40,9 @@ def value (ν : PrimeProfile) : ℕ :=
 theorem value_add (a b : PrimeProfile) :
     value (a + b) = value a * value b := by
   unfold value
-  rw [Finsupp.prod_add_index]
-  · simp
+  rw [Finsupp.prod_add_index']
+  · intro p
+    simp
   · intro p m n
     simp [pow_add]
 
