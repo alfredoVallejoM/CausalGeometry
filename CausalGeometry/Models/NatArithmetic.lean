@@ -128,6 +128,15 @@ theorem primeMultiplicity_eq_factorList_count
       n.primeFactorsList.count p := by
   exact (Nat.primeFactorsList_count_eq).symm
 
+/-- The intrinsic causal multiplicity profile of the classical prime-factor
+word is exactly the standard Nat.factorization finsupp. -/
+theorem primeFactors_profile_eq_factorization (n : ℕ) :
+    CausalFactorization.profile n.primeFactorsList =
+      n.factorization := by
+  ext p
+  rw [CausalFactorization.profile_apply_eq_count]
+  exact Nat.primeFactorsList_count_eq
+
 /-- Regression theorem: the derived causal prime profile evaluates back to the
 original natural number. -/
 theorem derivedPrimeProfile_value
