@@ -31,3 +31,4 @@ import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Completion.ZModPrimeTower
 import CausalGeometry.Number.CRT
 import CausalGeometry.Number.DivisibilityOrder
+import CausalGeometry.Models.RelationArithmetic
