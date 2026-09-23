@@ -255,7 +255,7 @@ theorem agreeThrough_iff_lt_valuation
   rw [agreeThrough_ofPadicInt_iff_norm_sub_le]
   rw [PadicInt.norm_le_pow_iff_le_valuation
     (x - y) (sub_ne_zero.mpr hxy) (n + 1)]
-  exact Nat.lt_iff_add_one_le
+  exact Nat.lt_iff_add_one_le.symm
 
 /-- Distinct histories agree at every level strictly before the valuation. -/
 theorem agreeThrough_before_valuation
