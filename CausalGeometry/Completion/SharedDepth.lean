@@ -147,6 +147,34 @@ def truncateQuotient {m n : ℕ} (hmn : m ≤ n) :
     intro x y hxy
     exact T.agreeThrough_mono hxy hmn)
 
+@[simp] theorem truncateQuotient_refl
+    (n : ℕ) (q : T.TruncationQuotient n) :
+    T.truncateQuotient (le_refl n) q = q := by
+  refine Quotient.inductionOn q ?_
+  intro x
+  rfl
+
+theorem truncateQuotient_comp
+    {l m n : ℕ}
+    (hlm : l ≤ m) (hmn : m ≤ n)
+    (q : T.TruncationQuotient n) :
+    T.truncateQuotient hlm
+        (T.truncateQuotient hmn q) =
+      T.truncateQuotient (hlm.trans hmn) q := by
+  refine Quotient.inductionOn q ?_
+  intro x
+  rfl
+
+/-- Evaluation commutes with forgetting one causal depth. -/
+theorem quotientEval_truncate_succ
+    (n : ℕ) (q : T.TruncationQuotient (n + 1)) :
+    T.quotientEval n
+        (T.truncateQuotient (Nat.le_succ n) q) =
+      T.drop n (T.quotientEval (n + 1) q) := by
+  refine Quotient.inductionOn q ?_
+  intro x
+  exact (x.compatible n).symm
+
 /-- The strong ultrametric-ball law appears already before assigning any
 numerical distance: two depth-n correlations compose transitively. -/
 theorem strong_ball_law
