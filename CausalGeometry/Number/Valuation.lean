@@ -25,7 +25,7 @@ structure PrimaryDepth (p x : α) where
 theorem PrimaryDepth.unique {p x : α}
     (a b : PrimaryDepth p x) :
     a.depth = b.depth :=
-  Nat.le_antisymm (b.maximal a.depth a.divides)
+  le_antisymm (b.maximal a.depth a.divides)
     (a.maximal b.depth b.divides)
 
 /-- The valuation extracted from a certified primary depth. -/
