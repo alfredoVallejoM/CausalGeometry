@@ -68,6 +68,13 @@ theorem primeProfile_is_derived :
       PrimeProfile.fromFactorList R.primeOf xs :=
   rfl
 
+/-- The classical value of the derived prime profile equals the multiplicative
+shadow of the causal number represented by the factorization. -/
+theorem primeProfile_value_eq_shadow :
+    PrimeProfile.value R.primeProfile = S x := by
+  rw [R.primeProfile_is_derived, PrimeProfile.value_fromFactorList]
+  exact R.shadow_eq_primeWordValue.symm
+
 end PrimeRealization
 end CausalFactorization
 end CausalGeometry
