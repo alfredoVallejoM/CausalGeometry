@@ -47,5 +47,16 @@ theorem rightDivides_sound (S : NatShadow α) {x z : α}
     _ = S y * S x := S.map_mul y x
     _ = S x * S y := Nat.mul_comm _ _
 
+theorem causalUnit_maps_one (S : NatShadow α) {x : α}
+    (hx : IsCausalUnit x) :
+    S x = 1 := by
+  rcases hx with ⟨y, hxy, hyx⟩
+  have hprod : S x * S y = 1 := by
+    calc
+      S x * S y = S (x * y) := (S.map_mul x y).symm
+      _ = S 1 := congrArg S hxy
+      _ = 1 := S.map_one
+  exact (Nat.mul_eq_one.mp hprod).1
+
 end NatShadow
 end CausalGeometry
