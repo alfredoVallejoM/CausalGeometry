@@ -36,14 +36,16 @@ theorem eval_append (xs ys : List α) :
 theorem factorization_append {xs ys : List α} {x y : α}
     (hx : IsFactorization xs x) (hy : IsFactorization ys y) :
     IsFactorization (xs ++ ys) (x * y) := by
-  simpa [IsFactorization, eval_append, hx, hy]
+  unfold IsFactorization at hx hy ⊢
+  rw [eval_append, hx, hy]
 
 /-- Every nonempty factorization exposes a left divisor. -/
 theorem head_leftDivides {p : α} {xs : List α} {x : α}
     (h : IsFactorization (p :: xs) x) :
     LeftDivides p x := by
   refine ⟨eval xs, ?_⟩
-  simpa [IsFactorization, eval_cons] using h
+  unfold IsFactorization at h
+  simpa using h
 
 end CausalFactorization
 end CausalGeometry
