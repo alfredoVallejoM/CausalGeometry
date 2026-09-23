@@ -11,3 +11,4 @@
 - \`campaigns/CA17_CA20.md\`: new atomic obligations for correlative restriction, derived arithmetic and RH--BSD--Langlands synthesis.
 
 The separate generative-dynamic motive campaign is not part of this program.
+- `08_IMPLEMENTATION_STATUS.md`: exact source implementation status and verification boundary.
