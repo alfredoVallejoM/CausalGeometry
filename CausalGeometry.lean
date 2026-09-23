@@ -35,3 +35,4 @@ import CausalGeometry.Models.RelationArithmetic
 import CausalGeometry.Models.RelationArithmeticExample
 import CausalGeometry.Number.PrimaryDecomposition
 import CausalGeometry.Number.FactorizationPrimeRealization
+import CausalGeometry.Models.NatArithmetic
