@@ -156,5 +156,37 @@ theorem moebius_inversion
     (IncidenceAlgebra.moebius_inversion_bot f g h x)
 
 end RightDivisorPresentation
+
+/-- Mobius factorizes across independent causal divisor channels represented by
+a Cartesian product of locally finite divisor posets. -/
+theorem mobius_product_channels
+    {δ ε : Type*}
+    [PartialOrder δ] [PartialOrder ε]
+    [LocallyFiniteOrder δ] [LocallyFiniteOrder ε]
+    [DecidableEq δ] [DecidableEq ε]
+    [DecidableLE δ] [DecidableLE ε]
+    (a₁ a₂ : δ) (b₁ b₂ : ε) :
+    IncidenceAlgebra.mu ℤ (a₁, b₁) (a₂, b₂) =
+      IncidenceAlgebra.mu ℤ a₁ a₂ *
+        IncidenceAlgebra.mu ℤ b₁ b₂ := by
+  rw [← IncidenceAlgebra.mu_prod_mu
+    (𝕜 := ℤ) (α := δ) (β := ε)]
+  rfl
+
+/-- Euler characteristic, hence total Mobius content, multiplies across
+independent bounded causal channels. -/
+theorem eulerChar_product_channels
+    {δ ε : Type*}
+    [PartialOrder δ] [PartialOrder ε]
+    [LocallyFiniteOrder δ] [LocallyFiniteOrder ε]
+    [DecidableEq δ] [DecidableEq ε]
+    [DecidableLE δ] [DecidableLE ε]
+    [BoundedOrder δ] [BoundedOrder ε] :
+    IncidenceAlgebra.eulerChar ℤ (δ × ε) =
+      IncidenceAlgebra.eulerChar ℤ δ *
+        IncidenceAlgebra.eulerChar ℤ ε := by
+  exact IncidenceAlgebra.eulerChar_prod
+    (𝕜 := ℤ) (α := δ) (β := ε)
+
 end CausalIncidence
 end CausalGeometry
