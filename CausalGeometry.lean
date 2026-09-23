@@ -21,3 +21,4 @@ import CausalGeometry.Number.Valuation
 import CausalGeometry.Number.NatShadow
 import CausalGeometry.Completion.InverseTower
 import CausalGeometry.Completion.SharedDepth
+import CausalGeometry.Number.AdditiveEnvelope
