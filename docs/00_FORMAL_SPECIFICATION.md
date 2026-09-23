@@ -311,3 +311,112 @@ The proposed \(\mathbf F_q\to\mathbf F_1\) comparison keeps the incidence,
 orbit, Weyl/Coxeter, matroid and Plücker-support skeleton while field-valued
 coefficients are forgotten. This is a research realization and must not be
 promoted without explicit functors and comparison theorems.
+
+
+---
+
+## 17. Foundational extension--restriction polarity
+
+The previous sections are refined by a new foundational primitive.
+
+For every admitted causal map \(h:A\rightsquigarrow B\), when the boundary
+semantics carries ordered possibility spaces, the causal theory seeks an
+adjunction
+
+\[
+h_!\dashv h^*
+\]
+
+with
+
+\[
+h_!P\le Q\iff P\le h^*Q.
+\]
+
+Here:
+- \(h_!\) is causal extension;
+- \(h^*\) is correlative restriction.
+
+This polarity is upstream of the geometric pullback of section 15.  A geometric
+pullback is a realization of \(h^*\), not its universal definition.
+
+The induced closure/interior operators are
+
+\[
+C_h=h^*h_!,
+\qquad
+I_h=h_!h^*.
+\]
+
+The project keeps
+
+\[
+h^*,\quad h^\dagger,\quad h^\vee
+\]
+
+separately typed.
+
+## 18. Residuated causal multiplication
+
+On ordered arithmetic subdomains, multiplication by a fixed causal number may
+admit right adjoints:
+
+\[
+X\circ Y\preceq Z
+\iff
+Y\preceq X\backslash Z,
+\]
+
+\[
+Y\circ X\preceq Z
+\iff
+Y\preceq Z/X.
+\]
+
+These are the internal arithmetic forms of correlative restriction.
+
+They produce generalized division without assuming inverses. Exact division is
+saturation of the corresponding counit. Classical inverse multiplication is a
+special case on an invertible sector.
+
+## 19. Derived arithmetic
+
+The arithmetic shadow is refined into the intended derivation chain
+
+\[
+\text{factorization/restriction}
+\to
+\text{primary causal directions}
+\to
+\text{restriction depth}
+\to
+\text{valuations}
+\to
+\text{prime profile}
+\to
+\text{classical number}.
+\]
+
+Consequences to be formalized include:
+- left/right divisibility through residual saturation;
+- causal gcd/lcm by universal properties;
+- Möbius inversion on factorization intervals;
+- Dirichlet convolution as incidence convolution;
+- CRT from independent primary restriction channels;
+- \(p\)-adic and \(q=p^f\) local completions as coherent histories;
+- ultrametrics from maximal shared restriction depth;
+- localization only after the appropriate universal/Ore hypotheses.
+
+## 20. Realization synthesis
+
+The source object is always a causal number \(X\).  External structures live in
+a category/groupoid \(\mathrm{Real}(X)\).
+
+The program does not replace one realization with another.  It seeks typed
+comparators among graph, local-field, Bruhat--Tits, Ihara, Tate, dessins,
+Wilderber, Galois/Weil--Deligne, Hecke/automorphic, ECIA, local-global,
+Green/Hilbert, Tomita, cohomological and spectral realizations.
+
+The RH, BSD and Langlands programs are therefore downstream comparison
+programs over a causal arithmetic source, not part of the definition of a
+causal number.
