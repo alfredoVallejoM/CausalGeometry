@@ -1,4 +1,5 @@
 import CausalGeometry.Completion.FinitePrimaryTower
+import CausalGeometry.Completion.SharedDepth
 import Mathlib.NumberTheory.Padics.RingHoms
 import Mathlib.SetTheory.Cardinal.Finite
 
@@ -144,6 +145,57 @@ noncomputable def compatibleHistoryEquivPadicInt :
   invFun := ofPadicInt p
   left_inv := ofPadicInt_toPadicInt p
   right_inv := toPadicInt_ofPadicInt p
+
+/-- Agreement of p-adic histories at depth n is exactly equality modulo
+p^(n+1), hence exactly a p-adic norm bound. -/
+theorem agreeAt_ofPadicInt_iff_norm_sub_le
+    (x y : ℤ_[p]) (n : ℕ) :
+    (zmodPrimeTower p).AgreeAt
+        (ofPadicInt p x) (ofPadicInt p y) n ↔
+      ‖x - y‖ ≤
+        (p : ℝ) ^ (-((n + 1 : ℕ) : ℤ)) := by
+  change
+    PadicInt.toZModPow (n + 1) x =
+        PadicInt.toZModPow (n + 1) y ↔ _
+  constructor
+  · intro hxy
+    apply
+      (PadicInt.norm_le_pow_iff_mem_span_pow
+        (x - y) (n + 1)).2
+    rw [← PadicInt.ker_toZModPow (p := p) (n + 1)]
+    rw [RingHom.mem_ker, map_sub, hxy, sub_self]
+  · intro hnorm
+    have hmem :
+        x - y ∈
+          (Ideal.span {(p : ℤ_[p]) ^ (n + 1)} :
+            Ideal ℤ_[p]) :=
+      (PadicInt.norm_le_pow_iff_mem_span_pow
+        (x - y) (n + 1)).1 hnorm
+    rw [← PadicInt.ker_toZModPow (p := p) (n + 1)] at hmem
+    rw [RingHom.mem_ker, map_sub, sub_eq_zero] at hmem
+    exact hmem
+
+/-- Agreement through all restrictions up to n is the same p-adic norm
+condition because compatible histories are nested. -/
+theorem agreeThrough_ofPadicInt_iff_norm_sub_le
+    (x y : ℤ_[p]) (n : ℕ) :
+    (zmodPrimeTower p).AgreeThrough
+        (ofPadicInt p x) (ofPadicInt p y) n ↔
+      ‖x - y‖ ≤
+        (p : ℝ) ^ (-((n + 1 : ℕ) : ℤ)) := by
+  rw [InverseTower.agreeThrough_iff_agreeAt]
+  exact agreeAt_ofPadicInt_iff_norm_sub_le p x y n
+
+/-- The metric ball description is therefore the numerical realization of
+causal shared restriction depth. -/
+theorem agreeThrough_ofPadicInt_iff_dist_le
+    (x y : ℤ_[p]) (n : ℕ) :
+    (zmodPrimeTower p).AgreeThrough
+        (ofPadicInt p x) (ofPadicInt p y) n ↔
+      dist x y ≤
+        (p : ℝ) ^ (-((n + 1 : ℕ) : ℤ)) := by
+  simpa [dist_eq_norm] using
+    agreeThrough_ofPadicInt_iff_norm_sub_le p x y n
 
 end zmodPrimeTower
 end CausalGeometry
