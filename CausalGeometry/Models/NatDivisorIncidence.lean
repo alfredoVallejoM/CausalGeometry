@@ -51,6 +51,35 @@ instance (n : ℕ) [NeZero n] : OrderTop (Divisor n) where
     ((⊤ : Divisor n) : ℕ) = n :=
   rfl
 
+def valEmbedding (n : ℕ) : Divisor n ↪ ℕ where
+  toFun := fun d => d.1
+  inj' := Subtype.coe_injective
+
+/-- The lower interval below a divisor d is exactly the ordinary finite set of
+divisors of d after forgetting the ambient divisor subtype. -/
+theorem map_Iic_val
+    (n : ℕ) [NeZero n] (d : Divisor n) :
+    (Finset.Iic d).map (valEmbedding n) = d.1.divisors := by
+  ext m
+  constructor
+  · intro hm
+    rw [Finset.mem_map] at hm
+    rcases hm with ⟨e, he, rfl⟩
+    have hed : e.1 ∣ d.1 := (Finset.mem_Iic.mp he).2
+    exact Nat.mem_divisors.mpr
+      ⟨hed, Nat.ne_zero_of_dvd_ne_zero
+        (Nat.ne_zero_of_mem_divisors d.2) hed⟩
+  · intro hm
+    have hmd : m ∣ d.1 := Nat.dvd_of_mem_divisors hm
+    have hdn : d.1 ∣ n := Nat.dvd_of_mem_divisors d.2
+    have hmn : m ∣ n := hmd.trans hdn
+    have hmN : m ∈ n.divisors :=
+      Nat.mem_divisors.mpr ⟨hmn, NeZero.ne n⟩
+    let e : Divisor n := ⟨m, hmN⟩
+    rw [Finset.mem_map]
+    refine ⟨e, ?_, rfl⟩
+    exact Finset.mem_Iic.mpr ⟨bot_le, hmd⟩
+
 /-- The divisor poset is a concrete antisymmetric presentation of causal left
 divisibility in the natural-number multiplication model. -/
 def presentation (n : ℕ) :
