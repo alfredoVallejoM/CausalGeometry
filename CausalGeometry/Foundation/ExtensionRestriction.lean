@@ -93,5 +93,35 @@ def comp {γ : Type w} [Preorder γ]
         (E.adjunction a (F.restrict c)).mpr h
       exact (F.adjunction (E.extend a) c).mpr h₁
 
+@[simp] theorem identity_extend (a : α) :
+    (identity α).extend a = a := rfl
+
+@[simp] theorem identity_restrict (a : α) :
+    (identity α).restrict a = a := rfl
+
+@[simp] theorem comp_extend {γ : Type w} [Preorder γ]
+    (F : ExtensionRestriction β γ) (a : α) :
+    (E.comp F).extend a = F.extend (E.extend a) := rfl
+
+@[simp] theorem comp_restrict {γ : Type w} [Preorder γ]
+    (F : ExtensionRestriction β γ) (c : γ) :
+    (E.comp F).restrict c = E.restrict (F.restrict c) := rfl
+
+/-- Source conditions fixed by correlative closure. -/
+def SourceSaturated (a : α) : Prop :=
+  E.closure a = a
+
+/-- Target conditions fixed by realizable interior. -/
+def TargetRealizable (b : β) : Prop :=
+  E.interior b = b
+
+theorem closure_sourceSaturated [PartialOrder α] (a : α) :
+    E.SourceSaturated (E.closure a) :=
+  E.closure_idempotent a
+
+theorem interior_targetRealizable [PartialOrder β] (b : β) :
+    E.TargetRealizable (E.interior b) :=
+  E.interior_idempotent b
+
 end ExtensionRestriction
 end CausalGeometry
