@@ -60,7 +60,7 @@ theorem irreducible_iff_prime (n : ℕ) :
       · exact Or.inl ((isCausalUnit_iff m).mp hmUnit)
       · right
         have hk1 : k = 1 := (isCausalUnit_iff k).mp hkUnit
-        simpa [hk1] using hk
+        simpa [hk1] using hk.symm
   · exact prime_irreducible
 
 /-- The identity multiplicative shadow on natural numbers. -/
