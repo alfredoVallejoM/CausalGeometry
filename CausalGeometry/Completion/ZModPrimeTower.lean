@@ -146,6 +146,34 @@ noncomputable def compatibleHistoryEquivPadicInt :
   left_inv := ofPadicInt_toPadicInt p
   right_inv := toPadicInt_ofPadicInt p
 
+/-- Every finite residue at level n extends to a complete p-adic causal
+history. -/
+theorem levelExtendable (n : ℕ) :
+    (zmodPrimeTower p).LevelExtendable n := by
+  intro z
+  letI : NeZero (p ^ (n + 1)) :=
+    ⟨pow_ne_zero _ (Fact.out : Nat.Prime p).ne_zero⟩
+  refine ⟨ofPadicInt p ((z.val : ℕ) : ℤ_[p]), ?_⟩
+  change PadicInt.toZModPow (n + 1) ((z.val : ℕ) : ℤ_[p]) = z
+  rw [← ZMod.natCast_zmod_val z]
+  exact map_natCast (PadicInt.toZModPow (p := p) (n + 1)) z.val
+
+/-- The depth-n causal observational quotient is precisely the residue ring
+modulo p^(n+1). -/
+noncomputable def truncationQuotientEquivZMod (n : ℕ) :
+    (zmodPrimeTower p).TruncationQuotient n ≃
+      ZMod (p ^ (n + 1)) :=
+  (zmodPrimeTower p).truncationQuotientEquivLevel n
+    (levelExtendable p n)
+
+/-- Consequently the number of causal states distinguishable to depth n is
+exactly p^(n+1). -/
+theorem truncationQuotient_natCard (n : ℕ) :
+    Nat.card ((zmodPrimeTower p).TruncationQuotient n) =
+      p ^ (n + 1) := by
+  rw [Nat.card_congr (truncationQuotientEquivZMod p n)]
+  exact zmodPrimeTower_natCard p n
+
 /-- Agreement of p-adic histories at depth n is exactly equality modulo
 p^(n+1), hence exactly a p-adic norm bound. -/
 theorem agreeAt_ofPadicInt_iff_norm_sub_le
