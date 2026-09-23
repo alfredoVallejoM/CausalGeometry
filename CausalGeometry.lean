@@ -28,3 +28,4 @@ import CausalGeometry.Completion.FinitePrimaryTower
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Cyclic.PrimitiveSystem
+import CausalGeometry.Completion.ZModPrimeTower
