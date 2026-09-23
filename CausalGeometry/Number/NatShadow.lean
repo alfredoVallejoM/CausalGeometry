@@ -28,6 +28,13 @@ instance : CoeFun (NatShadow α) (fun _ => α → ℕ) :=
     S (x * y) = S x * S y :=
   S.map_mul x y
 
+/-- Bundle the multiplicative shadow as a monoid homomorphism when useful for
+generic algebraic theorems such as finite products. -/
+def toMonoidHom (S : NatShadow α) : α →* ℕ where
+  toFun := S
+  map_one' := S.map_one
+  map_mul' := S.map_mul
+
 theorem leftDivides_sound (S : NatShadow α) {x z : α}
     (h : LeftDivides x z) :
     S x ∣ S z := by
