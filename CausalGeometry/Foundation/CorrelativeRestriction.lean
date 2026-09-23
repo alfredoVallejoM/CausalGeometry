@@ -53,7 +53,8 @@ def graphRelation (f : α → β) : α → β → Prop :=
   · intro h
     exact h (f a) rfl
   · intro h b hab
-    simpa [graphRelation] using h.trans_eq hab
+    subst b
+    exact h
 
 /-- Correlation of source and target conditions through a relation. -/
 def Correlated (r : α → β → Prop) (P : Set α) (Q : Set β) : Prop :=
