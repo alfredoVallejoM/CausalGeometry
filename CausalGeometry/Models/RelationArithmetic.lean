@@ -51,7 +51,7 @@ instance : Monoid (CausalRelation α) where
     apply propext
     constructor
     · rintro ⟨b, hab, hbc⟩
-      simpa using hab ▸ hbc
+      exact hab.symm ▸ hbc
     · intro hac
       exact ⟨a, rfl, hac⟩
   mul_one r := by
