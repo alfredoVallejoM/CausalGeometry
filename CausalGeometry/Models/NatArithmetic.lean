@@ -34,6 +34,35 @@ theorem prime_irreducible {p : ℕ} (hp : p.Prime) :
       apply Nat.mul_left_cancel hp.pos
       simpa using hab
 
+/-- In natural-number multiplication, causal irreducibility is exactly
+classical primality. -/
+theorem irreducible_iff_prime (n : ℕ) :
+    Irreducible n ↔ n.Prime := by
+  constructor
+  · intro hn
+    have hn1 : n ≠ 1 := by
+      intro h1
+      apply hn.1
+      exact (isCausalUnit_iff n).mpr h1
+    have hn0 : n ≠ 0 := by
+      intro h0
+      subst n
+      have hfac := hn.2 0 0 (by simp)
+      rcases hfac with hu | hu
+      · exact zero_ne_one ((isCausalUnit_iff 0).mp hu)
+      · exact zero_ne_one ((isCausalUnit_iff 0).mp hu)
+    apply Nat.prime_def.mpr
+    constructor
+    · exact (Nat.two_le_iff n).mpr ⟨hn0, hn1⟩
+    · intro m hm
+      rcases hm with ⟨k, hk⟩
+      rcases hn.2 m k hk.symm with hmUnit | hkUnit
+      · exact Or.inl ((isCausalUnit_iff m).mp hmUnit)
+      · right
+        have hk1 : k = 1 := (isCausalUnit_iff k).mp hkUnit
+        simpa [hk1] using hk
+  · exact prime_irreducible
+
 /-- The identity multiplicative shadow on natural numbers. -/
 def natShadow : NatShadow ℕ where
   toNat := id
@@ -78,6 +107,26 @@ def primeFactorsRealization
     intro p hp
     have hprime := Nat.prime_of_mem_primeFactorsList hp
     simp [natShadow, primeLabel, hprime]
+
+/-- Classical prime multiplicity is the regression target for intrinsic causal
+valuation. -/
+def primeMultiplicity (p n : ℕ) : ℕ :=
+  n.factorization p
+
+theorem primeMultiplicity_mul
+    (p a b : ℕ) (ha : a ≠ 0) (hb : b ≠ 0) :
+    primeMultiplicity p (a * b) =
+      primeMultiplicity p a + primeMultiplicity p b := by
+  change (a * b).factorization p =
+    a.factorization p + b.factorization p
+  rw [Nat.factorization_mul ha hb]
+  rfl
+
+theorem primeMultiplicity_eq_factorList_count
+    (p n : ℕ) :
+    primeMultiplicity p n =
+      n.primeFactorsList.count p := by
+  exact (Nat.primeFactorsList_count_eq).symm
 
 /-- Regression theorem: the derived causal prime profile evaluates back to the
 original natural number. -/
