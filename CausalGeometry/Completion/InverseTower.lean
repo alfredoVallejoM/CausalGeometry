@@ -26,5 +26,18 @@ def CompatibleHistory.truncate (x : T.CompatibleHistory) (n : ℕ) :
     T.drop n (x.truncate (n + 1)) = x.truncate n :=
   x.compatible n
 
+/-- Two compatible histories are equal once all finite observations agree. -/
+theorem CompatibleHistory.eq_of_at_eq
+    {x y : T.CompatibleHistory}
+    (h : ∀ n, x.at n = y.at n) :
+    x = y := by
+  cases x with
+  | mk xa hx =>
+      cases y with
+      | mk ya hy =>
+          have hfun : xa = ya := funext h
+          subst ya
+          rfl
+
 end InverseTower
 end CausalGeometry
