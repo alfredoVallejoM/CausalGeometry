@@ -1,6 +1,11 @@
 # Atomic campaign ledger
 
-The program contains **300 atomic obligations**.
+The program contains **428 atomic obligations**.
+
+The original 300-row program remains intact. CA-17--CA-20 add 128 rows for
+correlative restriction, derived causal arithmetic and the RH--BSD--Langlands
+realization synthesis. They do **not** include the separate generative-dynamic
+motive campaign.
 
 | Gate | Rows | Subject |
 |---|---:|---|
@@ -19,15 +24,20 @@ The program contains **300 atomic obligations**.
 | CA-12 | 20 | Tate/arithmetic realizations |
 | CA-13 | 24 | MW/Selmer, operatorial, ribbon, spectral |
 | CA-14 | 16 | SYS, losses, conservativity, reconstruction |
-| CA-15 | 12 | terminal API and adversarial closure |
+| CA-15 | 12 | API/adversarial closure milestone |
 | CA-16 | 20 | Wilderber generalized restriction geometry |
-| **Total** | **300** | |
+| CA-17 | 24 | causal extension and correlative restriction |
+| CA-18 | 32 | derived causal arithmetic and residuation |
+| CA-19 | 32 | realization synthesis from causal numbers |
+| CA-20 | 40 | RH--BSD--Langlands transformation program |
+| **Total** | **428** | |
 
 Detailed rows are frozen in:
 - \`campaigns/CA00_CA04.md\`
 - \`campaigns/CA05_CA08.md\`
 - \`campaigns/CA09_CA12.md\`
 - \`campaigns/CA13_CA16.md\`
+- \`campaigns/CA17_CA20.md\`
 
 A row closes only with a mathematical declaration, positive model, same-type
 control, same-type failing mutation, consumer, adversarial review, import/axiom
