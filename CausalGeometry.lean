@@ -6,3 +6,6 @@ import CausalGeometry.Number.ArithmeticShadow
 import CausalGeometry.Realization.Basic
 import CausalGeometry.Program.Campaign
 import CausalGeometry.Program.Ledger
+
+import CausalGeometry.Restriction.Pullback
+import CausalGeometry.Calculus.Difference
