@@ -54,6 +54,36 @@ theorem monotone_rightMul (x : α) :
   apply (R.rightAdjunction x y (y' * x)).mpr
   exact hyy.trans (R.rightUnit x y')
 
+/-- A left residual is monotone in its target. -/
+theorem monotone_leftResidual (x : α) :
+    Monotone (R.leftResidual x) := by
+  intro z z' hzz
+  apply (R.leftAdjunction x (R.leftResidual x z) z').mp
+  exact (R.leftCounit x z).trans hzz
+
+/-- A right residual is monotone in its target. -/
+theorem monotone_rightResidual (x : α) :
+    Monotone (fun z => R.rightResidual z x) := by
+  intro z z' hzz
+  apply (R.rightAdjunction x (R.rightResidual z x) z').mp
+  exact (R.rightCounit z x).trans hzz
+
+/-- Increasing the left divisor can only decrease the admissible residual. -/
+theorem antitone_leftResidual_first (z : α) :
+    Antitone (fun x => R.leftResidual x z) := by
+  intro x x' hxx
+  apply (R.leftAdjunction x (R.leftResidual x' z) z).mp
+  exact (R.monotone_rightMul (R.leftResidual x' z) hxx).trans
+    (R.leftCounit x' z)
+
+/-- Increasing the right divisor can only decrease the admissible residual. -/
+theorem antitone_rightResidual_second (z : α) :
+    Antitone (fun x => R.rightResidual z x) := by
+  intro x x' hxx
+  apply (R.rightAdjunction x (R.rightResidual z x') z).mp
+  exact (R.monotone_leftMul (R.rightResidual z x') hxx).trans
+    (R.rightCounit z x')
+
 /-- Exact left division is saturation of the residual counit. -/
 def ExactLeftDivision [PartialOrder α] (x z : α) : Prop :=
   x * R.leftResidual x z = z
