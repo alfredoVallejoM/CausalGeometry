@@ -33,6 +33,8 @@ def primaryTower : (finiteTower p).Primary where
   q_ge_two := (Fact.out : Nat.Prime p).two_le
   card_law := by
     intro n
+    letI : NeZero (p ^ (n + 1)) :=
+      ⟨pow_ne_zero _ (Fact.out : Nat.Prime p).ne_zero⟩
     simp [finiteTower, FiniteInverseTower.card, ZMod.card]
 
 /-- Every p-adic integer determines a coherent history through the finite
