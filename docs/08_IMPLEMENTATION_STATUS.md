@@ -120,6 +120,37 @@ Not yet implemented:
 - general DVR tower \(\mathcal O_K/\pi^{n+1}\);
 - ultrametric reconstruction.
 
+### Concrete arithmetic and relational models
+
+Implemented:
+- `Models/RelationArithmetic.lean`
+- `Models/RelationArithmeticExample.lean`
+- `Completion/ZModPrimeTower.lean`
+- `Number/CRT.lean`
+- `Number/DivisibilityOrder.lean`
+
+Available:
+- binary relations under composition form a canonical residuated causal
+  arithmetic model;
+- an explicit two-state witness proves relational multiplication is
+  noncommutative;
+- left/right divisibility are available as actual preorders;
+- the concrete tower (mathbb Z/p^{n+1}mathbb Z) uses native
+  `ZMod.cast` reductions;
+- `Nat.card` of every level is proved to be (p^{n+1});
+- every (p)-adic integer maps to a coherent history using
+  `PadicInt.toZModPow`;
+- the complete finite-restriction family separates (p)-adic integers;
+- native two-channel and finite-family Chinese remainder equivalences are
+  exposed as the classical realization of independent restriction channels.
+
+Still open:
+- surjectivity from arbitrary compatible ZMod histories back to
+  (mathbb Z_p) as an explicit equivalence;
+- general DVR/(q=p^f) reconstruction;
+- causal theorem deriving the CRT channel split before applying native ZMod
+  CRT.
+
 ### Cyclic and realization interfaces
 
 Implemented:
