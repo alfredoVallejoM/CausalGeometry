@@ -12,3 +12,4 @@
 
 The separate generative-dynamic motive campaign is not part of this program.
 - `08_IMPLEMENTATION_STATUS.md`: exact source implementation status and verification boundary.
+- 09_INCIDENCE_MOBIUS_DIRICHLET_ULTRAMETRIC.md: CA-18 incidence, Möbius, factorization convolution, Dirichlet realization, causal balls and exact p-adic separation depth.
