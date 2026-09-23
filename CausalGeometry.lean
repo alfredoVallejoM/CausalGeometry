@@ -33,3 +33,4 @@ import CausalGeometry.Number.CRT
 import CausalGeometry.Number.DivisibilityOrder
 import CausalGeometry.Models.RelationArithmetic
 import CausalGeometry.Models.RelationArithmeticExample
+import CausalGeometry.Number.PrimaryDecomposition
