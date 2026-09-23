@@ -42,5 +42,20 @@ theorem multiplicity_append (p : α) (xs ys : List α) :
       multiplicity p xs + multiplicity p ys := by
   simp [multiplicity, profile_append]
 
+theorem profile_apply_eq_count (xs : List α) (p : α) :
+    profile xs p = xs.count p := by
+  induction xs with
+  | nil =>
+      simp [profile]
+  | cons x xs ih =>
+      by_cases hxp : x = p
+      · subst x
+        simp [profile, ih]
+      · simp [profile, ih, hxp]
+
+theorem multiplicity_eq_count (p : α) (xs : List α) :
+    multiplicity p xs = xs.count p := by
+  exact profile_apply_eq_count xs p
+
 end CausalFactorization
 end CausalGeometry
