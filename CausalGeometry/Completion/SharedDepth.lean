@@ -92,6 +92,53 @@ theorem agreeThrough_iff_agreeAt
   · intro h k hk
     exact T.agreeAt_of_le hk h
 
+/-- Causal ball of histories indistinguishable from x through depth n. -/
+def DepthBall (x : T.CompatibleHistory) (n : ℕ) :
+    Set T.CompatibleHistory :=
+  {y | T.AgreeThrough x y n}
+
+@[simp] theorem mem_depthBall
+    {x y : T.CompatibleHistory} {n : ℕ} :
+    y ∈ T.DepthBall x n ↔ T.AgreeThrough x y n :=
+  Iff.rfl
+
+/-- Finer observations produce smaller causal balls. -/
+theorem depthBall_anti
+    {x : T.CompatibleHistory} {m n : ℕ}
+    (hmn : m ≤ n) :
+    T.DepthBall x n ⊆ T.DepthBall x m := by
+  intro y hy
+  exact T.agreeThrough_mono hy hmn
+
+/-- Centers inside the same causal ball determine exactly the same ball. -/
+theorem depthBall_eq_of_mem
+    {x y : T.CompatibleHistory} {n : ℕ}
+    (hy : y ∈ T.DepthBall x n) :
+    T.DepthBall y n = T.DepthBall x n := by
+  ext z
+  constructor
+  · intro hyz
+    exact T.agreeThrough_trans hy
+      hyz
+  · intro hxz
+    exact T.agreeThrough_trans
+      (T.agreeThrough_symm hy) hxz
+
+/-- At a fixed causal depth, two balls are either identical or disjoint. -/
+theorem depthBall_eq_or_disjoint
+    (x y : T.CompatibleHistory) (n : ℕ) :
+    T.DepthBall x n = T.DepthBall y n ∨
+      Disjoint (T.DepthBall x n) (T.DepthBall y n) := by
+  by_cases hxy : T.AgreeThrough x y n
+  · left
+    exact (T.depthBall_eq_of_mem hxy).symm
+  · right
+    rw [Set.disjoint_left]
+    intro z hxz hyz
+    apply hxy
+    exact T.agreeThrough_trans hxz
+      (T.agreeThrough_symm hyz)
+
 /-- Truncation indistinguishability at depth n is an honest equivalence
 relation. -/
 def truncationSetoid (n : ℕ) : Setoid T.CompatibleHistory where
