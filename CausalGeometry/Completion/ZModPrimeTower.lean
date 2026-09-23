@@ -166,6 +166,25 @@ noncomputable def truncationQuotientEquivZMod (n : ℕ) :
   (zmodPrimeTower p).truncationQuotientEquivLevel n
     (levelExtendable p n)
 
+/-- The levelwise equivalences commute with causal forgetting and ordinary
+modular reduction, so they identify the whole inverse systems rather than only
+their individual levels. -/
+theorem truncationEquiv_compat
+    (n : ℕ)
+    (q : (zmodPrimeTower p).TruncationQuotient (n + 1)) :
+    truncationQuotientEquivZMod p n
+        ((zmodPrimeTower p).truncateQuotient
+          (Nat.le_succ n) q) =
+      ZMod.cast
+        (truncationQuotientEquivZMod p (n + 1) q) := by
+  change
+    (zmodPrimeTower p).quotientEval n
+        ((zmodPrimeTower p).truncateQuotient
+          (Nat.le_succ n) q) =
+      (zmodPrimeTower p).drop n
+        ((zmodPrimeTower p).quotientEval (n + 1) q)
+  exact (zmodPrimeTower p).quotientEval_truncate_succ n q
+
 /-- Consequently the number of causal states distinguishable to depth n is
 exactly p^(n+1). -/
 theorem truncationQuotient_natCard (n : ℕ) :
