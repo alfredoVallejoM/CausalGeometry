@@ -35,11 +35,9 @@ instance (n : ℕ) : Fintype (Divisor n) :=
 instance (n : ℕ) : LocallyFiniteOrder (Divisor n) :=
   Fintype.toLocallyFiniteOrder
 
-instance (n : ℕ) [NeZero n] : OrderBot (Divisor n) where
+instance (n : ℕ) [NeZero n] : BoundedOrder (Divisor n) where
   bot := ⟨1, Nat.one_mem_divisors.mpr (NeZero.ne n)⟩
   bot_le a := one_dvd a.1
-
-instance (n : ℕ) [NeZero n] : OrderTop (Divisor n) where
   top := ⟨n, Nat.mem_divisors_self n (NeZero.ne n)⟩
   le_top a := Nat.dvd_of_mem_divisors a.2
 
