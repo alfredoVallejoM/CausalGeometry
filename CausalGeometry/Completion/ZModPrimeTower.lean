@@ -106,8 +106,8 @@ theorem toZModPow_toPadicInt
 theorem ofPadicInt_toPadicInt
     (h : (zmodPrimeTower p).CompatibleHistory) :
     ofPadicInt p (toPadicInt p h) = h := by
-  apply InverseTower.CompatibleHistory.ext
-  funext n
+  apply InverseTower.CompatibleHistory.eq_of_at_eq
+  intro n
   exact toZModPow_toPadicInt p h n
 
 /-- Reconstructing a p-adic integer from its full restriction history returns
