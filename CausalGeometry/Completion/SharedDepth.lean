@@ -105,6 +105,48 @@ def truncationSetoid (n : ℕ) : Setoid T.CompatibleHistory where
 def TruncationQuotient (n : ℕ) :=
   Quotient (T.truncationSetoid n)
 
+/-- Evaluation of a truncation class at its deepest visible level. -/
+def quotientEval (n : ℕ) :
+    T.TruncationQuotient n → T.Obj n :=
+  Quotient.lift
+    (fun x : T.CompatibleHistory => x.at n)
+    (by
+      intro x y hxy
+      exact hxy n le_rfl)
+
+/-- The depth-n quotient retains exactly the level-n observation: evaluation
+is always injective because coherence propagates equality to all shallower
+levels. -/
+theorem quotientEval_injective (n : ℕ) :
+    Function.Injective (T.quotientEval n) := by
+  intro q r
+  refine Quotient.inductionOn₂ q r ?_
+  intro x y hxy
+  apply Quotient.sound
+  apply (T.agreeThrough_iff_agreeAt).2
+  exact hxy
+
+/-- Every finite observation at level n extends to a complete compatible
+history. -/
+def LevelExtendable (n : ℕ) : Prop :=
+  Function.Surjective
+    (fun x : T.CompatibleHistory => x.at n)
+
+/-- When all level-n states extend to complete histories, the finite
+observational quotient is exactly the level-n state space. -/
+noncomputable def truncationQuotientEquivLevel
+    (n : ℕ) (h : T.LevelExtendable n) :
+    T.TruncationQuotient n ≃ T.Obj n :=
+  Equiv.ofBijective (T.quotientEval n)
+    ⟨T.quotientEval_injective n, h⟩
+
+/-- Deeper truncation quotients canonically forget to shallower quotients. -/
+def truncateQuotient {m n : ℕ} (hmn : m ≤ n) :
+    T.TruncationQuotient n → T.TruncationQuotient m :=
+  Quotient.map id (by
+    intro x y hxy
+    exact T.agreeThrough_mono hxy hmn)
+
 /-- The strong ultrametric-ball law appears already before assigning any
 numerical distance: two depth-n correlations compose transitively. -/
 theorem strong_ball_law
