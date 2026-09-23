@@ -501,3 +501,255 @@ Every promoted external result is machine-classified by a chain
 
 T115 is the terminal semantic requirement; no name similarity can substitute
 for it.
+
+
+---
+
+# New master theorems: correlative restriction, causal arithmetic and synthesis
+
+## M. Extension--restriction polarity
+
+**T116 — Causal extension/restriction adjunction.**
+For every admitted causal process \(h:A\rightsquigarrow B\),
+\[
+h_!P\le Q\iff P\le h^*Q.
+\]
+
+**T117 — Extension monotonicity.**
+\(P\le P'\Rightarrow h_!P\le h_!P'\).
+
+**T118 — Restriction monotonicity.**
+\(Q\le Q'\Rightarrow h^*Q\le h^*Q'\).
+
+**T119 — Correlative closure unit.**
+\[
+P\le h^*h_!P.
+\]
+
+**T120 — Realizable-interior counit.**
+\[
+h_!h^*Q\le Q.
+\]
+
+**T121 — Closure idempotence.**
+On partial-order domains,
+\[
+(h^*h_!)^2=h^*h_!.
+\]
+
+**T122 — Interior idempotence.**
+On partial-order domains,
+\[
+(h_!h^*)^2=h_!h^*.
+\]
+
+**T123 — Contravariant composition of restriction.**
+\[
+(g\circ h)^*=h^*g^*,
+\qquad
+(g\circ h)_!=g_!h_!.
+\]
+
+**T124 — Identity polarity.**
+\[
+(id)_!=(id)^*=id.
+\]
+
+**T125 — Separation theorem.**
+There are models distinguishing correlative restriction, causal dagger and
+linear/algebraic dual.
+
+## N. Residuated causal arithmetic
+
+**T126 — Left causal residuation.**
+Where the adjoint exists,
+\[
+X\circ Y\preceq Z
+\iff
+Y\preceq X\backslash Z.
+\]
+
+**T127 — Right causal residuation.**
+Where the adjoint exists,
+\[
+Y\circ X\preceq Z
+\iff
+Y\preceq Z/X.
+\]
+
+**T128 — Exact-division criterion.**
+\[
+X\mid_LZ
+\iff
+X\circ(X\backslash Z)\simeq Z
+\]
+under the fixed equality/equivalence and existence hypotheses; analogously on
+the right.
+
+**T129 — Inverse-sector recovery.**
+On an invertible compatible sector,
+\[
+X\backslash Z\simeq X^{-1}\circ Z,
+\qquad
+Z/X\simeq Z\circ X^{-1}.
+\]
+
+**T130 — Residual divisibility soundness.**
+Exact residual division implies the corresponding classical divisibility after
+arithmetic shadow.
+
+**T131 — Prime-comparison theorem target.**
+On the named arithmetic domain, compare compositional irreducibility, cyclic
+primitivity and classical primality without identifying them by definition.
+
+**T132 — Valuation as causal restriction depth.**
+\[
+v_P(X)=\sup\{r:P^r\mid_C X\}
+\]
+where finite primary factorization/restriction depth is defined.
+
+**T133 — Valuation additivity.**
+On a primary-factorization domain,
+\[
+v_P(XY)=v_P(X)+v_P(Y).
+\]
+
+**T134 — Causal gcd theorem.**
+The universal common causal divisor maps to classical gcd under the arithmetic
+realization.
+
+**T135 — Causal lcm theorem.**
+The universal causal common multiple maps to classical lcm under the arithmetic
+realization.
+
+**T136 — Incidence--Möbius theorem.**
+Finite factorization intervals carry a Möbius function whose classical shadow
+is arithmetic Möbius inversion.
+
+**T137 — Dirichlet convolution theorem.**
+Incidence convolution on the factorization category decategorifies to
+Dirichlet convolution.
+
+**T138 — Causal CRT theorem.**
+Independent primary restriction channels realize the Chinese remainder
+decomposition in the standard arithmetic model.
+
+**T139 — Primary completion theorem.**
+A coherent inverse system of primary restrictions has a completion represented
+by compatible infinite causal histories.
+
+**T140 — \(p\)-adic realization theorem.**
+For the standard prime realization,
+\[
+\varprojlim_r A_r\simeq\mathbb Z_p.
+\]
+
+**T141 — Local \(q=p^f\) realization theorem target.**
+Under the required DVR/residue hypotheses,
+\[
+\varprojlim_r A_r\simeq\mathcal O_K,
+\qquad
+|A_r|=q^r.
+\]
+
+**T142 — Ultrametric correlation-depth theorem.**
+The local absolute value is the numerical shadow of maximal common restriction
+depth:
+\[
+|x-y|_P=N(P)^{-d_P(x,y)}.
+\]
+
+**T143 — Classical arithmetic recovery.**
+The declared arithmetic realization recovers the supported
+\(\mathbb N,\mathbb Z,\mathbb Q\), divisibility, valuation, localization and
+completion laws from the causal/residuated source.
+
+## O. Realization synthesis
+
+**T144 — Graph/local reconstruction target.**
+A sufficiently enriched primary arithmetic graph tower reconstructs its local
+causal restriction tower and, under explicit hypotheses, the associated local
+ring data.
+
+**T145 — Bruhat--Tits/Ihara comparison target.**
+Projectivized local restriction towers map to Bruhat--Tits geometry, and
+primitive closed histories map to the appropriate Ihara/Hashimoto realization.
+
+**T146 — Wilderber realization of correlative restriction.**
+For an admitted geometric probe \(\phi\), pullback \(\phi^*\) realizes the
+correlative restriction attached to the corresponding causal extension.
+
+**T147 — Universal local causal correspondence target.**
+A local causal endocorrespondence \(\Phi_v^C\) admits compatible realizations
+as Frobenius, Hecke, Hashimoto/transfer and exact finite point-count actions on
+their supported domains.
+
+**T148 — Trace compatibility target.**
+Whenever two realizations of \(\Phi_v^C\) are connected by a proved comparison,
+their selected trace data commute with that comparison.
+
+**T149 — Local Langlands comparison.**
+On every domain where local Langlands is a theorem, the Weil--Deligne and
+automorphic realizations of one causal local source have matching
+\(L\)-, epsilon- and conductor data.
+
+**T150 — Global Langlands/modularity comparison target.**
+Global Galois and automorphic realizations of one causal arithmetic source are
+related exactly on the domains supplied by known theorems; conjectural
+extensions remain indexed as such.
+
+**T151 — RH common-source theorem target.**
+The orbital/nodal, Ihara, local \(p\)-adic, modular/dessin, Bost--Connes,
+\(\mathbf F_1\), Green/Weil, Tomita and cohomological/spectral RH routes are
+typed realizations of one causal arithmetic source, with an explicit comparison
+diagram.
+
+**T152 — BSD common-source theorem target.**
+The local elliptic, Frobenius/Galois, \(q\)-adic/BT, Tate/Néron/Tamagawa,
+modular/Hecke, dessin, MW/height, Selmer/Sha, Iwasawa, Gross--Zagier and
+determinant-line BSD routes are typed realizations of one elliptic causal
+source.
+
+**T153 — Causal \(H^1\) to Mordell--Weil target.**
+\[
+R_{\rm MW}(H_C^1(X_E))
+\simeq
+E(K)\otimes\mathbb Q
+\]
+on the eventual domain where the comparison is constructed.
+
+**T154 — Causal \(H^1\) to central spectral kernel target.**
+\[
+R_{\rm spec}(H_C^1(X_E))
+\simeq
+\ker(\Theta_E-1)
+\]
+under the required spectral hypotheses.
+
+**T155 — Causal determinant-line target.**
+The determinant line generated by causal cohomology admits independently
+constructed arithmetic and analytic norms whose equality specializes to the
+strong BSD formula in the elliptic domain.
+
+**T156 — Integrated RH lock theorem schema.**
+RH may be consumed only after independent construction of: A) global
+operator/determinant, B) non-circular positivity/critical symmetry, and C)
+exact completed-zeta identification with nonvanishing regularizer, all from
+the same causal source.
+
+**T157 — \(GL_1\) regression theorem.**
+Class-field theory supplies the first global Langlands regression domain for
+the causal local/global realization architecture.
+
+**T158 — \(GL_2\) elliptic regression theorem.**
+Elliptic modularity supplies the principal nonabelian regression domain in
+which Galois/Frobenius and modular/Hecke realizations of \(X_E\) have matching
+good-prime traces and \(L\)-data.
+
+**T159 — Joint realization conservativity target.**
+A named subset of arithmetic realizations is jointly conservative on an
+explicit causal arithmetic subdomain.
+
+**T160 — Scientific-boundary theorem.**
+No theorem above promotes RH, BSD, general Langlands, automorphic GRH,
+Bloch--Kato or ETNC without the target-specific open comparison theorems.
