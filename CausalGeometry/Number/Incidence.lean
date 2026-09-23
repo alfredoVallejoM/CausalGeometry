@@ -94,5 +94,67 @@ def convolution
   rfl
 
 end LeftDivisorPresentation
+
+/-- Antisymmetric presentation of right causal divisibility.  It is separate
+from the left presentation in genuinely noncommutative arithmetic. -/
+structure RightDivisorPresentation
+    (α : Type u) (δ : Type v)
+    [Monoid α] [PartialOrder δ] where
+  realize : δ → α
+  realize_injective : Function.Injective realize
+  le_iff_rightDivides :
+    ∀ a b, a ≤ b ↔ RightDivides (realize a) (realize b)
+
+namespace RightDivisorPresentation
+
+variable {α : Type u} {δ : Type v}
+variable [Monoid α] [PartialOrder δ]
+variable (P : RightDivisorPresentation α δ)
+
+def zeta [DecidableLE δ] :
+    IncidenceAlgebra ℤ δ :=
+  IncidenceAlgebra.zeta ℤ
+
+def mobius [LocallyFiniteOrder δ] [DecidableEq δ] :
+    IncidenceAlgebra ℤ δ :=
+  IncidenceAlgebra.mu ℤ
+
+@[simp] theorem mobius_self
+    [LocallyFiniteOrder δ] [DecidableEq δ] (a : δ) :
+    P.mobius a a = 1 := by
+  simp [mobius]
+
+theorem mobius_eq_zero_of_not_rightDivides
+    [LocallyFiniteOrder δ] [DecidableEq δ]
+    {a b : δ}
+    (h : ¬ RightDivides (P.realize a) (P.realize b)) :
+    P.mobius a b = 0 := by
+  apply IncidenceAlgebra.apply_eq_zero_of_not_le
+  intro hab
+  exact h ((P.le_iff_rightDivides a b).mp hab)
+
+theorem mobius_mul_zeta
+    [LocallyFiniteOrder δ] [DecidableEq δ] [DecidableLE δ] :
+    P.mobius * P.zeta = 1 := by
+  simpa [mobius, zeta] using
+    (IncidenceAlgebra.mu_mul_zeta ℤ δ)
+
+theorem zeta_mul_mobius
+    [LocallyFiniteOrder δ] [DecidableEq δ] [DecidableLE δ] :
+    P.zeta * P.mobius = 1 := by
+  simpa [mobius, zeta] using
+    (IncidenceAlgebra.zeta_mul_mu (𝕜 := ℤ) (α := δ))
+
+theorem moebius_inversion
+    [LocallyFiniteOrder δ] [DecidableEq δ] [OrderBot δ]
+    (f g : δ → ℤ)
+    (h : ∀ x, g x = ∑ y ∈ Finset.Iic x, f y)
+    (x : δ) :
+    f x =
+      ∑ y ∈ Finset.Iic x, P.mobius y x * g y := by
+  simpa [mobius] using
+    (IncidenceAlgebra.moebius_inversion_bot f g h x)
+
+end RightDivisorPresentation
 end CausalIncidence
 end CausalGeometry
