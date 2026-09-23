@@ -244,6 +244,46 @@ theorem agreeThrough_ofPadicInt_iff_dist_le
   simpa [dist_eq_norm] using
     agreeThrough_ofPadicInt_iff_norm_sub_le p x y n
 
+/-- For distinct p-adic integers, causal agreement through level n is
+equivalent to n lying strictly below the valuation of their difference.  Thus
+the valuation is exactly the first separating restriction level. -/
+theorem agreeThrough_iff_lt_valuation
+    {x y : ℤ_[p]} (hxy : x ≠ y) (n : ℕ) :
+    (zmodPrimeTower p).AgreeThrough
+        (ofPadicInt p x) (ofPadicInt p y) n ↔
+      n < (x - y).valuation := by
+  rw [agreeThrough_ofPadicInt_iff_norm_sub_le]
+  rw [PadicInt.norm_le_pow_iff_le_valuation
+    (x - y) (sub_ne_zero.mpr hxy) (n + 1)]
+  exact Nat.lt_iff_add_one_le
+
+/-- Distinct histories agree at every level strictly before the valuation. -/
+theorem agreeThrough_before_valuation
+    {x y : ℤ_[p]} (hxy : x ≠ y)
+    {n : ℕ} (hn : n < (x - y).valuation) :
+    (zmodPrimeTower p).AgreeThrough
+      (ofPadicInt p x) (ofPadicInt p y) n :=
+  (agreeThrough_iff_lt_valuation p hxy n).2 hn
+
+/-- The valuation level itself is the first finite observation at which two
+distinct p-adic histories are separated. -/
+theorem separates_at_valuation
+    {x y : ℤ_[p]} (hxy : x ≠ y) :
+    ¬ (zmodPrimeTower p).AgreeThrough
+      (ofPadicInt p x) (ofPadicInt p y)
+      ((x - y).valuation) := by
+  rw [agreeThrough_iff_lt_valuation p hxy]
+  exact lt_irrefl _
+
+/-- The p-adic norm is the exponential numerical shadow of the causal first
+separation depth. -/
+theorem norm_sub_eq_pow_separationDepth
+    {x y : ℤ_[p]} (hxy : x ≠ y) :
+    ‖x - y‖ =
+      (p : ℝ) ^ (-((x - y).valuation : ℤ)) :=
+  PadicInt.norm_eq_zpow_neg_valuation
+    (sub_ne_zero.mpr hxy)
+
 /-- The causal depth ball is exactly the ordinary p-adic closed metric ball
 under the history realization. -/
 theorem preimage_depthBall_eq_closedBall
