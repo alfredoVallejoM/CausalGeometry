@@ -94,5 +94,21 @@ theorem mobius_from_bot_eq_arithmetic
     _ = (NatDivisorIncidence.presentation n).mobius
           (⊥ : NatDivisorIncidence.Divisor n) x := hsingle
 
+/-- The Euler characteristic of the finite divisor poset is the classical
+Mobius value of n. -/
+theorem eulerChar_divisorPoset_eq_moebius
+    (n : ℕ) [NeZero n] :
+    IncidenceAlgebra.eulerChar ℤ
+        (NatDivisorIncidence.Divisor n) =
+      μ n := by
+  change
+    NatDivisorIncidence.mobius n
+        (⊥ : NatDivisorIncidence.Divisor n)
+        (⊤ : NatDivisorIncidence.Divisor n) =
+      μ n
+  simpa using
+    mobius_from_bot_eq_arithmetic n
+      (⊤ : NatDivisorIncidence.Divisor n)
+
 end NatIncidenceMobiusComparison
 end CausalGeometry
