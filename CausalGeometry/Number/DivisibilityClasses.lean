@@ -64,7 +64,7 @@ theorem leftClass_eq_one_of_unit {u : α}
   constructor
   · rcases hu with ⟨v, huv, hvu⟩
     exact ⟨v, huv⟩
-  · exact unit_left_divides_all hu u
+  · exact ⟨u, one_mul u⟩
 
 /-- A causal unit is right-divisibility equivalent to the multiplicative
 identity. -/
@@ -75,7 +75,7 @@ theorem rightClass_eq_one_of_unit {u : α}
   constructor
   · rcases hu with ⟨v, huv, hvu⟩
     exact ⟨v, hvu⟩
-  · exact unit_right_divides_all hu u
+  · exact ⟨u, mul_one u⟩
 
 end CausalDivisibilityClasses
 end CausalGeometry
