@@ -244,5 +244,20 @@ theorem agreeThrough_ofPadicInt_iff_dist_le
   simpa [dist_eq_norm] using
     agreeThrough_ofPadicInt_iff_norm_sub_le p x y n
 
+/-- The causal depth ball is exactly the ordinary p-adic closed metric ball
+under the history realization. -/
+theorem preimage_depthBall_eq_closedBall
+    (x : ℤ_[p]) (n : ℕ) :
+    {y : ℤ_[p] |
+      ofPadicInt p y ∈
+        (zmodPrimeTower p).DepthBall
+          (ofPadicInt p x) n} =
+      Metric.closedBall x
+        ((p : ℝ) ^ (-((n + 1 : ℕ) : ℤ))) := by
+  ext y
+  rw [Set.mem_setOf_eq, Metric.mem_closedBall]
+  simpa [dist_comm] using
+    agreeThrough_ofPadicInt_iff_dist_le p x y n
+
 end zmodPrimeTower
 end CausalGeometry
