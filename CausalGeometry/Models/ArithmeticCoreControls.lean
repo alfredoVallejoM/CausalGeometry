@@ -21,6 +21,38 @@ theorem divisorEulerChar_prime
         NatIncidenceMobiusComparison.eulerChar_divisorPoset_eq_moebius p
     _ = -1 := ArithmeticFunction.moebius_apply_prime hp
 
+/-- A primary causal channel has nonzero Mobius content only at its first
+nontrivial depth. -/
+theorem divisorEulerChar_primePower
+    {p k : ℕ} (hp : p.Prime) (hk : k ≠ 0) :
+    IncidenceAlgebra.eulerChar ℤ
+        (NatDivisorIncidence.Divisor (p ^ k)) =
+      if k = 1 then -1 else 0 := by
+  letI : NeZero (p ^ k) := ⟨pow_ne_zero _ hp.ne_zero⟩
+  calc
+    IncidenceAlgebra.eulerChar ℤ
+        (NatDivisorIncidence.Divisor (p ^ k)) =
+      ArithmeticFunction.moebius (p ^ k) :=
+        NatIncidenceMobiusComparison.eulerChar_divisorPoset_eq_moebius (p ^ k)
+    _ = if k = 1 then -1 else 0 :=
+      ArithmeticFunction.moebius_apply_prime_pow hp hk
+
+/-- For a squarefree arithmetic shadow, independent primary channels multiply
+their signs exactly as predicted by the causal product-channel theorem. -/
+theorem divisorEulerChar_squarefree
+    {n : ℕ} (hn : n ≠ 0) (hsf : Squarefree n) :
+    IncidenceAlgebra.eulerChar ℤ
+        (NatDivisorIncidence.Divisor n) =
+      (-1) ^ ArithmeticFunction.cardFactors n := by
+  letI : NeZero n := ⟨hn⟩
+  calc
+    IncidenceAlgebra.eulerChar ℤ
+        (NatDivisorIncidence.Divisor n) =
+      ArithmeticFunction.moebius n :=
+        NatIncidenceMobiusComparison.eulerChar_divisorPoset_eq_moebius n
+    _ = (-1) ^ ArithmeticFunction.cardFactors n :=
+      ArithmeticFunction.moebius_apply_of_squarefree hsf
+
 /-- Mutation/control: repeating a prime changes the incidence Euler
 characteristic from minus one to zero. -/
 theorem divisorEulerChar_primeSquare
