@@ -58,10 +58,16 @@ primary channels. -/
 theorem shadow_eq_prime_product :
     S x =
       ∏ i, (R.prime i).1 ^ D.exponent i := by
-  rw [← D.product_channels]
-  change S (∏ i, D.channel i) = _
-  rw [← map_prod (S.toMonoidHom) (fun i => D.channel i) Finset.univ]
-  simp [R.channel_shadow]
+  calc
+    S x = S (∏ i, D.channel i) := by
+      rw [D.product_channels]
+    _ = ∏ i, S (D.channel i) := by
+      simpa [NatShadow.toMonoidHom] using
+        (map_prod (S.toMonoidHom) (fun i => D.channel i) Finset.univ)
+    _ = ∏ i, (R.prime i).1 ^ D.exponent i := by
+      apply Finset.prod_congr rfl
+      intro i hi
+      exact R.channel_shadow i
 
 /-- Distinct realized primary channels are pairwise coprime after taking their
 positive powers. -/
