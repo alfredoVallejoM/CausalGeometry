@@ -70,19 +70,27 @@ def extend (C : Configuration S) (e : Event) (h : S.Enabled C e) :
   carrier := insert e C.carrier
   downClosed := by
     intro x y hx hy
-    rcases hx with rfl | hx
-    · exact Set.mem_insert_of_mem _ (h.2.1 y hy)
+    rcases Set.mem_insert_iff.mp hx with hxe | hx
+    · subst x
+      exact Set.mem_insert_of_mem _ (h.2.1 y hy)
     · exact Set.mem_insert_of_mem _ (C.downClosed hx hy)
   conflictFree := by
     intro x y hx hy
-    rcases hx with rfl | hx
-    · rcases hy with rfl | hy
-      · exact S.conflict_irrefl e
+    rcases Set.mem_insert_iff.mp hx with hxe | hx
+    · subst x
+      rcases Set.mem_insert_iff.mp hy with hye | hy
+      · subst y
+        exact S.conflict_irrefl e
       · exact h.2.2 y hy
-    · rcases hy with rfl | hy
-      · intro hxe
+    · rcases Set.mem_insert_iff.mp hy with hye | hy
+      · subst y
+        intro hxe
         exact h.2.2 x hx (S.conflict_symm hxe)
       · exact C.conflictFree hx hy
+
+@[simp] theorem carrier_extend (C : Configuration S) (e : Event)
+    (h : S.Enabled C e) :
+    (S.extend C e h).carrier = insert e C.carrier := rfl
 
 end EventSystem
 end CausalGeometry
