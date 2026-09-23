@@ -36,12 +36,24 @@ def value (ν : PrimeProfile) : ℕ :=
 @[simp] theorem value_zero : value 0 = 1 := by
   simp [value]
 
+theorem value_add (a b : PrimeProfile) :
+    value (a + b) = value a * value b := by
+  unfold value
+  rw [Finsupp.prod_add_index]
+  · simp
+  · intro p m n
+    simp [pow_add]
+
 /-- One classical prime occurrence. -/
 def atom (p : Nat.Primes) : PrimeProfile :=
   ⟨Finsupp.single p 1⟩
 
 @[simp] theorem atom_exponents (p : Nat.Primes) :
     (atom p).exponents = Finsupp.single p 1 := rfl
+
+@[simp] theorem value_atom (p : Nat.Primes) :
+    value (atom p) = p.1 := by
+  simp [value, atom, Finsupp.prod_single_index]
 
 /-- Derive a classical prime profile from an ordered list of causal factors
 once a target realization has assigned each factor a classical prime.  The
@@ -71,6 +83,16 @@ theorem fromFactorList_append {α : Type*}
       simp only [List.cons_append, fromFactorList_cons, ih]
       apply PrimeProfile.ext
       simp [add_assoc]
+
+theorem value_fromFactorList {α : Type*}
+    (primeOf : α → Nat.Primes) (xs : List α) :
+    value (fromFactorList primeOf xs) =
+      (xs.map (fun x => (primeOf x).1)).prod := by
+  induction xs with
+  | nil =>
+      simp
+  | cons x xs ih =>
+      simp [fromFactorList, value_add, ih]
 
 end PrimeProfile
 end CausalGeometry
