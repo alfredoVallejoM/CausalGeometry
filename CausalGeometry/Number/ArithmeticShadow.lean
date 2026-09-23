@@ -1,4 +1,5 @@
 import CausalGeometry.Number.Basic
+import Mathlib.Algebra.BigOperators.Finsupp.Basic
 import Mathlib.Data.Finsupp.Basic
 import Mathlib.Data.Nat.Prime.Basic
 
