@@ -77,3 +77,5 @@ import CausalGeometry.Number.DivisibilityClasses
 import CausalGeometry.Number.CanonicalIncidence
 
 import CausalGeometry.Models.PairedTransformControls
+
+import CausalGeometry.Models.CalculusControls
