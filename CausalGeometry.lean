@@ -31,6 +31,7 @@ import CausalGeometry.Calculus.CovariantDifference
 import CausalGeometry.Calculus.CovariantSquare
 import CausalGeometry.Calculus.Decomposition
 import CausalGeometry.Calculus.StructuralTransport
+import CausalGeometry.Calculus.RestrictionTransport
 import CausalGeometry.Calculus.AdjointVariation
 import CausalGeometry.Calculus.JetRestriction
 import CausalGeometry.Calculus.JetRestrictionLimit
@@ -81,3 +82,5 @@ import CausalGeometry.Number.CanonicalIncidence
 import CausalGeometry.Models.PairedTransformControls
 
 import CausalGeometry.Models.CalculusControls
+
+import CausalGeometry.Models.RestrictionTransportControls
