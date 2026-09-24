@@ -22,6 +22,7 @@ import CausalGeometry.Calculus.Decomposition
 import CausalGeometry.Calculus.StructuralTransport
 import CausalGeometry.Calculus.AdjointVariation
 import CausalGeometry.Calculus.JetRestriction
+import CausalGeometry.Calculus.JetRestrictionLimit
 import CausalGeometry.Variational.Legendre
 
 import CausalGeometry.Foundation.ExtensionRestriction
