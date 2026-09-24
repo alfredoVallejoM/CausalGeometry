@@ -62,8 +62,13 @@ theorem realize_mul
       realize f x * realize f y := by
   refine Quotient.inductionOn x ?_
   intro a
+  rcases a with ⟨a, s⟩
   refine Quotient.inductionOn y ?_
   intro b
+  rcases b with ⟨b, t⟩
+  change
+    realize f (mk (S := S) a s * mk b t) =
+      realize f (mk a s) * realize f (mk b t)
   simp only [mk_mul_mk, realize_mk]
   simp
   group
@@ -82,16 +87,18 @@ def denominatorInverse (s : S) :
 @[simp] theorem denominator_mul_inverse
     (s : S) :
     mk (S := S) (s : α) 1 * denominatorInverse s = 1 := by
+  change mk (S := S) (s : α) 1 * mk 1 s = 1
   rw [mk_mul_mk]
   apply mk_eq_mk_of_cross
-  simp [denominatorInverse]
+  simp
 
 @[simp] theorem inverse_mul_denominator
     (s : S) :
     denominatorInverse s * mk (S := S) (s : α) 1 = 1 := by
+  change mk (S := S) 1 s * mk (s : α) 1 = 1
   rw [mk_mul_mk]
   apply mk_eq_mk_of_cross
-  simp [denominatorInverse, mul_comm]
+  simp [mul_comm]
 
 @[simp] theorem realize_denominatorInverse
     (f : α →* G) (s : S) :
@@ -109,8 +116,12 @@ theorem realize_eq_of_same_source
     realize f x = realize g x := by
   refine Quotient.inductionOn x ?_
   intro q
+  rcases q with ⟨a, s⟩
+  change
+    realize f (mk (S := S) a s) =
+      realize g (mk a s)
   simp only [realize_mk]
-  rw [h q.numerator, h (q.denominator : α)]
+  rw [h a, h (s : α)]
 
 end CausalLocalization.CommFraction
 end CausalGeometry
