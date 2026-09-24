@@ -47,7 +47,9 @@ import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Realization.At
 import CausalGeometry.Realization.ECIAContract
+import CausalGeometry.Realization.ECIAProcessContract
 import CausalGeometry.Cyclic.PrimitiveSystem
+import CausalGeometry.Cyclic.DiaryShadow
 import CausalGeometry.Completion.ZModPrimeTower
 import CausalGeometry.Number.CRT
 import CausalGeometry.Number.DivisibilityOrder
