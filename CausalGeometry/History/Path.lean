@@ -26,16 +26,6 @@ def length {C D : Configuration S} :
   | .nil _ => 0
   | .step _ _ tail => tail.length + 1
 
-def append {A B C : Configuration S}
-    (p : CausalPath S A B)
-    (q : CausalPath S B C) :
-    CausalPath S A C := by
-  induction p with
-  | nil _ =>
-      exact q
-  | step e h tail ih =>
-      exact CausalPath.step e h (ih q)
-
 @[simp] theorem length_nil (C : Configuration S) :
     (CausalPath.nil C).length = 0 := rfl
 
