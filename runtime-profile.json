@@ -49,8 +49,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Calculus/IteratedDifference.lean && lake env lean CausalGeometry/Calculus/Connection.lean && lake env lean CausalGeometry/Calculus/Decomposition.lean",
-      "description": "Typecheck the new causal-calculus closure independently."
+      "command": "lake env lean CausalGeometry/Calculus/IteratedDifference.lean && lake env lean CausalGeometry/Calculus/Connection.lean && lake env lean CausalGeometry/Calculus/CovariantDifference.lean && lake env lean CausalGeometry/Calculus/Decomposition.lean && lake env lean CausalGeometry/Calculus/StructuralTransport.lean && lake env lean CausalGeometry/Calculus/AdjointVariation.lean && lake env lean CausalGeometry/Calculus/JetRestriction.lean && lake env lean CausalGeometry/Variational/Legendre.lean",
+      "description": "Typecheck the causal-calculus, structural transport, jet/restriction and variational layers independently."
     },
     {
       "id": "ECIA-CONTRACT-TYPECHECK",
