@@ -42,18 +42,18 @@ variable
     {A : Type u} {B : Type v}
     {D : Diary.{u, v, w} A B}
 
-/-- Event-level involutivity of two chosen dagger witnesses. No involution is
-assumed merely from the existence of one dagger. -/
-def EventInvolutive
+/-- Explicit witness that applying two chosen daggers returns to the original
+event and label carriers. The second dagger need not be definitionally equal to
+D, so return equivalences are part of the witness. -/
+structure InvolutionWitness
     (D₁ : DiaryDaggerData D)
-    (D₂ : DiaryDaggerData D₁.dagger) : Prop :=
-  ∀ e, D₂.eventEquiv (D₁.eventEquiv e) = e
-
-/-- Label-level involutivity of two chosen dagger witnesses. -/
-def LabelInvolutive
-    (D₁ : DiaryDaggerData D)
-    (D₂ : DiaryDaggerData D₁.dagger) : Prop :=
-  ∀ l, D₂.labelEquiv (D₁.labelEquiv l) = l
+    (D₂ : DiaryDaggerData D₁.dagger) where
+  returnEvent : D₂.dagger.Event ≃ D.Event
+  returnLabel : D₂.dagger.Label ≃ D.Label
+  event_roundtrip :
+    ∀ e, returnEvent (D₂.eventEquiv (D₁.eventEquiv e)) = e
+  label_roundtrip :
+    ∀ l, returnLabel (D₂.labelEquiv (D₁.labelEquiv l)) = l
 
 end DiaryDaggerData
 end CausalGeometry
