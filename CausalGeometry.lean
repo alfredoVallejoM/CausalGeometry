@@ -25,6 +25,7 @@ import CausalGeometry.Calculus.DependentConnection
 import CausalGeometry.Calculus.LinearConnection
 import CausalGeometry.Calculus.ParallelTransport
 import CausalGeometry.Calculus.GaugeCovariance
+import CausalGeometry.Calculus.GaugePotential
 import CausalGeometry.Calculus.PathGauge
 import CausalGeometry.Calculus.CovariantDifference
 import CausalGeometry.Calculus.CovariantSquare
