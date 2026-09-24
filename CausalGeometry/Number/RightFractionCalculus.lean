@@ -319,7 +319,7 @@ theorem hom_ext_of_source
           g (C.denominatorInverse x.denominator) = 1 := by
       rw [← g.map_mul, C.denominator_mul_inverse, g.map_one]
     rw [hsource] at hmul
-    exact eq_inv_of_mul_eq_one_left hmul
+    exact eq_inv_of_mul_eq_one_right hmul
   rw [hinv]
   simp [realizeHom, realize, RightFraction.realize]
 
