@@ -61,3 +61,5 @@ import CausalGeometry.Models.NatIncidenceMobiusComparison
 import CausalGeometry.Models.ArithmeticCoreControls
 import CausalGeometry.Number.DivisibilityClasses
 import CausalGeometry.Number.CanonicalIncidence
+
+import CausalGeometry.Models.PairedTransformControls
