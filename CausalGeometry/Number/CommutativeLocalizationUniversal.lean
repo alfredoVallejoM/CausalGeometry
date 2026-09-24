@@ -1,4 +1,4 @@
-import CausalGeometry.Number.CommutativeLocalization
+import CausalGeometry.Number.CommutativeLocalizationMonoid
 import Mathlib.Tactic
 
 namespace CausalGeometry
@@ -105,6 +105,20 @@ def denominatorInverse (s : S) :
     realize f (denominatorInverse s) =
       (f (s : α))⁻¹ := by
   simp [denominatorInverse, realize_mk]
+
+
+/-- The target realization is a monoid morphism after the quotient laws have
+been packaged. -/
+def realizeHom
+    (f : α →* G) :
+    CommFraction S →* G where
+  toFun := realize f
+  map_one' := realize_one f
+  map_mul' := realize_mul f
+
+@[simp] theorem realizeHom_apply
+    (f : α →* G) (x : CommFraction S) :
+    realizeHom f x = realize f x := rfl
 
 /-- Two target evaluations induced by the same source morphism agree on every
 fraction presentation. This is the extensional uniqueness available before
