@@ -16,7 +16,9 @@ The project is intentionally upstream of GenContinuum:
 \to
 \text{causal numbers}
 \to
-\text{extension/restriction polarity}
+\text{structural paired transport }(\Phi,\Psi)
+\to
+\text{optional adjunction/restriction bridges}
 \to
 \text{derived causal arithmetic}
 \to
@@ -32,49 +34,37 @@ X:A\rightsquigarrow A.
 The ordinary integer attached to it is a decategorified shadow, not its
 definition.
 
-## Fundamental polarity
+## Fundamental structural transport
 
-For a causal process \(h:A\rightsquigarrow B\), the source theory includes:
-
-\[
-h_!:\mathsf{Poss}(A)\to\mathsf{Poss}(B)
-\]
-
-and its **correlative restriction**
+For a typed causal transport between two derived carriers, the source theory
+first keeps only an oppositely directed pair
 
 \[
-h^*:\mathsf{Poss}(B)\to\mathsf{Poss}(A)
+\Phi:A\to B,
+\qquad
+\Psi:B\to A.
 \]
 
-with
+No inverse, adjunction, dagger, duality or state-space interpretation is part
+of this primitive carrier.
+
+On an ordered realization one may additionally prove an adjunction
 
 \[
-h_!P\le Q\iff P\le h^*Q.
+\Phi(a)\le b\iff a\le\Psi(b).
 \]
 
-Correlative restriction is not the causal dagger and is not the linear dual.
-A geometric pullback may realize \(h^*\) after a comparison theorem.
+That extra theorem packages the pair as the existing
+`ExtensionRestriction` API and recovers closure/interior and residuation.
+Thus the powerful CA-17/CA-18 adjoint arithmetic is retained without making
+adjunction universal.
 
-Inside ordered arithmetic sectors this becomes residuation:
-
-\[
-X\circ Y\preceq Z
-\iff
-Y\preceq X\backslash Z,
-\]
-
-\[
-Y\circ X\preceq Z
-\iff
-Y\preceq Z/X.
-\]
-
-Thus causal arithmetic supports a notion of restriction/division before
-invertibility or classical fractions.
+Correlative restriction, geometric pullback, algebraic dual and causal dagger
+remain separately typed until comparison theorems relate them.
 
 ## Program
 
-The program currently has twenty-one gates:
+The historical CA-00--CA-20 ledger is retained. A 2026-09-24 foundation lift now sits beneath it and weakens the primitive transport carrier without deleting the stronger adjoint specialization:
 
 - **CA-00--CA-10**: original autonomous causal kernel.
 - **CA-11--CA-14**: typed ECIA derivations and realizations.
