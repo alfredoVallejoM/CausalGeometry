@@ -58,6 +58,8 @@ import CausalGeometry.Number.AdditiveEnvelope
 import CausalGeometry.Process.BoundarySemantics
 import CausalGeometry.Number.ArithmeticSector
 import CausalGeometry.Completion.FinitePrimaryTower
+import CausalGeometry.Completion.RestrictionGraph
+import CausalGeometry.Completion.PrimePowerTower
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Realization.At
