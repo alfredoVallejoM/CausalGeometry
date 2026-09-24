@@ -48,25 +48,24 @@ def compose
     EndDiary.{u, w} A :=
   (C.composeData X Y).result
 
-infixl:70 " ⋆₍C₎ " => EndDiaryCompositionSystem.compose
 
 theorem assoc
     (C : EndDiaryCompositionSystem.{u, w} A)
     (X Y Z : EndDiary.{u, w} A) :
-    C.equivalent ((X ⋆₍C₎ Y) ⋆₍C₎ Z)
-      (X ⋆₍C₎ (Y ⋆₍C₎ Z)) :=
+    C.equivalent (C.compose (C.compose X Y) Z)
+      (C.compose X (C.compose Y Z)) :=
   C.associator X Y Z
 
 theorem one_comp
     (C : EndDiaryCompositionSystem.{u, w} A)
     (X : EndDiary.{u, w} A) :
-    C.equivalent (C.unit ⋆₍C₎ X) X :=
+    C.equivalent (C.compose C.unit X) X :=
   C.left_unitor X
 
 theorem comp_one
     (C : EndDiaryCompositionSystem.{u, w} A)
     (X : EndDiary.{u, w} A) :
-    C.equivalent (X ⋆₍C₎ C.unit) X :=
+    C.equivalent (C.compose X C.unit) X :=
   C.right_unitor X
 
 end EndDiaryCompositionSystem
