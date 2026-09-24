@@ -68,6 +68,7 @@ import CausalGeometry.Realization.ECIAContract
 import CausalGeometry.Realization.ECIAArithmeticContract
 import CausalGeometry.Realization.ECIAProcessContract
 import CausalGeometry.Cyclic.PrimitiveSystem
+import CausalGeometry.Cyclic.FiniteTransfer
 import CausalGeometry.Cyclic.DiaryShadow
 import CausalGeometry.Completion.ZModPrimeTower
 import CausalGeometry.Number.CRT
