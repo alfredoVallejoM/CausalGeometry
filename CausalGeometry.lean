@@ -63,6 +63,9 @@ import CausalGeometry.Number.ArithmeticSector
 import CausalGeometry.Completion.FinitePrimaryTower
 import CausalGeometry.Completion.RestrictionGraph
 import CausalGeometry.Completion.PrimePowerTower
+import CausalGeometry.Completion.LocalProjectiveLine
+import CausalGeometry.Completion.FiniteLocalRingTower
+import CausalGeometry.Completion.BruhatTitsContract
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Realization.PairedCompatibility
@@ -72,6 +75,8 @@ import CausalGeometry.Realization.ECIAArithmeticContract
 import CausalGeometry.Realization.ECIAProcessContract
 import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.FiniteTransfer
+import CausalGeometry.Cyclic.Hashimoto
+import CausalGeometry.Cyclic.PrimitiveTrace
 import CausalGeometry.Cyclic.DiaryShadow
 import CausalGeometry.Completion.ZModPrimeTower
 import CausalGeometry.Number.CRT
@@ -96,3 +101,7 @@ import CausalGeometry.Models.PairedTransformControls
 import CausalGeometry.Models.CalculusControls
 
 import CausalGeometry.Models.RestrictionTransportControls
+
+import CausalGeometry.Models.OreFractionControls
+
+import CausalGeometry.Models.HashimotoControls
