@@ -34,6 +34,7 @@ import CausalGeometry.Calculus.AdjointVariation
 import CausalGeometry.Calculus.JetRestriction
 import CausalGeometry.Calculus.JetRestrictionLimit
 import CausalGeometry.Variational.Legendre
+import CausalGeometry.Variational.JetHamiltonian
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
