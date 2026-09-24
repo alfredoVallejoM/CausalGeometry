@@ -73,8 +73,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Models/ArithmeticCoreControls.lean && lake env lean CausalGeometry/Models/NatMobiusRegression.lean",
-      "description": "Protect existing arithmetic controls while the calculus and realization layers evolve."
+      "command": "lake env lean CausalGeometry/Models/ArithmeticCoreControls.lean && lake env lean CausalGeometry/Models/NatMobiusRegression.lean && lake env lean CausalGeometry/Number/OreLocalization.lean",
+      "description": "Protect existing arithmetic controls and typecheck the left/right Ore localization source layer."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
