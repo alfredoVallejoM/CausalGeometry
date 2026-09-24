@@ -62,8 +62,10 @@ import CausalGeometry.Completion.RestrictionGraph
 import CausalGeometry.Completion.PrimePowerTower
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
+import CausalGeometry.Realization.PairedCompatibility
 import CausalGeometry.Realization.At
 import CausalGeometry.Realization.ECIAContract
+import CausalGeometry.Realization.ECIAArithmeticContract
 import CausalGeometry.Realization.ECIAProcessContract
 import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.DiaryShadow
