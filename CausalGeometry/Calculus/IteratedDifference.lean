@@ -1,5 +1,6 @@
 import CausalGeometry.Calculus.Difference
 import CausalGeometry.History.Trace
+import Mathlib.Tactic
 
 namespace CausalGeometry
 
@@ -23,6 +24,42 @@ def causalSquareVariation {A : Type w} [AddCommGroup A]
     (d : ConcurrencyDiamond C e f) :
     causalSquareVariation (fun _ => a) d = 0 := by
   simp [causalSquareVariation]
+
+
+/-- Swapping the two concurrent directions leaves the square variation
+unchanged. The statement uses endpoint flatness plus commutativity in the
+observable group; it does not identify the two execution words. -/
+theorem causalSquareVariation_symm {A : Type w} [AddCommGroup A]
+    (F : Configuration S → A)
+    {C : Configuration S} {e f : Event}
+    (d : ConcurrencyDiamond C e f) :
+    causalSquareVariation F d.symm =
+      causalSquareVariation F d := by
+  unfold causalSquareVariation
+  change
+    F d.afterFE - F d.afterF - F d.afterE + F C =
+      F d.afterEF - F d.afterE - F d.afterF + F C
+  rw [ConcurrencyDiamond.endpoint_eq d]
+  abel
+
+/-- Antisymmetrized second causal difference. On a flat concurrency square this
+is the discrete exterior d_C^2 term. -/
+def causalExteriorSecondDifference {A : Type w} [AddCommGroup A]
+    (F : Configuration S → A)
+    {C : Configuration S} {e f : Event}
+    (d : ConcurrencyDiamond C e f) : A :=
+  causalSquareVariation F d -
+    causalSquareVariation F d.symm
+
+@[simp] theorem causalExteriorSecondDifference_eq_zero
+    {A : Type w} [AddCommGroup A]
+    (F : Configuration S → A)
+    {C : Configuration S} {e f : Event}
+    (d : ConcurrencyDiamond C e f) :
+    causalExteriorSecondDifference F d = 0 := by
+  rw [causalExteriorSecondDifference,
+    causalSquareVariation_symm F d]
+  exact sub_self _
 
 /-- Order curvature compares the two sequential endpoints. It is meaningful
 before quotienting histories by concurrency exchange. -/
