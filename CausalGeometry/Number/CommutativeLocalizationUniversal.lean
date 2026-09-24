@@ -120,6 +120,83 @@ def realizeHom
     (f : α →* G) (x : CommFraction S) :
     realizeHom f x = realize f x := rfl
 
+/-- Canonical embedding of the original causal multiplicative sector into
+its commutative fraction quotient. -/
+def ofElementHom :
+    α →* CommFraction S where
+  toFun := ofElement
+  map_one' := rfl
+  map_mul' := by
+    intro a b
+    exact ofElement_mul a b
+
+/-- Every presented fraction is the source numerator multiplied by the inverse
+presentation of its selected denominator. -/
+theorem mk_eq_ofElement_mul_denominatorInverse
+    (a : α) (s : S) :
+    mk (S := S) a s =
+      ofElement a * denominatorInverse s := by
+  rw [mk_mul_mk]
+  rfl
+
+/-- Any monoid morphism from the fraction quotient into a group is forced to
+send the denominator-inverse presentation to the inverse of the denominator
+image. -/
+theorem hom_denominatorInverse
+    (g : CommFraction S →* G)
+    (s : S) :
+    g (denominatorInverse s) =
+      (g (ofElement (s : α)))⁻¹ := by
+  have hmul :
+      g (ofElement (s : α)) *
+          g (denominatorInverse s) = 1 := by
+    calc
+      g (ofElement (s : α)) *
+          g (denominatorInverse s)
+          =
+        g (ofElement (s : α) * denominatorInverse s) := by
+          rw [g.map_mul]
+      _ = g 1 := by
+        rw [denominator_mul_inverse]
+      _ = 1 := g.map_one
+  calc
+    g (denominatorInverse s)
+        =
+      (g (ofElement (s : α)))⁻¹ *
+        (g (ofElement (s : α)) *
+          g (denominatorInverse s)) := by
+            group
+    _ = (g (ofElement (s : α)))⁻¹ := by
+      rw [hmul]
+      simp
+
+/-- Universal uniqueness for commutative-group targets: a morphism out of the
+fraction quotient is completely determined by its values on the original
+source monoid. -/
+theorem hom_ext_of_source
+    (f : α →* G)
+    (g : CommFraction S →* G)
+    (hsource : ∀ a, g (ofElement a) = f a) :
+    g = realizeHom f := by
+  apply MonoidHom.ext
+  intro x
+  refine Quotient.inductionOn x ?_
+  intro q
+  rcases q with ⟨a, s⟩
+  change g (mk (S := S) a s) =
+    realizeHom f (mk a s)
+  rw [mk_eq_ofElement_mul_denominatorInverse]
+  rw [g.map_mul, hsource a, hom_denominatorInverse]
+  rw [hsource (s : α)]
+  simp [realizeHom_apply, realize_mk]
+
+/-- Existence half of the universal property. -/
+theorem realizeHom_extends
+    (f : α →* G)
+    (a : α) :
+    realizeHom f (ofElement a) = f a := by
+  simp [realizeHom_apply, realize_ofElement]
+
 /-- Two target evaluations induced by the same source morphism agree on every
 fraction presentation. This is the extensional uniqueness available before
 packaging the full categorical universal property. -/
