@@ -69,7 +69,7 @@ theorem flatOn_iff_curvature_eq_zero
     (d : ConcurrencyDiamond C e f) :
     ∇.FlatOn d ↔ ∇.curvature d = 0 := by
   unfold FlatOn curvature
-  exact sub_eq_zero
+  exact sub_eq_zero.symm
 
 @[simp] theorem curvature_apply
     (∇ : LinearCausalConnection K S V)
