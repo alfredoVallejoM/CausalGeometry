@@ -21,9 +21,11 @@ import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
 import CausalGeometry.Calculus.PathIntegral
 import CausalGeometry.Calculus.Connection
+import CausalGeometry.Calculus.DependentConnection
 import CausalGeometry.Calculus.LinearConnection
 import CausalGeometry.Calculus.ParallelTransport
 import CausalGeometry.Calculus.GaugeCovariance
+import CausalGeometry.Calculus.PathGauge
 import CausalGeometry.Calculus.CovariantDifference
 import CausalGeometry.Calculus.CovariantSquare
 import CausalGeometry.Calculus.Decomposition
