@@ -175,6 +175,47 @@ noncomputable def chartEquiv :
   Equiv.ofBijective chartToLine
     ⟨chartToLine_injective, chartToLine_surjective⟩
 
+/-- Units are exactly the subtype of elements carrying an IsUnit witness. -/
+noncomputable def unitsEquivIsUnitSubtype :
+    Rˣ ≃ {x : R // IsUnit x} where
+  toFun := fun u => ⟨u, u.isUnit⟩
+  invFun := fun x => x.2.unit
+  left_inv := by
+    intro u
+    apply Units.ext
+    exact (u.isUnit.unit_spec)
+  right_inv := by
+    intro x
+    apply Subtype.ext
+    exact x.2.unit_spec
+
+/-- In a finite commutative ring, non-units are the complement of units. -/
+theorem natCard_nonunit
+    [Fintype R] :
+    Nat.card (Nonunit R) =
+      Fintype.card R - Nat.card Rˣ := by
+  classical
+  let s : Set R := {x | IsUnit x}
+  have hcompl :
+      Fintype.card {x : R // x ∈ sᶜ} =
+        Fintype.card R -
+          Fintype.card {x : R // x ∈ s} :=
+    Fintype.card_compl_set s
+  have hunit :
+      Fintype.card {x : R // IsUnit x} =
+        Nat.card Rˣ := by
+    rw [← Nat.card_eq_fintype_card]
+    exact Nat.card_congr unitsEquivIsUnitSubtype.symm
+  simpa [s, Nonunit, hunit] using hcompl
+
+/-- Finite local-projective cardinal in terms of the unit group. -/
+theorem natCard_line_eq_card_add_card_sub_units
+    [Fintype R] :
+    Nat.card (Line R) =
+      Fintype.card R +
+        (Fintype.card R - Nat.card Rˣ) := by
+  rw [natCard_line, natCard_nonunit]
+
 /-- Cardinal decomposition into affine and non-unit charts. -/
 theorem natCard_line
     [Fintype R] :
