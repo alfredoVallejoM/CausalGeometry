@@ -2,6 +2,13 @@
 
 Snapshot: 2026-09-23
 
+> **Foundation-lift note (2026-09-24).** The implementation below remains
+> valid as the ordered **adjoint specialization**. The primitive structural
+> carrier is now `PairedTransform (Phi,Psi)`, which assumes no adjunction.
+> `AdjointBridge` recovers `ExtensionRestriction` when the adjunction is
+> separately proved. Primitive ontology starts from events; configurations and
+> histories remain derived.
+
 This file records source implementation status only. A campaign row is not
 accredited until compilation plus the positive/control/mutation/consumer/audit
 contract in PROJECT_RULES has been satisfied.
