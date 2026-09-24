@@ -13,13 +13,17 @@ import CausalGeometry.Program.Ledger
 
 import CausalGeometry.Restriction.Pullback
 import CausalGeometry.Calculus.Difference
+import CausalGeometry.Calculus.AlgebraicRules
 import CausalGeometry.Calculus.EventDirection
 import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.PathIntegral
 import CausalGeometry.Calculus.Connection
 import CausalGeometry.Calculus.LinearConnection
+import CausalGeometry.Calculus.ParallelTransport
+import CausalGeometry.Calculus.GaugeCovariance
 import CausalGeometry.Calculus.CovariantDifference
+import CausalGeometry.Calculus.CovariantSquare
 import CausalGeometry.Calculus.Decomposition
 import CausalGeometry.Calculus.StructuralTransport
 import CausalGeometry.Calculus.AdjointVariation
