@@ -65,8 +65,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean && lake env lean CausalGeometry/Cyclic/DiaryShadow.lean && lake env lean CausalGeometry/Realization/ECIAProcessContract.lean && lake env lean CausalGeometry/Realization/PairedCompatibility.lean && lake env lean CausalGeometry/Realization/ECIAArithmeticContract.lean",
-      "description": "Typecheck realization-at-source, paired-transport compatibility, ECIA process/cyclic contracts and weak arithmetic shadow preservation."
+      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean && lake env lean CausalGeometry/Cyclic/DiaryShadow.lean && lake env lean CausalGeometry/Realization/ECIAProcessContract.lean && lake env lean CausalGeometry/Realization/PairedCompatibility.lean && lake env lean CausalGeometry/Realization/ECIAArithmeticContract.lean && lake env lean CausalGeometry/Cyclic/FiniteTransfer.lean",
+      "description": "Typecheck realization-at-source, paired/arithmetic ECIA contracts and the finite transfer trace/determinant realization boundary."
     },
     {
       "id": "ARITHMETIC-CONTROL-TYPECHECK",
