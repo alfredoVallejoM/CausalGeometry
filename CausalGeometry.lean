@@ -42,6 +42,9 @@ import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
 import CausalGeometry.Number.Residual
 import CausalGeometry.Number.OreLocalization
+import CausalGeometry.Number.RightFractionCalculus
+import CausalGeometry.Number.LeftFractionCalculus
+import CausalGeometry.Number.BilateralLocalization
 import CausalGeometry.Number.CommutativeLocalization
 import CausalGeometry.Number.CommutativeLocalizationMonoid
 import CausalGeometry.Number.CommutativeLocalizationUniversal
