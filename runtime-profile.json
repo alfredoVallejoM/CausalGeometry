@@ -73,8 +73,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Models/ArithmeticCoreControls.lean && lake env lean CausalGeometry/Models/NatMobiusRegression.lean && lake env lean CausalGeometry/Number/OreLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalizationUniversal.lean",
-      "description": "Protect existing arithmetic controls and typecheck Ore plus cancellative commutative localization and its group realization."
+      "command": "lake env lean CausalGeometry/Models/ArithmeticCoreControls.lean && lake env lean CausalGeometry/Models/NatMobiusRegression.lean && lake env lean CausalGeometry/Number/OreLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalizationUniversal.lean && lake env lean CausalGeometry/Number/CommutativeLocalizationMonoid.lean",
+      "description": "Protect existing arithmetic controls and typecheck Ore plus cancellative commutative localization, monoid laws and target realization."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
