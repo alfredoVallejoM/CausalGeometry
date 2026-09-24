@@ -4,6 +4,7 @@ import CausalGeometry.History.Trace
 import CausalGeometry.History.Path
 import CausalGeometry.Process.Diary
 import CausalGeometry.Process.Composition
+import CausalGeometry.Process.EndComposition
 import CausalGeometry.Process.Dagger
 import CausalGeometry.Number.Basic
 import CausalGeometry.Number.ArithmeticShadow
