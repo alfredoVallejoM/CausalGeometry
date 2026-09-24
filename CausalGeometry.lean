@@ -18,6 +18,7 @@ import CausalGeometry.Calculus.AlgebraicRules
 import CausalGeometry.Calculus.EventDirection
 import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
+import CausalGeometry.Calculus.CubeFrame
 import CausalGeometry.Calculus.PathIntegral
 import CausalGeometry.Calculus.Connection
 import CausalGeometry.Calculus.LinearConnection
