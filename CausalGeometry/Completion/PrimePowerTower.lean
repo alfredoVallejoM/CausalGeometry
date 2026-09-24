@@ -1,4 +1,5 @@
 import CausalGeometry.Completion.FinitePrimaryTower
+import CausalGeometry.Completion.RestrictionGraph
 import Mathlib.Data.Nat.Prime.Basic
 
 namespace CausalGeometry
@@ -44,6 +45,13 @@ theorem card_law_primePower (n : ℕ) :
 theorem q_ge_two :
     2 ≤ P.toPrimary.q :=
   P.toPrimary.q_ge_two
+
+
+/-- The associated restriction graph has p^(f(n+1)) vertices at depth n. -/
+theorem restrictionVertices_card_primePower (n : ℕ) :
+    @Fintype.card (T.RestrictionVertices n) (T.finite n) =
+      P.p ^ (P.f * (n + 1)) := by
+  exact P.card_law_primePower n
 
 end PrimePowerPrimary
 end FiniteInverseTower
