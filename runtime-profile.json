@@ -65,8 +65,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean",
-      "description": "Typecheck the CA-19 realization-at-source and ECIA consumer boundary independently."
+      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean && lake env lean CausalGeometry/Cyclic/DiaryShadow.lean && lake env lean CausalGeometry/Realization/ECIAProcessContract.lean",
+      "description": "Typecheck realization-at-source, ECIA consumer boundary and separate process/cyclic preservation contracts."
     },
     {
       "id": "ARITHMETIC-CONTROL-TYPECHECK",
