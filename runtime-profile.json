@@ -49,8 +49,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Process/Composition.lean && lake env lean CausalGeometry/Process/Dagger.lean",
-      "description": "Typecheck witnessed diary gluing and event-level dagger contracts independently."
+      "command": "lake env lean CausalGeometry/Process/Composition.lean && lake env lean CausalGeometry/Process/Dagger.lean && lake env lean CausalGeometry/Process/EndComposition.lean",
+      "description": "Typecheck witnessed gluing, weak enddiary coherence and event-level dagger contracts independently."
     },
     {
       "id": "CALCULUS-TYPECHECK",
