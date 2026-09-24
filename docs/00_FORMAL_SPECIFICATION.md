@@ -315,46 +315,62 @@ promoted without explicit functors and comparison theorems.
 
 ---
 
-## 17. Foundational extension--restriction polarity
+## 17. Foundational structural transport and optional adjunction
 
-The previous sections are refined by a new foundational primitive.
+The primitive causal ontology remains event-based. Configurations, histories,
+fibers and geometric/state realizations are derived.
 
-For every admitted causal map \(h:A\rightsquigarrow B\), when the boundary
-semantics carries ordered possibility spaces, the causal theory seeks an
-adjunction
-
-\[
-h_!\dashv h^*
-\]
-
-with
+For any typed structural transport layer, the minimal carrier is
 
 \[
-h_!P\le Q\iff P\le h^*Q.
-\]
-
-Here:
-- \(h_!\) is causal extension;
-- \(h^*\) is correlative restriction.
-
-This polarity is upstream of the geometric pullback of section 15.  A geometric
-pullback is a realization of \(h^*\), not its universal definition.
-
-The induced closure/interior operators are
-
-\[
-C_h=h^*h_!,
+(\Phi,\Psi),
 \qquad
-I_h=h_!h^*.
+\Phi:A\to B,
+\quad
+\Psi:B\to A.
 \]
 
-The project keeps
+No law identifies the two directions. In particular, the kernel does not
+assume
 
 \[
-h^*,\quad h^\dagger,\quad h^\vee
+\Psi\Phi=id,
+\qquad
+\Phi\Psi=id,
+\qquad
+\Phi\dashv\Psi,
+\qquad
+\Psi=\Phi^\dagger,
+\qquad
+\Psi=\Phi^\vee.
 \]
 
-separately typed.
+Round trips
+
+\[
+\Psi\Phi:A\to A,
+\qquad
+\Phi\Psi:B\to B
+\]
+
+are therefore observable structural operators whose defects may carry
+information.
+
+When ordered carriers support a proved adjunction,
+
+\[
+\Phi(a)\le b
+\iff
+a\le\Psi(b),
+\]
+
+the pair admits an `AdjointBridge` and recovers the previous
+`ExtensionRestriction` theory. Its closure/interior are exactly the two
+round trips, now with extensivity/reductivity and idempotence derived from the
+adjunction.
+
+Relational correlative restriction and geometric pullback remain realizations
+of this stronger bridge, not the universal definition of the structural pair.
 
 ## 18. Residuated causal multiplication
 
