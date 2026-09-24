@@ -33,7 +33,7 @@ theorem equivalent_affine_of_isUnit_x
     (p : LocalProjectivePair R)
     (hx : IsUnit p.x) :
     Equivalent p
-      (affine (((hx.unit)⁻¹ : Rˣ) * p.y : R)) := by
+      (affine (↑(hx.unit⁻¹) : R) * p.y) := by
   refine ⟨hx.unit⁻¹, ?_⟩
   ext
   · simp [affine, scale, hx.unit_spec]
@@ -48,7 +48,7 @@ theorem equivalent_infinity_of_not_isUnit_x
       Equivalent p (infinityChart u) := by
   have hy : IsUnit p.y :=
     p.unit_coord.resolve_left hx
-  let uval : R := ((hy.unit)⁻¹ : Rˣ) * p.x
+  let uval : R := (↑(hy.unit⁻¹) : R) * p.x
   have hu : ¬ IsUnit uval := by
     intro hunit
     have hx' : IsUnit p.x :=
@@ -68,7 +68,7 @@ theorem exists_chart_normalForm
       (∃ u : Nonunit R, Equivalent p (infinityChart u)) := by
   by_cases hx : IsUnit p.x
   · exact Or.inl
-      ⟨(((hx.unit)⁻¹ : Rˣ) * p.y : R),
+      ⟨(↑(hx.unit⁻¹) : R) * p.y,
         equivalent_affine_of_isUnit_x p hx⟩
   · exact Or.inr (equivalent_infinity_of_not_isUnit_x p hx)
 
