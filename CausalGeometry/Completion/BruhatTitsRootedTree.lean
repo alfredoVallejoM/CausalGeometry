@@ -1,4 +1,5 @@
 import CausalGeometry.Completion.BruhatTitsContract
+import Mathlib.Tactic
 
 namespace CausalGeometry
 
@@ -110,7 +111,7 @@ theorem sphere_natCard
       intro v
       apply Subtype.ext
       rcases v.2 with ⟨y, hy⟩
-      exact hy
+      exact hy.symm
     right_inv := by
       intro y
       rfl
