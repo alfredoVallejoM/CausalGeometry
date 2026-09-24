@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "project": "CausalGeometry",
+  "toolchains": {
+    "lean": true
+  },
+  "obligations": [
+    {
+      "id": "SRC-IMPORT-CLOSURE",
+      "level": "source",
+      "kind": "command",
+      "required": true,
+      "command": "{python} tools/source_audit.py --imports",
+      "description": "Require every CausalGeometry Lean module to be imported by the root library."
+    },
+    {
+      "id": "SRC-PROOF-HYGIENE",
+      "level": "source",
+      "kind": "command",
+      "required": true,
+      "command": "{python} tools/source_audit.py --proof-hygiene",
+      "description": "Reject sorry, admit, project-local axioms, native_decide, unsafe declarations and GitHub workflows."
+    },
+    {
+      "id": "SRC-ARCH",
+      "level": "source",
+      "kind": "manual",
+      "required": true,
+      "description": "Review dependency direction, primitive/derived distinctions and campaign-to-implementation mapping."
+    },
+    {
+      "id": "LEAN-BUILD",
+      "level": "execution",
+      "kind": "command",
+      "required": true,
+      "command": "lake build",
+      "description": "Compile the complete CausalGeometry library with the pinned Lean/mathlib toolchain."
+    },
+    {
+      "id": "ROOT-TYPECHECK",
+      "level": "execution",
+      "kind": "command",
+      "required": true,
+      "command": "lake env lean CausalGeometry.lean",
+      "description": "Typecheck the root import surface explicitly."
+    },
+    {
+      "id": "CALCULUS-TYPECHECK",
+      "level": "regression",
+      "kind": "command",
+      "required": true,
+      "command": "lake env lean CausalGeometry/Calculus/IteratedDifference.lean && lake env lean CausalGeometry/Calculus/Connection.lean && lake env lean CausalGeometry/Calculus/Decomposition.lean",
+      "description": "Typecheck the new causal-calculus closure independently."
+    },
+    {
+      "id": "ECIA-CONTRACT-TYPECHECK",
+      "level": "regression",
+      "kind": "command",
+      "required": true,
+      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean",
+      "description": "Typecheck the CA-19 realization-at-source and ECIA consumer boundary independently."
+    },
+    {
+      "id": "ARITHMETIC-CONTROL-TYPECHECK",
+      "level": "regression",
+      "kind": "command",
+      "required": true,
+      "command": "lake env lean CausalGeometry/Models/ArithmeticCoreControls.lean && lake env lean CausalGeometry/Models/NatMobiusRegression.lean",
+      "description": "Protect existing arithmetic controls while the calculus and realization layers evolve."
+    },
+    {
+      "id": "ADV-SOURCE-AUDIT",
+      "level": "adversarial",
+      "kind": "command",
+      "required": true,
+      "command": "{python} tools/source_audit.py --all",
+      "description": "Repeat source hygiene and import closure under the adversarial gate."
+    },
+    {
+      "id": "ADV-REVIEW",
+      "level": "adversarial",
+      "kind": "manual",
+      "required": true,
+      "description": "Inspect theorem statements, negative controls, proof assumptions and accidental strengthening obligation by obligation."
+    },
+    {
+      "id": "PERF-LEDGER",
+      "level": "performance",
+      "kind": "manual",
+      "required": true,
+      "description": "Record representative time, memory and scaling for finite restriction, incidence and realization computations."
+    },
+    {
+      "id": "REL-CONSUMER",
+      "level": "release",
+      "kind": "manual",
+      "required": true,
+      "description": "Confirm a real downstream consumer for every row being accredited, especially ECIA realization rows."
+    },
+    {
+      "id": "REL-CLOSURE",
+      "level": "release",
+      "kind": "manual",
+      "required": true,
+      "description": "Reconcile campaign obligations against implementation and evidence before declaring any CA gate closed."
+    }
+  ]
+}
