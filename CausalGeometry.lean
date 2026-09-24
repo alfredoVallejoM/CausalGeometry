@@ -13,6 +13,9 @@ import CausalGeometry.Calculus.Difference
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.Connection
 import CausalGeometry.Calculus.Decomposition
+import CausalGeometry.Calculus.StructuralTransport
+import CausalGeometry.Calculus.JetRestriction
+import CausalGeometry.Variational.Legendre
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
