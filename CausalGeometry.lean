@@ -42,6 +42,7 @@ import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
 import CausalGeometry.Number.Residual
 import CausalGeometry.Number.OreLocalization
+import CausalGeometry.Number.CommutativeLocalization
 import CausalGeometry.Foundation.CorrelativeRestriction
 import CausalGeometry.Number.Divisibility
 import CausalGeometry.Number.GCDLCM
