@@ -23,7 +23,7 @@ theorem dropAdd_kernel_natCard (n : ℕ) :
     Nat.card (dropAdd p n).ker = p := by
   have h :=
     AddMonoidHom.card_ker_mul_card_of_surjective
-      (dropAdd p n)
+      (f := dropAdd p n)
       (dropAdd_surjective p n)
   have h' :
       Nat.card (dropAdd p n).ker *
@@ -60,11 +60,9 @@ noncomputable def fiberEquivKernel
   let E :=
     AddMonoidHom.fiberEquivKer (dropAdd p n) a
   have hfiber :
-      {x : ZMod (p ^ (n + 2)) // dropAdd p n x = y} =
-        {x : ZMod (p ^ (n + 2)) //
-          x ∈ (dropAdd p n) ⁻¹' {dropAdd p n a}} := by
-    apply SetCoe.ext
-    intro x
+      {x : ZMod (p ^ (n + 2)) | dropAdd p n x = y} =
+        (dropAdd p n) ⁻¹' {dropAdd p n a} := by
+    ext x
     simp [ha]
   exact (Equiv.setCongr hfiber).trans E
 
