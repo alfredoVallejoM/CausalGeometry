@@ -81,8 +81,8 @@
       "level": "adversarial",
       "kind": "command",
       "required": true,
-      "command": "{python} tools/source_audit.py --all && lake env lean CausalGeometry/Models/PairedTransformControls.lean",
-      "description": "Repeat source hygiene/import closure and typecheck structural negative controls under the adversarial gate."
+      "command": "{python} tools/source_audit.py --all && lake env lean CausalGeometry/Models/PairedTransformControls.lean && lake env lean CausalGeometry/Models/CalculusControls.lean",
+      "description": "Repeat source hygiene/import closure and typecheck paired-transform plus flat/nonflat calculus controls under the adversarial gate."
     },
     {
       "id": "ADV-REVIEW",
