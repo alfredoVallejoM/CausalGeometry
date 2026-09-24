@@ -16,6 +16,7 @@ import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.PathIntegral
 import CausalGeometry.Calculus.Connection
+import CausalGeometry.Calculus.LinearConnection
 import CausalGeometry.Calculus.CovariantDifference
 import CausalGeometry.Calculus.Decomposition
 import CausalGeometry.Calculus.StructuralTransport
