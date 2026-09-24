@@ -27,11 +27,11 @@ theorem determinantPolynomial_eval
   letI : Fintype T.State := T.finite
   letI : DecidableEq T.State := T.decEq
   unfold determinantPolynomial determinantKernel
-  rw [Matrix.eval_det]
-  congr 1
+  rw [eval_det]
+  apply congrArg Matrix.det
+  rw [matPolyEquiv_eval_eq_map]
   ext i j
-  simp [Matrix.matPolyEquiv_eval,
-    Matrix.one_apply]
+  simp [Matrix.one_apply]
 
 @[simp] theorem determinantPolynomial_eval_zero :
     (T.determinantPolynomial).eval 0 = 1 := by
