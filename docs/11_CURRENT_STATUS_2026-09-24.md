@@ -138,3 +138,32 @@ Source-side order of work:
 6. instantiate the real ECIA downstream adapter;
 7. keep CA-20 theorem-indexed and explicitly open wherever the target
    mathematics is open.
+
+
+## Foundation lift applied after the initial review
+
+A later design decision recovered during the 2026-09-24 review supersedes the
+old reading of CA-17 as the universal foundation.
+
+The source now contains:
+
+- `Foundation/PairedTransform.lean`: unconstrained structural
+  `(Phi,Psi)`;
+- `Foundation/AdjunctionBridge.lean`: optional ordered adjunction bridge;
+- `Calculus/StructuralTransport.lean`: admitted transport profiles and
+  forward/backward/round-trip observable defects;
+- `Calculus/JetRestriction.lean`: finite jet/restriction towers with
+  independently stated forward/backward compatibility;
+- `Variational/Legendre.lean`: singular Legendre relations plus
+  Lagrangian/Hamiltonian conjugacy and non-inverse selections;
+- `Calculus/CovariantDifference.lean` and
+  `Calculus/AdjointVariation.lean`;
+- `History/Path.lean` and `Calculus/PathIntegral.lean`, including
+  telescoping and a flat-square discrete Stokes theorem;
+- `Calculus/EventDirection.lean` and `Calculus/Linearization.lean`,
+  including JVP and algebraic VJP;
+- `Models/PairedTransformControls.lean`, which proves by a concrete
+  same-type mutation that structural pairing does not imply adjunction.
+
+The existing adjoint/residuated arithmetic is retained as a stronger
+specialization rather than deleted.
