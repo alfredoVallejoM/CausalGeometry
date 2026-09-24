@@ -1,5 +1,5 @@
 import CausalGeometry.Completion.InverseTower
-import CausalGeometry.Completion.FinitePrimaryTower
+import CausalGeometry.Completion.PrimePowerTower
 import CausalGeometry.Completion.LocalProjectiveLine
 import Mathlib.RingTheory.LocalRing.Basic
 
