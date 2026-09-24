@@ -1,6 +1,7 @@
 import CausalGeometry.Foundation.EventSystem
 import CausalGeometry.Foundation.PairedTransform
 import CausalGeometry.History.Trace
+import CausalGeometry.History.Path
 import CausalGeometry.Process.Diary
 import CausalGeometry.Number.Basic
 import CausalGeometry.Number.ArithmeticShadow
@@ -11,6 +12,7 @@ import CausalGeometry.Program.Ledger
 import CausalGeometry.Restriction.Pullback
 import CausalGeometry.Calculus.Difference
 import CausalGeometry.Calculus.IteratedDifference
+import CausalGeometry.Calculus.PathIntegral
 import CausalGeometry.Calculus.Connection
 import CausalGeometry.Calculus.CovariantDifference
 import CausalGeometry.Calculus.Decomposition
