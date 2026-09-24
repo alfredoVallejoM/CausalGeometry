@@ -65,24 +65,24 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean && lake env lean CausalGeometry/Cyclic/DiaryShadow.lean && lake env lean CausalGeometry/Realization/ECIAProcessContract.lean && lake env lean CausalGeometry/Realization/PairedCompatibility.lean && lake env lean CausalGeometry/Realization/ECIAArithmeticContract.lean && lake env lean CausalGeometry/Cyclic/FiniteTransfer.lean",
-      "description": "Typecheck realization-at-source, paired/arithmetic ECIA contracts and the finite transfer trace/determinant realization boundary."
+      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean && lake env lean CausalGeometry/Cyclic/DiaryShadow.lean && lake env lean CausalGeometry/Realization/ECIAProcessContract.lean && lake env lean CausalGeometry/Realization/PairedCompatibility.lean && lake env lean CausalGeometry/Realization/ECIAArithmeticContract.lean && lake env lean CausalGeometry/Cyclic/FiniteTransfer.lean && lake env lean CausalGeometry/Cyclic/Hashimoto.lean && lake env lean CausalGeometry/Cyclic/PrimitiveTrace.lean",
+      "description": "Typecheck ECIA realization contracts plus finite transfer, Hashimoto counting and primitive-trace Mobius recovery."
     },
     {
       "id": "ARITHMETIC-CONTROL-TYPECHECK",
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Models/ArithmeticCoreControls.lean && lake env lean CausalGeometry/Models/NatMobiusRegression.lean && lake env lean CausalGeometry/Number/OreLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalizationUniversal.lean && lake env lean CausalGeometry/Number/CommutativeLocalizationMonoid.lean && lake env lean CausalGeometry/Completion/RestrictionGraph.lean && lake env lean CausalGeometry/Completion/PrimePowerTower.lean && lake env lean CausalGeometry/Number/RightFractionCalculus.lean && lake env lean CausalGeometry/Number/LeftFractionCalculus.lean && lake env lean CausalGeometry/Number/BilateralLocalization.lean",
-      "description": "Protect arithmetic regressions and typecheck commutative localization plus certified left/right Ore fraction calculi and bilateral comparison."
+      "command": "lake env lean CausalGeometry/Models/ArithmeticCoreControls.lean && lake env lean CausalGeometry/Models/NatMobiusRegression.lean && lake env lean CausalGeometry/Number/OreLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalization.lean && lake env lean CausalGeometry/Number/CommutativeLocalizationUniversal.lean && lake env lean CausalGeometry/Number/CommutativeLocalizationMonoid.lean && lake env lean CausalGeometry/Completion/RestrictionGraph.lean && lake env lean CausalGeometry/Completion/PrimePowerTower.lean && lake env lean CausalGeometry/Number/RightFractionCalculus.lean && lake env lean CausalGeometry/Number/LeftFractionCalculus.lean && lake env lean CausalGeometry/Number/BilateralLocalization.lean && lake env lean CausalGeometry/Completion/LocalProjectiveLine.lean && lake env lean CausalGeometry/Completion/FiniteLocalRingTower.lean && lake env lean CausalGeometry/Completion/BruhatTitsContract.lean",
+      "description": "Protect arithmetic regressions and typecheck certified Ore localization, prime-power local rings, projective towers and Bruhat-Tits contracts."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
       "level": "adversarial",
       "kind": "command",
       "required": true,
-      "command": "{python} tools/source_audit.py --all && lake env lean CausalGeometry/Models/PairedTransformControls.lean && lake env lean CausalGeometry/Models/CalculusControls.lean && lake env lean CausalGeometry/Models/RestrictionTransportControls.lean",
-      "description": "Repeat source hygiene/import closure and typecheck paired-transform, calculus curvature, and forward/backward restriction-transport discriminators."
+      "command": "{python} tools/source_audit.py --all && lake env lean CausalGeometry/Models/PairedTransformControls.lean && lake env lean CausalGeometry/Models/CalculusControls.lean && lake env lean CausalGeometry/Models/RestrictionTransportControls.lean && lake env lean CausalGeometry/Models/OreFractionControls.lean && lake env lean CausalGeometry/Models/HashimotoControls.lean",
+      "description": "Repeat source hygiene/import closure and typecheck structural, calculus, Ore-fraction and Hashimoto positive/mutation controls."
     },
     {
       "id": "ADV-REVIEW",
