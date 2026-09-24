@@ -1,4 +1,5 @@
 import CausalGeometry.Process.Composition
+import CausalGeometry.Process.EndComposition
 
 namespace CausalGeometry
 
@@ -31,6 +32,31 @@ def CyclicFor
   S.equivalent
     (S.close GXY.result)
     (S.close GYX.result)
+
+
+/-- Global cyclicity of a shadow relative to one chosen weak enddiary
+composition system. This does not assert source commutativity. -/
+def CyclicOn
+    (S : DiaryCyclicShadow.{u, v} A)
+    (C : EndDiaryCompositionSystem.{u, w} A) : Prop :=
+  ∀ X Y,
+    S.equivalent
+      (S.close (C.compose X Y))
+      (S.close (C.compose Y X))
+
+/-- Source noncommutativity is measured in the source equivalence, independently
+of what the cyclic shadow forgets. -/
+def SourceNoncommutative
+    (C : EndDiaryCompositionSystem.{u, w} A) : Prop :=
+  ∃ X Y,
+    ¬ C.equivalent (C.compose X Y) (C.compose Y X)
+
+/-- The intended ECIA discriminator: cyclic shadow together with genuinely
+noncommutative source composition. -/
+def CyclicButNoncommutative
+    (S : DiaryCyclicShadow.{u, v} A)
+    (C : EndDiaryCompositionSystem.{u, w} A) : Prop :=
+  S.CyclicOn C ∧ C.SourceNoncommutative
 
 /-- The identity relation gives the strictest possible shadow equivalence. -/
 def strict
