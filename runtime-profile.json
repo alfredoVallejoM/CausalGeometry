@@ -45,6 +45,14 @@
       "description": "Typecheck the root import surface explicitly."
     },
     {
+      "id": "PROCESS-COMPOSITION-TYPECHECK",
+      "level": "regression",
+      "kind": "command",
+      "required": true,
+      "command": "lake env lean CausalGeometry/Process/Composition.lean",
+      "description": "Typecheck the witnessed diary-gluing composition contract independently."
+    },
+    {
       "id": "CALCULUS-TYPECHECK",
       "level": "regression",
       "kind": "command",
