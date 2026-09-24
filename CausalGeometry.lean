@@ -1,4 +1,5 @@
 import CausalGeometry.Foundation.EventSystem
+import CausalGeometry.Foundation.PairedTransform
 import CausalGeometry.History.Trace
 import CausalGeometry.Process.Diary
 import CausalGeometry.Number.Basic
@@ -14,6 +15,7 @@ import CausalGeometry.Calculus.Connection
 import CausalGeometry.Calculus.Decomposition
 
 import CausalGeometry.Foundation.ExtensionRestriction
+import CausalGeometry.Foundation.AdjunctionBridge
 import CausalGeometry.Number.Residual
 import CausalGeometry.Foundation.CorrelativeRestriction
 import CausalGeometry.Number.Divisibility
