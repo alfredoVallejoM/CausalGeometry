@@ -64,8 +64,15 @@ import CausalGeometry.Completion.FinitePrimaryTower
 import CausalGeometry.Completion.RestrictionGraph
 import CausalGeometry.Completion.PrimePowerTower
 import CausalGeometry.Completion.LocalProjectiveLine
+import CausalGeometry.Completion.LocalProjectiveCharts
+import CausalGeometry.Completion.LocalProjectiveMapCharts
+import CausalGeometry.Completion.LocalProjectiveFibers
 import CausalGeometry.Completion.FiniteLocalRingTower
 import CausalGeometry.Completion.BruhatTitsContract
+import CausalGeometry.Completion.ZModLocalTower
+import CausalGeometry.Completion.ZModReductionFiber
+import CausalGeometry.Completion.ZModProjectiveLine
+import CausalGeometry.Completion.ZModBruhatTits
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Realization.PairedCompatibility
