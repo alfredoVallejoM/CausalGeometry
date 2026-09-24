@@ -65,8 +65,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean && lake env lean CausalGeometry/Cyclic/DiaryShadow.lean && lake env lean CausalGeometry/Realization/ECIAProcessContract.lean",
-      "description": "Typecheck realization-at-source, ECIA consumer boundary and separate process/cyclic preservation contracts."
+      "command": "lake env lean CausalGeometry/Realization/At.lean && lake env lean CausalGeometry/Realization/ECIAContract.lean && lake env lean CausalGeometry/Cyclic/DiaryShadow.lean && lake env lean CausalGeometry/Realization/ECIAProcessContract.lean && lake env lean CausalGeometry/Realization/PairedCompatibility.lean && lake env lean CausalGeometry/Realization/ECIAArithmeticContract.lean",
+      "description": "Typecheck realization-at-source, paired-transport compatibility, ECIA process/cyclic contracts and weak arithmetic shadow preservation."
     },
     {
       "id": "ARITHMETIC-CONTROL-TYPECHECK",
