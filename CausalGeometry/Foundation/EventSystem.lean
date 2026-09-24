@@ -36,6 +36,19 @@ instance : Membership Event (Configuration S) :=
 @[simp] theorem mem_carrier (C : Configuration S) (e : Event) :
     e ∈ C ↔ C.carrier e := Iff.rfl
 
+/-- Configurations are determined by their event carrier; proof fields are
+propositional witnesses only. -/
+theorem configuration_eq_of_carrier_eq {C D : Configuration S}
+    (h : C.carrier = D.carrier) :
+    C = D := by
+  cases C with
+  | mk c hc hcf =>
+      cases D with
+      | mk d hd hdf =>
+          dsimp at h
+          subst d
+          rfl
+
 /-- The empty history is always causally valid. -/
 def empty : Configuration S where
   carrier := ∅
@@ -49,20 +62,23 @@ def Enabled (C : Configuration S) (e : Event) : Prop :=
   (∀ f, S.precedes f e → f ∈ C) ∧
   (∀ f, f ∈ C → ¬ S.conflict e f)
 
-/-- Two enabled events are concurrent when they are causally independent and
-compatible. -/
+/-- Two enabled events are concurrent when they are distinct, causally
+independent and compatible. Distinctness is explicit: without it an event could
+be declared concurrent with itself even though executing it disables a second
+copy of the same event. -/
 def ConcurrentAt (C : Configuration S) (e f : Event) : Prop :=
   S.Enabled C e ∧
   S.Enabled C f ∧
   ¬ S.precedes e f ∧
   ¬ S.precedes f e ∧
-  ¬ S.conflict e f
+  ¬ S.conflict e f ∧
+  e ≠ f
 
 theorem concurrentAt_symm {C : Configuration S} {e f : Event}
     (h : S.ConcurrentAt C e f) :
     S.ConcurrentAt C f e := by
-  rcases h with ⟨he, hf, hef, hfe, hc⟩
-  exact ⟨hf, he, hfe, hef, fun hcf => hc (S.conflict_symm hcf)⟩
+  rcases h with ⟨he, hf, hef, hfe, hc, hne⟩
+  exact ⟨hf, he, hfe, hef, fun hcf => hc (S.conflict_symm hcf), hne.symm⟩
 
 /-- Extending a configuration by an enabled event. -/
 def extend (C : Configuration S) (e : Event) (h : S.Enabled C e) :
@@ -91,6 +107,43 @@ def extend (C : Configuration S) (e : Event) (h : S.Enabled C e) :
 @[simp] theorem carrier_extend (C : Configuration S) (e : Event)
     (h : S.Enabled C e) :
     (S.extend C e h).carrier = insert e C.carrier := rfl
+
+/-- Two distinct enabled compatible events remain enabled after executing the
+other one. This is the operational fact required by a genuine concurrency
+diamond. -/
+theorem enabled_after_compatible {C : Configuration S} {e f : Event}
+    (he : S.Enabled C e) (hf : S.Enabled C f)
+    (hne : e ≠ f) (hcompat : ¬ S.conflict e f) :
+    S.Enabled (S.extend C e he) f := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro hmem
+    change f ∈ insert e C.carrier at hmem
+    rcases Set.mem_insert_iff.mp hmem with hfe | hfc
+    · exact hne hfe.symm
+    · exact hf.1 hfc
+  · intro g hgf
+    change g ∈ insert e C.carrier
+    exact Set.mem_insert_of_mem _ (hf.2.1 g hgf)
+  · intro g hg
+    change g ∈ insert e C.carrier at hg
+    rcases Set.mem_insert_iff.mp hg with hge | hgC
+    · subst g
+      intro hfe
+      exact hcompat (S.conflict_symm hfe)
+    · exact hf.2.2 g hgC
+
+theorem concurrent_enabled_after_left {C : Configuration S} {e f : Event}
+    (h : S.ConcurrentAt C e f) :
+    S.Enabled (S.extend C e h.1) f :=
+  S.enabled_after_compatible h.1 h.2.1
+    h.2.2.2.2.2 h.2.2.2.2.1
+
+theorem concurrent_enabled_after_right {C : Configuration S} {e f : Event}
+    (h : S.ConcurrentAt C e f) :
+    S.Enabled (S.extend C f h.2.1) e :=
+  S.enabled_after_compatible h.2.1 h.1
+    (h.2.2.2.2.2).symm
+    (fun hfe => h.2.2.2.2.1 (S.conflict_symm hfe))
 
 end EventSystem
 end CausalGeometry
