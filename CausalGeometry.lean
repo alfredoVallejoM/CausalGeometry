@@ -10,6 +10,8 @@ import CausalGeometry.Program.Ledger
 import CausalGeometry.Restriction.Pullback
 import CausalGeometry.Calculus.Difference
 import CausalGeometry.Calculus.IteratedDifference
+import CausalGeometry.Calculus.Connection
+import CausalGeometry.Calculus.Decomposition
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Number.Residual
