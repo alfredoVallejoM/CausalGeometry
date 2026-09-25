@@ -81,8 +81,8 @@
       "level": "adversarial",
       "kind": "command",
       "required": true,
-      "command": "{python} tools/source_audit.py --all && lake env lean CausalGeometry/Models/PairedTransformControls.lean && lake env lean CausalGeometry/Models/CalculusControls.lean && lake env lean CausalGeometry/Models/RestrictionTransportControls.lean && lake env lean CausalGeometry/Models/OreFractionControls.lean && lake env lean CausalGeometry/Models/HashimotoControls.lean && lake env lean CausalGeometry/Models/OreBilateralGroup.lean && lake env lean CausalGeometry/Models/CentralOreControls.lean",
-      "description": "Repeat source hygiene/import closure and typecheck structural/calculus controls plus group and central-denominator Ore localization models and Hashimoto mutation controls."
+      "command": "{python} tools/source_audit.py --all && lake env lean CausalGeometry/Models/PairedTransformControls.lean && lake env lean CausalGeometry/Models/CalculusControls.lean && lake env lean CausalGeometry/Models/RestrictionTransportControls.lean && lake env lean CausalGeometry/Models/OreFractionControls.lean && lake env lean CausalGeometry/Models/HashimotoControls.lean && lake env lean CausalGeometry/Models/OreBilateralGroup.lean && lake env lean CausalGeometry/Models/CentralOreControls.lean && lake env lean CausalGeometry/Models/BilinearHamiltonianControls.lean",
+      "description": "Repeat source hygiene/import closure and typecheck structural, calculus, symplectic/Hamiltonian, Ore-fraction and Hashimoto positive/mutation controls."
     },
     {
       "id": "ADV-REVIEW",
