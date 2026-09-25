@@ -128,6 +128,7 @@ import CausalGeometry.Cyclic.Hashimoto
 import CausalGeometry.Cyclic.PrimitiveTrace
 import CausalGeometry.Cyclic.EulerLogSeries
 import CausalGeometry.Cyclic.EulerZetaSeries
+import CausalGeometry.Cyclic.ConcreteIhara
 import CausalGeometry.Cyclic.TransferDeterminant
 import CausalGeometry.Cyclic.TransferSignature
 import CausalGeometry.Cyclic.DirectedEdge
@@ -185,3 +186,5 @@ import CausalGeometry.Models.HamiltonianEventControls
 import CausalGeometry.Models.FiniteLocalCurvatureControls
 
 import CausalGeometry.Models.LatticeControls
+
+import CausalGeometry.Models.ConcreteIharaControls
