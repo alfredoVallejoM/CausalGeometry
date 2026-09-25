@@ -1,5 +1,4 @@
 import Mathlib.Algebra.Group.Conj
-import Mathlib.Algebra.Group.Aut
 
 namespace CausalGeometry
 
