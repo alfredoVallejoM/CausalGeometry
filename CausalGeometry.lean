@@ -20,6 +20,8 @@ import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
 import CausalGeometry.Calculus.SymplecticGeometry
+import CausalGeometry.Calculus.Cohomology
+import CausalGeometry.Calculus.HamiltonianEventEquation
 import CausalGeometry.Calculus.Soldering
 import CausalGeometry.Calculus.ExteriorComplex
 import CausalGeometry.Calculus.ExteriorTwoForm
@@ -169,3 +171,5 @@ import CausalGeometry.Models.JetCotangentControls
 import CausalGeometry.Models.ResidualLocalizationControls
 
 import CausalGeometry.Models.SymplecticGeometryControls
+
+import CausalGeometry.Models.HamiltonianEventControls
