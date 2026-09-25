@@ -147,6 +147,7 @@ import CausalGeometry.Realization.ECIAProcessContract
 import CausalGeometry.Realization.ECIATransferContract
 import CausalGeometry.Realization.ECIAIharaContract
 import CausalGeometry.Realization.ECIABruhatTitsIharaContract
+import CausalGeometry.Realization.ECIACohomologyContract
 import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.FiniteTransfer
 import CausalGeometry.Cyclic.Hashimoto
