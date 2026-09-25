@@ -225,5 +225,106 @@ def classMap
             ⟨z, hz, rfl⟩
         · simp [smul_comm])
 
+
+/-- Ambient transport specializes exactly to scalar homothety. -/
+theorem mapLinearEquiv_scaleEquivK
+    (u : Kˣ)
+    (L : RankTwoLattice O K) :
+    L.mapLinearEquiv
+        (scaleEquivK (O := O) u) =
+      L.scale u := by
+  apply RankTwoLattice.ext
+  rfl
+
+@[simp] theorem classMap_classOf
+    (E : (K × K) ≃ₗ[K] (K × K))
+    (L : RankTwoLattice O K) :
+    classMap E (classOf L) =
+      classOf (L.mapLinearEquiv E) :=
+  rfl
+
+/-- Ambient linear equivalence acts invertibly on homothety classes. -/
+def classEquiv
+    (E : (K × K) ≃ₗ[K] (K × K)) :
+    HomothetyClass (O := O) (K := K) ≃
+      HomothetyClass (O := O) (K := K) where
+  toFun :=
+    classMap E
+  invFun :=
+    classMap E.symm
+  left_inv := by
+    intro x
+    refine Quotient.inductionOn x ?_
+    intro L
+    simp [classMap]
+  right_inv := by
+    intro x
+    refine Quotient.inductionOn x ?_
+    intro L
+    simp [classMap]
+
+@[simp] theorem classEquiv_apply
+    (E : (K × K) ≃ₗ[K] (K × K))
+    (L : RankTwoLattice O K) :
+    classEquiv E (classOf L) =
+      classOf (L.mapLinearEquiv E) :=
+  rfl
+
+@[simp] theorem classEquiv_symm_apply
+    (E : (K × K) ≃ₗ[K] (K × K))
+    (L : RankTwoLattice O K) :
+    (classEquiv E).symm (classOf L) =
+      classOf (L.mapLinearEquiv E.symm) :=
+  rfl
+
+/-- q-adjacency of homothety classes is invariant under ambient change of
+basis. -/
+theorem classAdjacent_map
+    (E : (K × K) ≃ₗ[K] (K × K))
+    {q : ℕ}
+    {x y : HomothetyClass (O := O) (K := K)}
+    (h : ClassAdjacent q x y) :
+    ClassAdjacent q
+      (classEquiv E x)
+      (classEquiv E y) := by
+  rcases h with
+    ⟨L, M, hx, hy, hLM | hML⟩
+  · refine
+      ⟨L.mapLinearEquiv E,
+        M.mapLinearEquiv E,
+        ?_, ?_, Or.inl
+          (hLM.mapLinearEquiv E)⟩
+    · rw [← hx]
+      rfl
+    · rw [← hy]
+      rfl
+  · refine
+      ⟨L.mapLinearEquiv E,
+        M.mapLinearEquiv E,
+        ?_, ?_, Or.inr
+          (hML.mapLinearEquiv E)⟩
+    · rw [← hx]
+      rfl
+    · rw [← hy]
+      rfl
+
+/-- Exact equivalence form of adjacency invariance. -/
+theorem classAdjacent_map_iff
+    (E : (K × K) ≃ₗ[K] (K × K))
+    {q : ℕ}
+    {x y : HomothetyClass (O := O) (K := K)} :
+    ClassAdjacent q
+        (classEquiv E x)
+        (classEquiv E y) ↔
+      ClassAdjacent q x y := by
+  constructor
+  · intro h
+    have h' :=
+      classAdjacent_map
+        E.symm h
+    simpa using h'
+  · exact classAdjacent_map E
+
+
 end RankTwoLattice
 end CausalGeometry
