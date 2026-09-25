@@ -167,7 +167,7 @@ theorem mem_inside_iff_reduction_mem
     (x : (Root p).carrier) :
     x ∈ C.inside ↔
       standardReduction p x ∈
-        C.residualSubgroup := by
+        C.residualAddSubgroup := by
   constructor
   · exact C.standardReduction_mem_residual
   · exact C.mem_inside_of_standardReduction_mem
