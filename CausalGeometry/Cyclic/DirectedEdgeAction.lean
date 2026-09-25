@@ -1,4 +1,5 @@
 import CausalGeometry.Cyclic.NonbacktrackingPath
+import Mathlib.Algebra.Group.Conj
 import Mathlib.GroupTheory.GroupAction.Basic
 
 namespace CausalGeometry
@@ -207,6 +208,26 @@ def conjugateDeckCycleWitness
   moves_start := by
     simpa [smul_smul, mul_assoc,
       W.moves_start]
+
+/-- Conjugacy class attached to a chosen deck-cycle witness. -/
+def deckConjClass
+    (W : Q.DeckCycleWitness) :
+    ConjClasses Γ :=
+  ConjClasses.mk W.deck
+
+/-- The conjugacy class is unchanged when the lift is translated and the deck
+transformation is conjugated accordingly. -/
+theorem deckConjClass_conjugate
+    (δ : Γ)
+    (W : Q.DeckCycleWitness) :
+    Q.deckConjClass
+        (Q.conjugateDeckCycleWitness δ W) =
+      Q.deckConjClass W := by
+  apply
+    ConjClasses.mk_eq_mk_iff_isConj.mpr
+  exact
+    (isConj_iff.mpr
+      ⟨δ, rfl⟩).symm
 
 /-- Every globally separated quotient-cycle lift admits a deck witness. -/
 noncomputable def deckCycleWitness
