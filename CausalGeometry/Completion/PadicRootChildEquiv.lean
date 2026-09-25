@@ -270,5 +270,73 @@ theorem every_child_is_projective
   apply projectiveChild.injective p
   rw [hq, C.projectiveChild_residualPoint]
 
+
+/-- Homothety class carried by a root child. -/
+def childClass
+    (C : Child p) :
+    RankTwoLattice.HomothetyClass
+      (O := O p) (K := K p) :=
+  RankTwoLattice.classOf C.lattice
+
+/-- No index-p child of the root lies in the root homothety class. -/
+theorem childClass_ne_root
+    (C : Child p) :
+    childClass p C ≠
+      RankTwoLattice.classOf
+        (Root p) := by
+  rw [← C.projectiveChild_residualPoint]
+  exact
+    PadicProjectiveNeighbor.neighborClass_ne_root
+      p C.residualPoint
+
+/-- Distinct root children remain distinct after passage to homothety classes. -/
+theorem childClass_injective :
+    Function.Injective
+      (childClass p) := by
+  intro C D h
+  have hq :
+      C.residualPoint =
+        D.residualPoint := by
+    apply
+      PadicProjectiveNeighbor.neighborClass_injective
+        p
+    change
+      RankTwoLattice.classOf
+          (PadicProjectiveNeighbor.lattice
+            p C.residualPoint) =
+        RankTwoLattice.classOf
+          (PadicProjectiveNeighbor.lattice
+            p D.residualPoint)
+    simpa [
+      childClass,
+      projectiveChild
+    ] using h
+  exact
+    Child.residualPoint_injective
+      (p := p) hq
+
+/-- Every root child class is p-adjacent to the root class. -/
+theorem childClass_adjacent_root
+    (C : Child p) :
+    RankTwoLattice.ClassAdjacent
+      (O := O p) (K := K p) p
+      (RankTwoLattice.classOf
+        (Root p))
+      (childClass p C) := by
+  exact
+    ⟨Root p, C.lattice,
+      rfl, rfl, Or.inl C.step⟩
+
+/-- The set of root child homothety classes has exactly p+1 elements. -/
+theorem childClass_range_natCard :
+    Nat.card
+        (Set.range (childClass p)) =
+      p + 1 := by
+  rw [← Nat.card_congr
+    (Equiv.ofInjective
+      (childClass p)
+      (childClass_injective p))]
+  exact child_natCard p
+
 end PadicRootChild
 end CausalGeometry
