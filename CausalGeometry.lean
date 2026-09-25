@@ -23,6 +23,9 @@ import CausalGeometry.Calculus.PathIntegral
 import CausalGeometry.Calculus.Connection
 import CausalGeometry.Calculus.DependentConnection
 import CausalGeometry.Calculus.TensorCovariantDifference
+import CausalGeometry.Calculus.HamiltonianTransport
+import CausalGeometry.Calculus.BilinearTransport
+import CausalGeometry.Calculus.BilinearField
 import CausalGeometry.Calculus.TensorTransport
 import CausalGeometry.Calculus.DependentCovariantDifference
 import CausalGeometry.Calculus.DependentLinearConnection
