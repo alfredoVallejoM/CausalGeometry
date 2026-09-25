@@ -47,6 +47,19 @@ namespace EventSystemEquiv
 
 open EventSystem
 
+@[ext] theorem ext
+    {Event₁ : Type*} {Label₁ : Type*}
+    {Event₂ : Type*} {Label₂ : Type*}
+    {S₁ : EventSystem Event₁ Label₁}
+    {S₂ : EventSystem Event₂ Label₂}
+    {E F : EventSystemEquiv S₁ S₂}
+    (he : E.eventEquiv = F.eventEquiv)
+    (hl : E.labelEquiv = F.labelEquiv) :
+    E = F := by
+  cases E
+  cases F
+  simp_all
+
 variable
     {Event₁ : Type u₁} {Label₁ : Type v₁}
     {Event₂ : Type u₂} {Label₂ : Type v₂}
@@ -81,6 +94,22 @@ def symm
     apply E.labelEquiv.injective
     simp [E.label_compat]
 
+/-- Symmetry reverses composition order. -/
+theorem symm_trans
+    {Event₃ : Type*} {Label₃ : Type*}
+    {S₃ : EventSystem Event₃ Label₃}
+    (E₁₂ : EventSystemEquiv S₁ S₂)
+    (E₂₃ : EventSystemEquiv S₂ S₃) :
+    (E₁₂.trans E₂₃).symm =
+      E₂₃.symm.trans E₁₂.symm := by
+  apply EventSystemEquiv.ext
+  · apply Equiv.ext
+    intro e
+    rfl
+  · apply Equiv.ext
+    intro l
+    rfl
+
 /-- Identity causal-system equivalence. -/
 def refl
     (S : EventSystem Event₁ Label₁) :
@@ -96,6 +125,11 @@ def refl
   label_compat := by
     intro e
     rfl
+
+@[simp] theorem symm_refl
+    (S : EventSystem Event₁ Label₁) :
+    (refl S).symm = refl S := by
+  apply EventSystemEquiv.ext <;> rfl
 
 /-- Composition of causal-system equivalences. -/
 def trans
