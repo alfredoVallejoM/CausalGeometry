@@ -197,7 +197,8 @@ theorem det_updateRow_eq_sum_adjugate
         B i j * adjugate A j i := by
   let L :
       (n → R) →ₗ[R] R :=
-    (detRowAlternating.toMultilinearMap
+    ((detRowAlternating :
+        (n → R) [⋀^n]→ₗ[R] R).toMultilinearMap
       .toLinearMap A i)
 
   have hL :
