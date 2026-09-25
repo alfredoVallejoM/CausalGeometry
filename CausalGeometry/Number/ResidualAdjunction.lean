@@ -155,7 +155,7 @@ theorem right_targetFixed_iff_rightDivides
 /-- Under cancellative multiplication, residual restriction loses no
 information on values that were just extended: Psi(Phi(y))=y. -/
 theorem left_sourceRoundTrip_eq_self_of_cancel
-    [CancelMonoid α]
+    [IsCancelMul α]
     (x y : α) :
     (R.leftPairedTransform x).sourceRoundTrip y =
       y := by
@@ -169,7 +169,7 @@ theorem left_sourceRoundTrip_eq_self_of_cancel
       ⟨y, rfl⟩
 
 theorem right_sourceRoundTrip_eq_self_of_cancel
-    [CancelMonoid α]
+    [IsCancelMul α]
     (x y : α) :
     (R.rightPairedTransform x).sourceRoundTrip y =
       y := by
@@ -185,14 +185,14 @@ theorem right_sourceRoundTrip_eq_self_of_cancel
 /-- With cancellation, the residual pairs are source-side fixed everywhere,
 while target fixed points remain precisely the divisible elements. -/
 theorem left_sourceFixed_of_cancel
-    [CancelMonoid α]
+    [IsCancelMul α]
     (x y : α) :
     (R.leftPairedTransform x).SourceFixed y :=
   R.left_sourceRoundTrip_eq_self_of_cancel
     x y
 
 theorem right_sourceFixed_of_cancel
-    [CancelMonoid α]
+    [IsCancelMul α]
     (x y : α) :
     (R.rightPairedTransform x).SourceFixed y :=
   R.right_sourceRoundTrip_eq_self_of_cancel
