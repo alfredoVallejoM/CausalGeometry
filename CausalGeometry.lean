@@ -227,3 +227,5 @@ import CausalGeometry.Models.LatticeControls
 import CausalGeometry.Models.ConcreteIharaControls
 
 import CausalGeometry.Models.EventSystemEquivControls
+
+import CausalGeometry.Models.GeometryEquivarianceControls
