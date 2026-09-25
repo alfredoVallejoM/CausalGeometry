@@ -1,4 +1,5 @@
 import CausalGeometry.Cyclic.DirectedEdge
+import CausalGeometry.Cyclic.TransferSignatureInvariant
 
 namespace CausalGeometry
 
