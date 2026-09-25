@@ -55,19 +55,25 @@ theorem unit_natCard (n : ℕ) :
   have hpartition :=
     LocalProjectivePair.natCard_nonunit
       (R := A n)
+  have hle :
+      Nat.card (A n)ˣ ≤
+        Fintype.card (A n) := by
+    rw [Nat.card_eq_fintype_card]
+    exact
+      Fintype.card_le_of_injective
+        Units.val_injective
   rw [D.nonunit_card n,
     T.card_law_q n] at hpartition
+  rw [T.card_law_q n] at hle
   omega
 
 /-- More familiar DVR form |A_n^×|=(q-1)q^n. -/
 theorem unit_natCard_factorized (n : ℕ) :
     Nat.card (A n)ˣ =
       (T.q - 1) * T.q ^ n := by
-  rw [D.unit_natCard n]
-  rw [pow_succ]
-  have hq : 1 ≤ T.q :=
-    (T.q_ge_two).trans' (by decide)
-  omega
+  rw [D.unit_natCard n,
+    pow_succ, Nat.sub_mul]
+  simp [Nat.mul_comm]
 
 /-- Projective sphere cardinal follows from the two local charts. -/
 theorem projective_card (n : ℕ) :
