@@ -94,7 +94,17 @@ def centerSubmonoid (α : Type u) [Monoid α] :
     exact Commute.one_left b
   mul_mem' := by
     intro a b ha hb c
-    exact (ha c).mul_left (hb c)
+    calc
+      (a * b) * c = a * (b * c) := by
+        simp [mul_assoc]
+      _ = a * (c * b) := by
+        rw [(hb c).eq]
+      _ = (a * c) * b := by
+        simp [mul_assoc]
+      _ = (c * a) * b := by
+        rw [(ha c).eq]
+      _ = c * (a * b) := by
+        simp [mul_assoc]
 
 theorem centerSubmonoid_central :
     CentralDenominators
