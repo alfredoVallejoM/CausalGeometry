@@ -375,6 +375,17 @@ def mapDiamond
     (E.concurrentAt_iff C e f).2
       d.concurrent
 
+/-- Mapping commutes with reversal of a concurrency diamond. -/
+theorem mapDiamond_symm
+    (E : EventSystemEquiv S₁ S₂)
+    {C : Configuration S₁}
+    {e f : Event₁}
+    (d : ConcurrencyDiamond C e f) :
+    E.mapDiamond d.symm =
+      (E.mapDiamond d).symm := by
+  cases d
+  rfl
+
 /-- Mapping an enabled extension is the same derived configuration as extending
 the mapped configuration by the mapped event. -/
 theorem map_extend
