@@ -159,7 +159,12 @@ theorem exact_variationEF
       causalSquareVariation F d := by
   unfold variationEF exact
     causalDifference causalSquareVariation
-  rfl
+  change
+    (F d.afterEF - F d.afterE) -
+        (F d.afterF - F C) =
+      F d.afterEF - F d.afterE -
+        F d.afterF + F C
+  abel
 
 theorem exact_variationFE
     [AddCommGroup K]
