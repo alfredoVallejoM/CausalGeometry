@@ -129,6 +129,56 @@ theorem scale_mul
   rw [scale_mul]
   simp
 
+/-- Image of an integral unit in the fraction-field unit group. -/
+def algebraUnit
+    (u : Oˣ) :
+    Kˣ :=
+  Units.map (algebraMap O K).toMonoidHom u
+
+@[simp] theorem algebraUnit_val
+    (u : Oˣ) :
+    ((algebraUnit (K := K) u : Kˣ) : K) =
+      algebraMap O K (u : O) :=
+  rfl
+
+/-- Scaling a lattice by an integral unit does not change the O-submodule. -/
+theorem scale_algebraUnit
+    (u : Oˣ)
+    (L : RankTwoLattice O K) :
+    L.scale (algebraUnit (K := K) u) =
+      L := by
+  apply RankTwoLattice.ext
+  ext x
+  constructor
+  · intro hx
+    rcases hx with ⟨y, hy, hxy⟩
+    rw [← hxy]
+    change
+      algebraMap O K (u : O) • y ∈
+        L.carrier
+    simpa [Algebra.smul_def] using
+      L.carrier.smul_mem (u : O) hy
+  · intro hx
+    let y : K × K :=
+      algebraMap O K ((u⁻¹ : Oˣ) : O) • x
+    have hy : y ∈ L.carrier := by
+      simpa [y, Algebra.smul_def] using
+        L.carrier.smul_mem
+          ((u⁻¹ : Oˣ) : O) hx
+    refine ⟨y, hy, ?_⟩
+    change
+      algebraMap O K (u : O) • y = x
+    simp [y, smul_smul]
+
+/-- Integral units therefore act trivially on homothety classes already at
+the representative level. -/
+@[simp] theorem classOf_scale_algebraUnit
+    (u : Oˣ)
+    (L : RankTwoLattice O K) :
+    classOf (L.scale (algebraUnit (K := K) u)) =
+      classOf L := by
+  rw [scale_algebraUnit]
+
 /-- Homothety relation between rank-two lattices. -/
 def Homothetic
     (L M : RankTwoLattice O K) : Prop :=
