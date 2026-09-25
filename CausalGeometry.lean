@@ -120,6 +120,12 @@ import CausalGeometry.Completion.PadicLatticeRay
 import CausalGeometry.Completion.PadicLatticeIndex
 import CausalGeometry.Completion.PadicProjectiveRay
 import CausalGeometry.Completion.PadicProjectiveNeighbor
+import CausalGeometry.Completion.LocalProjectiveField
+import CausalGeometry.Completion.LocalProjectiveFieldCharts
+import CausalGeometry.Completion.PadicRootChildProjective
+import CausalGeometry.Completion.PadicRootChildReduction
+import CausalGeometry.Completion.PadicRootChildResidual
+import CausalGeometry.Completion.PadicRootChildEquiv
 import CausalGeometry.Completion.PadicLatticeStar
 import CausalGeometry.Completion.BruhatTitsFiniteGraph
 import CausalGeometry.Completion.BruhatTitsFiniteGraphComplexity
