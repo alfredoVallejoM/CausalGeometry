@@ -22,6 +22,10 @@ import CausalGeometry.Calculus.CubeFrame
 import CausalGeometry.Calculus.PathIntegral
 import CausalGeometry.Calculus.Connection
 import CausalGeometry.Calculus.DependentConnection
+import CausalGeometry.Calculus.TensorCovariantDifference
+import CausalGeometry.Calculus.TensorTransport
+import CausalGeometry.Calculus.DependentCovariantDifference
+import CausalGeometry.Calculus.DependentLinearConnection
 import CausalGeometry.Calculus.LinearConnection
 import CausalGeometry.Calculus.ParallelTransport
 import CausalGeometry.Calculus.GaugeCovariance
@@ -41,6 +45,7 @@ import CausalGeometry.Variational.JetHamiltonian
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
 import CausalGeometry.Number.Residual
+import CausalGeometry.Number.ResidualLocalization
 import CausalGeometry.Number.OreLocalization
 import CausalGeometry.Number.RightFractionCalculus
 import CausalGeometry.Number.LeftFractionCalculus
@@ -48,6 +53,7 @@ import CausalGeometry.Number.BilateralLocalization
 import CausalGeometry.Number.CentralOre
 import CausalGeometry.Number.CentralFractionCalculus
 import CausalGeometry.Number.CentralBilateralLocalization
+import CausalGeometry.Number.CentralLocalizationUniversal
 import CausalGeometry.Number.CommutativeLocalization
 import CausalGeometry.Number.CommutativeLocalizationMonoid
 import CausalGeometry.Number.CommutativeLocalizationUniversal
