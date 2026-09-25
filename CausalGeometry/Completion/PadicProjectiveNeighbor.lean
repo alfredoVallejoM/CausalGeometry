@@ -171,6 +171,102 @@ theorem parameterSubmodule_fg
           (O p) (O p × O p)).FG)
       le_top
 
+/-- Every non-unit of the residue field is zero. -/
+theorem residue_nonunit_eq_zero
+    (u : LocalProjectivePair.Nonunit (F p)) :
+    u.1 = 0 := by
+  by_contra h
+  exact u.2
+    (isUnit_iff_ne_zero.mpr h)
+
+/-- Distinct projective points have distinct residual kernel submodules. -/
+theorem parameterSubmodule_injective :
+    Function.Injective
+      (parameterSubmodule p) := by
+  intro q r hqr
+  apply
+    (LocalProjectivePair.chartEquiv
+      (R := F p)).symm.injective
+  change chart p q = chart p r
+  classical
+  cases hq : chart p q with
+  | inl tq =>
+      cases hr : chart p r with
+      | inl tr =>
+          rcases residue_surjective p tq with
+            ⟨a, ha⟩
+          have hmemq :
+              ((1 : O p), a) ∈
+                parameterSubmodule p q := by
+            unfold parameterSubmodule functional
+            rw [hq]
+            simp [ha]
+          have hmemr :
+              ((1 : O p), a) ∈
+                parameterSubmodule p r := by
+            rw [← hqr]
+            exact hmemq
+          unfold parameterSubmodule functional at hmemr
+          rw [hr] at hmemr
+          change
+            residue p a -
+                tr * residue p (1 : O p) =
+              0 at hmemr
+          simp [ha] at hmemr
+          exact congrArg Sum.inl
+            (sub_eq_zero.mp hmemr).symm
+      | inr ur =>
+          rcases residue_surjective p tq with
+            ⟨a, ha⟩
+          have hmemq :
+              ((1 : O p), a) ∈
+                parameterSubmodule p q := by
+            unfold parameterSubmodule functional
+            rw [hq]
+            simp [ha]
+          have hmemr :
+              ((1 : O p), a) ∈
+                parameterSubmodule p r := by
+            rw [← hqr]
+            exact hmemq
+          unfold parameterSubmodule functional at hmemr
+          rw [hr] at hmemr
+          have hu0 :=
+            residue_nonunit_eq_zero p ur
+          simp [ha, hu0] at hmemr
+  | inr uq =>
+      cases hr : chart p r with
+      | inl tr =>
+          rcases residue_surjective p tr with
+            ⟨a, ha⟩
+          have hmemr :
+              ((1 : O p), a) ∈
+                parameterSubmodule p r := by
+            unfold parameterSubmodule functional
+            rw [hr]
+            simp [ha]
+          have hmemq :
+              ((1 : O p), a) ∈
+                parameterSubmodule p q := by
+            rw [hqr]
+            exact hmemr
+          unfold parameterSubmodule functional at hmemq
+          rw [hq] at hmemq
+          have hu0 :=
+            residue_nonunit_eq_zero p uq
+          simp [ha, hu0] at hmemq
+      | inr ur =>
+          have huq :
+              uq.1 = 0 :=
+            residue_nonunit_eq_zero p uq
+          have hur :
+              ur.1 = 0 :=
+            residue_nonunit_eq_zero p ur
+          have huu : uq = ur := by
+            apply Subtype.ext
+            rw [huq, hur]
+          exact congrArg Sum.inr huu
+
 /-- Projective neighbor lattice inside Q_p^2. -/
 noncomputable def lattice
     (q : P1 p) :
@@ -250,6 +346,39 @@ noncomputable def lattice
       Submodule.add_mem _
         (Submodule.smul_mem _ a hs1)
         (Submodule.smul_mem _ b hs2)
+
+/-- Distinct projective points give distinct ambient lattice representatives. -/
+theorem lattice_injective :
+    Function.Injective
+      (lattice p) := by
+  intro q r h
+  apply parameterSubmodule_injective p
+  ext x
+  constructor
+  · intro hx
+    have hmapq :
+        diagonalMap p 0 x ∈
+          (lattice p q).carrier :=
+      ⟨x, hx, rfl⟩
+    rw [h] at hmapq
+    rcases hmapq with
+      ⟨y, hy, hxy⟩
+    have hyx :
+        y = x :=
+      diagonalMap_injective p 0 hxy
+    simpa [hyx] using hy
+  · intro hx
+    have hmapr :
+        diagonalMap p 0 x ∈
+          (lattice p r).carrier :=
+      ⟨x, hx, rfl⟩
+    rw [← h] at hmapr
+    rcases hmapr with
+      ⟨y, hy, hxy⟩
+    have hyx :
+        y = x :=
+      diagonalMap_injective p 0 hxy
+    simpa [hyx] using hy
 
 /-- Every projective neighbor lies inside the standard lattice L_0. -/
 theorem lattice_le_standard
