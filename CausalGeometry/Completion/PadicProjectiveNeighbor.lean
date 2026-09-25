@@ -503,6 +503,48 @@ noncomputable def indexStep
     simpa [insideStandard] using
       quotient_natCard p q
 
+/-- The constructed projective-neighbor family has exactly p+1 distinct
+lattice representatives. -/
+theorem constructedNeighbor_natCard :
+    Nat.card
+        (Set.range (lattice p)) =
+      p + 1 := by
+  rw [← Nat.card_congr
+    (Equiv.ofInjective
+      (lattice p)
+      (lattice_injective p))]
+  simpa [P1] using
+    zmodPrimeLocalTower.projectiveLine_natCard
+      p 0
+
+/-- Every constructed projective neighbor is a proper sublattice of L_0. -/
+theorem lattice_ne_standard
+    (q : P1 p) :
+    lattice p q ≠
+      diagonalLattice p 0 := by
+  have hstep :=
+    indexStep p q
+  exact
+    (RankTwoLattice.IndexStep.ne_of_card_gt_one
+      hstep
+      (Fact.out : Nat.Prime p).one_lt).symm
+
+/-- Hence the standard lattice has at least p+1 distinct proper index-p
+sublattice neighbors before passing to homothety classes. -/
+theorem at_least_p_add_one_proper_neighbors :
+    ∃ N :
+        Set (RankTwoLattice (O p) (K p)),
+      Nat.card N = p + 1 ∧
+      (∀ L : N,
+        L.1 ≠ diagonalLattice p 0) := by
+  refine
+    ⟨Set.range (lattice p),
+      constructedNeighbor_natCard p,
+      ?_⟩
+  intro L
+  rcases L.2 with ⟨q, rfl⟩
+  exact lattice_ne_standard p q
+
 /-- Projective points map to adjacent lattice homothety classes. -/
 noncomputable def neighborClass
     (q : P1 p) :
