@@ -148,6 +148,36 @@ theorem exists_nontrivial_deck_of_cycleLift
   apply L.globallySeparated
   simpa [h1] using hγ.symm
 
+/-- Orbit quotients are constant on group translates of an edge. -/
+theorem edgeMap_smul
+    (δ : Γ) (e : E) :
+    Q.covering.edgeMap (δ • e) =
+      Q.covering.edgeMap e := by
+  exact
+    ((Q.edge_orbit_iff e (δ • e)).mpr
+      ⟨δ, rfl⟩).symm
+
+/-- Changing the chosen lift by δ preserves the quotient cycle while moving
+the whole lifted segment in the universal source. -/
+def smulCycleLift
+    (δ : Γ)
+    (L : Q.covering.QuotientCycleLift) :
+    Q.covering.QuotientCycleLift where
+  startEdge := δ • L.startEdge
+  endEdge := δ • L.endEdge
+  length := L.length
+  positive := L.positive
+  path :=
+    Q.action.path_smul δ L.path
+  closes := by
+    rw [Q.edgeMap_smul δ L.endEdge,
+      Q.edgeMap_smul δ L.startEdge]
+    exact L.closes
+  globallySeparated := by
+    intro h
+    apply L.globallySeparated
+    exact smul_left_cancel δ h
+
 /-- Typed witness combining a quotient cycle lift with one nontrivial deck
 transformation responsible for its closure. -/
 structure DeckCycleWitness where
@@ -157,6 +187,26 @@ structure DeckCycleWitness where
   moves_start :
     deck • lift.startEdge =
       lift.endEdge
+
+/-- Changing the lift by δ conjugates the associated deck transformation
+by δ. This is the formal reason quotient cycles naturally determine conjugacy
+classes rather than canonical group elements. -/
+def conjugateDeckCycleWitness
+    (δ : Γ)
+    (W : Q.DeckCycleWitness) :
+    Q.DeckCycleWitness where
+  lift := Q.smulCycleLift δ W.lift
+  deck := δ * W.deck * δ⁻¹
+  deck_ne_one := by
+    intro h
+    apply W.deck_ne_one
+    have hh :=
+      congrArg
+        (fun g : Γ => δ⁻¹ * g * δ) h
+    simpa [mul_assoc] using hh
+  moves_start := by
+    simpa [smul_smul, mul_assoc,
+      W.moves_start]
 
 /-- Every globally separated quotient-cycle lift admits a deck witness. -/
 noncomputable def deckCycleWitness
