@@ -215,6 +215,30 @@ def configurationEquiv
   right_inv :=
     E.mapConfiguration_symm_mapConfiguration
 
+/-- Mapping configurations through the identity equivalence is identity. -/
+@[simp] theorem refl_mapConfiguration
+    (S : EventSystem Event₁ Label₁)
+    (C : Configuration S) :
+    (refl S).mapConfiguration C = C := by
+  apply S.configuration_eq_of_carrier_eq
+  ext e
+  rfl
+
+/-- Configuration transport is functorial under composition of primitive
+causal-system equivalences. -/
+theorem trans_mapConfiguration
+    {Event₃ : Type*} {Label₃ : Type*}
+    {S₃ : EventSystem Event₃ Label₃}
+    (E₁₂ : EventSystemEquiv S₁ S₂)
+    (E₂₃ : EventSystemEquiv S₂ S₃)
+    (C : Configuration S₁) :
+    (E₁₂.trans E₂₃).mapConfiguration C =
+      E₂₃.mapConfiguration
+        (E₁₂.mapConfiguration C) := by
+  apply S₃.configuration_eq_of_carrier_eq
+  ext e
+  rfl
+
 /-- Enabledness is preserved and reflected by causal-system equivalence. -/
 theorem enabled_iff
     (E : EventSystemEquiv S₁ S₂)
@@ -361,6 +385,41 @@ theorem concurrentAt_iff
     · exact fun heq =>
         hne (E.eventEquiv.injective heq)
 
+/-- Direction transport is identity for the identity event-system equivalence. -/
+@[simp] theorem refl_directionEquiv
+    (S : EventSystem Event₁ Label₁)
+    (C : Configuration S)
+    (d : EventDirection S C) :
+    (refl S).directionEquiv C d = d := by
+  apply EventDirection.ext
+  rfl
+
+/-- Direction transport is functorial. -/
+theorem trans_directionEquiv
+    {Event₃ : Type*} {Label₃ : Type*}
+    {S₃ : EventSystem Event₃ Label₃}
+    (E₁₂ : EventSystemEquiv S₁ S₂)
+    (E₂₃ : EventSystemEquiv S₂ S₃)
+    (C : Configuration S₁)
+    (d : EventDirection S₁ C) :
+    let hC :=
+      E₁₂.trans_mapConfiguration E₂₃ C
+    cast
+        (congrArg
+          (fun D => EventDirection S₃ D)
+          hC)
+        ((E₁₂.trans E₂₃).directionEquiv C d)
+      =
+    E₂₃.directionEquiv
+      (E₁₂.mapConfiguration C)
+      (E₁₂.directionEquiv C d) := by
+  dsimp
+  have hC :=
+    E₁₂.trans_mapConfiguration E₂₃ C
+  cases hC
+  apply EventDirection.ext
+  rfl
+
 /-- Map a genuine concurrency diamond. -/
 def mapDiamond
     (E : EventSystemEquiv S₁ S₂)
@@ -374,6 +433,34 @@ def mapDiamond
   concurrent :=
     (E.concurrentAt_iff C e f).2
       d.concurrent
+
+/-- Mapping diamonds is functorial under composition. -/
+theorem trans_mapDiamond
+    {Event₃ : Type*} {Label₃ : Type*}
+    {S₃ : EventSystem Event₃ Label₃}
+    (E₁₂ : EventSystemEquiv S₁ S₂)
+    (E₂₃ : EventSystemEquiv S₂ S₃)
+    {C : Configuration S₁}
+    {e f : Event₁}
+    (d : ConcurrencyDiamond C e f) :
+    let hC :=
+      E₁₂.trans_mapConfiguration E₂₃ C
+    cast
+        (congrArg
+          (fun D =>
+            ConcurrencyDiamond D
+              ((E₁₂.trans E₂₃).eventEquiv e)
+              ((E₁₂.trans E₂₃).eventEquiv f))
+          hC)
+        ((E₁₂.trans E₂₃).mapDiamond d)
+      =
+    E₂₃.mapDiamond
+      (E₁₂.mapDiamond d) := by
+  dsimp
+  have hC :=
+    E₁₂.trans_mapConfiguration E₂₃ C
+  cases hC
+  exact concurrencyDiamond_eq _ _
 
 /-- Mapping commutes with reversal of a concurrency diamond. -/
 theorem mapDiamond_symm
