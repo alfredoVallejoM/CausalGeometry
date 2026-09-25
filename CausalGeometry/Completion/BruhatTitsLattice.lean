@@ -77,8 +77,8 @@ theorem sphereClass_injective
   have hv :
       hvertex = hvertex' :=
     C.graphEquiv.vertexEquiv.injective h
-  exact
-    BruhatTitsRootedVertex.sphere.inj_iff.mp hv |>.2
+  cases hv
+  rfl
 
 /-- Level-zero projective vertices are q-adjacent to the root lattice class. -/
 theorem levelZero_adjacent_root
@@ -104,11 +104,8 @@ theorem levelZero_adjacent_root
         (.root :
           BruhatTitsUniversalGraph.Vertex
             (B := B)))
-  simpa [
-    RankTwoLattice.OrientedClassEdge.source,
-    RankTwoLattice.OrientedClassEdge.target,
-    e, e'
-  ] using hadj
+  rw [hs, ht]
+  exact hadj
 
 /-- Every deeper projective point is q-adjacent to its projective reduction
 one level closer to the root. -/
@@ -136,11 +133,8 @@ theorem sphere_adjacent_parent
         (.sphere n
           (LocalProjectivePair.map
             (T.drop n) x)))
-  simpa [
-    RankTwoLattice.OrientedClassEdge.source,
-    RankTwoLattice.OrientedClassEdge.target,
-    e, e'
-  ] using hadj
+  rw [hs, ht]
+  exact hadj
 
 /-- Lattice outgoing stars inherit q+1 regularity from the independently
 proved projective Bruhat--Tits tree. -/
