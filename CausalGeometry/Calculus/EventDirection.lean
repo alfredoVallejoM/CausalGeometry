@@ -18,6 +18,15 @@ namespace EventDirection
 
 variable {S : EventSystem Event Label} {C : Configuration S}
 
+@[ext] theorem ext
+    {d₁ d₂ : EventDirection S C}
+    (h : d₁.event = d₂.event) :
+    d₁ = d₂ := by
+  cases d₁
+  cases d₂
+  simp_all
+
+
 def endpoint (d : EventDirection S C) : Configuration S :=
   S.extend C d.event d.enabled
 
