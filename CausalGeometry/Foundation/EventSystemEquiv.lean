@@ -341,9 +341,7 @@ theorem concurrentAt_iff
         ((E.conflict_iff e f).2 hcf)
     · intro heq
       exact hne
-        (E.eventEquiv.injective heq
-          |> Eq.symm |> E.eventEquiv.injective |> by
-            simpa)
+        (congrArg E.eventEquiv heq)
   · intro h
     rcases h with
       ⟨he, hf, hef, hfe, hc, hne⟩
