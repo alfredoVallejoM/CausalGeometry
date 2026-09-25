@@ -32,6 +32,7 @@ import CausalGeometry.Calculus.ConnectionEquivariance
 import CausalGeometry.Calculus.SymplecticEquivariance
 import CausalGeometry.Calculus.Cohomology
 import CausalGeometry.Calculus.CohomologyH2
+import CausalGeometry.Calculus.HodgeComplex
 import CausalGeometry.Calculus.HamiltonianEventEquation
 import CausalGeometry.Calculus.Soldering
 import CausalGeometry.Calculus.ExteriorComplex
@@ -229,3 +230,5 @@ import CausalGeometry.Models.ConcreteIharaControls
 import CausalGeometry.Models.EventSystemEquivControls
 
 import CausalGeometry.Models.GeometryEquivarianceControls
+
+import CausalGeometry.Models.HodgeControls
