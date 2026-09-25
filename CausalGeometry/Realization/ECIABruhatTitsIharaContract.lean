@@ -193,7 +193,7 @@ theorem primitiveClassCount_eq
     (n : ℕ) :
     (target (R.realize X)).primitiveClassCount n =
       (source X).primitiveClassCount n := by
-  apply Int.ofNat_injective
+  apply Nat.cast_injective (R := ℤ)
   rw [
     ← (target (R.realize X))
       .primitive_eq_classCount n,
