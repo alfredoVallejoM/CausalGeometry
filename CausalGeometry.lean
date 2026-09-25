@@ -27,6 +27,9 @@ import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
 import CausalGeometry.Calculus.SymplecticGeometry
+import CausalGeometry.Calculus.SymplecticConnectionEquivariance
+import CausalGeometry.Calculus.ConnectionEquivariance
+import CausalGeometry.Calculus.SymplecticEquivariance
 import CausalGeometry.Calculus.Cohomology
 import CausalGeometry.Calculus.CohomologyH2
 import CausalGeometry.Calculus.HamiltonianEventEquation
