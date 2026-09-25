@@ -23,6 +23,22 @@ namespace CausalOneForm
 
 variable {K : Type w}
 
+@[ext] theorem ext
+    {ω η : CausalOneForm S K}
+    (h :
+      ∀ (C : Configuration S)
+        (d : EventDirection S C),
+        ω.value C d = η.value C d) :
+    ω = η := by
+  cases ω with
+  | mk ω =>
+      cases η with
+      | mk η =>
+          congr
+          funext C d
+          exact h C d
+
+
 /-- Base e direction of one concurrency diamond. -/
 def baseE
     {C : Configuration S}
