@@ -214,7 +214,7 @@ theorem parameterSubmodule_injective :
               0 at hmemr
           simp [ha] at hmemr
           exact congrArg Sum.inl
-            (sub_eq_zero.mp hmemr).symm
+            sub_eq_zero.mp hmemr
       | inr ur =>
           rcases residue_surjective p tq with
             ⟨a, ha⟩
