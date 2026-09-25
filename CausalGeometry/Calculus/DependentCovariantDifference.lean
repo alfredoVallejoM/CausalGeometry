@@ -127,8 +127,11 @@ theorem squareDefect_difference_eq_neg_curvature
         (∇.squareDefectEF F d) -
       ∇.squareDefectFE F d =
         - ∇.curvatureAt d (F C) := by
+  have hEq :
+      d.afterEF = d.afterFE :=
+    ConcurrencyDiamond.endpoint_eq d
+  cases hEq
   unfold squareDefectEF squareDefectFE curvatureAt
-  subst d.afterFE
   simp
   abel
 
