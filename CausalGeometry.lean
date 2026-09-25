@@ -157,3 +157,5 @@ import CausalGeometry.Models.CentralOreControls
 import CausalGeometry.Models.HashimotoControls
 
 import CausalGeometry.Models.BilinearHamiltonianControls
+
+import CausalGeometry.Models.JetCotangentControls
