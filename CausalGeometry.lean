@@ -104,6 +104,9 @@ import CausalGeometry.Completion.BruhatTitsRootedTree
 import CausalGeometry.Completion.DVRResidueTower
 import CausalGeometry.Completion.BruhatTitsUniversalGraph
 import CausalGeometry.Completion.BruhatTitsUniversalDegree
+import CausalGeometry.Completion.RankTwoLattice
+import CausalGeometry.Completion.LatticeGraph
+import CausalGeometry.Completion.BruhatTitsLattice
 import CausalGeometry.Completion.BruhatTitsFiniteGraph
 import CausalGeometry.Completion.BruhatTitsFiniteGraphComplexity
 import CausalGeometry.Completion.BruhatTitsQuotient
@@ -123,9 +126,12 @@ import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.FiniteTransfer
 import CausalGeometry.Cyclic.Hashimoto
 import CausalGeometry.Cyclic.PrimitiveTrace
+import CausalGeometry.Cyclic.EulerLogSeries
+import CausalGeometry.Cyclic.EulerZetaSeries
 import CausalGeometry.Cyclic.TransferDeterminant
 import CausalGeometry.Cyclic.TransferSignature
 import CausalGeometry.Cyclic.DirectedEdge
+import CausalGeometry.Cyclic.DirectedEdgeEquiv
 import CausalGeometry.Cyclic.TransferReindex
 import CausalGeometry.Cyclic.TransferSignatureInvariant
 import CausalGeometry.Cyclic.HashimotoEquiv
@@ -177,3 +183,5 @@ import CausalGeometry.Models.SymplecticGeometryControls
 import CausalGeometry.Models.HamiltonianEventControls
 
 import CausalGeometry.Models.FiniteLocalCurvatureControls
+
+import CausalGeometry.Models.LatticeControls
