@@ -11,6 +11,14 @@ variable {C : Configuration S} {ι : Type w}
 
 namespace CausalCubeFrame
 
+/-- Canonical event direction represented by one cube index. -/
+def direction
+    (Q : CausalCubeFrame S C ι)
+    (i : ι) :
+    EventDirection S C where
+  event := Q.event i
+  enabled := Q.enabled i
+
 /-- Configuration obtained by executing one direction of the cube. -/
 def after
     (Q : CausalCubeFrame S C ι)
@@ -57,6 +65,30 @@ def afterFace
     (j : {j : ι // j ≠ i}) :
     (Q.afterFace i).event j =
       Q.event j.1 :=
+  rfl
+
+/-- Canonical remaining direction j after executing i. -/
+def directionAfter
+    (Q : CausalCubeFrame S C ι)
+    (i j : ι)
+    (hji : j ≠ i) :
+    EventDirection S (Q.after i) where
+  event := Q.event j
+  enabled :=
+    (Q.afterFace i).enabled ⟨j, hji⟩
+
+@[simp] theorem direction_event
+    (Q : CausalCubeFrame S C ι)
+    (i : ι) :
+    (Q.direction i).event = Q.event i :=
+  rfl
+
+@[simp] theorem directionAfter_event
+    (Q : CausalCubeFrame S C ι)
+    (i j : ι)
+    (hji : j ≠ i) :
+    (Q.directionAfter i j hji).event =
+      Q.event j :=
   rfl
 
 /-- The remaining j,k directions after i form a genuine concurrency diamond. -/
