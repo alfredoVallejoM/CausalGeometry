@@ -57,8 +57,7 @@ theorem nonbacktracking_iff
   constructor
   · intro h
     constructor
-    · apply E.vertexEquiv.injective
-      rw [← E.target_compat e, ← E.source_compat f]
+    · rw [← E.target_compat e, ← E.source_compat f]
       exact congrArg E.vertexEquiv h.1
     · intro hrev
       apply h.2
@@ -67,12 +66,12 @@ theorem nonbacktracking_iff
       exact hrev
   · intro h
     constructor
-    · have hinc :=
-        congrArg E.vertexEquiv.symm h.1
-      simpa [E.target_compat, E.source_compat] using hinc
+    · apply E.vertexEquiv.injective
+      rw [E.target_compat e, E.source_compat f]
+      exact h.1
     · intro hrev
       apply h.2
-      rw [← E.reverse_compat, hrev]
+      rw [hrev, E.reverse_compat]
 
 /-- Hashimoto weights are transported exactly by the edge equivalence. -/
 theorem hashimotoWeight_compat
