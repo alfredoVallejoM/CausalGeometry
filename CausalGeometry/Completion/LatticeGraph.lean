@@ -45,13 +45,15 @@ theorem ne_of_card_gt_one
         ⊤ := by
     exact
       (Submodule.submoduleOf_eq_top).2 le_rfl
-  rw [htop] at h
+  have hc := h.quotient_card
+  rw [htop] at hc
   have hcard :
       Nat.card
           (L.carrier ⧸
             (⊤ : Submodule O L.carrier)) =
         1 := by
     simp
+  rw [hcard] at hc
   omega
 
 end IndexStep
