@@ -92,13 +92,9 @@ def rootOutgoingEquiv :
   refine Equiv.ofBijective f ?_
   constructor
   · intro x y h
-    exact congrArg
-      (fun e : B.Graph.Outgoing
-        (.root : Vertex (B := B)) =>
-        match e.1.1 with
-        | Sum.inl z => z
-        | Sum.inr _ => x)
-      h
+    have hval := congrArg Subtype.val h
+    have hlink := (Prod.mk.inj_iff.mp hval).1
+    exact Sum.inl.inj hlink
   · intro e
     rcases e with ⟨⟨l, b⟩, hsrc⟩
     cases b with
@@ -179,8 +175,12 @@ noncomputable def sphereOutgoingEquiv
             apply Subtype.ext
             have hval :=
               congrArg Subtype.val hab
-            exact Sigma.mk.inj_iff.mp
-              (Prod.mk.inj_iff.mp hval).1 |>.2
+            have hlink :=
+              (Prod.mk.inj_iff.mp hval).1
+            have hsigma :=
+              Sum.inr.inj hlink
+            exact
+              (Sigma.mk.inj_iff.mp hsigma).2
   · intro e
     rcases e with ⟨⟨l, b⟩, hsrc⟩
     cases b with
