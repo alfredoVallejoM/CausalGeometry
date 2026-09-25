@@ -124,6 +124,10 @@ theorem sphere_adjacent_parent
     BruhatTitsUniversalGraph.parentEdge
       B (n + 1) x
   let e' := C.graphEquiv.edgeEquiv e
+  have hs :=
+    C.graphEquiv.source_compat e
+  have ht :=
+    C.graphEquiv.target_compat e
   have hadj := e'.2.2
   change
     RankTwoLattice.ClassAdjacent T.q
