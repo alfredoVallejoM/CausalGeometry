@@ -105,12 +105,16 @@ import CausalGeometry.Completion.DVRResidueTower
 import CausalGeometry.Completion.BruhatTitsUniversalGraph
 import CausalGeometry.Completion.BruhatTitsUniversalDegree
 import CausalGeometry.Completion.RankTwoLattice
+import CausalGeometry.Completion.RankTwoLatticeTransport
+import CausalGeometry.Completion.RankTwoLatticeFrame
+import CausalGeometry.Completion.RankTwoLatticeStandard
 import CausalGeometry.Completion.LatticeGraph
 import CausalGeometry.Completion.BruhatTitsLattice
 import CausalGeometry.Completion.PadicLatticeRay
 import CausalGeometry.Completion.PadicLatticeIndex
 import CausalGeometry.Completion.PadicProjectiveRay
 import CausalGeometry.Completion.PadicProjectiveNeighbor
+import CausalGeometry.Completion.PadicLatticeStar
 import CausalGeometry.Completion.BruhatTitsFiniteGraph
 import CausalGeometry.Completion.BruhatTitsFiniteGraphComplexity
 import CausalGeometry.Completion.BruhatTitsQuotient
