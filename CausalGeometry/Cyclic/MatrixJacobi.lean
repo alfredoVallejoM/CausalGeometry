@@ -1,5 +1,6 @@
 import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.Polynomial.Derivative
+import Mathlib.Algebra.Polynomial.Taylor
 import Mathlib.Data.Finset.Powerset
 import Mathlib.LinearAlgebra.Matrix.Adjugate
 import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
@@ -273,6 +274,75 @@ theorem coeff_det_add_X_smul_one_eq_trace_mul_adjugate
   unfold trace
   simp only [diag_apply, mul_apply]
   rw [Finset.sum_comm]
+
+
+
+/-- Taylor translation of an affine matrix pencil.
+
+Translating X by r in det(A+XB) is the same as replacing the base matrix A by
+A+rB and keeping B as the direction. -/
+theorem taylor_det_add_X_smul
+    (A B : Matrix n n R)
+    (r : R) :
+    Polynomial.taylor r
+        (det
+          (A.map C +
+            (X : R[X]) • B.map C))
+      =
+    det
+      ((A + r • B).map C +
+        (X : R[X]) • B.map C) := by
+  change
+    (Polynomial.taylorAlgHom r)
+        (det
+          (A.map C +
+            (X : R[X]) • B.map C))
+      =
+    _
+  rw [RingHom.map_det]
+  congr 1
+  ext i j
+  simp [Polynomial.taylorAlgHom,
+    Polynomial.taylor_X]
+  ring
+
+/-- Global Jacobi formula for an affine matrix pencil, evaluated at an
+arbitrary scalar r. No invertibility assumption is required. -/
+theorem derivative_det_add_X_smul_eval
+    (A B : Matrix n n R)
+    (r : R) :
+    (det
+      (A.map C +
+        (X : R[X]) • B.map C)).derivative.eval r =
+      trace
+        (B * adjugate (A + r • B)) := by
+  rw [← Polynomial.taylor_coeff_one]
+  rw [taylor_det_add_X_smul]
+  exact
+    coeff_det_add_X_smul_one_eq_trace_mul_adjugate
+      (A + r • B) B
+
+/-- Polynomial Jacobi formula. The right side is assembled pointwise from the
+adjugate of the affine pencil. -/
+theorem derivative_det_add_X_smul_ext
+    (A B : Matrix n n R)
+    (J : R[X])
+    (hJ :
+      ∀ r : R,
+        J.eval r =
+          trace (B * adjugate (A + r • B)))
+    (hinj :
+      Function.Injective
+        (fun p : R[X] =>
+          fun r : R => p.eval r)) :
+    (det
+      (A.map C +
+        (X : R[X]) • B.map C)).derivative =
+      J := by
+  apply hinj
+  funext r
+  rw [derivative_det_add_X_smul_eval]
+  exact (hJ r).symm
 
 end Matrix
 end CausalGeometry
