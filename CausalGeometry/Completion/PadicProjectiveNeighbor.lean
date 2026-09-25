@@ -380,6 +380,191 @@ theorem lattice_injective :
       diagonalMap_injective p 0 hxy
     simpa [hyx] using hy
 
+/-- Every constructed neighbor contains a vector with one ambient coordinate
+exactly equal to one. -/
+theorem exists_unitCoordinate
+    (q : P1 p) :
+    ∃ x : K p × K p,
+      x ∈ (lattice p q).carrier ∧
+        (x.1 = 1 ∨ x.2 = 1) := by
+  classical
+  cases hq : chart p q with
+  | inl t =>
+      rcases residue_surjective p t with
+        ⟨a, ha⟩
+      let y : O p × O p := (1, a)
+      have hy :
+          y ∈ parameterSubmodule p q := by
+        unfold parameterSubmodule functional
+        rw [hq]
+        simp [y, ha]
+      refine
+        ⟨diagonalMap p 0 y,
+          ⟨y, hy, rfl⟩,
+          Or.inl ?_⟩
+      simp [y, diagonalMap]
+  | inr u =>
+      have hu0 :=
+        residue_nonunit_eq_zero p u
+      let y : O p × O p := (0, 1)
+      have hy :
+          y ∈ parameterSubmodule p q := by
+        unfold parameterSubmodule functional
+        rw [hq]
+        simp [y, hu0]
+      refine
+        ⟨diagonalMap p 0 y,
+          ⟨y, hy, rfl⟩,
+          Or.inr ?_⟩
+      simp [y, diagonalMap]
+
+/-- Membership in the standard lattice bounds both p-adic coordinate norms by
+one. -/
+theorem norm_coordinates_le_one_of_mem_standard
+    {x : K p × K p}
+    (hx :
+      x ∈ (diagonalLattice p 0).carrier) :
+    ‖x.1‖ ≤ 1 ∧ ‖x.2‖ ≤ 1 := by
+  rcases hx with ⟨y, rfl⟩
+  constructor
+  · simpa [diagonalMap] using y.1.property
+  · simpa [diagonalMap] using y.2.property
+
+/-- If a homothetic copy of a projective neighbor still lies in the standard
+lattice, the homothety scalar has p-adic norm at most one. -/
+theorem norm_le_one_of_scale_le_standard
+    (q : P1 p)
+    (u : (K p)ˣ)
+    (hscale :
+      ((lattice p q).scale u).carrier ≤
+        (diagonalLattice p 0).carrier) :
+    ‖(u : K p)‖ ≤ 1 := by
+  rcases exists_unitCoordinate p q with
+    ⟨x, hx, hx1 | hx2⟩
+  · have hsx :
+        (RankTwoLattice.scaleEquivO
+          (O := O p) u x) ∈
+          ((lattice p q).scale u).carrier :=
+      ⟨x, hx, rfl⟩
+    have hstd :=
+      norm_coordinates_le_one_of_mem_standard
+        p (hscale hsx)
+    have hcoord :
+        (RankTwoLattice.scaleEquivO
+          (O := O p) u x).1 =
+          (u : K p) := by
+      simp [RankTwoLattice.scaleEquivO,
+        RankTwoLattice.scaleEquivK,
+        hx1]
+    rw [hcoord] at hstd
+    exact hstd.1
+  · have hsx :
+        (RankTwoLattice.scaleEquivO
+          (O := O p) u x) ∈
+          ((lattice p q).scale u).carrier :=
+      ⟨x, hx, rfl⟩
+    have hstd :=
+      norm_coordinates_le_one_of_mem_standard
+        p (hscale hsx)
+    have hcoord :
+        (RankTwoLattice.scaleEquivO
+          (O := O p) u x).2 =
+          (u : K p) := by
+      simp [RankTwoLattice.scaleEquivO,
+        RankTwoLattice.scaleEquivK,
+        hx2]
+    rw [hcoord] at hstd
+    exact hstd.2
+
+/-- Two constructed neighbors in the same homothety class are already equal
+as lattice representatives. -/
+theorem homothetic_lattice_eq
+    (q r : P1 p)
+    (h :
+      RankTwoLattice.Homothetic
+        (lattice p q) (lattice p r)) :
+    lattice p q = lattice p r := by
+  rcases h with ⟨u, hu⟩
+  have hqle :=
+    lattice_le_standard p q
+  have hrle :=
+    lattice_le_standard p r
+  have hule :
+      ((lattice p q).scale u).carrier ≤
+        (diagonalLattice p 0).carrier := by
+    rw [← hu]
+    exact hrle
+  have hnorm :
+      ‖(u : K p)‖ ≤ 1 :=
+    norm_le_one_of_scale_le_standard
+      p q u hule
+  have hinvEq :
+      (lattice p r).scale u⁻¹ =
+        lattice p q := by
+    rw [hu]
+    exact
+      RankTwoLattice.scale_inv_scale
+        u (lattice p q)
+  have hinvle :
+      ((lattice p r).scale u⁻¹).carrier ≤
+        (diagonalLattice p 0).carrier := by
+    rw [hinvEq]
+    exact hqle
+  have hnormInv :
+      ‖((u⁻¹ : (K p)ˣ) : K p)‖ ≤ 1 :=
+    norm_le_one_of_scale_le_standard
+      p r u⁻¹ hinvle
+  have hge :
+      1 ≤ ‖(u : K p)‖ := by
+    calc
+      1 =
+          ‖((u⁻¹ : (K p)ˣ) : K p)‖ *
+            ‖(u : K p)‖ := by
+              rw [← norm_mul]
+              simp
+      _ ≤ 1 * ‖(u : K p)‖ := by
+        exact
+          mul_le_mul_of_nonneg_right
+            hnormInv
+            (norm_nonneg _)
+      _ = ‖(u : K p)‖ := one_mul _
+  have hnormEq :
+      ‖(u : K p)‖ = 1 :=
+    le_antisymm hnorm hge
+  let a : (O p)ˣ :=
+    PadicInt.mkUnits hnormEq
+  have hau :
+      RankTwoLattice.algebraUnit
+          (K := K p) a =
+        u := by
+    apply Units.ext
+    change
+      algebraMap (O p) (K p) (a : O p) =
+        (u : K p)
+    simpa [a] using
+      PadicInt.mkUnits_eq hnormEq
+  have hscale :
+      (lattice p q).scale u =
+        lattice p q := by
+    rw [← hau]
+    exact
+      RankTwoLattice.scale_algebraUnit
+        a (lattice p q)
+  rw [hu, hscale]
+
+/-- Projective points remain distinct after passing to homothety classes. -/
+theorem neighborClass_injective :
+    Function.Injective
+      (neighborClass p) := by
+  intro q r hclass
+  have hhom :
+      RankTwoLattice.Homothetic
+        (lattice p q) (lattice p r) :=
+    Quotient.exact hclass
+  exact
+    lattice_injective p
+      (homothetic_lattice_eq p q r hhom)
+
 /-- Every projective neighbor lies inside the standard lattice L_0. -/
 theorem lattice_le_standard
     (q : P1 p) :
