@@ -124,6 +124,7 @@ import CausalGeometry.Realization.ECIAContract
 import CausalGeometry.Realization.ECIAArithmeticContract
 import CausalGeometry.Realization.ECIAProcessContract
 import CausalGeometry.Realization.ECIATransferContract
+import CausalGeometry.Realization.ECIAIharaContract
 import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.FiniteTransfer
 import CausalGeometry.Cyclic.Hashimoto
@@ -137,6 +138,7 @@ import CausalGeometry.Cyclic.MatrixJacobiGlobal
 import CausalGeometry.Cyclic.MatrixGeometricSeries
 import CausalGeometry.Cyclic.MatrixDeterminantResolvent
 import CausalGeometry.Cyclic.HashimotoIhara
+import CausalGeometry.Cyclic.IharaSignature
 import CausalGeometry.Cyclic.TransferDeterminant
 import CausalGeometry.Cyclic.TransferSignature
 import CausalGeometry.Cyclic.DirectedEdge
