@@ -132,6 +132,7 @@ import CausalGeometry.Cyclic.EulerLogSeries
 import CausalGeometry.Cyclic.EulerZetaSeries
 import CausalGeometry.Cyclic.ConcreteIhara
 import CausalGeometry.Cyclic.MatrixJacobi
+import CausalGeometry.Cyclic.MatrixJacobiTaylor
 import CausalGeometry.Cyclic.MatrixJacobiGlobal
 import CausalGeometry.Cyclic.MatrixGeometricSeries
 import CausalGeometry.Cyclic.MatrixDeterminantResolvent
