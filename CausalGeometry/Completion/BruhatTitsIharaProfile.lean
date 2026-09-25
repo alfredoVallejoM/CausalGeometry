@@ -4,6 +4,8 @@ import CausalGeometry.Cyclic.IharaSignature
 
 namespace CausalGeometry
 
+universe u v g
+
 /-- Stable provenance profile for a finite Ihara realization coming from a
 prime-power Bruhat--Tits quotient.
 
@@ -126,7 +128,6 @@ end BruhatTitsIharaProfile
 namespace BruhatTitsConcreteIhara
 
 variable
-    {u v : Level}
     {A : ℕ → Type u}
     [∀ n, CommRing (A n)]
     [∀ n, IsLocalRing (A n)]
@@ -270,7 +271,6 @@ end ArithmeticBruhatTitsIharaProfile
 namespace BruhatTitsArithmeticConcreteIhara
 
 variable
-    {u v g : Level}
     {Γ : Type g} [Group Γ]
     {A : ℕ → Type u}
     [∀ n, CommRing (A n)]
