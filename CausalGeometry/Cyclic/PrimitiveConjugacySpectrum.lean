@@ -51,13 +51,11 @@ theorem count_zero :
   letI : Finite (S.Level 0) :=
     S.finiteLevel 0
   apply Nat.card_eq_zero.mpr
-  intro hnonempty
-  rcases hnonempty with ⟨C⟩
-  exact
-    (Nat.not_lt_zero _
-      (S.positive_of_primitive C.1 C.2.1))
-    (C.2.2 ▸ Nat.lt_add_one_iff.mpr
-      (Nat.zero_le 0))
+  exact Or.inl
+    ⟨fun C => by
+      have hp :=
+        S.positive_of_primitive C.1 C.2.1
+      exact (Nat.ne_of_gt hp) C.2.2⟩
 
 end Spectrum
 end PrimitiveConjugacy
