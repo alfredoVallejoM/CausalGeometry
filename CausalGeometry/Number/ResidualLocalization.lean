@@ -178,6 +178,115 @@ theorem rightBackward_compat_of_divides
 
 end RightFractionCalculus
 
+/-- The source embedding of a fraction calculus is faithful when localization
+has not identified distinct source elements. -/
+def RightFractionCalculus.SourceFaithful
+    (C : RightFractionCalculus S) : Prop :=
+  Function.Injective C.sourceHom
+
+namespace RightFractionCalculus
+
+variable
+    (C : RightFractionCalculus S)
+    (R : ResiduatedMultiplication α)
+
+/-- Under a faithful source embedding, localization equality with inverse
+transport characterizes exact left residual division. -/
+theorem inverse_mul_source_eq_residual_iff_exactLeft
+    (hfaith : C.SourceFaithful)
+    (s : S) (z : α) :
+    C.denominatorInverse s *
+          C.sourceHom z =
+        C.sourceHom
+          (R.leftResidual (s : α) z) ↔
+      R.ExactLeftDivision (s : α) z := by
+  constructor
+  · intro hloc
+    unfold ResiduatedMultiplication.ExactLeftDivision
+    apply hfaith
+    rw [map_mul]
+    calc
+      C.sourceHom (s : α) *
+          C.sourceHom
+            (R.leftResidual (s : α) z)
+          =
+        C.sourceHom (s : α) *
+          (C.denominatorInverse s *
+            C.sourceHom z) := by
+              rw [hloc]
+      _ =
+        (C.sourceHom (s : α) *
+          C.denominatorInverse s) *
+            C.sourceHom z := by
+              rw [mul_assoc]
+      _ = C.sourceHom z := by
+        rw [C.denominator_mul_inverse, one_mul]
+  · intro h
+    exact C.exactLeftDivision_localizes R s z h
+
+/-- Hence inverse transport agrees with the left residual exactly on the
+left-divisible locus. -/
+theorem inverse_mul_source_eq_residual_iff_leftDivides
+    (hfaith : C.SourceFaithful)
+    (s : S) (z : α) :
+    C.denominatorInverse s *
+          C.sourceHom z =
+        C.sourceHom
+          (R.leftResidual (s : α) z) ↔
+      CausalDivisibility.LeftDivides
+        (s : α) z := by
+  rw [C.inverse_mul_source_eq_residual_iff_exactLeft
+    R hfaith s z,
+    R.exactLeftDivision_iff_leftDivides]
+
+/-- Symmetric characterization for right residual division. -/
+theorem source_mul_inverse_eq_residual_iff_exactRight
+    (hfaith : C.SourceFaithful)
+    (z : α) (s : S) :
+    C.sourceHom z *
+          C.denominatorInverse s =
+        C.sourceHom
+          (R.rightResidual z (s : α)) ↔
+      R.ExactRightDivision z (s : α) := by
+  constructor
+  · intro hloc
+    unfold ResiduatedMultiplication.ExactRightDivision
+    apply hfaith
+    rw [map_mul]
+    calc
+      C.sourceHom
+          (R.rightResidual z (s : α)) *
+          C.sourceHom (s : α)
+          =
+        (C.sourceHom z *
+          C.denominatorInverse s) *
+            C.sourceHom (s : α) := by
+              rw [hloc]
+      _ =
+        C.sourceHom z *
+          (C.denominatorInverse s *
+            C.sourceHom (s : α)) := by
+              rw [mul_assoc]
+      _ = C.sourceHom z := by
+        rw [C.inverse_mul_denominator, mul_one]
+  · intro h
+    exact C.exactRightDivision_localizes R z s h
+
+theorem source_mul_inverse_eq_residual_iff_rightDivides
+    (hfaith : C.SourceFaithful)
+    (z : α) (s : S) :
+    C.sourceHom z *
+          C.denominatorInverse s =
+        C.sourceHom
+          (R.rightResidual z (s : α)) ↔
+      CausalDivisibility.RightDivides
+        (s : α) z := by
+  rw [C.source_mul_inverse_eq_residual_iff_exactRight
+    R hfaith z s,
+    R.exactRightDivision_iff_rightDivides]
+
+end RightFractionCalculus
+
 /-- The same exact residual/localization comparison holds for a certified left
 fraction calculus. -/
 namespace LeftFractionCalculus
