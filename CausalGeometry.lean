@@ -1,4 +1,5 @@
 import CausalGeometry.Foundation.EventSystem
+import CausalGeometry.Foundation.EventSystemEquiv
 import CausalGeometry.Foundation.PairedTransform
 import CausalGeometry.History.Trace
 import CausalGeometry.History.Path
@@ -16,6 +17,11 @@ import CausalGeometry.Restriction.Pullback
 import CausalGeometry.Calculus.Difference
 import CausalGeometry.Calculus.AlgebraicRules
 import CausalGeometry.Calculus.EventDirection
+import CausalGeometry.Calculus.EventSystemEquiv
+import CausalGeometry.Calculus.FormEquivariance
+import CausalGeometry.Calculus.CubeEquivariance
+import CausalGeometry.Calculus.CohomologyEquivH1
+import CausalGeometry.Calculus.CohomologyEquivH2
 import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
