@@ -99,7 +99,7 @@ theorem triple_endpoint_eq
     (Q.diamondAfter i j k
       hij.symm hik.symm hjk).afterEF =
       (Q.diamondAfter j i k
-        hij hik.symm hik).afterEF := by
+        hij hjk.symm hik).afterEF := by
   apply S.configuration_eq_of_carrier_eq
   simp [diamondAfter, afterFace, after,
     ConcurrencyDiamond.afterEF,
