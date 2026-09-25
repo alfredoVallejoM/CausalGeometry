@@ -38,6 +38,20 @@ def Alternating : Prop :=
   ∀ C x,
     B.form C x x = 0
 
+/-- Alternation forces skew-symmetry without any characteristic assumption. -/
+theorem skew_of_alternating
+    (halt : B.Alternating)
+    (C : Configuration S)
+    (x y : Fiber C) :
+    B.form C y x =
+      - B.form C x y := by
+  have hsum := halt C (x + y)
+  have hx := halt C x
+  have hy := halt C y
+  simp only [map_add] at hsum
+  rw [hx, hy] at hsum
+  abel
+
 def LeftNondegenerate : Prop :=
   ∀ C x,
     (∀ y, B.form C x y = 0) →
