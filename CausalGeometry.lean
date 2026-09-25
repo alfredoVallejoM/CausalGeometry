@@ -110,6 +110,7 @@ import CausalGeometry.Completion.BruhatTitsLattice
 import CausalGeometry.Completion.PadicLatticeRay
 import CausalGeometry.Completion.PadicLatticeIndex
 import CausalGeometry.Completion.PadicProjectiveRay
+import CausalGeometry.Completion.PadicProjectiveNeighbor
 import CausalGeometry.Completion.BruhatTitsFiniteGraph
 import CausalGeometry.Completion.BruhatTitsFiniteGraphComplexity
 import CausalGeometry.Completion.BruhatTitsQuotient
