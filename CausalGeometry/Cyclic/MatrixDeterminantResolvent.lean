@@ -246,9 +246,13 @@ theorem derivative_determinantPowerSeries
   unfold determinantPowerSeries
   rw [PowerSeries.derivative_coe]
   rw [derivative_detOneSubX]
-  apply PowerSeries.coeToPowerSeries.ringHom.injective
-    |>.eq_iff.mp
-  rfl
+  simp [
+    powerSeriesConstMatrix,
+    adjugateResolventPowerSeries,
+    Matrix.trace,
+    Matrix.mul_apply,
+    RingHom.map_adjugate
+  ]
 
 end Matrix
 
