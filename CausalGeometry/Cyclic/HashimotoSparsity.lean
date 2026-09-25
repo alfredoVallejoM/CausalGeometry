@@ -56,6 +56,41 @@ theorem successor_natCard_of_outgoing
   rw [G.successor_natCard e,
     hdegree (G.target e)]
 
+/-- Outgoing stars partition the oriented edge type by source vertex. -/
+def sigmaOutgoingEquivEdge :
+    (Σ v : Vertex, G.Outgoing v) ≃ Edge where
+  toFun := fun ve => ve.2.1
+  invFun := fun e =>
+    ⟨G.source e, ⟨e, rfl⟩⟩
+  left_inv := by
+    intro ve
+    rcases ve with ⟨v, e, he⟩
+    cases he
+    rfl
+  right_inv := by
+    intro e
+    rfl
+
+/-- Exact edge count as the sum of local outgoing degrees. -/
+theorem edge_natCard_eq_sum_outgoing :
+    Nat.card Edge =
+      ∑ v : Vertex,
+        Nat.card (G.Outgoing v) := by
+  rw [← Nat.card_congr G.sigmaOutgoingEquivEdge,
+    Nat.card_sigma]
+
+/-- A d-regular directed-edge system has |E|=d|V| oriented edges. -/
+theorem edge_natCard_of_regular
+    (d : ℕ)
+    (hdegree :
+      ∀ v : Vertex,
+        Nat.card (G.Outgoing v) = d) :
+    Nat.card Edge =
+      Nat.card Vertex * d := by
+  rw [G.edge_natCard_eq_sum_outgoing]
+  simp_rw [hdegree]
+  simp [Nat.card_eq_fintype_card]
+
 /-- Typed set of all non-backtracking matrix positions. -/
 abbrev NonbacktrackingTransition :=
   {p : Edge × Edge //
@@ -156,6 +191,25 @@ theorem hashimotoNonzero_natCard_of_qRegular
   simpa using
     G.hashimotoNonzero_natCard_of_regular
       (q + 1) hdegree
+
+
+/-- In a q+1 regular graph, the Hashimoto state and NNZ counts can both be
+expressed directly from the vertex count. -/
+theorem qRegular_state_and_nnz
+    (q : ℕ)
+    (hdegree :
+      ∀ v : Vertex,
+        Nat.card (G.Outgoing v) = q + 1) :
+    Nat.card Edge =
+        Nat.card Vertex * (q + 1) ∧
+      Nat.card G.HashimotoNonzero =
+        Nat.card Vertex * (q + 1) * q := by
+  constructor
+  · exact G.edge_natCard_of_regular
+      (q + 1) hdegree
+  · rw [G.hashimotoNonzero_natCard_of_qRegular
+      q hdegree,
+      G.edge_natCard_of_regular (q + 1) hdegree]
 
 end FiniteDirectedEdgeSystem
 end CausalGeometry
