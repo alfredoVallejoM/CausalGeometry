@@ -231,14 +231,23 @@ def centralLeftRel
   x.numerator * (y.denominator : α) =
     y.numerator * (x.denominator : α)
 
+theorem centralLeftRel_refl
+    (x : LeftFraction S) :
+    centralLeftRel x x :=
+  rfl
+
+theorem centralLeftRel_symm
+    {x y : LeftFraction S}
+    (h : centralLeftRel x y) :
+    centralLeftRel y x :=
+  h.symm
+
 theorem centralLeftRel_equivalence :
     Equivalence
       (centralLeftRel (S := S)) := by
   constructor
-  · intro x
-    rfl
-  · intro x y h
-    exact h.symm
+  · exact centralLeftRel_refl
+  · exact centralLeftRel_symm
   · intro x y z hxy hyz
     let xr : RightFraction S :=
       ⟨x.numerator, x.denominator⟩
