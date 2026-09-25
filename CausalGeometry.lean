@@ -113,6 +113,8 @@ import CausalGeometry.Completion.BruhatTitsQuotient
 import CausalGeometry.Completion.BruhatTitsIhara
 import CausalGeometry.Completion.BruhatTitsArithmeticQuotient
 import CausalGeometry.Completion.BruhatTitsArithmeticIhara
+import CausalGeometry.Completion.BruhatTitsConcreteIhara
+import CausalGeometry.Completion.BruhatTitsArithmeticConcreteIhara
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Realization.PairedCompatibility
@@ -129,6 +131,11 @@ import CausalGeometry.Cyclic.PrimitiveTrace
 import CausalGeometry.Cyclic.EulerLogSeries
 import CausalGeometry.Cyclic.EulerZetaSeries
 import CausalGeometry.Cyclic.ConcreteIhara
+import CausalGeometry.Cyclic.MatrixJacobi
+import CausalGeometry.Cyclic.MatrixJacobiGlobal
+import CausalGeometry.Cyclic.MatrixGeometricSeries
+import CausalGeometry.Cyclic.MatrixDeterminantResolvent
+import CausalGeometry.Cyclic.HashimotoIhara
 import CausalGeometry.Cyclic.TransferDeterminant
 import CausalGeometry.Cyclic.TransferSignature
 import CausalGeometry.Cyclic.DirectedEdge
