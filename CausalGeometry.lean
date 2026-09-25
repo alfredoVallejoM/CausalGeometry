@@ -149,3 +149,5 @@ import CausalGeometry.Models.OreBilateralGroup
 import CausalGeometry.Models.CentralOreControls
 
 import CausalGeometry.Models.HashimotoControls
+
+import CausalGeometry.Models.BilinearHamiltonianControls
