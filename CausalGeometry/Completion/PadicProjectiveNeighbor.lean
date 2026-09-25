@@ -310,7 +310,7 @@ theorem standardFunctional_ker
       (parameterEquiv p 0).symm x
     have hy :
         y ∈ parameterSubmodule p q := by
-      exact hx
+      simpa [y, standardFunctional] using hx
     change
       x.1 ∈ (lattice p q).carrier
     refine
