@@ -294,23 +294,26 @@ theorem childClass_injective :
     Function.Injective
       (childClass p) := by
   intro C D h
+  have hC :
+      PadicProjectiveNeighbor.lattice
+          p C.residualPoint =
+        C.lattice := by
+    exact congrArg Child.lattice
+      C.projectiveChild_residualPoint
+  have hD :
+      PadicProjectiveNeighbor.lattice
+          p D.residualPoint =
+        D.lattice := by
+    exact congrArg Child.lattice
+      D.projectiveChild_residualPoint
   have hq :
       C.residualPoint =
         D.residualPoint := by
     apply
       PadicProjectiveNeighbor.neighborClass_injective
         p
-    change
-      RankTwoLattice.classOf
-          (PadicProjectiveNeighbor.lattice
-            p C.residualPoint) =
-        RankTwoLattice.classOf
-          (PadicProjectiveNeighbor.lattice
-            p D.residualPoint)
-    simpa [
-      childClass,
-      projectiveChild
-    ] using h
+    rw [hC, hD]
+    exact h
   exact
     Child.residualPoint_injective
       (p := p) hq
