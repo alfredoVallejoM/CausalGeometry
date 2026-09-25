@@ -29,7 +29,7 @@ namespace DependentLinearCausalConnection
 
 variable {K : Type w}
 variable {Fiber : Configuration S → Type x}
-variable [Semiring K]
+variable [CommSemiring K]
 variable [∀ C, AddCommMonoid (Fiber C)]
 variable [∀ C, Module K (Fiber C)]
 
@@ -166,7 +166,7 @@ namespace DependentLinearEquivConnection
 
 variable {K : Type w}
 variable {Fiber : Configuration S → Type x}
-variable [Semiring K]
+variable [CommSemiring K]
 variable [∀ C, AddCommMonoid (Fiber C)]
 variable [∀ C, Module K (Fiber C)]
 
