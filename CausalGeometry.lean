@@ -22,6 +22,7 @@ import CausalGeometry.Calculus.FormEquivariance
 import CausalGeometry.Calculus.CubeEquivariance
 import CausalGeometry.Calculus.CohomologyEquivH1
 import CausalGeometry.Calculus.CohomologyEquivH2
+import CausalGeometry.Calculus.CohomologyFunctoriality
 import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
