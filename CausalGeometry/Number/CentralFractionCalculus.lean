@@ -186,7 +186,8 @@ def centralRightFractionCalculus :
 
   mul_assoc := by
     intro x y z
-    apply centralRightRel_refl
+    simp [centralRightRel,
+      centralRightMulRep, mul_assoc]
 
   one_mul := by
     intro x
@@ -317,7 +318,8 @@ def centralLeftFractionCalculus :
 
   mul_assoc := by
     intro x y z
-    apply centralLeftRel_refl
+    simp [centralLeftRel,
+      centralLeftMulRep, mul_assoc]
 
   one_mul := by
     intro x
