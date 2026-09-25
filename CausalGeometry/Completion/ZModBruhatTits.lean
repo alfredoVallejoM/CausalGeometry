@@ -1,4 +1,5 @@
 import CausalGeometry.Completion.BruhatTitsContract
+import CausalGeometry.Completion.DVRResidueTower
 import CausalGeometry.Completion.LocalProjectiveFibers
 import CausalGeometry.Completion.ZModProjectiveLine
 import CausalGeometry.Completion.ZModReductionFiber
@@ -51,18 +52,26 @@ theorem projective_drop_fiber_natCard
       ((LocalProjectivePair.chartEquiv
         (R := ZMod (p ^ (n + 1)))).symm q))
 
+/-- The p-adic ZMod tower satisfies the generic finite DVR residue laws. -/
+noncomputable def dvrResidueContract :
+    DVRResidueTowerContract
+      (primePowerTower p) where
+  nonunit_card := by
+    intro n
+    rw [primePowerTower_q]
+    exact nonunit_natCard p n
+  reduction_fiber_card := by
+    intro n y
+    rw [primePowerTower_q]
+    exact drop_fiber_natCard p n y
+
 /-- The standard p-adic local-ring tower satisfies the full finite
-Bruhat--Tits branching contract: sphere n has (p+1)p^n vertices and every
-vertex has p children at the next depth. -/
+Bruhat--Tits branching contract as a specialization of the generic q=p^f DVR
+theorem. -/
 noncomputable def bruhatTitsBranchingContract :
     BruhatTitsBranchingContract
-      (primePowerTower p) where
-  projective_card := by
-    intro n
-    exact projectiveLine_card_contract p n
-  reduction_fiber_card := by
-    intro n q
-    exact projective_drop_fiber_natCard p n q
+      (primePowerTower p) :=
+  (dvrResidueContract p).toBruhatTitsBranchingContract
 
 end zmodPrimeLocalTower
 end CausalGeometry
