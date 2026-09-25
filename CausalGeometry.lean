@@ -51,6 +51,8 @@ import CausalGeometry.Variational.JetCotangent
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
 import CausalGeometry.Number.Residual
+import CausalGeometry.Number.ResidualAdjunction
+import CausalGeometry.Number.ResidualLocalizationRealization
 import CausalGeometry.Number.ResidualLocalization
 import CausalGeometry.Number.OreLocalization
 import CausalGeometry.Number.RightFractionCalculus
@@ -101,6 +103,7 @@ import CausalGeometry.Completion.BruhatTitsArithmeticIhara
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Realization.PairedCompatibility
+import CausalGeometry.Realization.PairedPartialCompatibility
 import CausalGeometry.Realization.At
 import CausalGeometry.Realization.ECIAContract
 import CausalGeometry.Realization.ECIAArithmeticContract
