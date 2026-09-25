@@ -179,6 +179,48 @@ theorem latticeResidue_ker
     (mem_next_iff_latticeResidue_eq_zero
       p n x).symm
 
+/-- Canonical additive identification of one lattice quotient with the
+residue field Z/pZ. -/
+noncomputable def diagonalQuotientEquivZMod
+    (n : ℕ) :
+    ((diagonalLattice p n).carrier ⧸
+      (diagonalLattice p (n + 1)).carrier.submoduleOf
+        (diagonalLattice p n).carrier) ≃+
+      ZMod p := by
+  let f :=
+    latticeResidue p n
+  let N :=
+    ((diagonalLattice p (n + 1)).carrier.submoduleOf
+      (diagonalLattice p n).carrier).toAddSubgroup
+  have hker :
+      f.ker = N := by
+    simpa [f, N] using
+      latticeResidue_ker p n
+  let e₁ :
+      ((diagonalLattice p n).carrier ⧸ N) ≃+
+        ((diagonalLattice p n).carrier ⧸ f.ker) :=
+    QuotientAddGroup.congr
+      N f.ker
+      (AddEquiv.refl _)
+      (by
+        rw [← hker]
+        simp)
+  let e₂ :
+      ((diagonalLattice p n).carrier ⧸ f.ker) ≃+
+        ZMod p :=
+    QuotientAddGroup.quotientKerEquivOfSurjective
+      f (latticeResidue_surjective p n)
+  exact e₁.trans e₂
+
+@[simp] theorem diagonalQuotientEquivZMod_mk
+    (n : ℕ)
+    (x : (diagonalLattice p n).carrier) :
+    diagonalQuotientEquivZMod p n
+        (Submodule.Quotient.mk x) =
+      latticeResidue p n x := by
+  unfold diagonalQuotientEquivZMod
+  rfl
+
 /-- One diagonal lattice quotient is canonically a residue-field-sized
 quotient: |L_n/L_(n+1)|=p. -/
 theorem diagonalQuotient_natCard
