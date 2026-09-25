@@ -233,6 +233,22 @@ namespace CausalTwoForm
 
 variable {K : Type w} [AddCommGroup K]
 
+@[ext] theorem ext
+    {ω η : CausalTwoForm S K}
+    (h :
+      ∀ {C : Configuration S}
+        {e f : Event}
+        (d : ConcurrencyDiamond C e f),
+        ω.value d = η.value d) :
+    ω = η := by
+  cases ω with
+  | mk ω hω =>
+      cases η with
+      | mk η hη =>
+          congr
+          funext C e f d
+          exact h d
+
 /-- Exterior derivative packages canonically as an antisymmetric two-form. -/
 def ofExteriorDerivative
     (ω : CausalOneForm S K) :
