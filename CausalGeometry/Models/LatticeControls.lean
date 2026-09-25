@@ -97,11 +97,12 @@ theorem e1_not_mem_doubledIntegerPlaneLattice :
       doubledIntegerPlaneLattice.carrier := by
   intro h
   change
-    (1, 0 : ℚ) ∈
+    ((1, 0) : ℚ × ℚ) ∈
       integerPlaneLattice.carrier.map
         (RankTwoLattice.scaleEquivO
           (O := ℤ) rationalTwoUnit).toLinearMap at h
   rcases h with ⟨y, hy, hyEq⟩
+  change y ∈ LinearMap.range integerPlaneMap at hy
   rcases hy with ⟨z, hz⟩
   have hycoords :
       y = ((z.1 : ℚ), (z.2 : ℚ)) := by
