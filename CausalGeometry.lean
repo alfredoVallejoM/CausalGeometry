@@ -21,6 +21,7 @@ import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
 import CausalGeometry.Calculus.SymplecticGeometry
 import CausalGeometry.Calculus.Cohomology
+import CausalGeometry.Calculus.CohomologyH2
 import CausalGeometry.Calculus.HamiltonianEventEquation
 import CausalGeometry.Calculus.Soldering
 import CausalGeometry.Calculus.ExteriorComplex
@@ -41,6 +42,7 @@ import CausalGeometry.Calculus.LinearConnection
 import CausalGeometry.Calculus.ParallelTransport
 import CausalGeometry.Calculus.GaugeCovariance
 import CausalGeometry.Calculus.GaugePotential
+import CausalGeometry.Calculus.FiniteLocalCurvature
 import CausalGeometry.Calculus.PathGauge
 import CausalGeometry.Calculus.CovariantDifference
 import CausalGeometry.Calculus.CovariantSquare
@@ -173,3 +175,5 @@ import CausalGeometry.Models.ResidualLocalizationControls
 import CausalGeometry.Models.SymplecticGeometryControls
 
 import CausalGeometry.Models.HamiltonianEventControls
+
+import CausalGeometry.Models.FiniteLocalCurvatureControls
