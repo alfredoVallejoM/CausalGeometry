@@ -214,3 +214,5 @@ import CausalGeometry.Models.FiniteLocalCurvatureControls
 import CausalGeometry.Models.LatticeControls
 
 import CausalGeometry.Models.ConcreteIharaControls
+
+import CausalGeometry.Models.EventSystemEquivControls
