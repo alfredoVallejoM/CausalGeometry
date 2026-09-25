@@ -194,8 +194,8 @@ theorem reciprocal_eq_eulerZeta
   apply PowerSeries.eq_of_derivative_eq_mul
     (T := C.hashimotoTraceSeries)
   · rw [
-      ← PowerSeries.coeff_zero_eq_constantCoeff_apply,
-      ← PowerSeries.coeff_zero_eq_constantCoeff_apply
+      PowerSeries.coeff_zero_eq_constantCoeff_apply,
+      PowerSeries.coeff_zero_eq_constantCoeff_apply
     ]
     simp
   · exact
