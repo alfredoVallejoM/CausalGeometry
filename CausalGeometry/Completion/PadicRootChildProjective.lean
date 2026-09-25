@@ -18,9 +18,7 @@ variable (C : Child p)
 theorem residualSubspace_finrank :
     Module.finrank (F p) C.residualSubspace = 1 := by
   letI : Module.Finite (F p) C.residualSubspace :=
-    Module.Finite.of_injective
-      C.residualSubspace.subtype
-      C.residualSubspace.subtype_injective
+    inferInstance
   have hcard :=
     Module.natCard_eq_pow_finrank
       (K := F p)
@@ -75,54 +73,61 @@ theorem residualPoint_injective :
     rw [← C.lineSubmodule_residualPoint,
       ← D.lineSubmodule_residualPoint,
       hpoint]
-  apply Child.ext
-  apply RankTwoLattice.ext
-  ext x
-  let xRoot : (Root p).carrier :=
-    ⟨x, C.step.le ‹x ∈ C.lattice.carrier›⟩
-  constructor
-  · intro hxC
-    have hxRoot :
-        x ∈ (Root p).carrier :=
-      C.step.le hxC
-    let y : (Root p).carrier := ⟨x, hxRoot⟩
-    have hred :
-        standardReduction p y ∈
-          C.residualAddSubgroup := by
-      exact C.standardReduction_mem_residual
-        (x := y)
-        hxC
-    have hsubAdd :
-        C.residualAddSubgroup =
-          D.residualAddSubgroup := by
-      rw [← C.residualSubspace_toAddSubgroup,
-        ← D.residualSubspace_toAddSubgroup,
-        hsub]
-    rw [hsubAdd] at hred
-    exact
-      D.mem_inside_of_standardReduction_mem
-        (x := y) hred
-  · intro hxD
-    have hxRoot :
-        x ∈ (Root p).carrier :=
-      D.step.le hxD
-    let y : (Root p).carrier := ⟨x, hxRoot⟩
-    have hred :
-        standardReduction p y ∈
-          D.residualAddSubgroup := by
-      exact D.standardReduction_mem_residual
-        (x := y)
-        hxD
-    have hsubAdd :
-        D.residualAddSubgroup =
-          C.residualAddSubgroup := by
-      rw [← D.residualSubspace_toAddSubgroup,
-        ← C.residualSubspace_toAddSubgroup,
-        hsub]
-    rw [hsubAdd] at hred
-    exact
-      C.mem_inside_of_standardReduction_mem
-        (x := y) hred
+  have hsubAdd :
+      C.residualAddSubgroup =
+        D.residualAddSubgroup := by
+    rw [← C.residualSubspace_toAddSubgroup,
+      ← D.residualSubspace_toAddSubgroup,
+      hsub]
+  have hcarrier :
+      C.lattice.carrier =
+        D.lattice.carrier := by
+    ext x
+    constructor
+    · intro hxC
+      have hxRoot :
+          x ∈ (Root p).carrier :=
+        C.step.le hxC
+      let y : (Root p).carrier :=
+        ⟨x, hxRoot⟩
+      have hred :
+          standardReduction p y ∈
+            C.residualAddSubgroup :=
+        C.standardReduction_mem_residual
+          (x := y) hxC
+      rw [hsubAdd] at hred
+      have hyD :
+          y ∈ D.inside :=
+        D.mem_inside_of_standardReduction_mem
+          (x := y) hred
+      exact hyD
+    · intro hxD
+      have hxRoot :
+          x ∈ (Root p).carrier :=
+        D.step.le hxD
+      let y : (Root p).carrier :=
+        ⟨x, hxRoot⟩
+      have hred :
+          standardReduction p y ∈
+            D.residualAddSubgroup :=
+        D.standardReduction_mem_residual
+          (x := y) hxD
+      rw [← hsubAdd] at hred
+      have hyC :
+          y ∈ C.inside :=
+        C.mem_inside_of_standardReduction_mem
+          (x := y) hred
+      exact hyC
+  have hlattice :
+      C.lattice = D.lattice :=
+    RankTwoLattice.ext hcarrier
+  cases C with
+  | mk L hL =>
+      cases D with
+      | mk M hM =>
+          dsimp at hlattice
+          subst M
+          rfl
 
 end Child
 end PadicRootChild
