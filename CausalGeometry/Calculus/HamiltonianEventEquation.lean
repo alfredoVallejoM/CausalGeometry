@@ -130,10 +130,11 @@ theorem eventHamiltonEquation
         (θ.vector C d) =
       causalDifference H.potential C
         d.event d.enabled := by
-  exact H.differential_on_directions C d |>.trans
+  exact
     (LinearMap.congr_fun
-      (H.toPair.hamiltonian C).symm
-      (θ.vector C d))
+      (H.toPair.hamiltonian C)
+      (θ.vector C d)).trans
+        (H.differential_on_directions C d)
 
 /-- The Hamiltonian contraction one-form is closed because it is exact. -/
 theorem contractionOneForm_closed :
