@@ -108,6 +108,7 @@ import CausalGeometry.Completion.RankTwoLattice
 import CausalGeometry.Completion.LatticeGraph
 import CausalGeometry.Completion.BruhatTitsLattice
 import CausalGeometry.Completion.PadicLatticeRay
+import CausalGeometry.Completion.PadicLatticeIndex
 import CausalGeometry.Completion.BruhatTitsFiniteGraph
 import CausalGeometry.Completion.BruhatTitsFiniteGraphComplexity
 import CausalGeometry.Completion.BruhatTitsQuotient
