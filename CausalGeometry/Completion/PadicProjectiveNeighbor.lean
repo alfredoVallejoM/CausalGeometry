@@ -737,6 +737,130 @@ theorem neighborClass_injective :
     lattice_injective p
       (homothetic_lattice_eq p q r hhom)
 
+/-- The projective family also has exactly p+1 distinct homothety classes. -/
+theorem constructedNeighborClass_natCard :
+    Nat.card
+        (Set.range (neighborClass p)) =
+      p + 1 := by
+  rw [← Nat.card_congr
+    (Equiv.ofInjective
+      (neighborClass p)
+      (neighborClass_injective p))]
+  simpa [P1] using
+    zmodPrimeLocalTower.projectiveLine_natCard
+      p 0
+
+/-- If a homothetic copy of the standard lattice still lies in the standard
+lattice, its scalar has norm at most one. -/
+theorem norm_le_one_of_standard_scale_le
+    (u : (K p)ˣ)
+    (hscale :
+      ((diagonalLattice p 0).scale u).carrier ≤
+        (diagonalLattice p 0).carrier) :
+    ‖(u : K p)‖ ≤ 1 := by
+  let x : K p × K p := (1, 0)
+  have hx :
+      x ∈ (diagonalLattice p 0).carrier := by
+    exact ⟨((1 : O p), 0), by
+      ext <;> simp [x, diagonalMap]⟩
+  have hsx :
+      (RankTwoLattice.scaleEquivO
+        (O := O p) u x) ∈
+        ((diagonalLattice p 0).scale u).carrier :=
+    ⟨x, hx, rfl⟩
+  have hstd :=
+    norm_coordinates_le_one_of_mem_standard
+      p (hscale hsx)
+  have hcoord :
+      (RankTwoLattice.scaleEquivO
+        (O := O p) u x).1 =
+        (u : K p) := by
+    simp [x, RankTwoLattice.scaleEquivO,
+      RankTwoLattice.scaleEquivK]
+  rw [hcoord] at hstd
+  exact hstd.1
+
+/-- No projective neighbor class is the root homothety class. -/
+theorem neighborClass_ne_root
+    (q : P1 p) :
+    neighborClass p q ≠
+      RankTwoLattice.classOf
+        (diagonalLattice p 0) := by
+  intro hclass
+  have hhom :
+      RankTwoLattice.Homothetic
+        (lattice p q)
+        (diagonalLattice p 0) :=
+    Quotient.exact hclass
+  rcases hhom with ⟨u, hu⟩
+  have hule :
+      ((lattice p q).scale u).carrier ≤
+        (diagonalLattice p 0).carrier := by
+    rw [← hu]
+  have hnorm :
+      ‖(u : K p)‖ ≤ 1 :=
+    norm_le_one_of_scale_le_standard
+      p q u hule
+  have hinvEq :
+      (diagonalLattice p 0).scale u⁻¹ =
+        lattice p q := by
+    rw [hu]
+    exact
+      RankTwoLattice.scale_inv_scale
+        u (lattice p q)
+  have hinvle :
+      ((diagonalLattice p 0).scale u⁻¹).carrier ≤
+        (diagonalLattice p 0).carrier := by
+    rw [hinvEq]
+    exact lattice_le_standard p q
+  have hnormInv :
+      ‖((u⁻¹ : (K p)ˣ) : K p)‖ ≤ 1 :=
+    norm_le_one_of_standard_scale_le
+      p u⁻¹ hinvle
+  have hge :
+      1 ≤ ‖(u : K p)‖ := by
+    calc
+      1 =
+          ‖((u⁻¹ : (K p)ˣ) : K p)‖ *
+            ‖(u : K p)‖ := by
+              rw [← norm_mul]
+              simp
+      _ ≤ 1 * ‖(u : K p)‖ := by
+        exact
+          mul_le_mul_of_nonneg_right
+            hnormInv
+            (norm_nonneg _)
+      _ = ‖(u : K p)‖ := one_mul _
+  have hnormEq :
+      ‖(u : K p)‖ = 1 :=
+    le_antisymm hnorm hge
+  let a : (O p)ˣ :=
+    PadicInt.mkUnits hnormEq
+  have hau :
+      RankTwoLattice.algebraUnit
+          (K := K p) a =
+        u := by
+    apply Units.ext
+    change
+      algebraMap (O p) (K p) (a : O p) =
+        (u : K p)
+    simpa [a] using
+      PadicInt.mkUnits_eq hnormEq
+  have hscale :
+      (lattice p q).scale u =
+        lattice p q := by
+    rw [← hau]
+    exact
+      RankTwoLattice.scale_algebraUnit
+        a (lattice p q)
+  have heq :
+      diagonalLattice p 0 =
+        lattice p q := by
+    rw [hu, hscale]
+  exact
+    (lattice_ne_standard p q)
+      heq.symm
+
 theorem neighborClass_adjacent_root
     (q : P1 p) :
     RankTwoLattice.ClassAdjacent
