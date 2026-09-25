@@ -123,6 +123,7 @@ import CausalGeometry.Completion.BruhatTitsArithmeticQuotient
 import CausalGeometry.Completion.BruhatTitsArithmeticIhara
 import CausalGeometry.Completion.BruhatTitsConcreteIhara
 import CausalGeometry.Completion.BruhatTitsArithmeticConcreteIhara
+import CausalGeometry.Completion.BruhatTitsIharaProfile
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
 import CausalGeometry.Realization.PairedCompatibility
@@ -133,6 +134,7 @@ import CausalGeometry.Realization.ECIAArithmeticContract
 import CausalGeometry.Realization.ECIAProcessContract
 import CausalGeometry.Realization.ECIATransferContract
 import CausalGeometry.Realization.ECIAIharaContract
+import CausalGeometry.Realization.ECIABruhatTitsIharaContract
 import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.FiniteTransfer
 import CausalGeometry.Cyclic.Hashimoto
