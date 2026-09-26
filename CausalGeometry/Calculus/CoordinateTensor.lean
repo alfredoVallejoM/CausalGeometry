@@ -226,9 +226,8 @@ left. -/
         y
       =
     0 := by
-  exact
-    map_zero
-      ((tensor p q r s).flip y)
+  funext a b
+  simp [tensor]
 
 /-- Tensoring with zero on the right also annihilates the product. -/
 @[simp] theorem tensor_zero_right
@@ -238,8 +237,8 @@ left. -/
         (0 : CoordinateTensor K ι r s)
       =
     0 := by
-  exact
-    map_zero (tensor p q r s x)
+  funext a b
+  simp [tensor]
 
 /-- Contraction is linear and sends zero to zero. -/
 @[simp] theorem contract_zero
