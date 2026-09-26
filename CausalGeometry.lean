@@ -26,8 +26,11 @@ import CausalGeometry.Calculus.CohomologyFunctoriality
 import CausalGeometry.Calculus.GradedComplex
 import CausalGeometry.Calculus.PairedCochainTransport
 import CausalGeometry.Calculus.GradedCohomologyTransport
+import CausalGeometry.Calculus.GradedCohomologyFunctoriality
 import CausalGeometry.Calculus.GradedHodge
+import CausalGeometry.Calculus.GradedHodgeZero
 import CausalGeometry.Calculus.PairedHodgeTransport
+import CausalGeometry.Calculus.GradedHodgeCohomology
 import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
@@ -77,6 +80,7 @@ import CausalGeometry.Variational.BilinearLegendre
 import CausalGeometry.Variational.JetCotangentLimit
 import CausalGeometry.Variational.JetCotangent
 import CausalGeometry.Variational.DiscreteAction
+import CausalGeometry.Variational.ActionGauge
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
