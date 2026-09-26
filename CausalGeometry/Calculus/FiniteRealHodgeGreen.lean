@@ -289,9 +289,50 @@ theorem harmonicProjectionSucc_eq_self_of_harmonic
       G.harmonicProjectionSucc n x at h
 
   rw [hx] at h
-  simp at h
+  simp only [map_zero] at h
 
-  exact h.symm
+  have hxproj :
+      x - G.harmonicProjectionSucc n x = 0 :=
+    h.symm
+
+  exact
+    (sub_eq_zero.mp hxproj).symm
+
+
+/-- The spectral harmonic projector has range exactly the causal harmonic
+subspace. -/
+theorem range_harmonicProjectionSucc
+    (n : ℕ) :
+    LinearMap.range
+        (G.harmonicProjectionSucc n)
+      =
+    (H G).HarmonicSucc n := by
+  apply le_antisymm
+  · intro y hy
+    rcases hy with ⟨x, rfl⟩
+    exact
+      G.harmonicProjectionSucc_mem_harmonic n x
+  · intro x hx
+    refine
+      ⟨x, ?_⟩
+    exact
+      G.harmonicProjectionSucc_eq_self_of_harmonic
+        n hx
+
+/-- The harmonic projector is identity precisely on the harmonic subspace. -/
+theorem harmonicProjectionSucc_eq_self_iff
+    (n : ℕ)
+    (x : C (n + 1)) :
+    G.harmonicProjectionSucc n x = x
+      ↔
+    x ∈ (H G).HarmonicSucc n := by
+  constructor
+  · intro hx
+    rw [← hx]
+    exact
+      G.harmonicProjectionSucc_mem_harmonic n x
+  · exact
+      G.harmonicProjectionSucc_eq_self_of_harmonic n
 
 /-- Green vanishes on genuine harmonic cochains. -/
 theorem greenSucc_eq_zero_of_harmonic
