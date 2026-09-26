@@ -277,14 +277,19 @@ def canonicalRightToLeft :
       =
     canonicalRightDenominatorInverse
       (α := α) (S := S) s := by
-  apply
-    (mul_left_cancel
-      (a :=
-        canonicalRightSourceHom
-          (α := α) (S := S) (s : α)))
-  rw [← map_mul]
-  rw [canonical_source_mul_denominatorInverse]
-  simp [canonicalLeftToRight]
+  change
+    OreLocalization.universalMulHom
+        (canonicalRightSourceHom
+          (α := α) (S := S))
+        (canonicalRightDenominatorUnitsHom
+          (α := α) (S := S))
+        (by intro t; rfl)
+        (OreLocalization.oreDiv (1 : α) s)
+      =
+    _
+  rw [OreLocalization.universalMulHom_apply]
+  simp [canonicalRightDenominatorUnitsHom,
+    canonicalRightDenominatorUnit]
 
 @[simp] theorem canonicalRightToLeft_denominatorInverse
     (s : S) :
@@ -295,14 +300,21 @@ def canonicalRightToLeft :
       =
     canonicalLeftDenominatorInverse
       (α := α) (S := S) s := by
-  apply
-    (mul_left_cancel
-      (a :=
-        canonicalLeftSourceHom
-          (α := α) (S := S) (s : α)))
-  rw [← map_mul]
-  rw [canonicalRight_source_mul_denominatorInverse]
-  simp [canonicalRightToLeft]
+  change
+    MulOpposite.unop
+      (canonicalRightUnderlyingToLeftOpp
+        (α := α) (S := S)
+        (OreLocalization.oreDiv
+          (1 : αᵐᵒᵖ)
+          (opDenominator s)))
+      =
+    _
+  rw [OreLocalization.universalMulHom_apply]
+  simp [canonicalLeftOppDenominatorUnitsHom,
+    canonicalLeftDenominatorUnit,
+    opUnit,
+    canonicalLeftDenominatorInverse,
+    unopDenominator]
 
 /-- Both composites out of the left localization are the identity by universal
 uniqueness. -/
@@ -370,7 +382,11 @@ def rightEndUnderlying
     simp
 
 /-- A right-localization endomorphism is determined by its values on the
-original source. -/
+original source.
+
+The proof does not assume cancellation in the localization.  It transports
+both endomorphisms to the underlying left Ore localization of the opposite
+monoid and applies the universal property there. -/
 theorem canonicalRight_end_ext_source
     (φ ψ :
       CanonicalRightLoc
@@ -386,44 +402,53 @@ theorem canonicalRight_end_ext_source
           (α := α) (S := S) a)) :
     φ = ψ := by
 
-  let f :
-      αᵐᵒᵖ →*
-        OreLocalization S.op αᵐᵒᵖ :=
-    OreLocalization.numeratorHom
+  let O :=
+    OreLocalization S.op αᵐᵒᵖ
 
-  let u :
-      S.op →*
-        (OreLocalization S.op αᵐᵒᵖ)ˣ :=
+  let φu :
+      O →* O :=
+    rightEndUnderlying
+      (α := α) (S := S) φ
+
+  let ψu :
+      O →* O :=
+    rightEndUnderlying
+      (α := α) (S := S) ψ
+
+  let f :
+      αᵐᵒᵖ →* O :=
+    φu.comp OreLocalization.numeratorHom
+
+  let baseUnits :
+      S.op →* Oˣ :=
     canonicalLeftDenominatorUnitsHom
       (α := αᵐᵒᵖ) (S := S.op)
 
-  have hφsource :
-      ∀ a : αᵐᵒᵖ,
-        rightEndUnderlying
-            (α := α) (S := S) φ
-            (OreLocalization.numeratorHom a)
-          =
-        f a := by
+  let mappedUnits :
+      S.op →* Oˣ :=
+    (Units.map φu).comp baseUnits
+
+  have hf :
+      ∀ s : S.op,
+        f (s : αᵐᵒᵖ) =
+          (mappedUnits s : O) := by
+    intro s
+    rfl
+
+  have hφ :
+      φu =
+        OreLocalization.universalMulHom
+          f mappedUnits hf := by
+    apply
+      OreLocalization.universalMulHom_unique
+        f mappedUnits hf
     intro a
-    change
-      MulOpposite.unop
-        (φ
-          (canonicalRightSourceHom
-            (α := α) (S := S)
-            (MulOpposite.unop a)))
-        =
-      OreLocalization.numeratorHom a
-    have h := hsource (MulOpposite.unop a)
-    have hu := congrArg MulOpposite.unop h
-    exact hu.trans (by rfl)
+    rfl
 
   have hψsource :
       ∀ a : αᵐᵒᵖ,
-        rightEndUnderlying
-            (α := α) (S := S) ψ
-            (OreLocalization.numeratorHom a)
-          =
-        f a := by
+        ψu (OreLocalization.numeratorHom a) =
+          f a := by
     intro a
     change
       MulOpposite.unop
@@ -432,31 +457,22 @@ theorem canonicalRight_end_ext_source
             (α := α) (S := S)
             (MulOpposite.unop a)))
         =
-      OreLocalization.numeratorHom a
-    have h := hsource (MulOpposite.unop a)
-    have hu := congrArg MulOpposite.unop h.symm
-    exact hu.trans (by rfl)
-
-  have hφ :
-      rightEndUnderlying
-          (α := α) (S := S) φ
-        =
-      OreLocalization.universalMulHom
-        f u (by intro s; rfl) := by
-    apply
-      OreLocalization.universalMulHom_unique
-        f u (by intro s; rfl)
-    exact hφsource
+      MulOpposite.unop
+        (φ
+          (canonicalRightSourceHom
+            (α := α) (S := S)
+            (MulOpposite.unop a)))
+    exact
+      congrArg MulOpposite.unop
+        (hsource (MulOpposite.unop a)).symm
 
   have hψ :
-      rightEndUnderlying
-          (α := α) (S := S) ψ
-        =
-      OreLocalization.universalMulHom
-        f u (by intro s; rfl) := by
+      ψu =
+        OreLocalization.universalMulHom
+          f mappedUnits hf := by
     apply
       OreLocalization.universalMulHom_unique
-        f u (by intro s; rfl)
+        f mappedUnits hf
     exact hψsource
 
   apply MonoidHom.ext
@@ -466,7 +482,7 @@ theorem canonicalRight_end_ext_source
       (hφ.trans hψ.symm)
       (MulOpposite.unop q)
   have hop := congrArg MulOpposite.op h
-  simpa [rightEndUnderlying] using hop
+  simpa [φu, ψu, rightEndUnderlying] using hop
 
 theorem canonicalLeftToRight_comp_rightToLeft :
     (canonicalLeftToRight
