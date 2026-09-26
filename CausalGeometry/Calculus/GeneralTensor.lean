@@ -69,15 +69,31 @@ def CovariantPermutationIdentity : Prop :=
     C.permuteCovariant p q (Equiv.refl (Fin q)) =
       LinearEquiv.refl K (T p q)
 
-/-- A typed contraction/tensor compatibility obligation.  The exact permutation
-needed to bring a chosen vector/covector pair together is deliberately kept
-outside this minimal interface and belongs to a concrete tensor realization. -/
-def ContractionLinear : Prop :=
-  ∀ p q,
-    Function.Injective
-      (fun x : T (p + 1) (q + 1) =>
-        (C.contract p q) x) →
-    True
+/-- Contraction is already K-linear by its type.  Additional compatibility with
+chosen slots, permutations and tensor products belongs to a concrete tensor
+realization and must be proved there rather than inserted as vacuous data. -/
+@[simp] theorem contract_zero
+    (p q : ℕ) :
+    C.contract p q
+        (0 : T (p + 1) (q + 1)) =
+      0 := by
+  exact map_zero (C.contract p q)
+
+@[simp] theorem tensor_zero_left
+    (p q r s : ℕ)
+    (y : T r s) :
+    C.tensor p q r s
+        (0 : T p q) y =
+      0 := by
+  simp
+
+@[simp] theorem tensor_zero_right
+    (p q r s : ℕ)
+    (x : T p q) :
+    C.tensor p q r s x
+        (0 : T r s) =
+      0 := by
+  simp
 
 end GeneralCausalTensorCalculus
 
