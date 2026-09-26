@@ -22,6 +22,9 @@ import CausalGeometry.Calculus.FormEquivariance
 import CausalGeometry.Calculus.CubeEquivariance
 import CausalGeometry.Calculus.EventCube
 import CausalGeometry.Calculus.CubicalCochain
+import CausalGeometry.Calculus.CubicalLowDegree
+import CausalGeometry.Calculus.CubicalDifferentialSquared
+import CausalGeometry.Calculus.EventCubeFaceLaws
 import CausalGeometry.Calculus.CohomologyEquivH1
 import CausalGeometry.Calculus.CohomologyEquivH2
 import CausalGeometry.Calculus.CohomologyFunctoriality
