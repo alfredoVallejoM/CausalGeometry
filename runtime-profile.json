@@ -93,6 +93,14 @@
       "description": "Protect arithmetic regressions and typecheck residual/localization, Ore/universal localization, local/DVR geometry, rank-two lattice frames and transport, complete root-star Child≃P1(Fp), and transported p+1 local stars at every p-adic lattice representative."
     },
     {
+      "id": "CA22-MATHLIB-ORE-TYPECHECK",
+      "level": "regression",
+      "kind": "command",
+      "required": true,
+      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean",
+      "description": "Typecheck canonical left Ore localization, opposite-derived right Ore localization, denominator units, raw-fraction semantic agreement and group universal uniqueness."
+    },
+    {
       "id": "ADV-SOURCE-AUDIT",
       "level": "adversarial",
       "kind": "command",
