@@ -92,6 +92,7 @@ import CausalGeometry.Number.ResidualLocalization
 import CausalGeometry.Number.OreLocalization
 import CausalGeometry.Number.MathlibOreBridge
 import CausalGeometry.Number.MathlibRightOreBridge
+import CausalGeometry.Number.OreReversibility
 import CausalGeometry.Number.RightFractionCalculus
 import CausalGeometry.Number.LeftFractionCalculus
 import CausalGeometry.Number.BilateralLocalization
