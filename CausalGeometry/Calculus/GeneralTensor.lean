@@ -48,13 +48,36 @@ variable
     [∀ p q, Module K (T p q)]
     (C : GeneralCausalTensorCalculus K T)
 
+/-- Transport a tensor across proven equalities of its two ranks. -/
+def castRanks
+    {p p' q q' : ℕ}
+    (hp : p = p')
+    (hq : q = q')
+    (x : T p q) :
+    T p' q' := by
+  cases hp
+  cases hq
+  exact x
+
+@[simp] theorem castRanks_rfl
+    (p q : ℕ)
+    (x : T p q) :
+    castRanks (C := C) rfl rfl x = x :=
+  rfl
+
+/-- Associativity of tensor product, with the unavoidable rank transport made
+explicit instead of relying on definitional equality of natural-number sums. -/
 def TensorProductAssociative : Prop :=
   ∀ p q r s a b
     (x : T p q)
     (y : T r s)
     (z : T a b),
-      C.tensor (p + r) (q + s) a b
-          (C.tensor p q r s x y) z
+      castRanks
+          (C := C)
+          (Nat.add_assoc p r a)
+          (Nat.add_assoc q s b)
+          (C.tensor (p + r) (q + s) a b
+            (C.tensor p q r s x y) z)
         =
       C.tensor p q (r + a) (s + b)
         x (C.tensor r s a b y z)
