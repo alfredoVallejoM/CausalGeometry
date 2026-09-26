@@ -142,6 +142,7 @@ import CausalGeometry.Number.Residual
 import CausalGeometry.Number.ResidualAdjunction
 import CausalGeometry.Number.ResidualLocalizationRealization
 import CausalGeometry.Number.ResidualLocalization
+import CausalGeometry.Number.ResidualLocalizationDomain
 import CausalGeometry.Number.OreLocalization
 import CausalGeometry.Number.MathlibOreBridge
 import CausalGeometry.Number.MathlibRightOreBridge
