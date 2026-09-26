@@ -29,6 +29,7 @@ import CausalGeometry.Calculus.CubicalShuffleCup
 import CausalGeometry.Calculus.CubicalSubsetGeometry
 import CausalGeometry.Calculus.CubicalSubsetCup
 import CausalGeometry.Calculus.CubicalExterior
+import CausalGeometry.Calculus.CubicalOrientation
 import CausalGeometry.Calculus.CubicalTwoFormBridge
 import CausalGeometry.Calculus.CubicalExteriorLowComplex
 import CausalGeometry.Calculus.CubicalLowDegree
