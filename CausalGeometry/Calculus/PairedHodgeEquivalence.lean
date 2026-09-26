@@ -110,20 +110,37 @@ def hSuccEquiv
     intro q
     induction q using Submodule.Quotient.induction_on with
     | _ z =>
-        apply Quotient.sound
         change
-          (((P.backward.map (n + 1)).comp
-              (P.forward.map (n + 1)))
-              (z : C (n + 1)) :
-            C (n + 1))
+          P.backward.hSuccMap hB n
+              (P.forward.hSuccMap hF n
+                (A.classOfClosedSucc n z))
+            =
+          A.classOfClosedSucc n z
+        rw [
+          P.forward.hSuccMap_classOfClosed,
+          P.backward.hSuccMap_classOfClosed
+        ]
+        apply
+          (Submodule.Quotient.eq
+            (A.ExactInClosedSucc n)).2
+        change
+          P.backward.map (n + 1)
+              (P.forward.map (n + 1)
+                (z : C (n + 1)))
             -
           (z : C (n + 1))
-          ∈
-        A.ExactSucc n
+            ∈
+          A.ExactSucc n
         have h :=
           LinearMap.congr_fun
             (hInv.source (n + 1))
             (z : C (n + 1))
+        change
+          P.backward.map (n + 1)
+              (P.forward.map (n + 1)
+                (z : C (n + 1)))
+            =
+          (z : C (n + 1)) at h
         rw [h]
         simp
 
@@ -131,20 +148,37 @@ def hSuccEquiv
     intro q
     induction q using Submodule.Quotient.induction_on with
     | _ z =>
-        apply Quotient.sound
         change
-          (((P.forward.map (n + 1)).comp
-              (P.backward.map (n + 1)))
-              (z : D (n + 1)) :
-            D (n + 1))
+          P.forward.hSuccMap hF n
+              (P.backward.hSuccMap hB n
+                (B.classOfClosedSucc n z))
+            =
+          B.classOfClosedSucc n z
+        rw [
+          P.backward.hSuccMap_classOfClosed,
+          P.forward.hSuccMap_classOfClosed
+        ]
+        apply
+          (Submodule.Quotient.eq
+            (B.ExactInClosedSucc n)).2
+        change
+          P.forward.map (n + 1)
+              (P.backward.map (n + 1)
+                (z : D (n + 1)))
             -
           (z : D (n + 1))
-          ∈
-        B.ExactSucc n
+            ∈
+          B.ExactSucc n
         have h :=
           LinearMap.congr_fun
             (hInv.target (n + 1))
             (z : D (n + 1))
+        change
+          P.forward.map (n + 1)
+              (P.backward.map (n + 1)
+                (z : D (n + 1)))
+            =
+          (z : D (n + 1)) at h
         rw [h]
         simp
 
