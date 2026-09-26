@@ -3,6 +3,7 @@ import CausalGeometry.Foundation.EventSystemEquiv
 import CausalGeometry.Foundation.PairedTransform
 import CausalGeometry.History.Trace
 import CausalGeometry.History.Path
+import CausalGeometry.History.PathEquivariance
 import CausalGeometry.Process.Diary
 import CausalGeometry.Process.Composition
 import CausalGeometry.Process.EndComposition
@@ -93,6 +94,7 @@ import CausalGeometry.Variational.JetCotangentLimit
 import CausalGeometry.Variational.JetCotangent
 import CausalGeometry.Variational.DiscreteAction
 import CausalGeometry.Variational.ActionGauge
+import CausalGeometry.Variational.CausalSymmetry
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
