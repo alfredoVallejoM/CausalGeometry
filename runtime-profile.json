@@ -81,8 +81,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/ECIAGradedContract.lean && lake env lean CausalGeometry/Realization/ECIASpectralContract.lean",
-      "description": "Typecheck ECIA arbitrary-degree cohomology/Hodge contracts plus strong Laplacian intertwining contract deriving harmonic/eigenspace preservation."
+      "command": "lake env lean CausalGeometry/Realization/ECIAGradedContract.lean && lake env lean CausalGeometry/Realization/ECIASpectralContract.lean && lake env lean CausalGeometry/Realization/ECIAPrimitiveFactorizationContract.lean",
+      "description": "Typecheck ECIA arbitrary-degree cohomology/Hodge and spectral contracts together with the directional compositional-irreducibility versus cyclic-primitiveness realization contracts."
     },
     {
       "id": "ARITHMETIC-CONTROL-TYPECHECK",

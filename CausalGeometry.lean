@@ -338,3 +338,5 @@ import CausalGeometry.Number.IrreduciblePrimitiveBridge
 import CausalGeometry.Models.CausalLengthAtomic
 
 import CausalGeometry.Models.IrreduciblePrimitiveControls
+
+import CausalGeometry.Realization.ECIAPrimitiveFactorizationContract
