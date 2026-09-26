@@ -236,6 +236,76 @@ noncomputable def complementAxisPosition
           mem_complementAxisSubset
             h A i hi⟩)
 
+/-- Complement of a lifted face subset is obtained by inserting the removed
+axis into the lift of the face complement. -/
+theorem complement_liftFaceSubset
+    {n p q : ℕ}
+    (h : p + q = n)
+    (i : Fin (n + 1))
+    (A : AxisSubset n p) :
+    (complementAxisSubset
+        (by omega : p + (q + 1) = n + 1)
+        (liftFaceSubset i A)).val
+      =
+    insert i
+      (liftFaceSubset i
+        (complementAxisSubset h A)).val := by
+
+  ext k
+
+  by_cases hki : k = i
+
+  · subst k
+    simp [
+      complementAxisSubset,
+      removedAxis_not_mem_liftFaceSubset
+    ]
+
+  · rcases Fin.exists_succAbove_eq hki with
+      ⟨j, rfl⟩
+
+    have hmem :
+        i.succAbove j ∈ liftFaceSubset i A ↔
+          j ∈ A := by
+      rw [mem_liftFaceSubset_iff]
+      constructor
+      · rintro ⟨j', hj', hEq⟩
+        have :
+            j' = j :=
+          i.succAbove_right_injective hEq
+        subst j'
+        exact hj'
+      · intro hj
+        exact ⟨j, hj, rfl⟩
+
+    have hmemComp :
+        i.succAbove j ∈
+            liftFaceSubset i
+              (complementAxisSubset h A)
+          ↔
+        j ∉ A := by
+      rw [mem_liftFaceSubset_iff]
+      constructor
+      · rintro ⟨j', hj', hEq⟩
+        have :
+            j' = j :=
+          i.succAbove_right_injective hEq
+        subst j'
+        simpa [complementAxisSubset] using hj'
+      · intro hj
+        refine ⟨j, ?_, rfl⟩
+        simpa [complementAxisSubset] using hj
+
+    simp only [
+      complementAxisSubset_val,
+      Finset.mem_compl,
+      Finset.mem_insert,
+      i.succAbove_ne,
+      false_or
+    ]
+
+    rw [hmem, hmemComp]
+
 /-- For the specialized complementAxes API, the generic complement agrees
 definitionally after the ambient-dimension equation is chosen. -/
 theorem complementAxisSubset_eq_complementAxes
