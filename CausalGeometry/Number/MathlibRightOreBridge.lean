@@ -253,6 +253,90 @@ def canonicalRightUniversalHom
   rw [canonicalLeftUniversalHom_fraction]
   simp [oppositeMonoidHom, opDenominator]
 
+
+/-- The canonical right quotient realization agrees with the original raw
+RightFraction group semantics. -/
+@[simp] theorem canonicalRightUniversalHom_rawFraction
+    (f : α →* G)
+    (x : RightFraction S) :
+    canonicalRightUniversalHom
+        (S := S) f x.toCanonical =
+      RightFraction.realize f x := by
+  rcases x with ⟨a, s⟩
+  simpa [RightFraction.toCanonical,
+    RightFraction.realize] using
+    (canonicalRightUniversalHom_fraction
+      (S := S) f a s)
+
+/-- Convert a homomorphism out of the right localization into a homomorphism
+from the left localization of the opposite monoid. -/
+def rightHomToOpposite
+    (φ :
+      CanonicalRightLocalization
+        (α := α) (S := S) →* G) :
+    OreLocalization S.op αᵐᵒᵖ →* Gᵐᵒᵖ where
+  toFun := fun q =>
+    MulOpposite.op
+      (φ (MulOpposite.op q))
+  map_one' := by simp
+  map_mul' := by
+    intro x y
+    simp
+
+/-- Universal uniqueness for the right Ore localization. -/
+theorem canonicalRightUniversalHom_unique
+    (f : α →* G)
+    (φ :
+      CanonicalRightLocalization
+        (α := α) (S := S) →* G)
+    (hsource :
+      ∀ a : α,
+        φ (canonicalRightSourceHom
+          (α := α) (S := S) a) =
+          f a) :
+    φ = canonicalRightUniversalHom
+      (S := S) f := by
+  have hsourceOp :
+      ∀ a : αᵐᵒᵖ,
+        rightHomToOpposite
+            (S := S) φ
+            (canonicalLeftSourceHom
+              (α := αᵐᵒᵖ)
+              (S := S.op) a)
+          =
+        oppositeMonoidHom f a := by
+    intro a
+    have h :=
+      congrArg MulOpposite.op
+        (hsource (MulOpposite.unop a))
+    simpa [rightHomToOpposite,
+      canonicalRightSourceHom,
+      canonicalLeftSourceHom,
+      oppositeMonoidHom] using h
+
+  have hop :
+      rightHomToOpposite
+          (S := S) φ
+        =
+      canonicalLeftUniversalHom
+        (S := S.op)
+        (oppositeMonoidHom f) :=
+    canonicalLeftUniversalHom_unique
+      (S := S.op)
+      (oppositeMonoidHom f)
+      (rightHomToOpposite
+        (S := S) φ)
+      hsourceOp
+
+  apply MonoidHom.ext
+  intro q
+  have hq :=
+    DFunLike.congr_fun hop
+      (MulOpposite.unop q)
+  have hu := congrArg MulOpposite.unop hq
+  simpa [rightHomToOpposite,
+    canonicalRightUniversalHom] using hu
+
 end GroupTarget
 end RightViaOpposite
 
