@@ -34,6 +34,8 @@ import CausalGeometry.Calculus.CubicalBackFaceStructure
 import CausalGeometry.Calculus.CubicalSerrePresentationBridge
 import CausalGeometry.Calculus.CubicalSerrePresentationEquality
 import CausalGeometry.Calculus.CubicalExteriorWedge
+import CausalGeometry.Calculus.CubicalLeibnizZeroLeft
+import CausalGeometry.Calculus.CubicalSingletonShuffle
 import CausalGeometry.Calculus.CubicalExterior
 import CausalGeometry.Calculus.CubicalOrientation
 import CausalGeometry.Calculus.CubicalFaceEquivariance
