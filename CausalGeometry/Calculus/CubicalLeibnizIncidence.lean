@@ -22,6 +22,50 @@ noncomputable def liftFaceSubset
     ((Set.powersetCard.ofFinEmbEquiv.symm A).trans
       i.succAboveOrderEmb)
 
+/-- Membership in a lifted face subset is exactly membership of the unique
+preimage under succAbove. -/
+theorem mem_liftFaceSubset_iff
+    {n p : ℕ}
+    (i : Fin (n + 1))
+    (A : AxisSubset n p)
+    (k : Fin (n + 1)) :
+    k ∈ liftFaceSubset i A ↔
+      ∃ j : Fin n,
+        j ∈ A ∧
+          i.succAbove j = k := by
+
+  rw [Set.powersetCard.mem_ofFinEmbEquiv_iff_mem_range]
+
+  constructor
+
+  · rintro ⟨a, ha⟩
+
+    let j : Fin n :=
+      (Set.powersetCard.ofFinEmbEquiv.symm A) a
+
+    refine ⟨j, ?_, ?_⟩
+
+    · rw [← Set.powersetCard.mem_range_ofFinEmbEquiv_symm_iff_mem]
+      exact ⟨a, rfl⟩
+
+    · exact ha
+
+  · rintro ⟨j, hjA, rfl⟩
+
+    rw [← Set.powersetCard.mem_range_ofFinEmbEquiv_symm_iff_mem] at hjA
+
+    rcases hjA with ⟨a, ha⟩
+
+    refine ⟨a, ?_⟩
+
+    change
+      i.succAbove
+          ((Set.powersetCard.ofFinEmbEquiv.symm A) a)
+        =
+      i.succAbove j
+
+    rw [ha]
+
 /-- The removed ambient axis never belongs to a lifted face subset. -/
 theorem removedAxis_not_mem_liftFaceSubset
     {n p : ℕ}
