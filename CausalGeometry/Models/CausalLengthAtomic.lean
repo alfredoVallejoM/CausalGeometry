@@ -80,7 +80,7 @@ theorem isCausalUnit_iff_toAdd_zero
         ih
       ]
 
-      apply Multiplicative.toAdd_injective
+      rw [Multiplicative.ext_iff]
 
       simp [atom, Nat.succ_eq_add_one,
         Nat.add_comm]
@@ -140,7 +140,7 @@ theorem irreducible_eq_atom
       x.toAdd ≠ 1 := by
     intro h1
     apply hxa
-    apply Multiplicative.toAdd_injective
+    rw [Multiplicative.ext_iff]
     simpa [atom] using h1
 
   have htwo :
@@ -157,7 +157,7 @@ theorem irreducible_eq_atom
 
   have hfactor :
       atom * y = x := by
-    apply Multiplicative.toAdd_injective
+    rw [Multiplicative.ext_iff]
     simp [atom, y]
     omega
 
@@ -199,7 +199,7 @@ theorem factors_eval
 
   rw [prod_replicate_atom]
 
-  apply Multiplicative.toAdd_injective
+  rw [Multiplicative.ext_iff]
 
   rfl
 
