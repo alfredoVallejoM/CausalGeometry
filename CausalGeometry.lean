@@ -104,6 +104,7 @@ import CausalGeometry.Number.BilateralLocalization
 import CausalGeometry.Number.CentralOre
 import CausalGeometry.Number.CentralOreMathlib
 import CausalGeometry.Number.BilateralOreMathlib
+import CausalGeometry.Number.BilateralOreNormalForm
 import CausalGeometry.Number.CentralFractionCalculus
 import CausalGeometry.Number.CentralBilateralLocalization
 import CausalGeometry.Number.CentralLocalizationUniversal
