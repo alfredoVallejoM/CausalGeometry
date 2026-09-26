@@ -289,8 +289,9 @@ theorem decomposition_components_unique
 
   have hhcZero :
       (h - h') + (c - c') = 0 := by
-    rw [heq] at hsum
-    simpa using hsum
+    have h := hsum0
+    rw [heZero, zero_add] at h
+    exact h
 
   have hhEqNeg :
       h - h' = -(c - c') := by
@@ -315,14 +316,13 @@ theorem decomposition_components_unique
       h = h' :=
     sub_eq_zero.mp hhZero
 
-  subst h'
-
   have hcEq :
       c = c' := by
+    rw [hhEq] at hhcZero
     simpa using hhcZero
 
   exact
-    ⟨rfl, rfl, hcEq⟩
+    ⟨heq, hhEq, hcEq⟩
 
 end finiteRealHodgeData
 end
