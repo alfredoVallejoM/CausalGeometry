@@ -58,6 +58,7 @@ import CausalGeometry.Calculus.BilinearField
 import CausalGeometry.Calculus.TensorTransport
 import CausalGeometry.Calculus.GeneralTensor
 import CausalGeometry.Calculus.CausalMetric
+import CausalGeometry.Calculus.CausalMetricTransport
 import CausalGeometry.Calculus.DependentCovariantDifference
 import CausalGeometry.Calculus.DependentLinearConnection
 import CausalGeometry.Calculus.LinearConnection
