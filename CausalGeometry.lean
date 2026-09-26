@@ -115,6 +115,8 @@ import CausalGeometry.Calculus.JetRestrictionLimit
 import CausalGeometry.Variational.Legendre
 import CausalGeometry.Variational.JetHamiltonian
 import CausalGeometry.Variational.BilinearLegendre
+import CausalGeometry.Variational.SingularLegendreConstraints
+import CausalGeometry.Variational.DiracConstraintTransport
 import CausalGeometry.Variational.JetCotangentLimit
 import CausalGeometry.Variational.JetCotangent
 import CausalGeometry.Variational.DiscreteAction
