@@ -167,5 +167,41 @@ theorem face_events_agree
   funext j
   rfl
 
+
+/-- In a causal square, the surviving direction of the lower zero-face reaches
+the same one-step configuration as the upper one-face base. -/
+theorem twoCube_lowerZero_after_eq_upperOne
+    (Q : CausalEventCube S 2) :
+    (Q.lowerFace (0 : Fin 2)).frame.after (0 : Fin 1) =
+      (Q.upperFace (1 : Fin 2)).base := by
+  apply S.configuration_eq_of_carrier_eq
+  simp [lowerFace, upperFace, frame, base,
+    CausalCubeFrame.reindex,
+    CausalCubeFrame.after]
+
+/-- Symmetric one-step face identity. -/
+theorem twoCube_lowerOne_after_eq_upperZero
+    (Q : CausalEventCube S 2) :
+    (Q.lowerFace (1 : Fin 2)).frame.after (0 : Fin 1) =
+      (Q.upperFace (0 : Fin 2)).base := by
+  apply S.configuration_eq_of_carrier_eq
+  simp [lowerFace, upperFace, frame, base,
+    CausalCubeFrame.reindex,
+    CausalCubeFrame.after]
+
+/-- Executing the two directions of a causal square in either order gives the
+same terminal configuration.  This is the two-dimensional upper-face identity
+needed by the first d² regression. -/
+theorem twoCube_upperUpper_endpoint
+    (Q : CausalEventCube S 2) :
+    (Q.upperFace (0 : Fin 2)).frame.after (0 : Fin 1) =
+      (Q.upperFace (1 : Fin 2)).frame.after (0 : Fin 1) := by
+  apply S.configuration_eq_of_carrier_eq
+  simp [upperFace, frame, base,
+    CausalCubeFrame.reindex,
+    CausalCubeFrame.after,
+    CausalCubeFrame.afterFace,
+    Set.insert_comm]
+
 end CausalEventCube
 end CausalGeometry
