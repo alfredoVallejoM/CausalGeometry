@@ -65,8 +65,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Calculus/GradedComplex.lean && lake env lean CausalGeometry/Calculus/PairedCochainTransport.lean && lake env lean CausalGeometry/Calculus/GradedCohomologyTransport.lean && lake env lean CausalGeometry/Calculus/GradedHodge.lean && lake env lean CausalGeometry/Calculus/PairedHodgeTransport.lean && lake env lean CausalGeometry/Calculus/GeneralTensor.lean && lake env lean CausalGeometry/Calculus/CausalMetric.lean && lake env lean CausalGeometry/Variational/DiscreteAction.lean && lake env lean CausalGeometry/Models/GradedPairedControls.lean",
-      "description": "Typecheck CA21 arbitrary-degree cochains, independent Phi/Psi defects, cohomology descent, graded Hodge transport, tensor/metric interfaces, discrete action and same-type defect discriminators."
+      "command": "lake env lean CausalGeometry/Calculus/GradedComplex.lean && lake env lean CausalGeometry/Calculus/PairedCochainTransport.lean && lake env lean CausalGeometry/Calculus/GradedCohomologyTransport.lean && lake env lean CausalGeometry/Calculus/GradedHodge.lean && lake env lean CausalGeometry/Calculus/PairedHodgeTransport.lean && lake env lean CausalGeometry/Calculus/GeneralTensor.lean && lake env lean CausalGeometry/Calculus/CausalMetric.lean && lake env lean CausalGeometry/Variational/DiscreteAction.lean && lake env lean CausalGeometry/Models/GradedPairedControls.lean && lake env lean CausalGeometry/Calculus/GradedCohomologyFunctoriality.lean && lake env lean CausalGeometry/Calculus/GradedHodgeZero.lean && lake env lean CausalGeometry/Calculus/GradedHodgeCohomology.lean && lake env lean CausalGeometry/Variational/ActionGauge.lean",
+      "description": "Typecheck CA21 arbitrary-degree cochains, independent Phi/Psi defects, cohomology descent and functoriality, graded Hodge including degree zero and Hodge/cohomology coherence, tensor/metric interfaces, discrete action and boundary-gauge invariance, plus same-type defect discriminators."
     },
     {
       "id": "ECIA-CONTRACT-TYPECHECK",
