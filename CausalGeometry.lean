@@ -53,6 +53,8 @@ import CausalGeometry.Calculus.GradedHodge
 import CausalGeometry.Calculus.FiniteRealHodge
 import CausalGeometry.Calculus.FiniteRealHodgeZero
 import CausalGeometry.Calculus.FiniteRealHodgeDecomposition
+import CausalGeometry.Calculus.FiniteRealHodgeSpectrum
+import CausalGeometry.Calculus.FiniteRealHodgeGreen
 import CausalGeometry.Calculus.GradedHodgeZero
 import CausalGeometry.Calculus.PairedHodgeTransport
 import CausalGeometry.Calculus.GradedHodgeCohomology
