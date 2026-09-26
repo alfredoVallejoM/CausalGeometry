@@ -30,6 +30,7 @@ import CausalGeometry.Calculus.CubicalSubsetGeometry
 import CausalGeometry.Calculus.CubicalSubsetCup
 import CausalGeometry.Calculus.CubicalExterior
 import CausalGeometry.Calculus.CubicalTwoFormBridge
+import CausalGeometry.Calculus.CubicalExteriorLowComplex
 import CausalGeometry.Calculus.CubicalLowDegree
 import CausalGeometry.Calculus.CubicalDifferentialSquared
 import CausalGeometry.Calculus.EventCubeFaceLaws
