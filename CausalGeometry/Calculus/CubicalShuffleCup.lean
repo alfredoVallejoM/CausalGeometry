@@ -1,5 +1,6 @@
 import CausalGeometry.Calculus.CubicalCup
 import Mathlib.Algebra.BigOperators.Field
+import Mathlib.GroupTheory.Perm.Sign
 import Mathlib.Tactic
 
 namespace CausalGeometry
@@ -115,14 +116,19 @@ def inversionCount
     ℕ :=
   (inversionPairs σ).card
 
-/-- Koszul sign of a shuffle in the coefficient field. -/
+/-- Canonical orientation/Koszul sign of a shuffle in the coefficient
+field.
+
+The earlier inversion count remains available as a combinatorial statistic,
+but orientation-sensitive theorems now use the canonical permutation sign
+from mathlib so the cup, face and exterior layers share one sign source. -/
 def shuffleSign
     {K : Type w}
     [Field K]
     {p q : ℕ}
     (σ : CubicalShuffle p q) :
     K :=
-  (-1 : K) ^ inversionCount σ.1
+  (((Equiv.Perm.sign σ.1 : ℤˣ) : ℤ) : K)
 
 variable {K : Type w} [Field K]
 
