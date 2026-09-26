@@ -181,6 +181,21 @@ def canonicalLeftUniversalHom
       (by intro t; rfl)
       (r := a) (s := s))
 
+
+/-- The canonical quotient realization agrees exactly with the pre-existing raw
+LeftFraction group semantics. -/
+@[simp] theorem canonicalLeftUniversalHom_rawFraction
+    (f : α →* G)
+    (x : LeftFraction S) :
+    canonicalLeftUniversalHom
+        (S := S) f x.toCanonical =
+      LeftFraction.realize f x := by
+  rcases x with ⟨s, a⟩
+  simpa [LeftFraction.toCanonical,
+    LeftFraction.realize] using
+    (canonicalLeftUniversalHom_fraction
+      (S := S) f a s)
+
 /-- Universal uniqueness: a monoid morphism out of the canonical localization
 is completely determined by its restriction to the source. -/
 theorem canonicalLeftUniversalHom_unique
