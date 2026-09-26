@@ -332,3 +332,9 @@ import CausalGeometry.Models.EventSystemEquivControls
 import CausalGeometry.Models.GeometryEquivarianceControls
 
 import CausalGeometry.Models.HodgeControls
+
+import CausalGeometry.Number.IrreduciblePrimitiveBridge
+
+import CausalGeometry.Models.CausalLengthAtomic
+
+import CausalGeometry.Models.IrreduciblePrimitiveControls
