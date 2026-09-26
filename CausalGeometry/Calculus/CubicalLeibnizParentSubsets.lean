@@ -306,6 +306,108 @@ theorem complement_liftFaceSubset
 
     rw [hmem, hmemComp]
 
+/-- Strong AxisSubset form of complement_liftFaceSubset. -/
+theorem complementAxisSubset_lift_eq_insert
+    {n p q : ℕ}
+    (h : p + q = n)
+    (i : Fin (n + 1))
+    (A : AxisSubset n p) :
+    complementAxisSubset
+        (by omega : p + (q + 1) = n + 1)
+        (liftFaceSubset i A)
+      =
+    insertAxisSubset
+      (liftFaceSubset i
+        (complementAxisSubset h A))
+      i
+      (removedAxis_not_mem_liftFaceSubset
+        i (complementAxisSubset h A)) := by
+
+  apply Subtype.ext
+
+  exact
+    complement_liftFaceSubset
+      h i A
+
+/-- The local omitted-axis position in the ambient complement is exactly the
+inserted-axis position in the lifted face complement. -/
+theorem complementAxisPosition_lift_eq_insertedAxisPosition
+    {n p q : ℕ}
+    (h : p + q = n)
+    (i : Fin (n + 1))
+    (A : AxisSubset n p) :
+    complementAxisPosition
+        (by omega : p + (q + 1) = n + 1)
+        (liftFaceSubset i A)
+        i
+        (removedAxis_not_mem_liftFaceSubset i A)
+      =
+    insertedAxisPosition
+      (liftFaceSubset i
+        (complementAxisSubset h A))
+      i
+      (removedAxis_not_mem_liftFaceSubset
+        i (complementAxisSubset h A)) := by
+
+  have hset :=
+    complementAxisSubset_lift_eq_insert
+      h i A
+
+  unfold complementAxisPosition
+    insertedAxisPosition
+
+  rw [hset]
+
+/-- Removing the omitted-axis position from the ambient complementary
+enumeration recovers the lifted enumeration of the face complement. -/
+theorem orderIso_complement_lift_succAbove
+    {n p q : ℕ}
+    (h : p + q = n)
+    (i : Fin (n + 1))
+    (A : AxisSubset n p)
+    (a : Fin q) :
+    (Set.powersetCard.orderIsoOfFin
+      (complementAxisSubset
+        (by omega : p + (q + 1) = n + 1)
+        (liftFaceSubset i A))
+      ((complementAxisPosition
+          (by omega : p + (q + 1) = n + 1)
+          (liftFaceSubset i A)
+          i
+          (removedAxis_not_mem_liftFaceSubset i A)).succAbove a)).1
+      =
+    i.succAbove
+      (Set.powersetCard.orderIsoOfFin
+        (complementAxisSubset h A) a).1 := by
+
+  rw [
+    complementAxisSubset_lift_eq_insert
+      h i A,
+    complementAxisPosition_lift_eq_insertedAxisPosition
+      h i A
+  ]
+
+  rw [
+    orderIso_insertAxis_succAbove
+      (liftFaceSubset i
+        (complementAxisSubset h A))
+      i
+      (removedAxis_not_mem_liftFaceSubset
+        i (complementAxisSubset h A))
+      a
+  ]
+
+  change
+    (Set.powersetCard.orderIsoOfFin
+      (liftFaceSubset i
+        (complementAxisSubset h A)) a).1
+      =
+    _
+
+  rw [Set.powersetCard.ofFinEmbEquiv_symm_apply]
+
+  rfl
+
 /-- For the specialized complementAxes API, the generic complement agrees
 definitionally after the ambient-dimension equation is chosen. -/
 theorem complementAxisSubset_eq_complementAxes
