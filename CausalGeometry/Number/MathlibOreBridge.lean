@@ -90,7 +90,9 @@ def canonicalLeftDenominatorInverse
       canonicalLeftDenominatorInverse
         (α := α) (S := S) s =
     1 := by
-  exact OreLocalization.mul_inv s 1
+  simpa [canonicalLeftSourceHom,
+    canonicalLeftDenominatorInverse] using
+    (OreLocalization.mul_inv s (1 : S))
 
 @[simp] theorem canonical_denominatorInverse_mul_source
     (s : S) :
@@ -99,7 +101,9 @@ def canonicalLeftDenominatorInverse
       canonicalLeftSourceHom
         (α := α) (S := S) (s : α) =
     1 := by
-  exact OreLocalization.mul_inv 1 s
+  simpa [canonicalLeftSourceHom,
+    canonicalLeftDenominatorInverse] using
+    (OreLocalization.mul_inv (1 : S) s)
 
 /-- Every selected denominator is a unit in the canonical localization. -/
 theorem canonical_source_denominator_isUnit
