@@ -97,7 +97,7 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean && lake env lean CausalGeometry/Number/CentralOreMathlib.lean && lake env lean CausalGeometry/Number/OreReversibility.lean && lake env lean CausalGeometry/Number/BilateralOreMathlib.lean && lake env lean CausalGeometry/Number/BilateralOreNormalForm.lean && lake env lean CausalGeometry/Number/OreSourceFaithful.lean && lake env lean CausalGeometry/Number/CommutativeOreComparison.lean && lake env lean CausalGeometry/Number/LocalizedValuation.lean && lake env lean CausalGeometry/Number/OreLocalizedValuation.lean",
+      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean && lake env lean CausalGeometry/Number/CentralOreMathlib.lean && lake env lean CausalGeometry/Number/OreReversibility.lean && lake env lean CausalGeometry/Number/BilateralOreMathlib.lean && lake env lean CausalGeometry/Number/BilateralOreNormalForm.lean && lake env lean CausalGeometry/Number/OreSourceFaithful.lean && lake env lean CausalGeometry/Number/CommutativeOreComparison.lean && lake env lean CausalGeometry/Number/LocalizedValuation.lean && lake env lean CausalGeometry/Number/OreLocalizedValuation.lean && lake env lean CausalGeometry/Number/ResidualLocalizationDomain.lean",
       "description": "Typecheck intrinsic/canonical left-right Ore localization, bilateral normalization, source faithfulness/loss criteria, commutative specialization, and additive integer valuations extended through commutative and general Ore quotients."
     },
     {
