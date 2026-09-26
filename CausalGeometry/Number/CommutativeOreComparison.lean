@@ -5,6 +5,8 @@ import Mathlib.Tactic
 
 namespace CausalGeometry
 
+noncomputable section
+
 universe u
 
 namespace CausalLocalization
