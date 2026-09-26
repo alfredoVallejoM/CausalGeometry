@@ -92,6 +92,84 @@ theorem erase_insertAxisSubset
       A.val := by
   simp [insertAxisSubset, hi]
 
+/-- Deleting the local position of the newly inserted axis from the increasing
+enumeration of A union {i} recovers the increasing enumeration of A. -/
+theorem orderIso_insertAxis_succAbove
+    {n p : ℕ}
+    (A : AxisSubset (n + 1) p)
+    (i : Fin (n + 1))
+    (hi : i ∉ A)
+    (a : Fin p) :
+    (Set.powersetCard.orderIsoOfFin
+      (insertAxisSubset A i hi)
+      ((insertedAxisPosition A i hi).succAbove a)).1
+      =
+    (Set.powersetCard.orderIsoOfFin A a).1 := by
+
+  let B :=
+    insertAxisSubset A i hi
+
+  let j :=
+    insertedAxisPosition A i hi
+
+  let f : Fin p ↪o Fin (n + 1) :=
+    OrderEmbedding.ofStrictMono
+      (fun a =>
+        (Set.powersetCard.orderIsoOfFin
+          B (j.succAbove a)).1)
+      (by
+        intro a b hab
+        exact
+          (Set.powersetCard.orderIsoOfFin B)
+            .strictMono
+            (j.strictMono_succAbove hab))
+
+  have hfmem :
+      ∀ a : Fin p,
+        f a ∈ A.val := by
+    intro a
+
+    have hBmem :
+        f a ∈ B.val :=
+      (Set.powersetCard.orderIsoOfFin
+        B (j.succAbove a)).2
+
+    have hne :
+        f a ≠ i := by
+      intro hEq
+
+      have hpos :
+          j.succAbove a = j := by
+        apply
+          (Set.powersetCard.orderIsoOfFin B).injective
+        apply Subtype.ext
+        simpa [f] using hEq
+
+      exact
+        j.succAbove_ne a hpos
+
+    change
+      f a ∈ insert i A.val at hBmem
+
+    rcases Finset.mem_insert.mp hBmem with
+      hEq | hA
+    · exact (hne hEq).elim
+    · exact hA
+
+  have hfun :
+      f =
+        A.val.orderEmbOfFin A.prop :=
+    Finset.orderEmbOfFin_unique'
+      A.prop hfmem
+
+  have ha :=
+    congrArg
+      (fun e : Fin p ↪o Fin (n + 1) =>
+        e a)
+      hfun
+
+  exact ha
+
 /-- Generic complement of a selected axis subset when the complementary
 cardinality is supplied explicitly. -/
 def complementAxisSubset
