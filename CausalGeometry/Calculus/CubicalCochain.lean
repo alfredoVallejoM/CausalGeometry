@@ -1,4 +1,5 @@
 import CausalGeometry.Calculus.EventCube
+import CausalGeometry.Calculus.Difference
 import Mathlib.Algebra.BigOperators.Field
 import Mathlib.Tactic
 
