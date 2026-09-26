@@ -39,6 +39,11 @@ import CausalGeometry.Calculus.GradedCohomologyTransport
 import CausalGeometry.Calculus.GradedCohomologyFunctoriality
 import CausalGeometry.Calculus.RelativeCohomology
 import CausalGeometry.Calculus.RelativeExactSequence
+import CausalGeometry.Calculus.RelativeConnecting
+import CausalGeometry.Calculus.RelativeLongSequence
+import CausalGeometry.Calculus.RelativeLongExactness
+import CausalGeometry.Calculus.RelativeLongExactnessComplete
+import CausalGeometry.Calculus.RelativeLongExactZero
 import CausalGeometry.Calculus.GradedHodge
 import CausalGeometry.Calculus.GradedHodgeZero
 import CausalGeometry.Calculus.PairedHodgeTransport
