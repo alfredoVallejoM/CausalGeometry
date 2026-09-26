@@ -97,8 +97,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean && lake env lean CausalGeometry/Number/CentralOreMathlib.lean && lake env lean CausalGeometry/Number/OreReversibility.lean && lake env lean CausalGeometry/Number/BilateralOreMathlib.lean && lake env lean CausalGeometry/Number/BilateralOreNormalForm.lean && lake env lean CausalGeometry/Number/OreSourceFaithful.lean",
-      "description": "Typecheck intrinsic and canonical Ore localization, central promotion without cancellation, bilateral equivalence/normalization, and exact source information-loss/faithfulness criteria."
+      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean && lake env lean CausalGeometry/Number/CentralOreMathlib.lean && lake env lean CausalGeometry/Number/OreReversibility.lean && lake env lean CausalGeometry/Number/BilateralOreMathlib.lean && lake env lean CausalGeometry/Number/BilateralOreNormalForm.lean && lake env lean CausalGeometry/Number/OreSourceFaithful.lean && lake env lean CausalGeometry/Number/CommutativeOreComparison.lean",
+      "description": "Typecheck intrinsic/canonical Ore localization, central promotion, bilateral equivalence/normal forms, exact source loss, and equivalence of the legacy cancellative commutative quotient with both canonical Ore presentations."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
