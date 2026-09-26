@@ -112,6 +112,7 @@ import CausalGeometry.Number.CentralLocalizationUniversal
 import CausalGeometry.Number.CommutativeLocalization
 import CausalGeometry.Number.CommutativeLocalizationMonoid
 import CausalGeometry.Number.CommutativeLocalizationUniversal
+import CausalGeometry.Number.CommutativeOreComparison
 import CausalGeometry.Foundation.CorrelativeRestriction
 import CausalGeometry.Number.Divisibility
 import CausalGeometry.Number.GCDLCM
