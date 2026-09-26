@@ -1,3 +1,15 @@
+> **Historical-roadmap notice — 2026-09-26.**
+>
+> This document is retained as an auditable snapshot of the 2026-09-24
+> planning state.  It is **superseded as a forward roadmap** by
+> `docs/13_CURRENT_STATUS_2026-09-26.md` and campaigns CA-21--CA-25.
+> Several items listed below as future work are now implemented on `main`,
+> including dependent linear connections, tensor transport/covariant
+> differences, exact finite/local curvature comparison, finite Bianchi,
+> Bruhat--Tits/Ihara source realizations, causal H1/H2 functoriality and
+> causal Hodge structure.  The historical text below is intentionally not
+> rewritten, so it continues to record what was known at that snapshot.
+>
 # CausalGeometry — closure map for causal calculus, CA-18 and ECIA consumption
 
 Snapshot source head before this document: 05b152876e8843dbc93e45f190d9968860afad5d
