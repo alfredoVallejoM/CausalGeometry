@@ -22,6 +22,9 @@ import CausalGeometry.Calculus.FormEquivariance
 import CausalGeometry.Calculus.CubeEquivariance
 import CausalGeometry.Calculus.EventCube
 import CausalGeometry.Calculus.CubicalCochain
+import CausalGeometry.Calculus.CubicalFrontBack
+import CausalGeometry.Calculus.CubicalCup
+import CausalGeometry.Calculus.CubicalShuffleCup
 import CausalGeometry.Calculus.CubicalLowDegree
 import CausalGeometry.Calculus.CubicalDifferentialSquared
 import CausalGeometry.Calculus.EventCubeFaceLaws
@@ -32,6 +35,7 @@ import CausalGeometry.Calculus.GradedComplex
 import CausalGeometry.Calculus.PairedCochainTransport
 import CausalGeometry.Calculus.GradedCohomologyTransport
 import CausalGeometry.Calculus.GradedCohomologyFunctoriality
+import CausalGeometry.Calculus.RelativeCohomology
 import CausalGeometry.Calculus.GradedHodge
 import CausalGeometry.Calculus.GradedHodgeZero
 import CausalGeometry.Calculus.PairedHodgeTransport
@@ -230,6 +234,7 @@ import CausalGeometry.Number.CanonicalIncidence
 
 import CausalGeometry.Models.PairedTransformControls
 import CausalGeometry.Models.GradedPairedControls
+import CausalGeometry.Models.CubicalCupControls
 
 import CausalGeometry.Models.CalculusControls
 
