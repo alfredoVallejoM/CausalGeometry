@@ -306,6 +306,88 @@ theorem complement_liftFaceSubset
 
     rw [hmem, hmemComp]
 
+/-- If the omitted axis is inserted into the lifted selected subset, the
+complement of that enlarged subset is exactly the lift of the face
+complement. -/
+theorem complement_insert_liftFaceSubset
+    {n p q : ℕ}
+    (h : p + q = n)
+    (i : Fin (n + 1))
+    (A : AxisSubset n p) :
+    complementAxisSubset
+        (by omega : (p + 1) + q = n + 1)
+        (insertAxisSubset
+          (liftFaceSubset i A)
+          i
+          (removedAxis_not_mem_liftFaceSubset i A))
+      =
+    liftFaceSubset i
+      (complementAxisSubset h A) := by
+
+  apply Subtype.ext
+
+  let LA :=
+    liftFaceSubset i A
+
+  let LC :=
+    liftFaceSubset i
+      (complementAxisSubset h A)
+
+  have hcomp :
+      (complementAxisSubset
+        (by omega : p + (q + 1) = n + 1)
+        LA).val
+        =
+      insert i LC.val := by
+    simpa [LA, LC] using
+      complement_liftFaceSubset
+        h i A
+
+  ext k
+
+  have hiLC :
+      i ∉ LC :=
+    removedAxis_not_mem_liftFaceSubset
+      i (complementAxisSubset h A)
+
+  change
+    k ∈
+      (insert i LA.val)ᶜ
+      ↔
+    k ∈ LC.val
+
+  have hkComp :
+      k ∈ LA.valᶜ ↔
+        k = i ∨ k ∈ LC.val := by
+    rw [← hcomp]
+    simp [eq_comm]
+
+  constructor
+
+  · intro hk
+    have hkLA :
+        k ∈ LA.valᶜ := by
+      simpa using hk
+
+    rcases hkComp.mp hkLA with
+      hki | hkLC
+    · subst k
+      simpa using hk
+    · exact hkLC
+
+  · intro hkLC
+
+    have hki : k ≠ i := by
+      intro hEq
+      subst k
+      exact hiLC hkLC
+
+    have hkLA :
+        k ∈ LA.valᶜ :=
+      hkComp.mpr (Or.inr hkLC)
+
+    simpa [hki] using hkLA
+
 /-- Strong AxisSubset form of complement_liftFaceSubset. -/
 theorem complementAxisSubset_lift_eq_insert
     {n p q : ℕ}
