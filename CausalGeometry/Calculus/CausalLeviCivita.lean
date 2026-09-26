@@ -144,21 +144,6 @@ theorem leviCivita_agree_on_solder
       (mul_eq_zero.mp htwo).resolve_left h2
     simpa [CausalMetric.pair, map_sub] using hz
 
-  let ell : V →ₗ[K] K :=
-    (g.form).comp
-      (A.operator d - A'.operator d)
-
-  have hrange :
-      Set.range theta.value ⊆ ell.ker := by
-    rintro z ⟨f, rfl⟩
-    change
-      g.pair
-          (A.operator d (theta.value f) -
-            A'.operator d (theta.value f))
-          ?_ = 0
-    -- The kernel statement is evaluated at the current vector argument below.
-    simp [ell]
-
   -- Use spanning directly on the scalar linear functional obtained after
   -- fixing the difference vector on theta(e).
   let phi : V →ₗ[K] K :=
@@ -180,6 +165,7 @@ theorem leviCivita_agree_on_solder
       (⊤ : Submodule K V) ≤ phi.ker := by
     simpa [hspan] using hSpanPhi
 
+  change phi y = 0
   exact hTopPhi Submodule.mem_top
 
 /-- Causal Levi-Civita uniqueness theorem for the local linearized model.
