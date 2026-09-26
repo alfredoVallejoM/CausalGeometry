@@ -126,5 +126,58 @@ theorem differential_zero_recovers_causalDifference
     CausalCubeFrame.after,
     causalDifference]
 
+
+/-- Degree-zero differential on an arbitrary one-cube, not only the canonical
+oneCube constructor. -/
+theorem differential_zero_on_cube
+    (F : Configuration S → K)
+    (Q : CausalEventCube S 1) :
+    differential (S := S) (K := K) 0
+        (ofConfigurationObservable F) Q
+      =
+    F (Q.frame.after (0 : Fin 1)) -
+      F Q.base := by
+  simp [differential, faceContribution,
+    faceSign, ofConfigurationObservable,
+    CausalEventCube.lowerFace,
+    CausalEventCube.upperFace,
+    CausalEventCube.base,
+    CausalEventCube.frame,
+    CausalCubeFrame.after]
+
+/-- First nontrivial cubical square-zero theorem.
+
+For scalar observables, d₁ d₀ vanishes on every causal two-cube.  The proof
+uses the actual concurrency face identities, so this is a geometric theorem
+rather than an assumed complex law. -/
+theorem differential_one_differential_zero
+    (F : Configuration S → K)
+    (Q : CausalEventCube S 2) :
+    differential (S := S) (K := K) 1
+        (differential (S := S) (K := K) 0
+          (ofConfigurationObservable F)) Q
+      =
+    0 := by
+  rw [differential_apply]
+  rw [Fin.sum_univ_two]
+  simp only [faceContribution, faceSign]
+  rw [
+    differential_zero_on_cube F
+      (Q.upperFace (0 : Fin 2)),
+    differential_zero_on_cube F
+      (Q.lowerFace (0 : Fin 2)),
+    differential_zero_on_cube F
+      (Q.upperFace (1 : Fin 2)),
+    differential_zero_on_cube F
+      (Q.lowerFace (1 : Fin 2))
+  ]
+  rw [
+    CausalEventCube.twoCube_upperUpper_endpoint Q,
+    CausalEventCube.twoCube_lowerZero_after_eq_upperOne Q,
+    CausalEventCube.twoCube_lowerOne_after_eq_upperZero Q
+  ]
+  norm_num [faceSign]
+  ring
+
 end CausalCubicalCochain
 end CausalGeometry
