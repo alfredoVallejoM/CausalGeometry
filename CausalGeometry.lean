@@ -28,6 +28,8 @@ import CausalGeometry.Calculus.CubicalCup
 import CausalGeometry.Calculus.CubicalShuffleCup
 import CausalGeometry.Calculus.CubicalSubsetGeometry
 import CausalGeometry.Calculus.CubicalSubsetCup
+import CausalGeometry.Calculus.CubicalShuffleSubsetEquiv
+import CausalGeometry.Calculus.CubicalFrontFaceStructure
 import CausalGeometry.Calculus.CubicalExterior
 import CausalGeometry.Calculus.CubicalOrientation
 import CausalGeometry.Calculus.CubicalFaceEquivariance
