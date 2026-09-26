@@ -97,8 +97,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean && lake env lean CausalGeometry/Number/CentralOreMathlib.lean && lake env lean CausalGeometry/Number/OreReversibility.lean && lake env lean CausalGeometry/Number/BilateralOreMathlib.lean",
-      "description": "Typecheck canonical left/right Ore localization bridges, intrinsic reversibility hypotheses, central+cancellative promotion, raw-fraction semantics, universal uniqueness, and canonical bilateral equivalence when both OreSet directions exist."
+      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean && lake env lean CausalGeometry/Number/CentralOreMathlib.lean && lake env lean CausalGeometry/Number/OreReversibility.lean && lake env lean CausalGeometry/Number/BilateralOreMathlib.lean && lake env lean CausalGeometry/Number/BilateralOreNormalForm.lean",
+      "description": "Typecheck intrinsic and mathlib Ore hypotheses, canonical left/right localizations, bilateral equivalence, denominator units, universal properties, and explicit left/right normal-form conversion."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
