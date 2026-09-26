@@ -7,22 +7,31 @@ universe u
 
 namespace CausalLocalization
 
-variable {α : Type u} [CancelMonoid α]
+variable {α : Type u} [Monoid α]
 variable {S : Submonoid α}
 
-/-- Central selected denominators in a cancellative monoid satisfy the full
-mathlib left OreSet hypothesis.
+/-- Central selected denominators satisfy the full mathlib left OreSet
+hypothesis in an arbitrary monoid.
 
-Centrality gives the Ore square; ambient right cancellation supplies the weak
-reversibility field that is absent from our raw LeftOreCondition. -/
+Centrality supplies both ingredients:
+* the Ore square;
+* reversibility, because from a*s=b*s one gets s*a=s*b by commuting the
+  selected denominator across both source elements.
+
+No cancellation assumption on the ambient monoid is needed. -/
 def CentralDenominators.toMathlibOreSet
     (hS : CentralDenominators S) :
     OreLocalization.OreSet S where
 
   ore_right_cancel := by
     intro r₁ r₂ s h
-    refine ⟨1, ?_⟩
-    simpa using (mul_right_cancel h)
+    refine ⟨s, ?_⟩
+    calc
+      (s : α) * r₁ = r₁ * (s : α) :=
+        (hS s r₁).eq
+      _ = r₂ * (s : α) := h
+      _ = (s : α) * r₂ :=
+        (hS s r₂).eq.symm
 
   oreNum := fun r _ => r
 
@@ -46,8 +55,8 @@ def CentralDenominators.op
   have hop := congrArg MulOpposite.op h.eq
   simpa [unopDenominator] using hop
 
-/-- Hence the same central cancellative sector also satisfies the opposite
-OreSet needed by the canonical right localization. -/
+/-- Hence the same central sector also satisfies the opposite OreSet needed
+by the canonical right localization. -/
 def CentralDenominators.toOppositeMathlibOreSet
     (hS : CentralDenominators S) :
     OreLocalization.OreSet S.op :=
