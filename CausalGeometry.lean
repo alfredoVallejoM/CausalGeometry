@@ -90,6 +90,8 @@ import CausalGeometry.Calculus.BilinearField
 import CausalGeometry.Calculus.TensorTransport
 import CausalGeometry.Calculus.GeneralTensor
 import CausalGeometry.Calculus.CoordinateTensor
+import CausalGeometry.Calculus.IntrinsicMixedTensor
+import CausalGeometry.Calculus.IntrinsicTensorSectors
 import CausalGeometry.Calculus.CoordinateTensorSectors
 import CausalGeometry.Calculus.CoordinateCurvature
 import CausalGeometry.Calculus.CausalLinearFrame
