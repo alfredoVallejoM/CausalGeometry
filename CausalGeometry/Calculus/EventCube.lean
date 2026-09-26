@@ -60,6 +60,39 @@ def frame
     (zeroCube C).base = C :=
   rfl
 
+
+/-- One enabled primitive event determines a canonical one-dimensional causal
+cube. -/
+def oneCube
+    (C : Configuration S)
+    (e : Event)
+    (h : S.Enabled C e) :
+    CausalEventCube S 1 :=
+  ⟨C,
+    { event := fun _ => e
+      enabled := fun _ => h
+      injective := by
+        intro i j hij
+        exact Subsingleton.elim i j
+      independent := by
+        intro i j hij
+        exact False.elim
+          (hij (Subsingleton.elim i j)) }⟩
+
+@[simp] theorem oneCube_base
+    (C : Configuration S)
+    (e : Event)
+    (h : S.Enabled C e) :
+    (oneCube C e h).base = C :=
+  rfl
+
+@[simp] theorem oneCube_event_zero
+    (C : Configuration S)
+    (e : Event)
+    (h : S.Enabled C e) :
+    (oneCube C e h).frame.event 0 = e :=
+  rfl
+
 /-- Delete one direction without executing it: the lower cubical face. -/
 def lowerFace
     {n : ℕ}
