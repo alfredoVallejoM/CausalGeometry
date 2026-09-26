@@ -66,6 +66,29 @@ theorem mem_liftFaceSubset_iff
 
     rw [ha]
 
+/-- The increasing enumeration of a lifted face subset is obtained by applying
+succAbove to the increasing enumeration of the face subset. -/
+theorem orderIso_liftFaceSubset
+    {n p : ℕ}
+    (i : Fin (n + 1))
+    (A : AxisSubset n p)
+    (a : Fin p) :
+    (Set.powersetCard.orderIsoOfFin
+      (liftFaceSubset i A) a).1
+      =
+    i.succAbove
+      (Set.powersetCard.orderIsoOfFin A a).1 := by
+
+  change
+    ((Set.powersetCard.ofFinEmbEquiv.symm
+      (liftFaceSubset i A)) a)
+      =
+    _
+
+  rw [Set.powersetCard.ofFinEmbEquiv_symm_apply]
+
+  rfl
+
 /-- The removed ambient axis never belongs to a lifted face subset. -/
 theorem removedAxis_not_mem_liftFaceSubset
     {n p : ℕ}
