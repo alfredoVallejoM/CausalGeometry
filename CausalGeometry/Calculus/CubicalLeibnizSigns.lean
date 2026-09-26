@@ -64,11 +64,46 @@ theorem subsetPermutationOfEq_right
   subst n
   exact subsetPermutation_right A j
 
+/-- Cast a generic ambient subset to the definitionally p+q ambient type. -/
+def specializeAxisSubset
+    {n p q : ℕ}
+    (h : p + q = n)
+    (A : AxisSubset n p) :
+    AxisSubset (p + q) p :=
+  castAxisSubset h.symm A
+
 end CausalEventCube
 
 namespace CausalCubicalCochain
 
 variable {K : Type w} [Field K]
+
+/-- Generic subset-permutation sign agrees with the specialized Serre subset
+sign after transporting the ambient dimension. -/
+theorem subsetShuffleSign_specialize
+    {n p q : ℕ}
+    (h : p + q = n)
+    (A : CausalEventCube.AxisSubset n p) :
+    subsetShuffleSign
+        (K := K)
+        (CausalEventCube.specializeAxisSubset
+          h A)
+      =
+    permutationSign (K := K)
+      (CausalEventCube.subsetPermutationOfEq
+        h A) := by
+  subst n
+  rfl
+
+/-- In the definitionally aligned case, subset shuffle sign is just the
+canonical permutation sign. -/
+theorem subsetShuffleSign_eq_permutationSign
+    {p q : ℕ}
+    (A : CausalEventCube.AxisSubset (p + q) p) :
+    subsetShuffleSign (K := K) A =
+      permutationSign (K := K)
+        (CausalEventCube.subsetPermutation A) := by
+  rfl
 
 /-- The cofactor identity in the form used by the Leibniz proof:
 the face sign of the image axis multiplies the residual sign. -/
