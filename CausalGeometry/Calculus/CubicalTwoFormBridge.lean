@@ -11,100 +11,10 @@ open EventSystem
 variable {Event : Type u} {Label : Type v}
 variable {S : EventSystem Event Label}
 
-namespace CausalCubeFrame
-
-/-- Two cube frames over the same base are equal once their ordered event
-families agree.  All remaining fields are propositions/proof witnesses. -/
-theorem ext_event
-    {C : Configuration S}
-    {ι : Type*}
-    {F G : CausalCubeFrame S C ι}
-    (h : F.event = G.event) :
-    F = G := by
-  cases F with
-  | mk event enabled injective independent =>
-      cases G with
-      | mk event' enabled' injective' independent' =>
-          dsimp at h
-          subst event'
-          rfl
-
-end CausalCubeFrame
-
 namespace CausalEventCube
 
-/-- Canonical ordered two-cube attached to one concurrency diamond. -/
-def ofDiamond
-    {C : Configuration S}
-    {e f : Event}
-    (d : ConcurrencyDiamond C e f) :
-    CausalEventCube S 2 :=
-  ⟨C,
-    { event := fun i =>
-        Fin.cases e
-          (fun _ : Fin 1 => f) i
-
-      enabled := fun i =>
-        Fin.cases d.concurrent.1
-          (fun _ : Fin 1 =>
-            d.concurrent.2.1) i
-
-      injective := by
-        intro i j hij
-        fin_cases i <;> fin_cases j
-        · rfl
-        · exfalso
-          exact
-            d.concurrent.2.2.2.2.2 hij
-        · exfalso
-          exact
-            d.concurrent.2.2.2.2.2 hij.symm
-        · rfl
-
-      independent := by
-        intro i j hij
-        fin_cases i <;> fin_cases j
-        · exact (hij rfl).elim
-        · exact
-            ⟨d.concurrent.2.2.1,
-              d.concurrent.2.2.2.1,
-              d.concurrent.2.2.2.2.1⟩
-        · exact
-            ⟨d.concurrent.2.2.2.1,
-              d.concurrent.2.2.1,
-              fun hconf =>
-                d.concurrent.2.2.2.2.1
-                  (S.conflict_symm hconf)⟩
-        · exact (hij rfl).elim }⟩
-
-/-- Canonical oriented concurrency diamond read from a two-cube. -/
-def toDiamond
-    (Q : CausalEventCube S 2) :
-    ConcurrencyDiamond
-      Q.base
-      (Q.frame.event (0 : Fin 2))
-      (Q.frame.event (1 : Fin 2)) :=
-  Q.frame.diamond (by decide)
-
-@[simp] theorem toDiamond_ofDiamond
-    {C : Configuration S}
-    {e f : Event}
-    (d : ConcurrencyDiamond C e f) :
-    (ofDiamond d).toDiamond = d := by
-  cases d
-  rfl
-
-/-- Every ordered two-cube is recovered from its canonical diamond. -/
-@[simp] theorem ofDiamond_toDiamond
-    (Q : CausalEventCube S 2) :
-    ofDiamond Q.toDiamond = Q := by
-  apply Sigma.ext
-  · rfl
-  · apply CausalCubeFrame.ext_event
-    funext i
-    fin_cases i <;> rfl
-
-/-- Reversing a diamond is exactly swapping the two cubical axes. -/
+/-- Reversing a diamond is exactly swapping the two coordinates of its
+canonical ordered two-cube. -/
 theorem ofDiamond_symm
     {C : Configuration S}
     {e f : Event}
@@ -112,23 +22,22 @@ theorem ofDiamond_symm
     ofDiamond d.symm =
       (ofDiamond d).permute
         (Equiv.swap (0 : Fin 2) (1 : Fin 2)) := by
-  apply Sigma.ext
+  apply CausalEventCube.ext
   · rfl
-  · apply CausalCubeFrame.ext_event
-    funext i
+  · funext i
     fin_cases i <;> rfl
 
 /-- Swapping the axes of an arbitrary two-cube reverses its canonical
 concurrency diamond. -/
-theorem toDiamond_swap
+theorem diamond01_swap
     (Q : CausalEventCube S 2) :
     (Q.permute
-      (Equiv.swap (0 : Fin 2) (1 : Fin 2))).toDiamond
+      (Equiv.swap (0 : Fin 2) (1 : Fin 2))).diamond01
       =
-    Q.toDiamond.symm := by
-  rw [← ofDiamond_toDiamond Q]
+    Q.diamond01.symm := by
+  rw [← ofDiamond_diamond01 Q]
   rw [← ofDiamond_symm]
-  exact toDiamond_ofDiamond _
+  exact diamond01_ofDiamond _
 
 end CausalEventCube
 
@@ -136,11 +45,12 @@ namespace CausalCubicalCochain
 
 variable {K : Type w} [Field K]
 
-/-- Convert an old skew causal two-form into a raw degree-two cubical cochain. -/
+/-- Convert an old skew causal two-form into a raw degree-two cubical
+cochain by evaluating it on the canonical ordered diamond of the cube. -/
 def twoFormToCubical
     (η : CausalTwoForm S K) :
     CausalCubicalCochain S K 2 :=
-  fun Q => η.value Q.toDiamond
+  fun Q => η.value Q.diamond01
 
 /-- The cubical cochain underlying a skew two-form is alternating. -/
 theorem twoFormToCubical_alternating
@@ -149,19 +59,29 @@ theorem twoFormToCubical_alternating
   intro Q i j hij
   fin_cases i <;> fin_cases j
   · exact (hij rfl).elim
-  · rw [twoFormToCubical]
-    rw [CausalEventCube.toDiamond_swap]
-    exact η.skew Q.toDiamond
+  · change
+      η.value
+          ((Q.permute
+            (Equiv.swap (0 : Fin 2) (1 : Fin 2))).diamond01)
+        =
+      - η.value Q.diamond01
+    rw [CausalEventCube.diamond01_swap]
+    exact η.skew Q.diamond01
   ·
     have hswap :
         Equiv.swap (1 : Fin 2) (0 : Fin 2)
           =
-        Equiv.swap (0 : Fin 2) (1 : Fin 2) := by
-      exact Equiv.swap_comm _ _
+        Equiv.swap (0 : Fin 2) (1 : Fin 2) :=
+      Equiv.swap_comm _ _
     rw [hswap]
-    rw [twoFormToCubical]
-    rw [CausalEventCube.toDiamond_swap]
-    exact η.skew Q.toDiamond
+    change
+      η.value
+          ((Q.permute
+            (Equiv.swap (0 : Fin 2) (1 : Fin 2))).diamond01)
+        =
+      - η.value Q.diamond01
+    rw [CausalEventCube.diamond01_swap]
+    exact η.skew Q.diamond01
   · exact (hij rfl).elim
 
 /-- Every old CausalTwoForm gives a genuine exterior degree-two cubical
@@ -193,7 +113,7 @@ def exteriorToTwoForm
         (0 : Fin 2) (1 : Fin 2)
         (by decide)
 
-/-- The two presentations contain exactly the same data. -/
+/-- Round trip from legacy two-forms to exterior cubical two-forms and back. -/
 theorem exteriorToTwoForm_twoFormToExterior
     (η : CausalTwoForm S K) :
     exteriorToTwoForm
@@ -206,6 +126,7 @@ theorem exteriorToTwoForm_twoFormToExterior
     twoFormToExterior,
     twoFormToCubical]
 
+/-- Round trip from exterior cubical two-forms to legacy two-forms and back. -/
 theorem twoFormToExterior_exteriorToTwoForm
     (ω :
       CausalExteriorCochain
@@ -216,9 +137,12 @@ theorem twoFormToExterior_exteriorToTwoForm
     ω := by
   apply Subtype.ext
   funext Q
-  simp [twoFormToExterior,
-    exteriorToTwoForm,
-    twoFormToCubical]
+  change
+    ω.1
+        (CausalEventCube.ofDiamond Q.diamond01)
+      =
+    ω.1 Q
+  rw [CausalEventCube.ofDiamond_diamond01]
 
 /-- Structural equivalence between the legacy skew-diamond two-form carrier
 and the new alternating cubical degree-two carrier. -/
