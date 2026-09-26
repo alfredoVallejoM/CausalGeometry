@@ -102,5 +102,29 @@ def ofConfigurationObservable
       F C :=
   rfl
 
+
+/-- Degree zero of the arbitrary cubical differential is exactly the original
+finite causal difference on a one-event cube.  This is the compatibility
+bridge between the old first-order calculus and the new graded carrier. -/
+theorem differential_zero_recovers_causalDifference
+    (F : Configuration S → K)
+    (C : Configuration S)
+    (e : Event)
+    (h : S.Enabled C e) :
+    differential (S := S) (K := K) 0
+        (ofConfigurationObservable F)
+        (CausalEventCube.oneCube C e h)
+      =
+    causalDifference F C e h := by
+  simp [differential, faceContribution,
+    faceSign, ofConfigurationObservable,
+    CausalEventCube.oneCube,
+    CausalEventCube.lowerFace,
+    CausalEventCube.upperFace,
+    CausalEventCube.base,
+    CausalEventCube.frame,
+    CausalCubeFrame.after,
+    causalDifference]
+
 end CausalCubicalCochain
 end CausalGeometry
