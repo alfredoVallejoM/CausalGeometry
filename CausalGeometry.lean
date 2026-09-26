@@ -170,6 +170,7 @@ import CausalGeometry.Number.Factorization
 import CausalGeometry.Number.Valuation
 import CausalGeometry.Number.LocalizedValuation
 import CausalGeometry.Number.OreLocalizedValuation
+import CausalGeometry.Number.LocalizedDivisorComparison
 import CausalGeometry.Number.NatShadow
 import CausalGeometry.Completion.InverseTower
 import CausalGeometry.Completion.SharedDepth
