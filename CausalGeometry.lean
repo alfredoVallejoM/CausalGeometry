@@ -42,6 +42,11 @@ import CausalGeometry.Calculus.CubicalLeibnizBlockIndices
 import CausalGeometry.Calculus.CubicalLeibnizResidualPermutation
 import CausalGeometry.Calculus.CubicalLeibnizCoefficients
 import CausalGeometry.Calculus.CubicalLeibnizGeometryBase
+import CausalGeometry.Calculus.CubicalLeibnizReindex
+import CausalGeometry.Calculus.CubicalLeibnizSums
+import CausalGeometry.Calculus.CubicalLeibnizExpansion
+import CausalGeometry.Calculus.CubicalLeibnizGeneral
+import CausalGeometry.Calculus.CubicalLeibnizIncidenceTerm
 import CausalGeometry.Calculus.CubicalSingletonShuffle
 import CausalGeometry.Calculus.CubicalExterior
 import CausalGeometry.Calculus.CubicalOrientation
