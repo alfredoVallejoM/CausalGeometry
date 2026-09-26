@@ -242,6 +242,185 @@ def calculus :
     groupLastPair, contractOne,
     tensorPowerOneEquiv]
 
+/-- Uncurried product of two tensor-power elements. -/
+def tensorPowerProduct
+    (M : Type v)
+    [AddCommGroup M]
+    [Module K M]
+    {p r : ℕ}
+    (x : TensorPower K p M)
+    (y : TensorPower K r M) :
+    TensorPower K (p + r) M :=
+  TensorPower.mulEquiv
+    (R := K) (M := M)
+    (x ⊗ₜ[K] y)
+
+/-- Tensor-power multiplication is associative up to the canonical rank cast. -/
+theorem tensorPowerProduct_assoc
+    (M : Type v)
+    [AddCommGroup M]
+    [Module K M]
+    {p r a : ℕ}
+    (x : TensorPower K p M)
+    (y : TensorPower K r M)
+    (z : TensorPower K a M) :
+    TensorPower.cast K M
+        (Nat.add_assoc p r a)
+        (tensorPowerProduct
+          (K := K) M
+          (tensorPowerProduct (K := K) M x y) z)
+      =
+    tensorPowerProduct
+      (K := K) M x
+      (tensorPowerProduct (K := K) M y z) := by
+  simpa [tensorPowerProduct,
+    TensorPower.gMul_def] using
+      (TensorPower.mul_assoc
+        (R := K) (M := M) x y z)
+
+/-- Rank casts of pure mixed tensors are the tensor product of the canonical
+rank casts on the vector and dual tensor powers. -/
+theorem castRanks_tmul
+    {p p' q q' : ℕ}
+    (hp : p = p')
+    (hq : q = q')
+    (x : TensorPower K p V)
+    (alpha : TensorPower K q (Module.Dual K V)) :
+    GeneralCausalTensorCalculus.castRanks
+        (C := calculus (K := K) (V := V))
+        hp hq
+        (x ⊗ₜ[K] alpha)
+      =
+    TensorPower.cast K V hp x
+      ⊗ₜ[K]
+    TensorPower.cast K (Module.Dual K V) hq alpha := by
+  cases hp
+  cases hq
+  rfl
+
+/-- Associativity on pure mixed tensors. -/
+theorem tensor_assoc_tmul
+    {p q r s a b : ℕ}
+    (x : TensorPower K p V)
+    (alpha : TensorPower K q (Module.Dual K V))
+    (y : TensorPower K r V)
+    (beta : TensorPower K s (Module.Dual K V))
+    (z : TensorPower K a V)
+    (gamma : TensorPower K b (Module.Dual K V)) :
+    GeneralCausalTensorCalculus.castRanks
+        (C := calculus (K := K) (V := V))
+        (Nat.add_assoc p r a)
+        (Nat.add_assoc q s b)
+        (tensor (K := K) (V := V)
+          (p + r) (q + s) a b
+          (tensor (K := K) (V := V)
+            p q r s
+            (x ⊗ₜ[K] alpha)
+            (y ⊗ₜ[K] beta))
+          (z ⊗ₜ[K] gamma))
+      =
+    tensor (K := K) (V := V)
+      p q (r + a) (s + b)
+      (x ⊗ₜ[K] alpha)
+      (tensor (K := K) (V := V)
+        r s a b
+        (y ⊗ₜ[K] beta)
+        (z ⊗ₜ[K] gamma)) := by
+
+  simp only [tensor_tmul]
+
+  rw [castRanks_tmul]
+
+  change
+    TensorPower.cast K V
+        (Nat.add_assoc p r a)
+        (tensorPowerProduct
+          (K := K) V
+          (tensorPowerProduct (K := K) V x y) z)
+      ⊗ₜ[K]
+    TensorPower.cast K (Module.Dual K V)
+        (Nat.add_assoc q s b)
+        (tensorPowerProduct
+          (K := K) (Module.Dual K V)
+          (tensorPowerProduct
+            (K := K) (Module.Dual K V)
+            alpha beta)
+          gamma)
+      =
+    tensorPowerProduct (K := K) V x
+        (tensorPowerProduct (K := K) V y z)
+      ⊗ₜ[K]
+    tensorPowerProduct
+        (K := K) (Module.Dual K V)
+        alpha
+        (tensorPowerProduct
+          (K := K) (Module.Dual K V)
+          beta gamma)
+
+  rw [
+    tensorPowerProduct_assoc
+      (K := K) V x y z,
+    tensorPowerProduct_assoc
+      (K := K) (Module.Dual K V)
+      alpha beta gamma
+  ]
+
+/-- Full associativity of the basis-free mixed tensor product. -/
+theorem tensorProductAssociative :
+    (calculus (K := K) (V := V))
+      .TensorProductAssociative := by
+
+  intro p q r s a b X Y Z
+
+  induction X using TensorProduct.induction_on with
+  | zero =>
+      simp [
+        GeneralCausalTensorCalculus.castRanks_zero
+      ]
+
+  | tmul x alpha =>
+      induction Y using TensorProduct.induction_on with
+      | zero =>
+          simp [
+            GeneralCausalTensorCalculus.castRanks_zero
+          ]
+
+      | tmul y beta =>
+          induction Z using TensorProduct.induction_on with
+          | zero =>
+              simp [
+                GeneralCausalTensorCalculus.castRanks_zero
+              ]
+
+          | tmul z gamma =>
+              exact
+                tensor_assoc_tmul
+                  (K := K) (V := V)
+                  x alpha y beta z gamma
+
+          | add Z1 Z2 hZ1 hZ2 =>
+              rw [map_add]
+              rw [map_add]
+              rw [map_add]
+              rw [GeneralCausalTensorCalculus.castRanks_add]
+              rw [hZ1, hZ2]
+
+      | add Y1 Y2 hY1 hY2 =>
+          rw [map_add]
+          rw [map_add]
+          rw [map_add]
+          rw [map_add]
+          rw [GeneralCausalTensorCalculus.castRanks_add]
+          rw [hY1, hY2]
+
+  | add X1 X2 hX1 hX2 =>
+      rw [map_add]
+      rw [map_add]
+      rw [map_add]
+      rw [map_add]
+      rw [GeneralCausalTensorCalculus.castRanks_add]
+      rw [hX1, hX2]
+
 /-- Identity slot permutations are identities in the basis-free realization. -/
 theorem contravariantPermutationIdentity :
     (calculus (K := K) (V := V))
