@@ -124,6 +124,7 @@ import CausalGeometry.Variational.ActionGauge
 import CausalGeometry.Variational.CausalSymmetry
 import CausalGeometry.Variational.ElementaryEulerLagrange
 import CausalGeometry.Variational.QuasiNoether
+import CausalGeometry.Variational.CausalMomentumMap
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
