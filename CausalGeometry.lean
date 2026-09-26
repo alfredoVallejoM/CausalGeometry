@@ -26,7 +26,10 @@ import CausalGeometry.Calculus.CubicalCochain
 import CausalGeometry.Calculus.CubicalFrontBack
 import CausalGeometry.Calculus.CubicalCup
 import CausalGeometry.Calculus.CubicalShuffleCup
+import CausalGeometry.Calculus.CubicalSubsetGeometry
+import CausalGeometry.Calculus.CubicalSubsetCup
 import CausalGeometry.Calculus.CubicalExterior
+import CausalGeometry.Calculus.CubicalTwoFormBridge
 import CausalGeometry.Calculus.CubicalLowDegree
 import CausalGeometry.Calculus.CubicalDifferentialSquared
 import CausalGeometry.Calculus.EventCubeFaceLaws
