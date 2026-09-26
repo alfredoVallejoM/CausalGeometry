@@ -120,6 +120,8 @@ import CausalGeometry.Variational.JetCotangent
 import CausalGeometry.Variational.DiscreteAction
 import CausalGeometry.Variational.ActionGauge
 import CausalGeometry.Variational.CausalSymmetry
+import CausalGeometry.Variational.ElementaryEulerLagrange
+import CausalGeometry.Variational.QuasiNoether
 
 import CausalGeometry.Foundation.ExtensionRestriction
 import CausalGeometry.Foundation.AdjunctionBridge
