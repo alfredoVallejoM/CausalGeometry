@@ -25,6 +25,11 @@ def Campaign.rows : Campaign → Nat
   | .ca18 => 32
   | .ca19 => 32
   | .ca20 => 40
+  | .ca21 => 64
+  | .ca22 => 40
+  | .ca23 => 32
+  | .ca24 => 40
+  | .ca25 => 32
 
 def originalCoreRows : Nat := 186
 def eciaRows : Nat := 82
@@ -38,7 +43,15 @@ def realizationSynthesisRows : Nat := 32
 def grandProgramRows : Nat := 40
 def extensionRows : Nat := 128
 
-def totalRows : Nat := 428
+def gradedGeometryRows : Nat := 64
+def localizationClosureRows : Nat := 40
+def eciaConsumptionRows : Nat := 32
+def advancedRealizationRows : Nat := 40
+def analyticSpectralRows : Nat := 32
+def secondExtensionRows : Nat := 208
+
+/-- Full ledger after the CA21--CA25 extension. -/
+def totalRows : Nat := 636
 
 example : originalCoreRows + eciaRows + closureRows + wilderberRows = originalRows := by
   decide
@@ -48,7 +61,14 @@ example :
       realizationSynthesisRows + grandProgramRows = extensionRows := by
   decide
 
-example : originalRows + extensionRows = totalRows := by
+example :
+    gradedGeometryRows + localizationClosureRows +
+      eciaConsumptionRows + advancedRealizationRows +
+      analyticSpectralRows = secondExtensionRows := by
+  decide
+
+example :
+    originalRows + extensionRows + secondExtensionRows = totalRows := by
   decide
 
 end CausalGeometry.Program
