@@ -217,30 +217,44 @@ theorem decomposition_components_unique
       e - e' ∈ G.ExactSucc n :=
     (G.ExactSucc n).sub_mem he he'
 
+  have hhDiffHarmonic :
+      h - h' ∈
+        (H G).HarmonicSucc n :=
+    ((H G).HarmonicSucc n).sub_mem hh hh'
+
+  have hcDiffCoexact :
+      c - c' ∈
+        G.CoexactSucc n :=
+    (G.CoexactSucc n).sub_mem hc hc'
+
   have hRest :
       (h - h') + (c - c') ∈
         ((H G).HarmonicSucc n ⊔
           G.CoexactSucc n) := by
-    apply
-      (Submodule.sup_mem_iff).2
     exact
-      ⟨h - h',
-        (G.CoexactSucc n).sub_mem hc hc',
-        c - c',
-        (H G).HarmonicSucc n |>.sub_mem hh hh',
-        by abel⟩
+      Submodule.add_mem _
+        (Submodule.mem_sup_left hhDiffHarmonic)
+        (Submodule.mem_sup_right hcDiffCoexact)
+
+  have hsum0 :
+      (e - e') +
+          ((h - h') + (c - c'))
+        =
+      0 := by
+    calc
+      (e - e') +
+          ((h - h') + (c - c'))
+          =
+        (e + h + c) -
+          (e' + h' + c') := by
+            abel
+      _ = 0 :=
+        sub_eq_zero.mpr hsum
 
   have heRestEq :
       e - e' =
-        - ((h - h') + (c - c')) := by
-    apply sub_eq_zero.mp
-    have :
-        (e - e') +
-          ((h - h') + (c - c')) =
-        0 := by
-      rw [← sub_eq_zero]
-      exact hsum
-    abel
+        - ((h - h') + (c - c')) :=
+    eq_neg_of_add_eq_zero_left hsum0
 
   have heDiffRest :
       e - e' ∈
@@ -273,19 +287,9 @@ theorem decomposition_components_unique
         (G.CoexactSucc n) :=
     hHCOrtho.disjoint
 
-  have hhDiff :
-      h - h' ∈
-        (H G).HarmonicSucc n :=
-    (H G).HarmonicSucc n |>.sub_mem hh hh'
-
-  have hcDiff :
-      c - c' ∈
-        G.CoexactSucc n :=
-    (G.CoexactSucc n).sub_mem hc hc'
-
   have hhcZero :
       (h - h') + (c - c') = 0 := by
-    subst e'
+    rw [heq] at hsum
     simpa using hsum
 
   have hhEqNeg :
@@ -298,14 +302,14 @@ theorem decomposition_components_unique
         G.CoexactSucc n := by
     rw [hhEqNeg]
     exact
-      (G.CoexactSucc n).neg_mem hcDiff
+      (G.CoexactSucc n).neg_mem hcDiffCoexact
 
   have hhZero :
       h - h' = 0 :=
     (Submodule.disjoint_def.mp
       hHCDisjoint)
       (h - h')
-      hhDiff hhDiffCoexact
+      hhDiffHarmonic hhDiffCoexact
 
   have hhEq :
       h = h' :=
