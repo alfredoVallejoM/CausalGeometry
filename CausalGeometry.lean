@@ -58,6 +58,7 @@ import CausalGeometry.Calculus.FiniteRealHodgeGreen
 import CausalGeometry.Calculus.GradedHodgeZero
 import CausalGeometry.Calculus.PairedHodgeTransport
 import CausalGeometry.Calculus.GradedHodgeCohomology
+import CausalGeometry.Calculus.PairedHodgeEquivalence
 import CausalGeometry.Calculus.Linearization
 import CausalGeometry.Calculus.IteratedDifference
 import CausalGeometry.Calculus.CubeFrame
