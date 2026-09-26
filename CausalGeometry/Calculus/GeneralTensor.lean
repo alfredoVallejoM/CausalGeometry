@@ -65,6 +65,45 @@ def castRanks
     castRanks (C := C) rfl rfl x = x :=
   rfl
 
+
+@[simp] theorem castRanks_zero
+    {p p' q q' : ℕ}
+    (hp : p = p')
+    (hq : q = q') :
+    castRanks (C := C) hp hq
+        (0 : T p q)
+      =
+    0 := by
+  cases hp
+  cases hq
+  rfl
+
+theorem castRanks_add
+    {p p' q q' : ℕ}
+    (hp : p = p')
+    (hq : q = q')
+    (x y : T p q) :
+    castRanks (C := C) hp hq (x + y)
+      =
+    castRanks (C := C) hp hq x +
+      castRanks (C := C) hp hq y := by
+  cases hp
+  cases hq
+  rfl
+
+theorem castRanks_smul
+    {p p' q q' : ℕ}
+    (hp : p = p')
+    (hq : q = q')
+    (a : K)
+    (x : T p q) :
+    castRanks (C := C) hp hq (a • x)
+      =
+    a • castRanks (C := C) hp hq x := by
+  cases hp
+  cases hq
+  rfl
+
 /-- Associativity of tensor product, with the unavoidable rank transport made
 explicit instead of relying on definitional equality of natural-number sums. -/
 def TensorProductAssociative : Prop :=
