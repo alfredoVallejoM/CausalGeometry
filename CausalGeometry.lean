@@ -169,6 +169,7 @@ import CausalGeometry.Number.Prime
 import CausalGeometry.Number.Factorization
 import CausalGeometry.Number.Valuation
 import CausalGeometry.Number.LocalizedValuation
+import CausalGeometry.Number.LocalizedDivisibility
 import CausalGeometry.Number.OreLocalizedValuation
 import CausalGeometry.Number.LocalizedDivisorComparison
 import CausalGeometry.Number.NatShadow
