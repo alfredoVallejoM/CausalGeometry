@@ -103,15 +103,21 @@ theorem faceSign_image_mul_residualSign
             sigma i)
         =
       (faceSign (K := K) i *
+          faceSign (K := K) i) *
+        (faceSign (K := K) (sigma i) *
+          permutationSign (K := K)
+            (CausalEventCube.faceResidualPermutation
+              sigma i)) := by
+            rw [hi]
+            ring
+    _ =
+      (faceSign (K := K) i *
           faceSign (K := K) (sigma i)) *
         (faceSign (K := K) i *
           permutationSign (K := K)
             (CausalEventCube.faceResidualPermutation
               sigma i)) := by
-                rw [h]
-                ring_nf
-                rw [hsi]
-                ring
+            ring
     _ =
       (faceSign (K := K) i *
           faceSign (K := K) (sigma i)) *
@@ -120,8 +126,13 @@ theorem faceSign_image_mul_residualSign
             rw [h]
     _ =
       permutationSign (K := K) sigma *
+        faceSign (K := K) i *
+        (faceSign (K := K) (sigma i) *
+          faceSign (K := K) (sigma i)) := by
+            ring
+    _ =
+      permutationSign (K := K) sigma *
         faceSign (K := K) i := by
-          ring_nf
           rw [hsi]
           ring
 
