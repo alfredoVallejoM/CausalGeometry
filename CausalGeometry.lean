@@ -298,6 +298,7 @@ import CausalGeometry.Number.CanonicalIncidence
 
 import CausalGeometry.Models.PairedTransformControls
 import CausalGeometry.Models.GradedPairedControls
+import CausalGeometry.Models.OreWithoutReversibility
 import CausalGeometry.Models.CubicalCupControls
 
 import CausalGeometry.Models.CalculusControls
