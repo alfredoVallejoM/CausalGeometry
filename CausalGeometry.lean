@@ -51,6 +51,7 @@ import CausalGeometry.Calculus.RelativeLongExactnessComplete
 import CausalGeometry.Calculus.RelativeLongExactZero
 import CausalGeometry.Calculus.GradedHodge
 import CausalGeometry.Calculus.FiniteRealHodge
+import CausalGeometry.Calculus.FiniteRealHodgeZero
 import CausalGeometry.Calculus.FiniteRealHodgeDecomposition
 import CausalGeometry.Calculus.GradedHodgeZero
 import CausalGeometry.Calculus.PairedHodgeTransport
