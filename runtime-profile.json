@@ -97,8 +97,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean",
-      "description": "Typecheck canonical left Ore localization, opposite-derived right Ore localization, denominator units, raw-fraction semantic agreement and group universal uniqueness."
+      "command": "lake env lean CausalGeometry/Number/MathlibOreBridge.lean && lake env lean CausalGeometry/Number/MathlibRightOreBridge.lean && lake env lean CausalGeometry/Number/CentralOreMathlib.lean",
+      "description": "Typecheck canonical left/right Ore localization bridges, opposite orientation, denominator units, raw-fraction group semantics, universal uniqueness, and central+cancellative promotion to full OreSet."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
