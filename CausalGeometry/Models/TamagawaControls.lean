@@ -93,6 +93,63 @@ theorem collapsedBool_from_component_equiv :
       collapsedBool
       collapsedBoolPUnitEquiv
 
+/-! ## Same index, different quotient map over a fixed point map -/
+
+/-- Projection to the first Boolean coordinate. -/
+def firstCoordinateQuotient :
+    LocalComponentQuotient (Bool × Bool) where
+  Component := Bool
+  finiteComponent := inferInstance
+  componentNonempty := inferInstance
+  componentOf := Prod.fst
+  surjective := by
+    intro b
+    exact ⟨(b, false), rfl⟩
+
+/-- Projection to the second Boolean coordinate. -/
+def secondCoordinateQuotient :
+    LocalComponentQuotient (Bool × Bool) where
+  Component := Bool
+  finiteComponent := inferInstance
+  componentNonempty := inferInstance
+  componentOf := Prod.snd
+  surjective := by
+    intro b
+    exact ⟨(false, b), rfl⟩
+
+/-- The two quotient maps have the same Tamagawa index. -/
+theorem coordinateQuotients_same_tamagawa :
+    firstCoordinateQuotient.tamagawaIndex =
+      secondCoordinateQuotient.tamagawaIndex := by
+  rfl
+
+/-- Numerical equality does not make the quotient square commute over a fixed
+identity map on local points.
+
+There is no component equivalence sending the first-coordinate quotient to
+the second-coordinate quotient while the point carrier itself is left
+unchanged. -/
+theorem coordinateQuotients_no_commuting_equiv_over_id :
+    ¬ ∃ e :
+        firstCoordinateQuotient.Component ≃
+          secondCoordinateQuotient.Component,
+      ∀ p : Bool × Bool,
+        e (firstCoordinateQuotient.componentOf p) =
+          secondCoordinateQuotient.componentOf p := by
+  rintro ⟨e, he⟩
+  have hfalse : e false = false := by
+    simpa [
+      firstCoordinateQuotient,
+      secondCoordinateQuotient
+    ] using he (false, false)
+  have htrue : e false = true := by
+    simpa [
+      firstCoordinateQuotient,
+      secondCoordinateQuotient
+    ] using he (false, true)
+  rw [hfalse] at htrue
+  contradiction
+
 /-- Native cyclic type-I control with multiplicity two.  This control is
 separate from the point-count mutation above: here both the local point carrier
 and the component carrier are the cyclic type required by the Tate
