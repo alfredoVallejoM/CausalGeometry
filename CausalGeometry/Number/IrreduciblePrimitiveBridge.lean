@@ -25,8 +25,12 @@ homomorphism.  They state the two reflection properties that are actually
 needed:
 
 * target identity may only come from a causal unit;
-* every proper-power witness in the target lifts to a genuine nontrivial
-  source factorization. -/
+* every proper-power witness in the target of a non-unit source element lifts
+  to a genuine nontrivial source factorization.
+
+The non-unit guard is essential: the target identity is always a proper power
+in a group (1 = 1^2), while a source unit must not be forced to admit a
+nontrivial factorization. -/
 structure IrreducibleToPrimitiveHypotheses
     (φ : α →* Γ) : Prop where
 
@@ -37,6 +41,7 @@ structure IrreducibleToPrimitiveHypotheses
 
   nontrivialFactorization_of_properPower :
     ∀ x : α,
+      ¬ IsCausalUnit x →
       IsProperPower (φ x) →
       ∃ a b : α,
         NontrivialFactorization x a b
@@ -59,7 +64,7 @@ theorem irreducible_implies_primitive
   · intro hpow
     rcases
         H.nontrivialFactorization_of_properPower
-          x hpow with
+          x hx.1 hpow with
       ⟨a, b, hab⟩
 
     exact
