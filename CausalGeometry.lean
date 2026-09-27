@@ -354,3 +354,5 @@ import CausalGeometry.Models.CommonSourceControls
 import CausalGeometry.Models.IndexedFamilyControls
 
 import CausalGeometry.Models.TamagawaIndexedLossControls
+
+import CausalGeometry.Models.PrimePowerTowerControls
