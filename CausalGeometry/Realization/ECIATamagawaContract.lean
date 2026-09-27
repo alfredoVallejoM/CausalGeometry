@@ -25,6 +25,7 @@ only the quotient needed to derive the component cardinal. -/
 structure LocalComponentQuotient (Point : Type u) where
   Component : Type v
   finiteComponent : Finite Component
+  componentNonempty : Nonempty Component
   componentOf : Point → Component
   surjective :
     Function.Surjective componentOf
@@ -38,6 +39,22 @@ pointed quotient. -/
 def tamagawaIndex
     (Q : LocalComponentQuotient.{u, v} Point) : ℕ :=
   Nat.card Q.Component
+
+
+/-- Every structural Tamagawa index is positive: a component carrier is
+finite and nonempty, as it must be for a component group. -/
+theorem tamagawaIndex_pos
+    (Q : LocalComponentQuotient.{u, v} Point) :
+    0 < Q.tamagawaIndex := by
+  letI : Finite Q.Component := Q.finiteComponent
+  letI : Nonempty Q.Component := Q.componentNonempty
+  exact Nat.card_pos
+
+/-- In particular no structural Tamagawa factor can be zero. -/
+theorem tamagawaIndex_ne_zero
+    (Q : LocalComponentQuotient.{u, v} Point) :
+    Q.tamagawaIndex ≠ 0 :=
+  (Q.tamagawaIndex_pos).ne'
 
 /-- An equivalence of component carriers preserves the local Tamagawa index. -/
 theorem tamagawaIndex_eq_of_equiv
