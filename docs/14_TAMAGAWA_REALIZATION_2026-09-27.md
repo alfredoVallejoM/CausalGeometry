@@ -13,6 +13,8 @@ Downstream GenContinuum bridge code SHA:
 - `5cb50ca45cf2662cb05b4eb3ede66a0ef537ac05`
 - branch: `codex/ecia-continuation`
 - file: `GenContinuum/ECIA/CausalBridge/Tamagawa.lean`
+- concrete elliptic consumers: `GenContinuum/ECIA/CausalBridge/TamagawaEllipticCases.lean`
+- consumer commit: `a94cbf0287211bd15cf576a0c61cfa13c6c7a4d4`
 
 The downstream branch is pinned to the source SHA above.
 
@@ -237,6 +239,24 @@ What remains for a general local elliptic object is the geometric theorem
 identifying the actual Neron special fiber/component quotient with the
 appropriate type-(I_n) target.
 
+## 7.1 Concrete additive consumer
+
+The downstream optional consumer now also applies the generic bridge to the
+existing unconditional additive 5-adic Neron model.
+
+For that actual special fiber it consumes the previously proved target result
+
+[
+c_v=1
+]
+
+and derives the same causal Tamagawa factor.  It also transports the existing
+negative control excluding a cyclic type-(I_3) component description.
+
+This is a concrete additive example, not a general theorem that all additive
+reduction has Tamagawa factor one.  The general additive and nonsplit
+classification remains open.
+
 ## 8. Adversarial loss control
 
 `CausalGeometry/Models/TamagawaControls.lean` contains two quotients with
@@ -273,7 +293,7 @@ forces a sound connected singleton factor to be (1).
 | TAM-08 | Causal finite product = existing geometric BSD-layer Tamagawa product; certificate independence. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
 | TAM-09 | Named causal-number source family -> local elliptic/Neron targets. | OPEN |
 | TAM-10 | Generic local elliptic/Neron integral points -> special-fiber component descent under exact local hypotheses. | OPEN |
-| TAM-11 | Additive, nonsplit multiplicative and remaining reduction-type comparisons. | OPEN |
+| TAM-11 | Reduction-type consumers beyond good/split: concrete effective additive model is bridged with c_v=1 and a false I_3 mutation rejected; general additive/nonsplit classification remains open. | PARTIAL / TYPECHECK PENDING |
 | TAM-12 | Insert the certified Tamagawa product into a full BSD determinant/regulator/Sha comparison theorem. | OPEN |
 
 The absence of a local Lean/lake toolchain in the current execution
