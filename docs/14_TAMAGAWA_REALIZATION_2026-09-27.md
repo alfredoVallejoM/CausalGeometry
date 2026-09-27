@@ -6,11 +6,11 @@ declaring any of them fully closed.
 
 Source code SHA for the new causal contract:
 
-- `d203bd0afe103bde37c0f38ed3dd03a78fbb00c0`
+- `e0ce830d1d538ab6881b8ea7c26579b18905955a`
 
 Downstream GenContinuum bridge code SHA:
 
-- `065d5f061e55eeb5ac7d3eb8b0f2fd9ae6bc1d79`
+- `5cb50ca45cf2662cb05b4eb3ede66a0ef537ac05`
 - branch: `codex/ecia-continuation`
 - file: `GenContinuum/ECIA/CausalBridge/Tamagawa.lean`
 
@@ -39,8 +39,17 @@ The source implementation is
 - `Tamagawa.LocalComponentQuotient`;
 - `Tamagawa.LocalComponentQuotient.tamagawaIndex`.
 
-The quotient map is required to be surjective.  No unrelated natural number
-can be supplied as the Tamagawa factor.
+The quotient map is required to be surjective and the component carrier is
+required to be nonempty.  Hence the source derives
+
+[
+c_v>0
+quad	ext{and}quad
+c_v
+eq0.
+]
+
+No unrelated natural number can be supplied as the Tamagawa factor.
 
 The source quotient deliberately stores no extra pointed/group structure.
 Identity preservation belongs to a concrete group-theoretic target.  This
@@ -254,7 +263,7 @@ forces a sound connected singleton factor to be (1).
 
 | ID | Obligation | Status |
 |---|---|---|
-| TAM-01 | Structural finite component quotient and derived local index. | SOURCE IMPLEMENTED |
+| TAM-01 | Structural finite nonempty component quotient, derived local index and positivity. | SOURCE IMPLEMENTED |
 | TAM-02 | Finite support and derived global product. | SOURCE IMPLEMENTED |
 | TAM-03 | Good-reduction structural control and same-point-count mutation. | SOURCE IMPLEMENTED |
 | TAM-04 | Cyclic Tate (I_n) comparison deriving (c_v=n). | SOURCE IMPLEMENTED |
