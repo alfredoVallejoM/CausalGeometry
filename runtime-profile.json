@@ -105,8 +105,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/IndexedFamily.lean && lake env lean CausalGeometry/Realization/TamagawaIndexedFamily.lean && lake env lean CausalGeometry/Models/CommonSourceControls.lean && lake env lean CausalGeometry/Models/IndexedFamilyControls.lean && lake env lean CausalGeometry/Models/TamagawaIndexedLossControls.lean",
-      "description": "Typecheck CA24 common-source indexed realizations, explicit reconstruction versus conservativity, structural-to-numerical Tamagawa comparison, actual causal-source controls, and a strict quotient-map-to-index loss discriminator."
+      "command": "lake env lean CausalGeometry/Realization/IndexedFamily.lean && lake env lean CausalGeometry/Realization/TamagawaIndexedFamily.lean && lake env lean CausalGeometry/Models/CommonSourceControls.lean && lake env lean CausalGeometry/Models/IndexedFamilyControls.lean && lake env lean CausalGeometry/Models/TamagawaIndexedLossControls.lean && lake env lean CausalGeometry/Models/PrimePowerTowerControls.lean",
+      "description": "Typecheck CA24 common-source/loss infrastructure plus the nontrivial p=2,f=2,q=4 prime-power finite-tower provenance control used by the downstream residual-Frobenius bridge."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
