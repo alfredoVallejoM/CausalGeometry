@@ -90,6 +90,31 @@ def comp
       θ.commutes source place
     ]
 
+/-- Apply a comparison pointwise to one complete local packet. -/
+def mapPacket
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    {S : IndexedRealizationFamily.{u, v, x}
+      α Place}
+    (η : Comparison R S)
+    (packet :
+      (place : Place) → R.Target place) :
+    (place : Place) → S.Target place :=
+  fun place => η.map place (packet place)
+
+@[simp]
+theorem mapPacket_source
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    {S : IndexedRealizationFamily.{u, v, x}
+      α Place}
+    (η : Comparison R S)
+    (source : α) :
+    η.mapPacket (R.packet source) =
+      S.packet source := by
+  funext place
+  exact η.commutes source place
+
 end Comparison
 
 /-- Two source objects collapse at one selected place. -/
@@ -147,6 +172,24 @@ theorem collapseEverywhere_of_comparison
   exact η.collapseAt_of_comparison
     place (h place)
 
+/-- Witness that a comparison is strictly information-losing.
+
+The target family collapses a pair of distinct source objects everywhere,
+while the source family still distinguishes them somewhere. -/
+structure StrictLossWitness
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    {S : IndexedRealizationFamily.{u, v, x}
+      α Place}
+    (η : Comparison R S) where
+  source₁ : α
+  source₂ : α
+  distinct : source₁ ≠ source₂
+  targetCollapse :
+    S.CollapsesEverywhere source₁ source₂
+  sourceSeparated :
+    ¬ R.CollapsesEverywhere source₁ source₂
+
 /-- A local realization family is jointly conservative when agreement at all
 places recovers the source object.
 
@@ -158,6 +201,35 @@ def JointlyConservative
   ∀ x y,
     R.CollapsesEverywhere x y →
       x = y
+
+/-- If a lossier target family is jointly conservative, then the richer source
+family must already be jointly conservative. -/
+theorem Comparison.targetJointlyConservative_implies_source
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    {S : IndexedRealizationFamily.{u, v, x}
+      α Place}
+    (η : Comparison R S)
+    (hS : S.JointlyConservative) :
+    R.JointlyConservative := by
+  intro source₁ source₂ hR
+  apply hS source₁ source₂
+  exact η.collapseEverywhere_of_comparison hR
+
+/-- A strict-loss witness immediately refutes joint conservativity of the
+lossier target family. -/
+theorem StrictLossWitness.target_not_jointlyConservative
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    {S : IndexedRealizationFamily.{u, v, x}
+      α Place}
+    {η : Comparison R S}
+    (h : StrictLossWitness η) :
+    ¬ S.JointlyConservative := by
+  intro hS
+  exact h.distinct
+    (hS h.source₁ h.source₂
+      h.targetCollapse)
 
 /-- Explicit reconstruction data for a common-source realization family.
 
@@ -176,6 +248,26 @@ structure Reconstruction
       recover (R.packet x) = x
 
 namespace Reconstruction
+
+/-- Reconstruction of a lossier target family pulls back along any comparison
+to reconstruction of the richer source family.
+
+This is the data-level analogue of information-loss monotonicity. -/
+def pullback
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    {S : IndexedRealizationFamily.{u, v, x}
+      α Place}
+    (η : Comparison R S)
+    (D : Reconstruction S) :
+    Reconstruction R where
+  recover :=
+    fun packet =>
+      D.recover (η.mapPacket packet)
+  leftInverse := by
+    intro source
+    rw [η.mapPacket_source]
+    exact D.leftInverse source
 
 /-- Explicit reconstruction implies joint conservativity. -/
 theorem jointlyConservative
@@ -196,6 +288,20 @@ theorem jointlyConservative
     _ = y := D.leftInverse y
 
 end Reconstruction
+
+/-- A strictly lossier target family cannot carry explicit reconstruction. -/
+theorem StrictLossWitness.target_noReconstruction
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    {S : IndexedRealizationFamily.{u, v, x}
+      α Place}
+    {η : Comparison R S}
+    (h : StrictLossWitness η) :
+    IsEmpty (Reconstruction S) := by
+  constructor
+  intro D
+  exact h.target_not_jointlyConservative
+    D.jointlyConservative
 
 /-- Restrict a common-source family to a proved source domain without changing
 any local target.
