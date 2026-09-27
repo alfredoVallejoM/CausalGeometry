@@ -250,6 +250,7 @@ import CausalGeometry.Realization.ECIACohomologyContract
 import CausalGeometry.Realization.ECIAHodgeContract
 import CausalGeometry.Realization.ECIAGradedContract
 import CausalGeometry.Realization.ECIASpectralContract
+import CausalGeometry.Realization.ECIATamagawaContract
 import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.FiniteTransfer
 import CausalGeometry.Cyclic.Hashimoto
@@ -338,5 +339,6 @@ import CausalGeometry.Number.IrreduciblePrimitiveBridge
 import CausalGeometry.Models.CausalLengthAtomic
 
 import CausalGeometry.Models.IrreduciblePrimitiveControls
+import CausalGeometry.Models.TamagawaControls
 
 import CausalGeometry.Realization.ECIAPrimitiveFactorizationContract
