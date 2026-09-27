@@ -346,3 +346,5 @@ import CausalGeometry.Models.TamagawaControls
 import CausalGeometry.Realization.ECIAPrimitiveFactorizationContract
 
 import CausalGeometry.Models.CausalLengthPrimitiveBridge
+
+import CausalGeometry.Models.EmptyBoundaryComposition
