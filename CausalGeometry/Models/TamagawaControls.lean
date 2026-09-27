@@ -13,6 +13,7 @@ def collapsedBool :
     LocalComponentQuotient Bool where
   Component := PUnit
   finiteComponent := inferInstance
+  componentNonempty := inferInstance
   componentOf := fun _ => PUnit.unit
   surjective := by
     intro y
@@ -25,6 +26,7 @@ def separatedBool :
     LocalComponentQuotient Bool where
   Component := Fin 2
   finiteComponent := inferInstance
+  componentNonempty := inferInstance
   componentOf :=
     fun b =>
       match b with
@@ -100,6 +102,7 @@ def typeITwo :
       (Multiplicative (ZMod 2)) where
   Component := Multiplicative (ZMod 2)
   finiteComponent := inferInstance
+  componentNonempty := inferInstance
   componentOf := id
   surjective := by
     intro y
