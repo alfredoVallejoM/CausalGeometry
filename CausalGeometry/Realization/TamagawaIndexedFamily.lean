@@ -33,7 +33,7 @@ end LocalDatum
 namespace Family
 
 variable
-    {A : Type u}
+    {α : Type u}
     {Place : Type v}
     [DecidableEq Place]
 
@@ -44,10 +44,10 @@ No local datum is free-floating: every placewise quotient is obtained by
 evaluating the same source object through the supplied Tamagawa family. -/
 def asIndexedRealization
     (F :
-      CausalNumber A →
+      α →
         Family.{v, x, y} Place) :
     IndexedRealizationFamily
-      (CausalNumber A) Place where
+      α Place where
   Target := fun _ => LocalDatum.{x, y}
   realize :=
     fun place source =>
@@ -61,9 +61,9 @@ component quotient definitionally. -/
 @[simp]
 theorem asIndexedRealization_quotient
     (F :
-      CausalNumber A →
+      α →
         Family.{v, x, y} Place)
-    (source : CausalNumber A)
+    (source : α)
     (place : Place) :
     ((F.asIndexedRealization.realize
       place source).quotient) =
@@ -75,9 +75,9 @@ family index. -/
 @[simp]
 theorem asIndexedRealization_tamagawaIndex
     (F :
-      CausalNumber A →
+      α →
         Family.{v, x, y} Place)
-    (source : CausalNumber A)
+    (source : α)
     (place : Place) :
     (F.asIndexedRealization.realize
       place source).tamagawaIndex =
@@ -91,11 +91,11 @@ This is the intended route for ECIA consumers whose local elliptic
 realization exists only on a named arithmetic-geometric source domain. -/
 def asIndexedRealizationOn
     (F :
-      CausalNumber A →
+      α →
         Family.{v, x, y} Place)
-    (Domain : CausalNumber A → Prop) :
+    (Domain : α → Prop) :
     IndexedRealizationFamily
-      {source : CausalNumber A // Domain source}
+      {source : α // Domain source}
       Place :=
   F.asIndexedRealization.restrict Domain
 
