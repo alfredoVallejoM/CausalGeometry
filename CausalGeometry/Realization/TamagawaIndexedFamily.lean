@@ -84,6 +84,41 @@ theorem asIndexedRealization_tamagawaIndex
       ((F source).local place).tamagawaIndex :=
   rfl
 
+/-- Numerical Tamagawa indices form a further lossy local realization of
+the same common source. -/
+def asIndexRealization
+    (F :
+      α →
+        Family.{v, x, y} Place) :
+    IndexedRealizationFamily
+      α Place where
+  Target := fun _ => ℕ
+  realize :=
+    fun place source =>
+      ((F source).local place)
+        .tamagawaIndex
+
+/-- Forget the structural local quotient and retain only its Tamagawa index. -/
+def localDatumToIndex
+    (_place : Place)
+    (D : LocalDatum.{x, y}) :
+    ℕ :=
+  D.tamagawaIndex
+
+/-- Structural Tamagawa data compare naturally to their numerical index
+realization. -/
+def datumToIndexComparison
+    (F :
+      α →
+        Family.{v, x, y} Place) :
+    IndexedRealizationFamily.Comparison
+      F.asIndexedRealization
+      F.asIndexRealization where
+  map := localDatumToIndex
+  commutes := by
+    intro source place
+    rfl
+
 /-- Restrict the common-source local realization to any admitted causal
 subdomain.
 
