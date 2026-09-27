@@ -12,7 +12,7 @@ component.  This is the finite control shape of good reduction. -/
 def collapsedBool :
     LocalComponentQuotient Bool where
   Component := PUnit
-  fintypeComponent := inferInstance
+  finiteComponent := inferInstance
   componentOf := fun _ => PUnit.unit
   basePoint := false
   baseComponent := PUnit.unit
@@ -27,7 +27,7 @@ components. -/
 def separatedBool :
     LocalComponentQuotient Bool where
   Component := Fin 2
-  fintypeComponent := inferInstance
+  finiteComponent := inferInstance
   componentOf :=
     fun b =>
       match b with
