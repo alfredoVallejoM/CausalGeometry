@@ -67,6 +67,35 @@ def PreservesCompositionSystem
   ∀ X Y,
     R.PreservesComposite targetCompose (C.composeData X Y)
 
+/-- Preservation of a weak source composition system up to an explicit
+target equivalence. -/
+def PreservesCompositionSystemUpTo
+    (R : ECIARealization A sourceAdmissible T)
+    (C : EndDiaryCompositionSystem A)
+    (targetCompose : T.Target → T.Target → T.Target)
+    (targetEquivalent : T.Target → T.Target → Prop) : Prop :=
+  ∀ X Y,
+    R.PreservesCompositeUpTo
+      targetCompose targetEquivalent
+      (C.composeData X Y)
+
+/-- Strict composition preservation induces the relation-valued version for
+every reflexive target equivalence. -/
+theorem preservesCompositionSystemUpTo_of_strict
+    (R : ECIARealization A sourceAdmissible T)
+    (C : EndDiaryCompositionSystem A)
+    (targetCompose : T.Target → T.Target → T.Target)
+    (targetEquivalent : T.Target → T.Target → Prop)
+    (hrefl : ∀ Z, targetEquivalent Z Z)
+    (hstrict : R.PreservesCompositionSystem C targetCompose) :
+    R.PreservesCompositionSystemUpTo
+      C targetCompose targetEquivalent := by
+  intro X Y
+  exact R.preservesCompositeUpTo_of_strict
+    targetCompose targetEquivalent hrefl
+    (C.composeData X Y)
+    (hstrict X Y)
+
 /-- If ECIA preserves both the chosen weak composition and the source natural
 shadow, the target shadow is multiplicative on realized causal numbers. -/
 theorem targetShadow_comp
@@ -88,6 +117,42 @@ theorem targetShadow_comp
         =
       targetShadow (R.realize (C.compose X Y)) := by
         exact congrArg targetShadow (hcomp X Y).symm
+    _ = S (C.compose X Y) := hshadow _
+    _ = S X * S Y := S.compose X Y
+    _ =
+      targetShadow (R.realize X) *
+        targetShadow (R.realize Y) := by
+          rw [← hshadow X, ← hshadow Y]
+
+/-- Multiplicativity of a target numerical shadow still follows when ECIA
+composition is preserved only up to a target equivalence, provided the shadow
+is invariant under that equivalence. -/
+theorem targetShadow_comp_upTo
+    (R : ECIARealization A sourceAdmissible T)
+    (C : EndDiaryCompositionSystem A)
+    (S : EndDiaryNatShadow C)
+    (targetCompose : T.Target → T.Target → T.Target)
+    (targetEquivalent : T.Target → T.Target → Prop)
+    (targetShadow : T.Target → ℕ)
+    (hcomp :
+      R.PreservesCompositionSystemUpTo
+        C targetCompose targetEquivalent)
+    (hshadow : R.PreservesNatShadow S targetShadow)
+    (hinvariant :
+      ∀ {U V},
+        targetEquivalent U V →
+        targetShadow U = targetShadow V)
+    (X Y : CausalNumber A) :
+    targetShadow
+        (targetCompose (R.realize X) (R.realize Y)) =
+      targetShadow (R.realize X) *
+        targetShadow (R.realize Y) := by
+  calc
+    targetShadow
+        (targetCompose (R.realize X) (R.realize Y))
+        =
+      targetShadow (R.realize (C.compose X Y)) := by
+        exact (hinvariant (hcomp X Y)).symm
     _ = S (C.compose X Y) := hshadow _
     _ = S X * S Y := S.compose X Y
     _ =
