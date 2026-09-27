@@ -29,6 +29,94 @@ structure PreservesFiniteIharaSignature
       (fun X => (source X).primitive)
       (fun Y => (target Y).primitive)
 
+/-- Admissibility-scoped stable Ihara preservation.
+
+Both source signatures are defined only on the admitted causal subdomain.
+Transfer and primitive comparison remain separate obligations. -/
+structure PreservesFiniteIharaSignatureOnAdmissible
+    (R : ECIARealization A sourceAdmissible T)
+    (source :
+      {X : CausalNumber A // sourceAdmissible X} →
+        FiniteIharaSignature)
+    (target : T.Target → FiniteIharaSignature) : Prop where
+  transfer :
+    R.PreservesFiniteTransferSignatureOnAdmissible
+      (fun X => (source X).transfer)
+      (fun Y => (target Y).transfer)
+
+  primitive :
+    R.PreservesPrimitiveSignatureOnAdmissible
+      (fun X => (source X).primitive)
+      (fun Y => (target Y).primitive)
+
+/-- Every global Ihara-preservation contract restricts to the admitted
+subdomain. -/
+def PreservesFiniteIharaSignature.toOnAdmissible
+    {R : ECIARealization A sourceAdmissible T}
+    {source : CausalNumber A → FiniteIharaSignature}
+    {target : T.Target → FiniteIharaSignature}
+    (h :
+      R.PreservesFiniteIharaSignature
+        source target) :
+    R.PreservesFiniteIharaSignatureOnAdmissible
+      (fun X => source X.1)
+      target where
+  transfer := h.transfer.toOnAdmissible
+  primitive := h.primitive.toOnAdmissible
+
+namespace PreservesFiniteIharaSignatureOnAdmissible
+
+variable
+    {R : ECIARealization A sourceAdmissible T}
+    {source :
+      {X : CausalNumber A // sourceAdmissible X} →
+        FiniteIharaSignature}
+    {target : T.Target → FiniteIharaSignature}
+    (h :
+      R.PreservesFiniteIharaSignatureOnAdmissible
+        source target)
+
+/-- Complete stable signature equality on one admitted causal number. -/
+theorem signature_eq
+    (X : {X : CausalNumber A // sourceAdmissible X}) :
+    target (R.realize X.1) =
+      source X := by
+  apply FiniteIharaSignature.ext
+  · apply FiniteTransferSignature.ext
+    · funext n
+      exact h.transfer.trace X n
+    · exact h.transfer.determinant X
+  · apply PrimitiveSignature.ext
+    funext n
+    exact h.primitive.primitive X n
+
+theorem eulerZetaSeries_eq
+    (X : {X : CausalNumber A // sourceAdmissible X}) :
+    (target (R.realize X.1)).eulerZetaSeries =
+      (source X).eulerZetaSeries := by
+  rw [h.signature_eq X]
+
+theorem determinantPowerSeries_eq
+    (X : {X : CausalNumber A // sourceAdmissible X}) :
+    (target (R.realize X.1)).determinantPowerSeries =
+      (source X).determinantPowerSeries := by
+  rw [h.signature_eq X]
+
+theorem target_satisfiesIhara
+    (X : {X : CausalNumber A // sourceAdmissible X})
+    (hsrcNorm :
+      (source X).DeterminantNormalized)
+    (hsrcIhara :
+      (source X).SatisfiesIhara hsrcNorm) :
+    (target (R.realize X.1)).SatisfiesIhara
+      (by
+        rw [h.signature_eq X]
+        exact hsrcNorm) := by
+  rw [h.signature_eq X]
+  exact hsrcIhara
+
+end PreservesFiniteIharaSignatureOnAdmissible
+
 namespace PreservesFiniteIharaSignature
 
 variable
