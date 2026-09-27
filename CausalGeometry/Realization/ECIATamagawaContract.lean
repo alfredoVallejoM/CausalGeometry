@@ -176,7 +176,7 @@ theorem tamagawaIndex_eq_multiplicity
     _ = Nat.card (ZMod h.multiplicity) := by
       exact Nat.card_congr Multiplicative.toAdd
     _ = h.multiplicity := by
-      exact Nat.card_zmod h.multiplicity
+      rw [Nat.card_zmod]
 
 end TateTypeIComparison
 
