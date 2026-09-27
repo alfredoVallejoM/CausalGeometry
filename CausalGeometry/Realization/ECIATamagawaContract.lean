@@ -207,12 +207,12 @@ variable {T : ECIAStructuralTarget.{u, v} A}
 variable {Place : Type w}
 variable [DecidableEq Place]
 
-/-- Strong ECIA Tamagawa contract.
+/-- Component-carrier ECIA Tamagawa contract.
 
-The consumer must preserve the finite set of potentially nontrivial places and
-must identify the *component carriers themselves*.  Equality of numerical
-Tamagawa indices alone is deliberately weaker and is not accepted as a
-structural identification. -/
+The consumer preserves the finite set of potentially nontrivial places and
+identifies the component carriers.  This is stronger bookkeeping than a bare
+family of numbers, but it is still weaker than preservation of the quotient
+map from local points; see `PreservesTamagawaQuotients` below. -/
 structure PreservesTamagawaComponents
     (R : ECIARealization A sourceAdmissible T)
     (source :
@@ -284,11 +284,99 @@ theorem globalTamagawaIndex_eq
 
 end PreservesTamagawaComponents
 
+/-- Quotient-level ECIA Tamagawa preservation relative to a declared map on
+local point carriers.
+
+This is the structural contract that prevents an arbitrary equivalence between
+finite component carriers from masquerading as preservation.  The square
+
+```
+source local points  --pointMap-->  target local points
+       |                               |
+       v                               v
+source components  --componentEquiv--> target components
+```
+
+must commute at every supported or unsupported place.  Support and component
+equivalence are inherited from the carrier-level contract. -/
+structure PreservesTamagawaQuotients
+    (R : ECIARealization A sourceAdmissible T)
+    (source :
+      CausalNumber A →
+        Tamagawa.Family.{w, x, y} Place)
+    (target :
+      T.Target →
+        Tamagawa.Family.{w, x, y} Place)
+    (pointMap :
+      ∀ (X : CausalNumber A) (place : Place),
+        (source X).LocalPoint place →
+          (target (R.realize X)).LocalPoint place) : Prop where
+
+  components :
+    R.PreservesTamagawaComponents
+      source target
+
+  quotient_commutes :
+    ∀ (X : CausalNumber A)
+      (place : Place)
+      (point : (source X).LocalPoint place),
+      components.componentEquiv X place
+          (((source X).local place).componentOf point) =
+        ((target (R.realize X)).local place).componentOf
+          (pointMap X place point)
+
+namespace PreservesTamagawaQuotients
+
+variable
+    {R : ECIARealization A sourceAdmissible T}
+    {source :
+      CausalNumber A →
+        Tamagawa.Family.{w, x, y} Place}
+    {target :
+      T.Target →
+        Tamagawa.Family.{w, x, y} Place}
+    {pointMap :
+      ∀ (X : CausalNumber A) (place : Place),
+        (source X).LocalPoint place →
+          (target (R.realize X)).LocalPoint place}
+    (h :
+      R.PreservesTamagawaQuotients
+        source target pointMap)
+
+/-- Forgetting quotient compatibility retains component-carrier
+preservation. -/
+theorem toComponents :
+    R.PreservesTamagawaComponents
+      source target :=
+  h.components
+
+/-- Quotient-level preservation therefore preserves every local Tamagawa
+index. -/
+theorem localTamagawaIndex_eq
+    (X : CausalNumber A)
+    (place : Place) :
+    ((target (R.realize X)).local place)
+        .tamagawaIndex =
+      ((source X).local place)
+        .tamagawaIndex :=
+  h.components.localTamagawaIndex_eq X place
+
+/-- Quotient-level preservation also preserves the finite global Tamagawa
+product. -/
+theorem globalTamagawaIndex_eq
+    (X : CausalNumber A) :
+    (target (R.realize X))
+        .globalTamagawaIndex =
+      (source X).globalTamagawaIndex :=
+  h.components.globalTamagawaIndex_eq X
+
+end PreservesTamagawaQuotients
+
 /-- Weak numerical preservation predicate.
 
-This is useful for loss accounting, but it is intentionally not equivalent to
-`PreservesTamagawaComponents`: equal component counts need not identify the
-underlying local quotient. -/
+This is useful for loss accounting, but it does not preserve the quotient map
+from local points.  Equal component counts alone do not identify the
+underlying local degeneration data. -/
 def PreservesTamagawaIndices
     (R : ECIARealization A sourceAdmissible T)
     (source :
