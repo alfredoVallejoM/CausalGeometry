@@ -38,6 +38,24 @@ theorem coordinateFamily_jointlyConservative :
       coordinateFamily
     ] using htrue
 
+/-- Explicit reconstruction of the source pair from the complete local
+packet. -/
+def coordinateReconstruction :
+    IndexedRealizationFamily.Reconstruction
+      coordinateFamily where
+  recover :=
+    fun packet =>
+      (packet false, packet true)
+  leftInverse := by
+    intro source
+    apply Prod.ext <;> rfl
+
+/-- The explicit reconstruction data imply the already proved joint
+conservativity without any appeal to choice. -/
+theorem coordinateReconstruction_jointlyConservative :
+    coordinateFamily.JointlyConservative :=
+  coordinateReconstruction.jointlyConservative
+
 /-- Mutation: both places observe only the first source coordinate. -/
 def firstOnlyFamily :
     IndexedRealizationFamily Source Place where
@@ -62,6 +80,18 @@ theorem firstOnlyFamily_not_jointlyConservative :
       (false : Bool) = true :=
     congrArg Prod.snd heq
   cases hsecond
+
+/-- Because the mutation is not jointly conservative, it cannot admit
+explicit reconstruction data. -/
+theorem firstOnlyFamily_noReconstruction :
+    IsEmpty
+      (IndexedRealizationFamily.Reconstruction
+        firstOnlyFamily) := by
+  constructor
+  intro D
+  exact
+    firstOnlyFamily_not_jointlyConservative
+      D.jointlyConservative
 
 /-- Positive/control pair for the common-source local-family layer. -/
 theorem joint_conservativity_discriminator :
