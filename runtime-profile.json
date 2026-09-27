@@ -81,8 +81,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/ECIAGradedContract.lean && lake env lean CausalGeometry/Realization/ECIASpectralContract.lean && lake env lean CausalGeometry/Realization/ECIAPrimitiveFactorizationContract.lean",
-      "description": "Typecheck ECIA global and admissibility-scoped arbitrary-degree cohomology/Hodge/spectral contracts together with primitive-factorization realization boundaries."
+      "command": "lake env lean CausalGeometry/Realization/ECIAGradedContract.lean && lake env lean CausalGeometry/Realization/ECIASpectralContract.lean && lake env lean CausalGeometry/Realization/ECIAPrimitiveFactorizationContract.lean && lake env lean CausalGeometry/Models/EmptyBoundaryComposition.lean",
+      "description": "Typecheck ECIA global/scoped cohomology-Hodge-spectral contracts, primitive-factorization boundaries, and the concrete empty-boundary realization-loss mutation control."
     },
     {
       "id": "ARITHMETIC-CONTROL-TYPECHECK",
