@@ -6,7 +6,7 @@ declaring any of them fully closed.
 
 Source code SHA for the new causal contract:
 
-- `a45ec726851b88596dde3a2d4355ec3b5afa5524`
+- `6835e4557c68bf51b102868d4b16e6784f10e40d`
 
 Downstream GenContinuum bridge code SHA:
 
@@ -291,8 +291,8 @@ forces a sound connected singleton factor to be (1).
 | TAM-06 | Native Tamagawa number = causal local index. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
 | TAM-07 | Native special-fiber rational point -> component map with explicit surjectivity obligation. | DOWNSTREAM IMPLEMENTED / SURJECTIVITY DOMAIN-SPECIFIC |
 | TAM-08 | Causal finite product = existing geometric BSD-layer Tamagawa product; certificate independence. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
-| TAM-09 | Named causal-number source family -> local elliptic/Neron targets. | OPEN |
-| TAM-10 | Generic local elliptic/Neron integral points -> special-fiber component descent under exact local hypotheses. | OPEN |
+| TAM-09 | Named causal-number source family -> local elliptic/Neron targets. | PARTIAL — generic common-source infrastructure and real two-source control implemented; intrinsic arithmetic realization from causal numbers remains OPEN. |
+| TAM-10 | Generic local elliptic/Neron integral points -> special-fiber component descent under exact local hypotheses. | PARTIAL — generic→integral→special-fiber→component chain implemented; identity-base full control and connected component descent proved; nontrivial DVR integral-reduction surjectivity remains OPEN. |
 | TAM-11 | Reduction-type consumers beyond good/split: concrete effective additive model is bridged with c_v=1 and a false I_3 mutation rejected; general additive/nonsplit classification remains open. | PARTIAL / TYPECHECK PENDING |
 | TAM-12 | Insert the certified Tamagawa product into a full BSD determinant/regulator/Sha comparison theorem. | OPEN |
 
@@ -340,3 +340,149 @@ In particular it does not prove
 The gain is narrower and necessary: the Tamagawa term is now a typed,
 structural, loss-audited realization attached to actual component quotients
 instead of a free numerical parameter.
+
+
+## 12. Common-source indexed realization layer
+
+CausalGeometry now contains a general `IndexedRealizationFamily`.
+
+For a single source object (X) and a place (v), it stores a typed local
+realization (R_v(X)).  The entire dependent packet
+
+[
+v \mapsto R_v(X)
+]
+
+therefore has one explicit provenance.
+
+The layer also defines:
+
+- placewise collapse;
+- collapse at every place;
+- placewise comparison of realization families;
+- monotonicity of information loss under such comparisons;
+- `JointlyConservative`, kept as a theorem-level property rather than
+  inferred from the existence of many localizations.
+
+The positive control observes two independent coordinates at two places and
+is jointly conservative.  A mutation observing the first coordinate at both
+places is not.
+
+Tamagawa families now expose both:
+
+[
+X \mapsto (P_v(X) \twoheadrightarrow \Phi_v(X))
+]
+
+and the further numerical shadow
+
+[
+X \mapsto c_v(X).
+]
+
+There is a typed comparison from the structural datum to the numerical index.
+
+## 13. Generic-to-component theorem chain
+
+The downstream ECIA consumer now formalizes
+
+[
+E(K_v)
+\longrightarrow
+\mathcal N(\mathcal O_v)
+\longrightarrow
+\mathcal N_{k_v}(k_v)
+\longrightarrow
+\Phi_v(k_v).
+]
+
+The first arrow is represented by the inverse of the Neron restriction
+bijection supplied by the mapping property.
+
+The second is the actual base-change reduction of an integral section.
+
+The third is the native universal component projection.
+
+The only additional local theorem lock is
+
+`IntegralReductionSurjective`:
+
+every special-fiber rational point is the reduction of an integral Neron
+section.
+
+Together with rational-point component descent, this proves that the complete
+generic-to-component map is surjective.  The resulting generic-point quotient
+has Tamagawa index definitionally equal to the native Neron Tamagawa number.
+
+## 14. Common-source Neron/Tamagawa family
+
+GenContinuum now contains `CommonSourceFamily` and
+`GenericDescentFamily`.
+
+A `CommonSourceFamily` requires every local place of one admitted source to
+carry:
+
+- an actual base;
+- a generic base;
+- a residue base;
+- an actual Neron model;
+- its actual special fiber;
+- a universal component quotient;
+- rational-point component descent.
+
+The forgetful chain is typed:
+
+[
+\text{Neron packet}
+\longrightarrow
+\text{structural Tamagawa datum}
+\longrightarrow
+c_v.
+]
+
+For one common source, the global causal product is proved equal to the
+existing BSD-layer `componentTamagawaProduct`.
+
+A `GenericDescentFamily` additionally carries the integral-reduction
+surjectivity at every place and upgrades the local point carrier from the
+special fiber to the genuine generic-point carrier.
+
+## 15. New positive and loss controls
+
+The identity-base elliptic Neron model supplies a complete positive
+generic-descent control: pullback along identity gives surjective reduction,
+the connected component quotient gives surjective component descent, and the
+generic-point quotient has (c_v=1).
+
+A separate two-source control sends two genuinely distinct causal numbers to
+two genuine elliptic/Neron constructions:
+
+- an identity-base good-reduction elliptic model;
+- the existing unconditional additive 5-adic Neron model.
+
+Both give (c_v=1).  Hence numerical Tamagawa is proved non-conservative on
+that named causal control domain.
+
+This does not claim that those elliptic curves are intrinsically reconstructed
+from the two causal numbers; it certifies non-vacuity and information loss of
+the interface.
+
+## 16. Refined frontier
+
+The principal remaining local theorem is no longer component descent for
+connected fibers.  That is closed.
+
+The nontrivial arithmetic frontier is now:
+
+[
+\mathcal N(\mathcal O_v)
+\twoheadrightarrow
+\mathcal N_{k_v}(k_v)
+]
+
+for the intended nontrivial DVR/Henselian local models.
+
+GenContinuum already contains finite-level good-reduction transition
+surjectivity and independent Hensel/completion machinery, but these have not
+yet been identified with the Neron integral-section reduction map.  That
+comparison remains an explicit theorem obligation.
