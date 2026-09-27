@@ -342,5 +342,6 @@ import CausalGeometry.Models.CausalLengthAtomic
 
 import CausalGeometry.Models.IrreduciblePrimitiveControls
 import CausalGeometry.Models.TamagawaControls
+import CausalGeometry.Models.IndexedFamilyControls
 
 import CausalGeometry.Realization.ECIAPrimitiveFactorizationContract
