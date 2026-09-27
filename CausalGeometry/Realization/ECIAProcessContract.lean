@@ -24,6 +24,38 @@ def PreservesComposite
   R.realize G.result =
     targetCompose (R.realize X) (R.realize Y)
 
+/-- Pointwise preservation of one witnessed causal composite up to an
+explicit target equivalence.
+
+This is the contract for categorical ECIA targets whose composition is
+preserved by a specified isomorphism/equivalence rather than by literal
+equality. The downstream target supplies the equivalence notion. -/
+def PreservesCompositeUpTo
+    (R : ECIARealization A sourceAdmissible T)
+    (targetCompose : T.Target → T.Target → T.Target)
+    (targetEquivalent : T.Target → T.Target → Prop)
+    {X Y : CausalNumber A}
+    (G : DiaryCompositionData X Y) : Prop :=
+  targetEquivalent
+    (R.realize G.result)
+    (targetCompose (R.realize X) (R.realize Y))
+
+/-- Strict preservation is a special case of preservation up to any reflexive
+target equivalence. -/
+theorem preservesCompositeUpTo_of_strict
+    (R : ECIARealization A sourceAdmissible T)
+    (targetCompose : T.Target → T.Target → T.Target)
+    (targetEquivalent : T.Target → T.Target → Prop)
+    (hrefl : ∀ Z, targetEquivalent Z Z)
+    {X Y : CausalNumber A}
+    (G : DiaryCompositionData X Y)
+    (hstrict : R.PreservesComposite targetCompose G) :
+    R.PreservesCompositeUpTo
+      targetCompose targetEquivalent G := by
+  unfold PreservesCompositeUpTo
+  rw [hstrict]
+  exact hrefl _
+
 /-- Pointwise preservation of one genuine event-level dagger witness. -/
 def PreservesDagger
     (R : ECIARealization A sourceAdmissible T)
