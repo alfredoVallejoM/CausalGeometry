@@ -35,9 +35,8 @@ variable {Point : Type u}
 /-- Structural local Tamagawa index: the number of components in the local
 pointed quotient. -/
 def tamagawaIndex
-    (Q : LocalComponentQuotient.{u, v} Point) : ℕ := by
-  letI : Finite Q.Component := Q.finiteComponent
-  exact Nat.card Q.Component
+    (Q : LocalComponentQuotient.{u, v} Point) : ℕ :=
+  Nat.card Q.Component
 
 /-- An equivalence of component carriers preserves the local Tamagawa index. -/
 theorem tamagawaIndex_eq_of_equiv
@@ -46,10 +45,6 @@ theorem tamagawaIndex_eq_of_equiv
     (Q' : LocalComponentQuotient.{w, x} Point')
     (e : Q.Component ≃ Q'.Component) :
     Q.tamagawaIndex = Q'.tamagawaIndex := by
-  letI : Finite Q.Component :=
-    Q.finiteComponent
-  letI : Finite Q'.Component :=
-    Q'.finiteComponent
   simpa [tamagawaIndex] using
     (Nat.card_congr e)
 
@@ -62,8 +57,6 @@ theorem tamagawaIndex_eq_one_of_punit_equiv
     (Q : LocalComponentQuotient.{u, v} Point)
     (e : Q.Component ≃ PUnit) :
     Q.tamagawaIndex = 1 := by
-  letI : Finite Q.Component :=
-    Q.finiteComponent
   calc
     Q.tamagawaIndex =
         Nat.card PUnit := by
@@ -143,8 +136,6 @@ theorem tamagawaIndex_eq_neronCard
       Q NeronComponent) :
     Q.tamagawaIndex =
       Nat.card NeronComponent := by
-  letI : Finite Q.Component :=
-    Q.finiteComponent
   simpa [LocalComponentQuotient.tamagawaIndex] using
     (Nat.card_congr h.componentEquiv)
 
@@ -174,8 +165,6 @@ component comparison. -/
 theorem tamagawaIndex_eq_multiplicity
     (h : TateTypeIComparison Q) :
     Q.tamagawaIndex = h.multiplicity := by
-  letI : Finite Q.Component :=
-    Q.finiteComponent
   calc
     Q.tamagawaIndex =
         Nat.card (Fin h.multiplicity) := by
