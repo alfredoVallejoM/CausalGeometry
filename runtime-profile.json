@@ -105,8 +105,8 @@
       "level": "regression",
       "kind": "command",
       "required": true,
-      "command": "lake env lean CausalGeometry/Realization/IndexedFamily.lean && lake env lean CausalGeometry/Realization/TamagawaIndexedFamily.lean && lake env lean CausalGeometry/Models/CommonSourceControls.lean && lake env lean CausalGeometry/Models/IndexedFamilyControls.lean",
-      "description": "Typecheck the CA24 common-source indexed-realization layer, the structural-to-numerical Tamagawa comparison, a genuine causal-number source domain, and positive/negative joint-conservativity controls."
+      "command": "lake env lean CausalGeometry/Realization/IndexedFamily.lean && lake env lean CausalGeometry/Realization/TamagawaIndexedFamily.lean && lake env lean CausalGeometry/Models/CommonSourceControls.lean && lake env lean CausalGeometry/Models/IndexedFamilyControls.lean && lake env lean CausalGeometry/Models/TamagawaIndexedLossControls.lean",
+      "description": "Typecheck CA24 common-source indexed realizations, explicit reconstruction versus conservativity, structural-to-numerical Tamagawa comparison, actual causal-source controls, and a strict quotient-map-to-index loss discriminator."
     },
     {
       "id": "ADV-SOURCE-AUDIT",
