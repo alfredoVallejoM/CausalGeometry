@@ -14,9 +14,6 @@ def collapsedBool :
   Component := PUnit
   finiteComponent := inferInstance
   componentOf := fun _ => PUnit.unit
-  basePoint := false
-  baseComponent := PUnit.unit
-  base_eq := rfl
   surjective := by
     intro y
     cases y
@@ -33,9 +30,6 @@ def separatedBool :
       match b with
       | false => 0
       | true => 1
-  basePoint := false
-  baseComponent := 0
-  base_eq := by simp
   surjective := by
     intro y
     fin_cases y
@@ -107,9 +101,6 @@ def typeITwo :
   Component := Multiplicative (ZMod 2)
   finiteComponent := inferInstance
   componentOf := id
-  basePoint := Multiplicative.ofAdd 0
-  baseComponent := Multiplicative.ofAdd 0
-  base_eq := rfl
   surjective := by
     intro y
     exact ⟨y, rfl⟩
