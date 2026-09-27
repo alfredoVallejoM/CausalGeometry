@@ -348,3 +348,7 @@ import CausalGeometry.Realization.ECIAPrimitiveFactorizationContract
 import CausalGeometry.Models.CausalLengthPrimitiveBridge
 
 import CausalGeometry.Models.EmptyBoundaryComposition
+
+import CausalGeometry.Models.CommonSourceControls
+
+import CausalGeometry.Models.IndexedFamilyControls
