@@ -30,7 +30,9 @@ def separatedBool :
   fintypeComponent := inferInstance
   componentOf :=
     fun b =>
-      if b then (1 : Fin 2) else 0
+      match b with
+      | false => 0
+      | true => 1
   basePoint := false
   baseComponent := 0
   base_eq := by simp
