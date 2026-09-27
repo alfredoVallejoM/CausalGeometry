@@ -101,6 +101,14 @@
       "description": "Typecheck CA22 canonical Ore localization, raw-Ore/reversibility controls, bilateral comparison, residual domains, valuations, causal atomic factorization, negative irreducible/primitive separation, and the positive causal-length irreducible↔primitive bridge."
     },
     {
+      "id": "CA24-COMMON-SOURCE-TYPECHECK",
+      "level": "regression",
+      "kind": "command",
+      "required": true,
+      "command": "lake env lean CausalGeometry/Realization/IndexedFamily.lean && lake env lean CausalGeometry/Realization/TamagawaIndexedFamily.lean && lake env lean CausalGeometry/Models/CommonSourceControls.lean && lake env lean CausalGeometry/Models/IndexedFamilyControls.lean",
+      "description": "Typecheck the CA24 common-source indexed-realization layer, the structural-to-numerical Tamagawa comparison, a genuine causal-number source domain, and positive/negative joint-conservativity controls."
+    },
+    {
       "id": "ADV-SOURCE-AUDIT",
       "level": "adversarial",
       "kind": "command",
