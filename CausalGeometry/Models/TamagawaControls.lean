@@ -148,7 +148,7 @@ theorem coordinateQuotients_no_commuting_equiv_over_id :
       secondCoordinateQuotient
     ] using he (false, true)
   rw [hfalse] at htrue
-  contradiction
+  simp at htrue
 
 /-- Native cyclic type-I control with multiplicity two.  This control is
 separate from the point-count mutation above: here both the local point carrier
