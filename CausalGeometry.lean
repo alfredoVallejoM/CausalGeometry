@@ -352,3 +352,5 @@ import CausalGeometry.Models.EmptyBoundaryComposition
 import CausalGeometry.Models.CommonSourceControls
 
 import CausalGeometry.Models.IndexedFamilyControls
+
+import CausalGeometry.Models.TamagawaIndexedLossControls
