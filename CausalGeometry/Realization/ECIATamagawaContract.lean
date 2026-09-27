@@ -19,7 +19,7 @@ independent numeric field.  A downstream Neron model may identify this
 component carrier with the rational points of the Neron component group. -/
 structure LocalComponentQuotient (Point : Type u) where
   Component : Type v
-  fintypeComponent : Fintype Component
+  finiteComponent : Finite Component
   componentOf : Point → Component
   basePoint : Point
   baseComponent : Component
@@ -35,8 +35,9 @@ variable {Point : Type u}
 /-- Structural local Tamagawa index: the number of components in the local
 pointed quotient. -/
 def tamagawaIndex
-    (Q : LocalComponentQuotient.{u, v} Point) : ℕ :=
-  @Fintype.card Q.Component Q.fintypeComponent
+    (Q : LocalComponentQuotient.{u, v} Point) : ℕ := by
+  letI : Finite Q.Component := Q.finiteComponent
+  exact Nat.card Q.Component
 
 /-- An equivalence of component carriers preserves the local Tamagawa index. -/
 theorem tamagawaIndex_eq_of_equiv
@@ -45,12 +46,12 @@ theorem tamagawaIndex_eq_of_equiv
     (Q' : LocalComponentQuotient.{w, x} Point')
     (e : Q.Component ≃ Q'.Component) :
     Q.tamagawaIndex = Q'.tamagawaIndex := by
-  letI : Fintype Q.Component :=
-    Q.fintypeComponent
-  letI : Fintype Q'.Component :=
-    Q'.fintypeComponent
+  letI : Finite Q.Component :=
+    Q.finiteComponent
+  letI : Finite Q'.Component :=
+    Q'.finiteComponent
   simpa [tamagawaIndex] using
-    (Fintype.card_congr e)
+    (Nat.card_congr e)
 
 /-- Comparison with a trivial component carrier forces Tamagawa index one.
 
@@ -61,13 +62,13 @@ theorem tamagawaIndex_eq_one_of_punit_equiv
     (Q : LocalComponentQuotient.{u, v} Point)
     (e : Q.Component ≃ PUnit) :
     Q.tamagawaIndex = 1 := by
-  letI : Fintype Q.Component :=
-    Q.fintypeComponent
+  letI : Finite Q.Component :=
+    Q.finiteComponent
   calc
     Q.tamagawaIndex =
-        Fintype.card PUnit := by
+        Nat.card PUnit := by
       simpa [tamagawaIndex] using
-        (Fintype.card_congr e)
+        (Nat.card_congr e)
     _ = 1 := by simp
 
 end LocalComponentQuotient
@@ -123,7 +124,7 @@ structure NeronComponentComparison
     {Point : Type u}
     (Q : LocalComponentQuotient.{u, v} Point)
     (NeronComponent : Type w)
-    [Fintype NeronComponent] where
+    [Finite NeronComponent] where
   componentEquiv :
     Q.Component ≃ NeronComponent
 
@@ -133,7 +134,7 @@ variable
     {Point : Type u}
     {Q : LocalComponentQuotient.{u, v} Point}
     {NeronComponent : Type w}
-    [Fintype NeronComponent]
+    [Finite NeronComponent]
 
 /-- Once the component carrier is identified with the Neron component
 carrier, the structural index is exactly its finite cardinality. -/
@@ -141,11 +142,11 @@ theorem tamagawaIndex_eq_neronCard
     (h : NeronComponentComparison
       Q NeronComponent) :
     Q.tamagawaIndex =
-      Fintype.card NeronComponent := by
-  letI : Fintype Q.Component :=
-    Q.fintypeComponent
+      Nat.card NeronComponent := by
+  letI : Finite Q.Component :=
+    Q.finiteComponent
   simpa [LocalComponentQuotient.tamagawaIndex] using
-    (Fintype.card_congr h.componentEquiv)
+    (Nat.card_congr h.componentEquiv)
 
 end NeronComponentComparison
 
@@ -173,13 +174,13 @@ component comparison. -/
 theorem tamagawaIndex_eq_multiplicity
     (h : TateTypeIComparison Q) :
     Q.tamagawaIndex = h.multiplicity := by
-  letI : Fintype Q.Component :=
-    Q.fintypeComponent
+  letI : Finite Q.Component :=
+    Q.finiteComponent
   calc
     Q.tamagawaIndex =
-        Fintype.card (Fin h.multiplicity) := by
+        Nat.card (Fin h.multiplicity) := by
       simpa [LocalComponentQuotient.tamagawaIndex] using
-        (Fintype.card_congr
+        (Nat.card_congr
           h.componentEquiv)
     _ = h.multiplicity := by simp
 
