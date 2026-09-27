@@ -1,6 +1,7 @@
 import CausalGeometry.Realization.ECIAContract
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Data.Fintype.Card
+import Mathlib.Data.ZMod.Basic
 
 namespace CausalGeometry
 
@@ -152,7 +153,7 @@ structure TateTypeIComparison
   multiplicity : ℕ
   positive : 0 < multiplicity
   componentEquiv :
-    Q.Component ≃ Fin multiplicity
+    Q.Component ≃ Multiplicative (ZMod multiplicity)
 
 namespace TateTypeIComparison
 
@@ -167,11 +168,14 @@ theorem tamagawaIndex_eq_multiplicity
     Q.tamagawaIndex = h.multiplicity := by
   calc
     Q.tamagawaIndex =
-        Nat.card (Fin h.multiplicity) := by
+        Nat.card (Multiplicative (ZMod h.multiplicity)) := by
       simpa [LocalComponentQuotient.tamagawaIndex] using
         (Nat.card_congr
           h.componentEquiv)
-    _ = h.multiplicity := by simp
+    _ = Nat.card (ZMod h.multiplicity) := by
+      exact Nat.card_congr Multiplicative.toAdd
+    _ = h.multiplicity := by
+      exact Nat.card_zmod h.multiplicity
 
 end TateTypeIComparison
 
