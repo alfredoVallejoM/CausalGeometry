@@ -6,7 +6,7 @@ declaring any of them fully closed.
 
 Source code SHA for the new causal contract:
 
-- `e0ce830d1d538ab6881b8ea7c26579b18905955a`
+- `a45ec726851b88596dde3a2d4355ec3b5afa5524`
 
 Downstream GenContinuum bridge code SHA:
 
