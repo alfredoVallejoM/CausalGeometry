@@ -97,22 +97,39 @@ theorem collapsedBool_from_component_equiv :
       collapsedBool
       collapsedBoolPUnitEquiv
 
+/-- Native cyclic type-I control with multiplicity two.  This control is
+separate from the point-count mutation above: here both the local point carrier
+and the component carrier are the cyclic type required by the Tate
+comparison. -/
+def typeITwo :
+    LocalComponentQuotient
+      (Multiplicative (ZMod 2)) where
+  Component := Multiplicative (ZMod 2)
+  finiteComponent := inferInstance
+  componentOf := id
+  basePoint := Multiplicative.ofAdd 0
+  baseComponent := Multiplicative.ofAdd 0
+  base_eq := rfl
+  surjective := by
+    intro y
+    exact ⟨y, rfl⟩
+
 /-- Type-I regression model with multiplicity two. -/
-def separatedBoolTypeI :
-    TateTypeIComparison separatedBool where
+def typeITwoComparison :
+    TateTypeIComparison typeITwo where
   multiplicity := 2
   positive := by norm_num
   componentEquiv :=
-    Equiv.refl (Fin 2)
+    Equiv.refl (Multiplicative (ZMod 2))
 
-/-- The split-multiplicative/type-I comparison derives c=2 from the component
-equivalence instead of taking the integer as an unrelated field. -/
-theorem separatedBool_typeI_regression :
-    separatedBool.tamagawaIndex =
-      separatedBoolTypeI.multiplicity :=
+/-- The split-multiplicative/type-I comparison derives c=2 from the cyclic
+component equivalence instead of taking the integer as an unrelated field. -/
+theorem typeITwo_regression :
+    typeITwo.tamagawaIndex =
+      typeITwoComparison.multiplicity :=
   TateTypeIComparison
     .tamagawaIndex_eq_multiplicity
-      separatedBoolTypeI
+      typeITwoComparison
 
 end TamagawaControls
 end Models
