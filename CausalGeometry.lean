@@ -237,6 +237,7 @@ import CausalGeometry.Completion.BruhatTitsArithmeticConcreteIhara
 import CausalGeometry.Completion.BruhatTitsIharaProfile
 import CausalGeometry.Number.FactorizationProfile
 import CausalGeometry.Realization.Family
+import CausalGeometry.Realization.IndexedFamily
 import CausalGeometry.Realization.PairedCompatibility
 import CausalGeometry.Realization.PairedPartialCompatibility
 import CausalGeometry.Realization.At
