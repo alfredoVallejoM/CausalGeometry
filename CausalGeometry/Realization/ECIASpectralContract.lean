@@ -60,6 +60,277 @@ structure PreservesGradedCausalLaplacian
       (cochainEquivSucc X n).toLinearMap.comp
         ((sourceHodge X).laplacianSucc n)
 
+/-- Admissibility-scoped strong spectral preservation.
+
+This is the partial-realization counterpart of
+`PreservesGradedCausalLaplacian`.  Source complexes, Hodge data, cochain
+equivalences and intertwining are required only for causal numbers admitted by
+the realization.  The target operator remains an honest operator on the
+declared target carrier, so harmonic and eigenspace preservation are still
+derived rather than postulated. -/
+structure PreservesGradedCausalLaplacianOnAdmissible
+    (R : ECIARealization A sourceAdmissible T)
+    (K : Type w)
+    [Field K]
+    (SourceCochain :
+      CausalNumber A → ℕ → Type x)
+    [∀ X n, AddCommGroup (SourceCochain X n)]
+    [∀ X n, Module K (SourceCochain X n)]
+    (sourceComplex :
+      ∀ (X : CausalNumber A),
+        sourceAdmissible X →
+          GradedCausalCochainComplex K
+            (SourceCochain X))
+    (sourceHodge :
+      ∀ (X : CausalNumber A)
+        (hX : sourceAdmissible X),
+        GradedCausalHodgeData
+          (sourceComplex X hX))
+    (TargetCochain :
+      T.Target → ℕ → Type y)
+    [∀ Y n, AddCommGroup (TargetCochain Y n)]
+    [∀ Y n, Module K (TargetCochain Y n)] : Prop where
+
+  targetLaplacianSucc :
+    ∀ (Y : T.Target) (n : ℕ),
+      TargetCochain Y (n + 1) →ₗ[K]
+        TargetCochain Y (n + 1)
+
+  cochainEquivSucc :
+    ∀ (X : CausalNumber A)
+      (hX : sourceAdmissible X)
+      (n : ℕ),
+      SourceCochain X (n + 1) ≃ₗ[K]
+        TargetCochain (R.realize X) (n + 1)
+
+  intertwines :
+    ∀ (X : CausalNumber A)
+      (hX : sourceAdmissible X)
+      (n : ℕ),
+      (targetLaplacianSucc
+          (R.realize X) n).comp
+        (cochainEquivSucc X hX n).toLinearMap
+      =
+      (cochainEquivSucc X hX n).toLinearMap.comp
+        ((sourceHodge X hX).laplacianSucc n)
+
+/-- Every global strong spectral contract restricts canonically to the
+declared source-admissible domain. -/
+def PreservesGradedCausalLaplacian.toOnAdmissible
+    {R : ECIARealization A sourceAdmissible T}
+    {K : Type w}
+    [Field K]
+    {SourceCochain :
+      CausalNumber A → ℕ → Type x}
+    [∀ X n, AddCommGroup (SourceCochain X n)]
+    [∀ X n, Module K (SourceCochain X n)]
+    {sourceComplex :
+      ∀ X : CausalNumber A,
+        GradedCausalCochainComplex K
+          (SourceCochain X)}
+    {sourceHodge :
+      ∀ X : CausalNumber A,
+        GradedCausalHodgeData
+          (sourceComplex X)}
+    {TargetCochain :
+      T.Target → ℕ → Type y}
+    [∀ Y n, AddCommGroup (TargetCochain Y n)]
+    [∀ Y n, Module K (TargetCochain Y n)]
+    (h :
+      R.PreservesGradedCausalLaplacian
+        K SourceCochain sourceComplex
+        sourceHodge TargetCochain) :
+    R.PreservesGradedCausalLaplacianOnAdmissible
+      K SourceCochain
+      (fun X _ => sourceComplex X)
+      (fun X _ => sourceHodge X)
+      TargetCochain where
+  targetLaplacianSucc := h.targetLaplacianSucc
+  cochainEquivSucc := fun X _ n => h.cochainEquivSucc X n
+  intertwines := fun X _ n => h.intertwines X n
+
+namespace PreservesGradedCausalLaplacianOnAdmissible
+
+variable
+    {R : ECIARealization A sourceAdmissible T}
+    {K : Type w}
+    [Field K]
+    {SourceCochain :
+      CausalNumber A → ℕ → Type x}
+    [∀ X n, AddCommGroup (SourceCochain X n)]
+    [∀ X n, Module K (SourceCochain X n)]
+    {sourceComplex :
+      ∀ (X : CausalNumber A),
+        sourceAdmissible X →
+          GradedCausalCochainComplex K
+            (SourceCochain X)}
+    {sourceHodge :
+      ∀ (X : CausalNumber A)
+        (hX : sourceAdmissible X),
+        GradedCausalHodgeData
+          (sourceComplex X hX)}
+    {TargetCochain :
+      T.Target → ℕ → Type y}
+    [∀ Y n, AddCommGroup (TargetCochain Y n)]
+    [∀ Y n, Module K (TargetCochain Y n)]
+    (h :
+      R.PreservesGradedCausalLaplacianOnAdmissible
+        K SourceCochain sourceComplex
+        sourceHodge TargetCochain)
+
+/-- Target harmonic subspace of the actual target operator. -/
+abbrev TargetHarmonicSucc
+    (Y : T.Target)
+    (n : ℕ) :
+    Submodule K
+      (TargetCochain Y (n + 1)) :=
+  (h.targetLaplacianSucc Y n).ker
+
+/-- Strong operator intertwining yields harmonic preservation on every admitted
+source object. -/
+def harmonicEquiv
+    (X : CausalNumber A)
+    (hX : sourceAdmissible X)
+    (n : ℕ) :
+    (sourceHodge X hX).HarmonicSucc n ≃ₗ[K]
+      h.TargetHarmonicSucc
+        (R.realize X) n where
+
+  toFun := fun z =>
+    ⟨h.cochainEquivSucc X hX n z, by
+      have hi :=
+        LinearMap.congr_fun
+          (h.intertwines X hX n)
+          (z : SourceCochain X (n + 1))
+      change
+        h.targetLaplacianSucc
+            (R.realize X) n
+            (h.cochainEquivSucc X hX n z)
+          =
+        0
+      rw [hi, z.2]
+      simp⟩
+
+  invFun := fun z =>
+    ⟨(h.cochainEquivSucc X hX n).symm z, by
+      have hi :=
+        LinearMap.congr_fun
+          (h.intertwines X hX n)
+          ((h.cochainEquivSucc X hX n).symm z)
+      have hz :
+          h.targetLaplacianSucc
+              (R.realize X) n z
+            =
+          0 := z.2
+      change
+        (sourceHodge X hX).laplacianSucc n
+            ((h.cochainEquivSucc X hX n).symm z)
+          =
+        0
+      apply (h.cochainEquivSucc X hX n).injective
+      rw [← hi]
+      simpa using hz⟩
+
+  left_inv := by
+    intro z
+    apply Subtype.ext
+    simp
+
+  right_inv := by
+    intro z
+    apply Subtype.ext
+    simp
+
+  map_add' := by
+    intro x y
+    apply Subtype.ext
+    simp
+
+  map_smul' := by
+    intro a x
+    apply Subtype.ext
+    simp
+
+/-- Target eigenspace of the actual target Laplacian. -/
+abbrev TargetEigenspace
+    (Y : T.Target)
+    (n : ℕ)
+    (μ : K) :
+    Submodule K
+      (TargetCochain Y (n + 1)) :=
+  Module.End.eigenspace
+    (h.targetLaplacianSucc Y n) μ
+
+/-- Every eigenspace is preserved on the admitted domain. -/
+def eigenspaceEquiv
+    (X : CausalNumber A)
+    (hX : sourceAdmissible X)
+    (n : ℕ)
+    (μ : K) :
+    Module.End.eigenspace
+        ((sourceHodge X hX).laplacianSucc n)
+        μ
+      ≃ₗ[K]
+    h.TargetEigenspace
+      (R.realize X) n μ where
+
+  toFun := fun z =>
+    ⟨h.cochainEquivSucc X hX n z, by
+      apply Module.End.mem_eigenspace_iff.mpr
+      have hz :
+          (sourceHodge X hX).laplacianSucc n z
+            =
+          μ • (z : SourceCochain X (n + 1)) :=
+        Module.End.mem_eigenspace_iff.mp z.2
+      have hi :=
+        LinearMap.congr_fun
+          (h.intertwines X hX n)
+          (z : SourceCochain X (n + 1))
+      rw [hi, hz]
+      simp⟩
+
+  invFun := fun z =>
+    ⟨(h.cochainEquivSucc X hX n).symm z, by
+      apply Module.End.mem_eigenspace_iff.mpr
+      have hz :
+          h.targetLaplacianSucc
+              (R.realize X) n z
+            =
+          μ •
+            (z :
+              TargetCochain
+                (R.realize X) (n + 1)) :=
+        Module.End.mem_eigenspace_iff.mp z.2
+      have hi :=
+        LinearMap.congr_fun
+          (h.intertwines X hX n)
+          ((h.cochainEquivSucc X hX n).symm z)
+      apply (h.cochainEquivSucc X hX n).injective
+      rw [← hi, hz]
+      simp⟩
+
+  left_inv := by
+    intro z
+    apply Subtype.ext
+    simp
+
+  right_inv := by
+    intro z
+    apply Subtype.ext
+    simp
+
+  map_add' := by
+    intro x y
+    apply Subtype.ext
+    simp
+
+  map_smul' := by
+    intro a x
+    apply Subtype.ext
+    simp
+
+end PreservesGradedCausalLaplacianOnAdmissible
+
 namespace PreservesGradedCausalLaplacian
 
 variable
