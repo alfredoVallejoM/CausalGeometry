@@ -78,6 +78,100 @@ structure PreservesCausalCohomology
       CausalNumberH2 K X ≃+
         TargetH2 (R.realize X)
 
+/-- Admissibility-scoped ECIA preservation of causal cohomology.
+
+Unlike `PreservesCausalCohomology`, this contract asks for comparison only on
+the source domain on which the realization is declared admissible.  This is
+the appropriate interface for partial ECIA realizations. -/
+structure PreservesCausalCohomologyOnAdmissible
+    (R : ECIARealization A sourceAdmissible T)
+    (K : Type w)
+    [AddCommGroup K]
+    (TargetH1 : T.Target → Type x)
+    (TargetH2 : T.Target → Type y)
+    [∀ Y, AddCommGroup (TargetH1 Y)]
+    [∀ Y, AddCommGroup (TargetH2 Y)] : Prop where
+
+  h1Equiv :
+    ∀ (X : CausalNumber A),
+      sourceAdmissible X →
+        CausalNumberH1 K X ≃+
+          TargetH1 (R.realize X)
+
+  h2Equiv :
+    ∀ (X : CausalNumber A),
+      sourceAdmissible X →
+        CausalNumberH2 K X ≃+
+          TargetH2 (R.realize X)
+
+/-- Every global cohomology-preservation contract restricts to the declared
+admissible domain. -/
+def PreservesCausalCohomology.toOnAdmissible
+    {R : ECIARealization A sourceAdmissible T}
+    {K : Type w}
+    [AddCommGroup K]
+    {TargetH1 : T.Target → Type x}
+    {TargetH2 : T.Target → Type y}
+    [∀ Y, AddCommGroup (TargetH1 Y)]
+    [∀ Y, AddCommGroup (TargetH2 Y)]
+    (h :
+      R.PreservesCausalCohomology
+        K TargetH1 TargetH2) :
+    R.PreservesCausalCohomologyOnAdmissible
+      K TargetH1 TargetH2 where
+  h1Equiv := fun X _ => h.h1Equiv X
+  h2Equiv := fun X _ => h.h2Equiv X
+
+namespace PreservesCausalCohomologyOnAdmissible
+
+variable
+    {R : ECIARealization A sourceAdmissible T}
+    {K : Type w} [AddCommGroup K]
+    {TargetH1 : T.Target → Type x}
+    {TargetH2 : T.Target → Type y}
+    [∀ Y, AddCommGroup (TargetH1 Y)]
+    [∀ Y, AddCommGroup (TargetH2 Y)]
+    (h :
+      R.PreservesCausalCohomologyOnAdmissible
+        K TargetH1 TargetH2)
+
+/-- Triviality of H1 is preserved and reflected on the admitted source
+domain. -/
+theorem h1_subsingleton_iff
+    (X : CausalNumber A)
+    (hX : sourceAdmissible X) :
+    Subsingleton (CausalNumberH1 K X) ↔
+      Subsingleton
+        (TargetH1 (R.realize X)) :=
+  (h.h1Equiv X hX).toEquiv.subsingleton_congr
+
+/-- Triviality of H2 is preserved and reflected on the admitted source
+domain. -/
+theorem h2_subsingleton_iff
+    (X : CausalNumber A)
+    (hX : sourceAdmissible X) :
+    Subsingleton (CausalNumberH2 K X) ↔
+      Subsingleton
+        (TargetH2 (R.realize X)) :=
+  (h.h2Equiv X hX).toEquiv.subsingleton_congr
+
+@[simp] theorem h1_zero
+    (X : CausalNumber A)
+    (hX : sourceAdmissible X) :
+    h.h1Equiv X hX 0 = 0 :=
+  map_zero (h.h1Equiv X hX)
+
+@[simp] theorem h1_add
+    (X : CausalNumber A)
+    (hX : sourceAdmissible X)
+    (a b : CausalNumberH1 K X) :
+    h.h1Equiv X hX (a + b) =
+      h.h1Equiv X hX a +
+        h.h1Equiv X hX b :=
+  map_add (h.h1Equiv X hX) a b
+
+end PreservesCausalCohomologyOnAdmissible
+
 namespace PreservesCausalCohomology
 
 variable
