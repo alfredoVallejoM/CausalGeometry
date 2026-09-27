@@ -391,7 +391,7 @@ def PreservesTamagawaIndices
       ((source X).local place)
         .tamagawaIndex
 
-/-- Strong component preservation implies the weak numerical contract. -/
+/-- Component-carrier preservation implies the weak numerical contract. -/
 theorem preservesTamagawaIndices_of_components
     (R : ECIARealization A sourceAdmissible T)
     (source :
@@ -407,6 +407,28 @@ theorem preservesTamagawaIndices_of_components
       source target := by
   intro X place
   exact h.localTamagawaIndex_eq X place
+
+
+/-- Quotient-level preservation also implies the weak numerical contract. -/
+theorem preservesTamagawaIndices_of_quotients
+    (R : ECIARealization A sourceAdmissible T)
+    (source :
+      CausalNumber A →
+        Tamagawa.Family.{w, x, y} Place)
+    (target :
+      T.Target →
+        Tamagawa.Family.{w, x, y} Place)
+    (pointMap :
+      ∀ (X : CausalNumber A) (place : Place),
+        (source X).LocalPoint place →
+          (target (R.realize X)).LocalPoint place)
+    (h :
+      R.PreservesTamagawaQuotients
+        source target pointMap) :
+    R.PreservesTamagawaIndices
+      source target :=
+  preservesTamagawaIndices_of_components
+    R source target h.components
 
 end ECIARealization
 end CausalGeometry
