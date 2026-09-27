@@ -183,6 +183,46 @@ theorem causalCoordinateFamily_jointlyConservative :
     causalCoordinateFamily
   ] using hfalse
 
+/-- Explicit reconstruction of the admitted causal source from the complete
+two-place packet.
+
+Only the false place is informative in this minimal control, but the recovery
+map is genuine data rather than an existence theorem. -/
+noncomputable def causalCoordinateReconstruction :
+    IndexedRealizationFamily.Reconstruction
+      causalCoordinateFamily where
+  recover :=
+    fun packet =>
+      if packet false
+      then singletonSource
+      else emptySource
+
+  leftInverse := by
+    intro source
+    rcases source with ⟨X, hX⟩
+    rcases hX with hX | hX
+    · subst X
+      apply Subtype.ext
+      simp [
+        causalCoordinateFamily,
+        sourceTag,
+        emptySource
+      ]
+    · subst X
+      apply Subtype.ext
+      simp [
+        causalCoordinateFamily,
+        sourceTag,
+        singletonSource,
+        empty_ne_singleton
+      ]
+
+/-- The explicit recovery map yields joint conservativity by the generic
+reconstruction theorem. -/
+theorem causalCoordinateReconstruction_jointlyConservative :
+    causalCoordinateFamily.JointlyConservative :=
+  causalCoordinateReconstruction.jointlyConservative
+
 /-- Mutation erasing the only informative local coordinate. -/
 def collapsedCausalFamily :
     IndexedRealizationFamily
@@ -205,6 +245,17 @@ theorem collapsedCausalFamily_not_jointlyConservative :
         singletonCausalNumber :=
     congrArg Subtype.val hEq
   exact empty_ne_singleton hVal
+
+/-- The collapsed mutation cannot admit explicit reconstruction data. -/
+theorem collapsedCausalFamily_noReconstruction :
+    IsEmpty
+      (IndexedRealizationFamily.Reconstruction
+        collapsedCausalFamily) := by
+  constructor
+  intro D
+  exact
+    collapsedCausalFamily_not_jointlyConservative
+      D.jointlyConservative
 
 /-- Positive/negative joint-conservativity discriminator on a named
 `CausalNumber` domain. -/
