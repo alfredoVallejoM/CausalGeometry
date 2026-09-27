@@ -11,21 +11,21 @@ universe u v w x y z
 
 namespace Tamagawa
 
-/-- A finite pointed quotient recording the connected-component shadow of one
-local realization.
+/-- A finite quotient recording the connected-component shadow of one local
+realization.
 
 The quotient map is structural data.  Its cardinality is *derived* from the
 component carrier; the Tamagawa index is therefore not introduced as an
 independent numeric field.  A downstream Neron model may identify this
-component carrier with the rational points of the Neron component group. -/
+component carrier with the rational points of the Neron component group.
+
+No distinguished point is stored here: preservation of the group identity is
+a target-side group-theoretic obligation, while this source contract records
+only the quotient needed to derive the component cardinal. -/
 structure LocalComponentQuotient (Point : Type u) where
   Component : Type v
   finiteComponent : Finite Component
   componentOf : Point → Component
-  basePoint : Point
-  baseComponent : Component
-  base_eq :
-    componentOf basePoint = baseComponent
   surjective :
     Function.Surjective componentOf
 
@@ -145,8 +145,9 @@ end NeronComponentComparison
 /-- Regression contract for a split multiplicative Tate type (I_n).
 
 A real elliptic target must prove independently that the selected local curve
-has this reduction type and that its component carrier is equivalent to
-`Fin n`.  The source then derives (c_v=n). -/
+has this reduction type and that its component carrier is equivalent to the
+cyclic carrier `Multiplicative (ZMod n)`.  The source then derives
+`c_v = n`. -/
 structure TateTypeIComparison
     {Point : Type u}
     (Q : LocalComponentQuotient.{u, v} Point) where
