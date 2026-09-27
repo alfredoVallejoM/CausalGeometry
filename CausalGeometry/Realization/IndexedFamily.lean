@@ -159,6 +159,44 @@ def JointlyConservative
     R.CollapsesEverywhere x y →
       x = y
 
+/-- Explicit reconstruction data for a common-source realization family.
+
+This is deliberately stronger evidence than the proposition
+`JointlyConservative`: a consumer must provide an actual recovery map on the
+complete dependent packet together with a left-inverse law.  We do not obtain
+such data from joint conservativity by classical choice. -/
+structure Reconstruction
+    (R : IndexedRealizationFamily.{u, v, w}
+      α Place) where
+  recover :
+    ((place : Place) → R.Target place) →
+      α
+  leftInverse :
+    ∀ x : α,
+      recover (R.packet x) = x
+
+namespace Reconstruction
+
+/-- Explicit reconstruction implies joint conservativity. -/
+theorem jointlyConservative
+    {R : IndexedRealizationFamily.{u, v, w}
+      α Place}
+    (D : Reconstruction R) :
+    R.JointlyConservative := by
+  intro x y h
+  have hpacket :
+      R.packet x = R.packet y := by
+    funext place
+    exact h place
+  calc
+    x = D.recover (R.packet x) :=
+      (D.leftInverse x).symm
+    _ = D.recover (R.packet y) := by
+      rw [hpacket]
+    _ = y := D.leftInverse y
+
+end Reconstruction
+
 /-- Restrict a common-source family to a proved source domain without changing
 any local target.
 
