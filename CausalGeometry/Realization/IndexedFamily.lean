@@ -2,7 +2,7 @@ import CausalGeometry.Realization.Family
 
 namespace CausalGeometry
 
-universe u v w x
+universe u v w x y
 
 /-- A place-indexed family of typed realizations of one common source type.
 
@@ -23,13 +23,6 @@ namespace IndexedRealizationFamily
 variable
     {α : Type u}
     {Place : Type v}
-
-instance
-    (R : IndexedRealizationFamily.{u, v, w}
-      α Place)
-    (place : Place) :
-    CoeFun R (fun _ => α → R.Target place) :=
-  ⟨R.realize place⟩
 
 /-- Value of one common source at one selected place. -/
 def value
@@ -81,7 +74,6 @@ def comp
       α Place}
     {S : IndexedRealizationFamily.{u, v, x}
       α Place}
-    {y : Level}
     {T : IndexedRealizationFamily.{u, v, y}
       α Place}
     (η : Comparison R S)
