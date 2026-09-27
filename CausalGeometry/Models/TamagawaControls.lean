@@ -26,15 +26,19 @@ def collapsedBool :
 components. -/
 def separatedBool :
     LocalComponentQuotient Bool where
-  Component := Bool
+  Component := Fin 2
   fintypeComponent := inferInstance
-  componentOf := id
+  componentOf :=
+    fun b =>
+      if b then (1 : Fin 2) else 0
   basePoint := false
-  baseComponent := false
-  base_eq := rfl
+  baseComponent := 0
+  base_eq := by simp
   surjective := by
     intro y
-    exact ⟨y, rfl⟩
+    fin_cases y
+    · exact ⟨false, by simp⟩
+    · exact ⟨true, by simp⟩
 
 /-- The collapsed local quotient has Tamagawa index one. -/
 theorem collapsedBool_tamagawa :
@@ -97,18 +101,7 @@ def separatedBoolTypeI :
   multiplicity := 2
   positive := by norm_num
   componentEquiv :=
-    Equiv.ofBijective
-      (fun b : Bool =>
-        if b then (1 : Fin 2) else 0)
-      (by
-        constructor
-        · intro a b hab
-          cases a <;> cases b <;>
-            simp at hab ⊢
-        · intro y
-          fin_cases y
-          · exact ⟨false, by simp⟩
-          · exact ⟨true, by simp⟩)
+    Equiv.refl (Fin 2)
 
 /-- The split-multiplicative/type-I comparison derives c=2 from the component
 equivalence instead of taking the integer as an unrelated field. -/
