@@ -150,6 +150,61 @@ theorem coordinateQuotients_no_commuting_equiv_over_id :
   rw [hfalse] at htrue
   simp at htrue
 
+/-! ## Finite-support certificate controls -/
+
+/-- Two-place family with one genuinely nontrivial factor and one neutral
+factor. -/
+def mixedFamily :
+    Family Bool where
+  LocalPoint := fun _ => Bool
+  local :=
+    fun place =>
+      if place
+      then collapsedBool
+      else separatedBool
+  support := {false}
+  unit_outside_support := by
+    intro place hplace
+    fin_cases place
+    · simp at hplace
+    · simpa [
+        collapsedBool_tamagawa
+      ]
+
+/-- The declared minimal support computes the nontrivial factor two. -/
+theorem mixedFamily_globalTamagawaIndex :
+    mixedFamily.globalTamagawaIndex = 2 := by
+  simp [
+    Family.globalTamagawaIndex,
+    mixedFamily,
+    separatedBool_tamagawa
+  ]
+
+/-- Enlarging the support by the neutral place leaves the product unchanged,
+as forced by the generic support-independence theorem. -/
+theorem mixedFamily_extendedSupport_same :
+    mixedFamily.globalTamagawaIndex =
+      ∏ place in ({false, true} : Finset Bool),
+        (mixedFamily.local place).tamagawaIndex := by
+  apply
+    mixedFamily
+      .globalTamagawaIndex_eq_prod_of_unit_outside
+  intro place hplace
+  fin_cases place <;> simp at hplace
+
+/-- Omitting the genuinely nontrivial place changes the raw finite product.
+This is the adversarial control showing why the unit-outside-support premise
+cannot be removed from support independence. -/
+theorem mixedFamily_omitting_bad_place_rejected :
+    mixedFamily.globalTamagawaIndex ≠
+      ∏ place in ({true} : Finset Bool),
+        (mixedFamily.local place).tamagawaIndex := by
+  rw [mixedFamily_globalTamagawaIndex]
+  simp [
+    mixedFamily,
+    collapsedBool_tamagawa
+  ]
+
 /-- Native cyclic type-I control with multiplicity two.  This control is
 separate from the point-count mutation above: here both the local point carrier
 and the component carrier are the cyclic type required by the Tate
