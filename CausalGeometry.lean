@@ -371,3 +371,9 @@ import CausalGeometry.Exchange.ArtinPresentation
 import CausalGeometry.Exchange.CausalOperator
 import CausalGeometry.Exchange.CausalArtin
 import CausalGeometry.Models.ExchangeOperatorControls
+
+import CausalGeometry.Exchange.OperatorTransport
+import CausalGeometry.Exchange.CausalOperatorTransport
+import CausalGeometry.Exchange.ArtinOperatorTransport
+import CausalGeometry.Exchange.CausalArtinComparison
+import CausalGeometry.Models.ExchangeTransportControls
