@@ -1,5 +1,6 @@
 import CausalGeometry.Realization.ECIATamagawaContract
 import CausalGeometry.Realization.TamagawaIndexedFamily
+import CausalGeometry.Realization.LocalArithmeticSource
 import CausalGeometry.Models.TamagawaControls
 import CausalGeometry.Models.IndexedFamilyControls
 import CausalGeometry.Models.CommonSourceControls
@@ -89,5 +90,10 @@ example :
 #print axioms CausalGeometry.IndexedRealizationFamily.collapseEverywhere_of_comparison
 #print axioms CausalGeometry.Models.IndexedFamilyControls.coordinateFamily_jointlyConservative
 #print axioms CausalGeometry.Models.CommonSourceControls.empty_ne_singleton
+#print axioms CausalGeometry.EndDiaryCommutativeShadow.compose_apply
+#print axioms CausalGeometry.AtomicLocalSource.depth_compose
+#print axioms CausalGeometry.AtomicLocalSource.primarySupport_compose
+#print axioms CausalGeometry.Tamagawa.ExactAtomicSupportCompatibility.target_support_compose
+#print axioms CausalGeometry.Tamagawa.AtomicSupportUpperBound.tamagawaIndex_eq_one_of_not_mem_primarySupport
 
 end CausalGeometry.Verification.Tamagawa
