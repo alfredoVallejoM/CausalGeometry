@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "increment": "CX-I4",
+  "source_base_sha": "176ed316ed33f8413053addc3c6294eef8872aca",
+  "implementation_commit": "5164be66972fb25c55cc1a44d0025b6b69412f88",
+  "status": "NON_KERNEL_PASS_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "executed": {
+    "baseline_i3_tests": 71,
+    "tests_total": 99,
+    "new_finite_tests": 20,
+    "new_source_tests": 8,
+    "unchanged_prior_tests": 71,
+    "result": "PASS",
+    "first_attempt": "PASS",
+    "python_syntax": "PASS",
+    "non_kernel_exit": 3,
+    "missing_toolchain_exit": 3,
+    "manifest_guards": [
+      {
+        "case": "missing",
+        "exit_code": 1,
+        "expected": 1,
+        "compiler_invoked": false
+      },
+      {
+        "case": "wrong_hash",
+        "exit_code": 1,
+        "expected": 1,
+        "compiler_invoked": false
+      }
+    ],
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "wall_seconds": 0.966568185999904
+  },
+  "finite_scope": {
+    "boolean_pair_operators": 256,
+    "boolean_yang_baxter_operators": 43,
+    "boolean_bijective_pair_operators": 24,
+    "boolean_bijective_yang_baxter_operators": 5,
+    "boolean_involutive_pair_operators": 10,
+    "boolean_involutive_non_yb": 7,
+    "yb_higher_rank_state_sizes": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "hurwitz_group": "S3",
+    "hurwitz_triples": 216,
+    "hurwitz_list_sizes": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "remote_blob_matches": {
+    "CausalGeometry.lean": "b787ff891fb955ac98514e457c23209fc8dd851e",
+    "CausalGeometry/Exchange/LocalOperator.lean": "a9fd2c06b6c72ed99e0c035e6f5bba9056d18042",
+    "CausalGeometry/Exchange/ArtinPresentation.lean": "7b3cf7dc24e9a7410e21fb21a77111fb1ca15bb5",
+    "CausalGeometry/Exchange/CausalOperator.lean": "1f6ba8b7f071b260dd66b1e64b2e32e4c624c59c",
+    "CausalGeometry/Exchange/CausalArtin.lean": "1363095ff1b2bb83bbb2df2e096ceb418751404a",
+    "CausalGeometry/Models/ExchangeOperatorControls.lean": "567fb92565213687a6e300e36939fbbff1e4e529",
+    "tests/test_cx_i4.py": "05d5278941beb988943df634ce5187219e2710b6",
+    "tools/verify_cx_i4.py": "b976ba2094f48d8330d60665a1a78ce6ab9f85af",
+    "verification/cx-i4/KernelAudit.lean": "e43320b400f4e925a2f2ce4b35e043a3b6da6bd3",
+    "verification/cx-i4/manifest.json": "39c0f3018fca8cd82b7e476543e6b008949c114d"
+  },
+  "local_source_context": "Mounted I1/I2/I3 increments, with current-root reconstruction hash-checked against GitHub; new tested files match the ten fetched source blobs. No hydrated full git checkout.",
+  "not_executed": [
+    "Lean elaboration",
+    "133 real axiom outputs (22+36+38+37)",
+    "whole-repository source audit",
+    "full combined workspace",
+    "ECIA consumer"
+  ],
+  "environment": {
+    "lean_available": false,
+    "lake_available": false,
+    "network_probe_exit": 6,
+    "network_reason": "Could not resolve host: github.com"
+  },
+  "preservation": "I1/I2/I3 payload unchanged except current-root additions; concurrent local arithmetic imports preserved. Exact historical test views are explicit and checked, not hidden test relaxation.",
+  "review": "Author static review and executed finite controls, not independent review.",
+  "evidence_sha256": {
+    "20260928T202916.541955Z-cd1735ce-receipt.json": "ca0a4dcad9ddeac2260bec5dadaa98ffaeac17670cb48742e2271c1b5c875ba0",
+    "20260928T202918.104207Z-dd625f37-receipt.json": "3b6d8cdc472dbfcaa0b06b6cbffe6f7a13ce316acf9933d065f574fdd9b9a4bb",
+    "20260928T202946.522529Z-8f683e7d-receipt.json": "5c4fcc51ff921a00b052e672b317776116740ec75e633e71041195ef91bebddf",
+    "20260928T202947.202051Z-4de23045-receipt.json": "d1f393d2f3eb97fb8a2fdb69fc8ef761a061272ae629df3f0fc394ae4072729d",
+    "KernelAudit.lean": "04ef9ab6b4b85852fa994ba6ccd5df5de39cbbe236cb9926435b648977aebc24",
+    "baseline-i3.log": "33ffaff32f56f1ac28daa79db96f7533f596723d58fc41b5642f25b4be73953d",
+    "finite-scope.json": "4fdb96a56dcbbe0cbb7fd2b56897b1110715d1dc2a0b7effc42d6a6627cbf934",
+    "guard-missing.log": "52217b3f1c5398455872fdb5adb136b979b774d0ea0e59a5fc00525823e213bb",
+    "guard-results.json": "254fda0a4b4f3f54f4a8084a9ec0516962f15377793e2480225b0699bfa9add3",
+    "guard-wrong_hash.log": "aa1af0541024cacd336f248b7b89ce7f19f3a78780a91caca63bf73317b3ee37",
+    "manifest.json": "2c7266b5fff8ddb4b78435dfe866a00a1eb51430c1b552e7d065ae65855a9b41",
+    "network-probe.log": "fb4f1be3af9340ceb6cd3519311769c38be956711b612e642f9edab0f673fa97",
+    "non-kernel.log": "46832ab78376d8a81485812092a960c091815436e98d9f3677e089afd368e016",
+    "plan.json": "1db93704e741a3ca8ae6b8499733017747654f5a0aadef10e273d1fd1b36181f",
+    "test-summary.txt": "3c0eae399d3cecb5770fcb28001ea807e323577cf56707a662fe4e75e1a41dc3",
+    "tests-first.log": "f238ba186690839ae84e1caccd413378286b9f2a62b44afd42c029c1630a05d5",
+    "tests.log": "80c3256a55dde5e6306a129e95bf41d6277f8cfe82cbb8bd3e812809d806d7f5",
+    "toolchain.log": "281be2b3f0907d7bf34ffa9c8bc50bf416e3a773b319114252a6609a7924867a"
+  },
+  "evidence_layout": "Repository: manifest, kernel harness, test-summary, validation and finite-scope. Downloadable increment: full raw logs and original unique receipts."
+}

@@ -108,3 +108,18 @@ Status: **SOURCE-WRITTEN / 71 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
 The 48 previous tests are replayed unchanged with hash-checked root projections.
 There are 38 new requested kernel axiom outputs (22+36+38 total), none newly
 executed here. No new campaign row or general braid/cactus sector is accredited.
+
+## CX-I4 — arbitrary-arity local operators and causal Artin realization (2026-09-28)
+
+[Implementation and remaining boundaries](campaigns/CX_I4_IMPLEMENTATION.md)
+records five modules: local operators, all-rank positive Artin presentations,
+sized causal fibers, source-derived positional realization and operator controls.
+Inversion, involutivity and YB remain independent. Hurwitz product preservation
+is stated for arbitrary groups and actual causal exchange routes.
+
+Gate: `python3 tools/verify_cx_i4.py`. Evidence: `verification/cx-i4/`.
+Status: **SOURCE-WRITTEN / 99 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
+The 71 earlier tests remain unchanged; concurrent local-arithmetic imports are
+preserved in the current root and handled by an explicit hash-checked regression
+projection. There are 37 new requested axiom outputs, 133 across I1--I4.
+No new campaign row or ECIA consumer is accredited by this increment.
