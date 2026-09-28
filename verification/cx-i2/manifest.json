@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "increment": "CX-I2",
+  "source_base_sha": "c517fcc282c748d51d54151f1c1b8035c61b2f6c",
+  "status": "SOURCE_WRITTEN_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "files_sha256": {
+    "CausalGeometry.lean": "02f532061c1e73724687499f28a0373c2a4ceadc875547dd43fff1fbe7334e00",
+    "CausalGeometry/Exchange/Basic.lean": "4be347f2023029e7a55b7d8552354e93f0f6d13240bc05a9325bdbfae5d7dacd",
+    "CausalGeometry/Exchange/ContextRelation.lean": "7616c21283d5db87dbf20e805dd9378f29cd36a5fb8592d10482bd1a9a3cd10b",
+    "CausalGeometry/Exchange/Path.lean": "b4aa54d6ec32bca0511a6b2cd7a0f3e2236ad95f2bb77b8bfb803a4d38c356a4",
+    "CausalGeometry/Exchange/Quotient.lean": "b4da650b470839a3ec8d86b5350567e9ed03cf2d72b5d5d130b113b35608ed5a",
+    "CausalGeometry/Exchange/Variational.lean": "b1d13b655d52531ce2bbbeb2982022b3cbc0fa600efa87bcf4ca07e415c76ea8",
+    "CausalGeometry/History/Composition.lean": "b135a89a94d74405a6059c40da9b72e5a3c0cb45dd75826612498752cec02d57",
+    "CausalGeometry/History/DiamondPaths.lean": "82c77077f7fff652aad0a1c8f790ea6260b9908e0df1af0d2b6f92877a8f99ea",
+    "CausalGeometry/History/EventList.lean": "6fa3ccf2ce766263456864b7f502656a4a35b4cee9daf62a94286a1bcf5b408a",
+    "CausalGeometry/Models/ExchangeCoherenceControls.lean": "c14bd3ff36ebc5664058a1d5755821fced8dfcd8da8b954bbdc2e9eee893c23f",
+    "CausalGeometry/Models/ExchangeThreeEvents.lean": "560547aadedb55c49598b17351514a3d91e8c3103b2b669e2db9af2daa98e55d",
+    "CausalGeometry/Variational/DiscreteAction.lean": "6f8de51ed85a600a306b74e29716f70a650ab46a1093ef076e829f57476c2fa7",
+    "CausalGeometry/Variational/ElementaryEulerLagrange.lean": "863d51845b3c4ac408b3c894a82e4209a3710ea069596432afc94c73fe98c7b3",
+    "tests/test_cx_i1.py": "49ad36da77117337fc10245227bc783a5b7ad3c62bf633849e4cf128e265ef14",
+    "tests/test_cx_i2.py": "daf3efc5f64dad6454a54c82086ace5daa50c2cceee7a57d85962f46c0c9ff43",
+    "tools/verify_cx_i1.py": "8d058d8053964ceb1392ba61899722af4f014879a09db3f67ffe8b8d86db1904",
+    "tools/verify_cx_i2.py": "4df16e9a165ab893eff91775e3a99a9db447edf203f12d01ef3d2b3223952d6d",
+    "verification/cx-i1/KernelAudit.lean": "d842a053e8ea80e50c5d87ac263f341692defcde356098456fde4e64b00b8b32",
+    "verification/cx-i1/manifest.json": "aa5ded912073cf2f451718a8be62d722630668ac8903190fd549b7a8e7982b80",
+    "verification/cx-i2/KernelAudit.lean": "44b29695143cac3e064782adb6ae6c3fc8f5d63b9f0d5d2dbd39ce7c71d30158"
+  },
+  "new_modules": [
+    "Exchange.Quotient",
+    "Exchange.ContextRelation",
+    "Models.ExchangeCoherenceControls"
+  ],
+  "mathlib_pin": "v4.32.1",
+  "native_api_blobs": {
+    "Mathlib/CategoryTheory/Quotient.lean": "f91fb662557a3f68d5a366f5c95422b7ae4048e2"
+  },
+  "historical_reuse": {
+    "producer_files": "byte-identical CX-I1 payload",
+    "root": "exact CX-I1 prefix plus three imports",
+    "tests": "all 25 unchanged tests through explicit root-only projection",
+    "old_manifest": "immutable; old runner remains exact-SHA CX-I1 only; use CX-I2 gate for current root"
+  },
+  "coverage": {
+    "CX02.04-06": "native quotient, least generated congruence, context closure, comparison functors; source written",
+    "CX04.01-02": "existing model consumed; all-offset descent discriminator and non-indiscrete quotient",
+    "CX07": "initial route-level loss/control only, not full predictive-context theory",
+    "not_implemented": [
+      "inverse localization",
+      "universal braid/twin/cactus sectors",
+      "ECIA consumer",
+      "higher cells"
+    ],
+    "kernel_outputs_planned": {
+      "cx-i1": 22,
+      "cx-i2": 36
+    }
+  },
+  "finite_model": {
+    "length_range": [
+      0,
+      6
+    ],
+    "starts": 6,
+    "words_examined": 762,
+    "directed_relation_applications": 98,
+    "boundary_relabelling_pairs": 14400,
+    "caveat": "finite word model, not a proof of all Lean witnesses"
+  }
+}

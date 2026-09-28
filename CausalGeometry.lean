@@ -354,3 +354,7 @@ import CausalGeometry.Exchange.Basic
 import CausalGeometry.Exchange.Path
 import CausalGeometry.Exchange.Variational
 import CausalGeometry.Models.ExchangeThreeEvents
+
+import CausalGeometry.Exchange.Quotient
+import CausalGeometry.Exchange.ContextRelation
+import CausalGeometry.Models.ExchangeCoherenceControls
