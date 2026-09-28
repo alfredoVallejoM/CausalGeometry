@@ -1,4 +1,4 @@
-import CausalGeometry.History.PathEquivariance
+import CausalGeometry.History.DiamondPaths
 import CausalGeometry.Variational.ActionGauge
 import Mathlib.Tactic
 
@@ -13,46 +13,6 @@ variable {S : EventSystem Event Label}
 namespace CausalVariational
 
 variable {K : Type w} [AddCommGroup K]
-
-/-- The e-then-f two-step path around one genuine concurrency diamond. -/
-def diamondPathEF
-    {C : Configuration S}
-    {e f : Event}
-    (d : ConcurrencyDiamond C e f) :
-    CausalPath S C d.afterEF :=
-  .step e d.concurrent.1
-    (.step f
-      (S.concurrent_enabled_after_left d.concurrent)
-      (.nil d.afterEF))
-
-/-- The f-then-e path with its terminal configuration transported to the
-canonical e-then-f endpoint using flatness of the concurrency diamond. -/
-def diamondPathFE
-    {C : Configuration S}
-    {e f : Event}
-    (d : ConcurrencyDiamond C e f) :
-    CausalPath S C d.afterEF :=
-  (CausalPath.step f d.concurrent.2.1
-    (CausalPath.step e
-      (S.concurrent_enabled_after_right d.concurrent)
-      (CausalPath.nil d.afterFE))).castEnd
-        (ConcurrencyDiamond.endpoint_eq d).symm
-
-@[simp] theorem diamondPathEF_length
-    {C : Configuration S}
-    {e f : Event}
-    (d : ConcurrencyDiamond C e f) :
-    (diamondPathEF d).length = 2 :=
-  rfl
-
-@[simp] theorem diamondPathFE_length
-    {C : Configuration S}
-    {e f : Event}
-    (d : ConcurrencyDiamond C e f) :
-    (diamondPathFE d).length = 2 := by
-  unfold diamondPathFE
-  cases (ConcurrencyDiamond.endpoint_eq d)
-  rfl
 
 /-- The local square-action defect is literally the action difference between
 the two same-endpoint concurrent-swap paths. -/
@@ -69,7 +29,7 @@ theorem actionDifference_diamondPaths
   unfold diamondPathEF diamondPathFE
   unfold actionDifference
   rw [pathAction_castEnd]
-  rfl
+  simp only [pathAction_step, pathAction_nil, add_zero, squareActionDefect]
 
 /-- Intrinsic discrete Euler--Lagrange equation for the primitive concurrency
 variations of the causal event geometry.
