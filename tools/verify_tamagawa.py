@@ -32,6 +32,7 @@ SOURCE_FILES = [
     "CausalGeometry/Realization/ECIATamagawaContract.lean",
     "CausalGeometry/Realization/IndexedFamily.lean",
     "CausalGeometry/Realization/TamagawaIndexedFamily.lean",
+    "CausalGeometry/Realization/LocalArithmeticSource.lean",
     "CausalGeometry/Models/TamagawaControls.lean",
     "CausalGeometry/Models/IndexedFamilyControls.lean",
     "CausalGeometry/Models/CommonSourceControls.lean",
@@ -44,6 +45,7 @@ BUILD = [
     "+CausalGeometry.Realization.ECIATamagawaContract",
     "+CausalGeometry.Realization.IndexedFamily",
     "+CausalGeometry.Realization.TamagawaIndexedFamily",
+    "+CausalGeometry.Realization.LocalArithmeticSource",
     "+CausalGeometry.Models.TamagawaControls",
     "+CausalGeometry.Models.IndexedFamilyControls",
     "+CausalGeometry.Models.CommonSourceControls",
@@ -220,7 +222,7 @@ def main() -> int:
                 argv, out_dir, index, args.timeout, env
             )
             if argv == KERNEL:
-                row["axiom_audit"] = audit_axiom_output(output, 10)
+                row["axiom_audit"] = audit_axiom_output(output, 15)
             receipt["results"].append(row)
             if row["exit_code"] != 0:
                 receipt["status"] = "REQUIRED_CHECK_FAILED"
