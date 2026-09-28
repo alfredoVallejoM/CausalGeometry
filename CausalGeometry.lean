@@ -346,3 +346,11 @@ import CausalGeometry.Models.IndexedFamilyControls
 import CausalGeometry.Models.CommonSourceControls
 
 import CausalGeometry.Realization.ECIAPrimitiveFactorizationContract
+
+import CausalGeometry.History.Composition
+import CausalGeometry.History.DiamondPaths
+import CausalGeometry.History.EventList
+import CausalGeometry.Exchange.Basic
+import CausalGeometry.Exchange.Path
+import CausalGeometry.Exchange.Variational
+import CausalGeometry.Models.ExchangeThreeEvents
