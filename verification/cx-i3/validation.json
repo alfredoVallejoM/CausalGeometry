@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "increment": "CX-I3",
+  "base_commit": "9148719564c2bc6463b95027669519d56c1367c3",
+  "implementation_commit": "a4073c5c5b070918b322e69a6f64ca459b4f6a8b",
+  "status": "NON_KERNEL_PASS_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "executed": {
+    "baseline_i2_tests": 48,
+    "tests_total": 71,
+    "new_finite_tests": 18,
+    "new_source_contract_tests": 5,
+    "unchanged_prior_tests": 48,
+    "result": "PASS",
+    "python_syntax": "PASS",
+    "non_kernel_gate_exit": 3,
+    "missing_toolchain_gate_exit": 3,
+    "negative_manifest_checks": [
+      {
+        "case": "missing_manifest",
+        "exit_code": 1,
+        "expected": 1
+      },
+      {
+        "case": "wrong_hash",
+        "exit_code": 1,
+        "expected": 1
+      }
+    ],
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "test_wall_seconds": 0.8659545590001017
+  },
+  "publication_reconciliation": "A new-test docstring indentation difference was synchronized with the published blob; all 71 tests rerun. No mathematical producer changed.",
+  "remote_blob_matches": {
+    "CausalGeometry.lean": "13bc47762bf7629de462132b9657436d58103eaf",
+    "CausalGeometry/Exchange/Reversible.lean": "e62482fd491adb4d9848895725241c3d4eb61ec9",
+    "CausalGeometry/Exchange/Defect.lean": "d27dd1f6a6ad3957f18f74d679b6942a4271c275",
+    "CausalGeometry/Exchange/EquationFamily.lean": "d14eb74727591f7af7dff6803f7bd02d15d86656",
+    "CausalGeometry/Models/ExchangeReversibleControls.lean": "b8b034ee44582ced2fd7b0697630c0643c13fe36",
+    "tests/test_cx_i3.py": "219f529241e51c505aa38546a270f4e976ba9168",
+    "tools/verify_cx_i3.py": "0956f37a276d23a011bfaa4dfaf129e1818db2cd",
+    "verification/cx-i3/KernelAudit.lean": "857481515336472261bcf244a16f0abfbfe66ac4"
+  },
+  "manifest_sha256": "eeceeab9c477a27d038cbdca17c32f8562b08357b0612abbb20a16fd24c13bf4",
+  "finite_scope": {
+    "histories": 6,
+    "positive_directed_generators": 12,
+    "signed_arrows": 24,
+    "max_word_length": 4,
+    "word_vertices": 2046
+  },
+  "source_context": "Mounted I1/I2 increment ZIPs plus new files; not a hydrated full git checkout. Exact payload hashes and remote Git blobs checked.",
+  "not_executed": [
+    "Lean elaboration",
+    "22+36+38 real kernel axiom outputs",
+    "whole-repository source audit",
+    "full workspace build",
+    "ECIA consumer checks"
+  ],
+  "toolchain_probe": {
+    "lean_available": false,
+    "lake_available": false,
+    "network_exit": 6,
+    "network_reason": "Could not resolve host: github.com"
+  },
+  "review": "Author static review and finite executable controls; no independent reviewer",
+  "evidence_archive": "Inside downloadable CausalGeometry_CX-I3_incremento.zip: verification/cx-i3/evidence.tar.gz",
+  "evidence_archive_sha256": "a44dfdbe7a3c4702429511dc597c77b20f4bda196f4b476c952527dce3a0a634",
+  "evidence_sha256": {
+    "guard-mismatch.log": "eb05a363e1819fe91e324294ceb9966834943e2c6177bdfe6aab615d12049d49",
+    "guard-missing.log": "7ee8ec6168e00bdae0c609783646bf84f7987a228eda516c3468d534fad353f2",
+    "guard-results.json": "7fa8824b092c540cb9fb648bf72222c0d2d242b669b6e35145f34120b1c00889",
+    "missing-toolchain-final.log": "a70517d7a05bf115d86baed837a8f55e59e7f26b4a7fce60505af4a97fcd52e4",
+    "missing-toolchain.log": "01dff702f1b4fae2a9fbcd0661a7d1ceaa44836bcbaae9a8651af4d295c796c4",
+    "network-probe.log": "2b04ad1c60037dd4f75892c7ee2c369023efc9a73a14190c56308e9cdefccb03",
+    "non-kernel-final.log": "69711bf4beebcf0d04b87dea3e5a80bc23211a37dfb79018939ec1bc122cd01f",
+    "non-kernel-receipt.json": "2ec760d806e90e84a5a721bb5bafceaf1bdd27f45ac10db0d97df8c5f4e033ab",
+    "non-kernel-run.log": "e07659f29b53879c2849573c6deaa69c29992f7c037ec277c2a88d6c80b6cf32",
+    "plan.json": "10e8bc919fc56b56b228858a8c4102abe09e4d73229e6a3b97d90e162c26dac7",
+    "tests-first.log": "3e237ff509180e19108187b39ec48d781016c261acd40b9548c1b05a3a59d976",
+    "tests.log": "a413f364e9c9454c36194a8ba3bba0c9ce6ff3b7005e0dda01c3d7b3c6a831f7",
+    "toolchain-receipt.json": "4e941ba67608ad27194d7abb528b0c3c0f7a97f2383596015ba6f13a08698c14",
+    "test-summary.txt": "ae928a1e82ee975982c3e454eb2f94bbd673750f4d52f71e68c44cfcab5aac78"
+  },
+  "evidence_layout": "Repository contains exact test-summary.txt and hashes. Full original raw logs, receipts and compressed evidence are in the downloadable increment."
+}

@@ -1,0 +1,42 @@
+import CausalGeometry.Models.ExchangeReversibleControls
+import CausalGeometry.Exchange.Variational
+
+/-! Requires actual Lean elaboration; presence is not a validation transcript. -/
+#print axioms CausalGeometry.Exchange.Reversible.positive_nil
+#print axioms CausalGeometry.Exchange.Reversible.positive_cons
+#print axioms CausalGeometry.Exchange.Reversible.extend_generator
+#print axioms CausalGeometry.Exchange.Reversible.extend_inverse
+#print axioms CausalGeometry.Exchange.Reversible.extend_spec
+#print axioms CausalGeometry.Exchange.Reversible.extend_unique
+#print axioms CausalGeometry.Exchange.Reversible.positive_extend
+#print axioms CausalGeometry.Exchange.Reversible.positive_comp_inverse
+#print axioms CausalGeometry.Exchange.Reversible.inverse_comp_positive
+#print axioms CausalGeometry.Exchange.Reversible.map_id
+#print axioms CausalGeometry.Exchange.Reversible.map_comp
+#print axioms CausalGeometry.Exchange.Reversible.defect_eq_id_iff
+#print axioms CausalGeometry.Exchange.Reversible.defect_self
+#print axioms CausalGeometry.Exchange.Reversible.defect_change_presentation
+#print axioms CausalGeometry.Exchange.Reversible.defect_swap
+#print axioms CausalGeometry.Exchange.Reversible.map_defect
+#print axioms CausalGeometry.Exchange.Reversible.defect_ne_id_of_separated
+#print axioms CausalGeometry.Exchange.Reversible.reflects_defect_of_faithful
+#print axioms CausalGeometry.Exchange.Reversible.roundTrip_eq_id_iff
+#print axioms CausalGeometry.Exchange.Coherence.family_respects_iff
+#print axioms CausalGeometry.Exchange.Coherence.family_factors_iff
+#print axioms CausalGeometry.Exchange.Coherence.respects_join_iff
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.positive_memory
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.image_routes_separated
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.reversible_routes_distinct
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.defect_nontrivial
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.groupoid_respects_iff_zero
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.ternary_quotient_inverse
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.defect_killed_by_ternary
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.groupoid_factorsUpToIso_iff_zero
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.counter_positive
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.opposite_generator_not_formal_inverse
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.memory_respects_reversal
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.reversal_pair_cancels
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.reversal_only_preserves_ternary_defect
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.respects_both_iff_zero
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.counter_respects_ternary
+#print axioms CausalGeometry.Models.ExchangeReversibleControls.ternary_quotient_not_indiscrete

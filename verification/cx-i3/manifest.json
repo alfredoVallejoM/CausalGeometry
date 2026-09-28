@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "increment": "CX-I3",
+  "source_base_sha": "9148719564c2bc6463b95027669519d56c1367c3",
+  "status": "SOURCE_WRITTEN_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "files_sha256": {
+    "CausalGeometry.lean": "0629e5af944d8a9cf4912fa88ea9c55ffa77db0550e3d35d8bef8c7519515d82",
+    "CausalGeometry/Exchange/Basic.lean": "4be347f2023029e7a55b7d8552354e93f0f6d13240bc05a9325bdbfae5d7dacd",
+    "CausalGeometry/Exchange/ContextRelation.lean": "7616c21283d5db87dbf20e805dd9378f29cd36a5fb8592d10482bd1a9a3cd10b",
+    "CausalGeometry/Exchange/Defect.lean": "bebf61fd1b5bf46347796c7f10317e6b87af2620cd49c15441b0ec4cd1b8b8f0",
+    "CausalGeometry/Exchange/EquationFamily.lean": "76362fa1fa00c68b883b897b7afb9442e30b2262d853d12b8ccd4bf783214c45",
+    "CausalGeometry/Exchange/Path.lean": "b4aa54d6ec32bca0511a6b2cd7a0f3e2236ad95f2bb77b8bfb803a4d38c356a4",
+    "CausalGeometry/Exchange/Quotient.lean": "b4da650b470839a3ec8d86b5350567e9ed03cf2d72b5d5d130b113b35608ed5a",
+    "CausalGeometry/Exchange/Reversible.lean": "fb06f32db7cb8d2ee1c65619f83359b3ea792f7d9f5ac037f7f8c8412849796d",
+    "CausalGeometry/Exchange/Variational.lean": "b1d13b655d52531ce2bbbeb2982022b3cbc0fa600efa87bcf4ca07e415c76ea8",
+    "CausalGeometry/History/Composition.lean": "b135a89a94d74405a6059c40da9b72e5a3c0cb45dd75826612498752cec02d57",
+    "CausalGeometry/History/DiamondPaths.lean": "82c77077f7fff652aad0a1c8f790ea6260b9908e0df1af0d2b6f92877a8f99ea",
+    "CausalGeometry/History/EventList.lean": "6fa3ccf2ce766263456864b7f502656a4a35b4cee9daf62a94286a1bcf5b408a",
+    "CausalGeometry/Models/ExchangeCoherenceControls.lean": "c14bd3ff36ebc5664058a1d5755821fced8dfcd8da8b954bbdc2e9eee893c23f",
+    "CausalGeometry/Models/ExchangeReversibleControls.lean": "32d87a4c603bcd89e958e4077a98503a36e475c63854c15a72700313e07f07da",
+    "CausalGeometry/Models/ExchangeThreeEvents.lean": "560547aadedb55c49598b17351514a3d91e8c3103b2b669e2db9af2daa98e55d",
+    "CausalGeometry/Variational/DiscreteAction.lean": "6f8de51ed85a600a306b74e29716f70a650ab46a1093ef076e829f57476c2fa7",
+    "CausalGeometry/Variational/ElementaryEulerLagrange.lean": "863d51845b3c4ac408b3c894a82e4209a3710ea069596432afc94c73fe98c7b3",
+    "tests/test_cx_i1.py": "49ad36da77117337fc10245227bc783a5b7ad3c62bf633849e4cf128e265ef14",
+    "tests/test_cx_i2.py": "daf3efc5f64dad6454a54c82086ace5daa50c2cceee7a57d85962f46c0c9ff43",
+    "tests/test_cx_i3.py": "8431f66ce16050c8ba6e8772b687927d421a8aeb9bb0ecf3f068241e7c74af0d",
+    "tools/verify_cx_i1.py": "8d058d8053964ceb1392ba61899722af4f014879a09db3f67ffe8b8d86db1904",
+    "tools/verify_cx_i2.py": "4df16e9a165ab893eff91775e3a99a9db447edf203f12d01ef3d2b3223952d6d",
+    "tools/verify_cx_i3.py": "b3c0f7aa836252790e2719e61dd720e6ec519959e25ea4cfe983562362e23793",
+    "verification/cx-i1/KernelAudit.lean": "d842a053e8ea80e50c5d87ac263f341692defcde356098456fde4e64b00b8b32",
+    "verification/cx-i1/manifest.json": "aa5ded912073cf2f451718a8be62d722630668ac8903190fd549b7a8e7982b80",
+    "verification/cx-i2/KernelAudit.lean": "44b29695143cac3e064782adb6ae6c3fc8f5d63b9f0d5d2dbd39ce7c71d30158",
+    "verification/cx-i2/manifest.json": "f60cab17f818f49fc253431769efc0281131746bce2a1baab9320d5c2189110b",
+    "verification/cx-i3/KernelAudit.lean": "cfb61fbb9fdcfda9a67119b87b6f716a58c9f171bd99c56bd4e21f28dbe373be"
+  },
+  "mathlib_pin": "v4.32.1",
+  "native_api_blobs": {
+    "Mathlib/CategoryTheory/Groupoid/FreeGroupoid.lean": "4e1115b66d22879fa5da370ca500488cbbbb4920",
+    "Mathlib/CategoryTheory/Core.lean": "87b752bd35da8616ca5cc628354e1795ec17f61b",
+    "Mathlib/CategoryTheory/Groupoid.lean": "968883bf434261867085174546fdf8e1fa52f17c"
+  },
+  "new_modules": [
+    "Exchange.Reversible",
+    "Exchange.Defect",
+    "Exchange.EquationFamily",
+    "Models.ExchangeReversibleControls"
+  ],
+  "kernel_targets": [
+    "CausalGeometry.Models.ExchangeReversibleControls",
+    "CausalGeometry.Exchange.Variational",
+    "CausalGeometry.Variational.QuasiNoether",
+    "CausalGeometry.Variational.CausalMomentumMap"
+  ],
+  "kernel_audits": {
+    "verification/cx-i1/KernelAudit.lean": 22,
+    "verification/cx-i2/KernelAudit.lean": 36,
+    "verification/cx-i3/KernelAudit.lean": 38
+  },
+  "coverage": {
+    "CX02.07": "native free groupoid on chronological exchange quiver; not selective localization of arbitrary causal operations",
+    "CX03": "typed indexed equation families and separate square/ternary/reversal policies; full braid/twin/cactus sectors still pending",
+    "CX05.01-CX05.04": "reversible defect, presentation conjugation and faithful reflection; source written",
+    "model": "same actual three-event CausalPath source as I1/I2, reversible core observers and non-indiscrete quotients",
+    "ECIA": "untouched"
+  },
+  "historical_reuse": "I1/I2 payloads byte-identical except append-only root; unchanged 48 tests replayed after exact root-prefix checks",
+  "finite_model": {
+    "histories": 6,
+    "positive_directed_edges": 12,
+    "signed_arrows": 24,
+    "max_corpus_length": 4,
+    "word_vertices": 2046,
+    "warning": "finite signed-word model, not a theorem classifying all Lean Step witnesses"
+  },
+  "limits": [
+    "No Lean toolchain available in the execution environment",
+    "No full workspace validation",
+    "No globally faithful realization claimed",
+    "No independent reviewer claimed"
+  ]
+}

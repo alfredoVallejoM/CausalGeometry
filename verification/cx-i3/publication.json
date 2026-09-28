@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "increment": "CX-I3",
+  "original_base": "9148719564c2bc6463b95027669519d56c1367c3",
+  "implementation_snapshot": "a4073c5c5b070918b322e69a6f64ca459b4f6a8b",
+  "prepared_delivery_snapshot": "a3dde30958e49a5e59491f4e05e7d06461a8e2d8",
+  "publication_parent": "1705c1860d74b622e4ed1f5c503db49a8e6f353b",
+  "concurrent_commits_preserved": 7,
+  "concurrent_paths_untouched": [
+    "CausalGeometry/Models/TamagawaControls.lean",
+    "CausalGeometry/Realization/ECIATamagawaContract.lean",
+    "docs/14_TAMAGAWA_REALIZATION_2026-09-27.md",
+    "docs/campaigns/CA24.md",
+    "tools/verify_tamagawa.py",
+    "verification/tamagawa/KernelAudit.lean"
+  ],
+  "resolution": "Two non-force ref updates were rejected while main advanced. Compare showed disjoint file sets. Reapply exact CX-I3 blobs on the latest main tree with latest main as sole parent. Preserve all concurrent Tamagawa changes; no force update or branch merge.",
+  "payload_changed_during_reconciliation": false,
+  "non_kernel_recheck": {"tests": 71, "result": "PASS", "gate_exit": 3},
+  "validation_boundary": "Local tests use the same CX payload. Concurrent Tamagawa mathematics and the complete combined workspace have not been revalidated here. All Lean elaboration remains pending.",
+  "new_accredited_rows": 0
+}

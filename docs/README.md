@@ -93,3 +93,18 @@ Status: **SOURCE-WRITTEN / 48 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
 All 25 I1 tests are preserved through a checked append-only root projection;
 the old I1 manifest is not rewritten. I2 adds 23 checks and plans 36 kernel
 axiom outputs, in addition to I1's 22. No new campaign row is accredited.
+
+## CX-I3 — formal reversal and independent coherence laws (2026-09-28)
+
+[Implementation and remaining scope](campaigns/CX_I3_IMPLEMENTATION.md)
+adds native free groupoids of actual exchanges, typed equation families,
+reversible defects and presentation conjugation. The three-event control
+separates formal inverses, opposite generators and the ternary equation.
+
+Current-root gate: `python3 tools/verify_cx_i3.py`.
+Source SHA: `a4073c5c5b070918b322e69a6f64ca459b4f6a8b`.
+Evidence: `verification/cx-i3/manifest.json`, `test-summary.txt`, `validation.json`.
+Status: **SOURCE-WRITTEN / 71 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
+The 48 previous tests are replayed unchanged with hash-checked root projections.
+There are 38 new requested kernel axiom outputs (22+36+38 total), none newly
+executed here. No new campaign row or general braid/cactus sector is accredited.

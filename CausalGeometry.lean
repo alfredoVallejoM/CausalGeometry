@@ -358,3 +358,8 @@ import CausalGeometry.Models.ExchangeThreeEvents
 import CausalGeometry.Exchange.Quotient
 import CausalGeometry.Exchange.ContextRelation
 import CausalGeometry.Models.ExchangeCoherenceControls
+
+import CausalGeometry.Exchange.Reversible
+import CausalGeometry.Exchange.Defect
+import CausalGeometry.Exchange.EquationFamily
+import CausalGeometry.Models.ExchangeReversibleControls
