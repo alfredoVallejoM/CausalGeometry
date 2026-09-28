@@ -313,9 +313,9 @@ theorem target_support_compose
       (F X).support ∪
         (F Y).support := by
   rw [
-    h.support_eq,
-    h.support_eq,
-    h.support_eq,
+    h.support_eq (C.compose X Y),
+    h.support_eq X,
+    h.support_eq Y,
     S.primarySupport_compose
   ]
 
