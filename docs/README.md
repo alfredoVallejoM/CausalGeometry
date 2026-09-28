@@ -123,3 +123,21 @@ The 71 earlier tests remain unchanged; concurrent local-arithmetic imports are
 preserved in the current root and handled by an explicit hash-checked regression
 projection. There are 37 new requested axiom outputs, 133 across I1--I4.
 No new campaign row or ECIA consumer is accredited by this increment.
+
+## CX-I5 — direct causal comparison and coefficient transport (2026-09-28)
+
+[Implementation and evidence boundary](campaigns/CX_I5_IMPLEMENTATION.md)
+records the natural comparison of independently constructed causal/positional
+actions, reification of actual routes, independent Phi/Psi compatibility,
+injective/surjective YB transfer boundaries and group-homomorphism/Hurwitz
+consumers. None of these comparisons is a claim of source-route faithfulness.
+
+Source SHA: `5a140c8cb1ee153ef94b76576c5a23bf8314a234`.
+Current-root gate: `python3 tools/verify_cx_i5.py`.
+Evidence: `verification/cx-i5/manifest.json`, `validation.json`,
+`finite-scope.json`, `test-summary.txt`.
+
+Status: **SOURCE-WRITTEN / 127 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
+All 99 previous tests and source producers are retained, with a checked
+append-only root projection. There are 60 new axiom-output requests, 193 in
+total, none claimed executed here. No ECIA consumer or new accreditation.

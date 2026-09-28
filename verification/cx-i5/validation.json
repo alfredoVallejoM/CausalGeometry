@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "increment": "CX-I5",
+  "source_base_sha": "b9659ab2fff5a6d97124259019ff627ad97d8e05",
+  "implementation_commit": "5a140c8cb1ee153ef94b76576c5a23bf8314a234",
+  "status": "NON_KERNEL_PASS_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "executed": {
+    "baseline_i4_tests": 99,
+    "tests_total": 127,
+    "new_finite_tests": 20,
+    "new_source_tests": 8,
+    "unchanged_prior_tests": 99,
+    "result": "PASS",
+    "first_attempt": "PASS",
+    "python_syntax": "PASS",
+    "non_kernel_exit": 3,
+    "missing_toolchain_exit": 3,
+    "manifest_guards": [
+      {
+        "case": "missing",
+        "exit_code": 1,
+        "compiler_invoked": false
+      },
+      {
+        "case": "wrong_hash",
+        "exit_code": 1,
+        "compiler_invoked": false
+      }
+    ],
+    "final_test_wall_seconds": 0.794,
+    "cpu_affinity": [
+      0,
+      1
+    ]
+  },
+  "finite_scope": {
+    "boolean_source_operators": 256,
+    "boolean_target_operators": 256,
+    "coefficient_maps": 4,
+    "candidate_squares": 262144,
+    "intertwining_squares": 33280,
+    "injective_intertwiners": 512,
+    "noninjective_intertwiners": 32768,
+    "same_family_forward_only_control": {
+      "phi": [
+        0,
+        0
+      ],
+      "psi": [
+        0,
+        1
+      ],
+      "source": "copyRight",
+      "target": "flip"
+    },
+    "actual_positional_checks": "all 256 Boolean pair operators, six positional words, eight triple states",
+    "max_local_list_length": 5,
+    "hurwitz_group_hom": "S3 -> C2 parity",
+    "validation_kind": "finite independent models; no Lean execution"
+  },
+  "remote_blob_matches": {
+    "CausalGeometry.lean": "fede2e331dd32e4580ad5c9bb80a2882ba3b7a2d",
+    "CausalGeometry/Exchange/OperatorTransport.lean": "ea621ce7912991e77f08356524941029ece3b1b1",
+    "CausalGeometry/Exchange/CausalOperatorTransport.lean": "427caaee9a16d102b7b191bc499540a5bf641e36",
+    "CausalGeometry/Exchange/ArtinOperatorTransport.lean": "0d9a0cb994392abcee14872bf95e5225b22d6b15",
+    "CausalGeometry/Exchange/CausalArtinComparison.lean": "077947f28a86bc607d6a259e7bdb05f4ce5ee043",
+    "CausalGeometry/Models/ExchangeTransportControls.lean": "b9467530b86542cc3d8a55e50c550545790f7aec",
+    "tests/test_cx_i5.py": "80b3ec65fcbfe9ef8a87cbb1ef2bcd21bd1ab7eb",
+    "tools/verify_cx_i5.py": "98d5635f1b1b09fd7cd1eb71bf658a5397f923d7",
+    "verification/cx-i5/KernelAudit.lean": "1a39c4de8ceb395a8b6225c00978df1628bee6e2",
+    "verification/cx-i5/manifest.json": "8ec81372dc16680c29b0199d9fd4b5bcbb0710dc"
+  },
+  "environment": {
+    "lean_available": false,
+    "lake_available": false,
+    "network_probe_exit": 6,
+    "network_reason": "Could not resolve host: github.com"
+  },
+  "not_executed": [
+    "Lean elaboration",
+    "193 real axiom outputs (22+36+38+37+60)",
+    "whole-repository source audit",
+    "full combined workspace",
+    "ECIA consumer"
+  ],
+  "publication_reconciliation": "Two root transcription errors were detected by blob mismatch in unreferenced trees and corrected before the source commit. The local tested producers were not changed to accommodate them.",
+  "source_context": "Mounted I1-I4 increments plus exact selected connector files; not a hydrated upstream checkout. Synthetic local git is used only for patch generation and was moved away for runner execution. Original runner receipts have source_sha=null; remote provenance is established by tested Git blobs.",
+  "preservation": "I1-I4 mathematical producers, tests, manifests and runners are unchanged; root extension contains exactly five imports; existing parallel arithmetic imports retained.",
+  "review": "Author static review and finite executable controls, not an independent review.",
+  "evidence_sha256": {
+    "20260928T220209.730495Z-d78db670-receipt.json": "56f82bec3d2ddf8b15c1e719c217e6a16915ac0962c71677e3d0f7bc4ee41708",
+    "20260928T220211.660746Z-75ece124-receipt.json": "79f8c82b7766a2918febead59e50c71327f92bdff096496172ebecb79688c65d",
+    "20260928T220319.617156Z-aeeee4c7-receipt.json": "87fe89404c3fdfc19a22fd8f5d2a01cb8301dbd5c95c0d25f84b508839518ea3",
+    "20260928T220320.178876Z-cc62ec23-receipt.json": "8548fce918c7d37ac9d2e07e0ee0084dd4a6a8159c60055ec929340a0cbfb5b5",
+    "20260928T221537.817869Z-72235048-receipt.json": "381c76f3902d19064dddbc096f5be0230213eb637c1fdab09cbf3628d429ef46",
+    "20260928T221539.886082Z-34fc9caa-receipt.json": "2883c97dd9feb17e363933476826eab414361ca2353db2b6122ea5142090ae05",
+    "KernelAudit.lean": "d6d72110d36ec5e66b6d58932598338cceb59cba0204cc005f35a42db7b0508a",
+    "baseline-i4.log": "f19c24e5e43a5fa9b9d691ed892f706f166fc718af9d9a577384ea7620a9c529",
+    "finite-scope.json": "4a5ad92668acd1c3365f0c66cf65914d29cf96bd5d669a127ab26e049278dd50",
+    "guard-missing.log": "fbaea8117451bb3868757cecaf67f569b82051998032901628a4aec59d7adc8e",
+    "guard-results.json": "fb0f3c6b81e3f422852d1404b75cc7d24c7fc99e3ce08dcb9f895a28a57649ef",
+    "guard-wrong_hash.log": "002a61a18305076d33636e53483a9d6fbbb17740d8404238f0cea411488a2ecf",
+    "manifest.json": "3de47d0da58a78abcf6de93a6c3b6ab6c1ff594526924ea74976d67438b18a40",
+    "network-probe.log": "2b04ad1c60037dd4f75892c7ee2c369023efc9a73a14190c56308e9cdefccb03",
+    "non-kernel-final.log": "1bd5a7800665c044c50d678bbad382e4bb812366fffbc6522e2ed0b05cc84bdf",
+    "non-kernel.log": "b1d55240d6cbf53ab5cec3cc6aff4d66f8f589fb0ccfedd7d6cdb685119c2290",
+    "plan.json": "d312cf15155714254e65dd9813c89197504958d2d7b7cff759bc4f3eb2730cbd",
+    "test-summary.txt": "eada150dab202bbc4fb0ee2d2622c7cdf295ab0062016f458cd9b97c89fcf059",
+    "tests-first.log": "389e52487550f816aea42e82b2895ec6e3225f67fdb28d05959844f7a18d3384",
+    "toolchain-final.log": "d9a081be446a5b2f9ca02002f666aa95291dbd97353622d2d3521978eef20725",
+    "toolchain.log": "4b464e26cd7d3cadafd87f4f996531884ce870dd0462093bf21165985ca14ec3"
+  },
+  "evidence_layout": "Repository retains validation, test-summary, finite-scope, manifest and kernel harness. Full original logs and unique receipts are included in the downloadable CX-I5 increment."
+}

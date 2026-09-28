@@ -1,0 +1,25 @@
+{
+  "boolean_source_operators": 256,
+  "boolean_target_operators": 256,
+  "coefficient_maps": 4,
+  "candidate_squares": 262144,
+  "intertwining_squares": 33280,
+  "injective_intertwiners": 512,
+  "noninjective_intertwiners": 32768,
+  "same_family_forward_only_control": {
+    "phi": [
+      0,
+      0
+    ],
+    "psi": [
+      0,
+      1
+    ],
+    "source": "copyRight",
+    "target": "flip"
+  },
+  "actual_positional_checks": "all 256 Boolean pair operators, six positional words, eight triple states",
+  "max_local_list_length": 5,
+  "hurwitz_group_hom": "S3 -> C2 parity",
+  "validation_kind": "finite independent models; no Lean execution"
+}
