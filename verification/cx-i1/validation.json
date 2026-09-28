@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "increment": "CX-I1",
+  "implementation_commit": "4004720716de078c2f82d61f8627b9c595081a8e",
+  "base_commit": "9f52914ca4adfdb417777589eaa00e0c086a2b3d",
+  "status": "NON_KERNEL_PASS_TYPECHECK_PENDING",
+  "executed": {
+    "unittest_total": 25,
+    "finite_model_tests": 16,
+    "source_reuse_tests": 9,
+    "result": "PASS",
+    "python_syntax": "PASS",
+    "non_kernel_runner_exit": 3,
+    "missing_toolchain_gate_exit": 3,
+    "affinity": [
+      0,
+      1
+    ]
+  },
+  "source_context": "Selected exact repository files mounted through the GitHub connector, not a hydrated full git checkout. Historical reconstructed blobs verified against GitHub SHAs.",
+  "not_executed": [
+    "Lean elaboration",
+    "22 kernel axiom outputs",
+    "full source_audit import closure",
+    "full workspace build",
+    "downstream ECIA checks"
+  ],
+  "toolchain_probe": {
+    "lean_available": false,
+    "lake_available": false,
+    "download_attempt": "failed: DNS temporary failure in name resolution"
+  },
+  "new_accredited_rows": 0,
+  "log_sha256": "37095a3fe4f286bc00f767ef3df06031c5ad1a21335436c920593bb8395aa1a4",
+  "manifest_sha256": "aa5ded912073cf2f451718a8be62d722630668ac8903190fd549b7a8e7982b80",
+  "review": "author static review plus finite executable controls; no independent reviewer"
+}
