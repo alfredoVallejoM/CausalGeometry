@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "increment": "CX-I1",
+  "source_base_sha": "9f52914ca4adfdb417777589eaa00e0c086a2b3d",
+  "implementation_commit": "4004720716de078c2f82d61f8627b9c595081a8e",
+  "status": "SOURCE_WRITTEN_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "files": {
+    "CausalGeometry.lean": {
+      "sha256": "547608090f994ea479d95a48a5be0ed6ea3e18580f978d87f6407984c0ea2697",
+      "git_blob": "df1f07164ede254f369d6803e01d648207d611a7"
+    },
+    "CausalGeometry/Exchange/Basic.lean": {
+      "sha256": "4be347f2023029e7a55b7d8552354e93f0f6d13240bc05a9325bdbfae5d7dacd",
+      "git_blob": "72e87de18553bbe0d8d0f04d320fb6df66307df1"
+    },
+    "CausalGeometry/Exchange/Path.lean": {
+      "sha256": "b4aa54d6ec32bca0511a6b2cd7a0f3e2236ad95f2bb77b8bfb803a4d38c356a4",
+      "git_blob": "e46aae85a9b4457a8701df38dc55c92aca91ff40"
+    },
+    "CausalGeometry/Exchange/Variational.lean": {
+      "sha256": "b1d13b655d52531ce2bbbeb2982022b3cbc0fa600efa87bcf4ca07e415c76ea8",
+      "git_blob": "39ac0ede84a1f3ad087013956db0200a23ec7a8f"
+    },
+    "CausalGeometry/History/Composition.lean": {
+      "sha256": "b135a89a94d74405a6059c40da9b72e5a3c0cb45dd75826612498752cec02d57",
+      "git_blob": "eaf06794d0057c80241f45ab2ad67c9614135ff7"
+    },
+    "CausalGeometry/History/DiamondPaths.lean": {
+      "sha256": "82c77077f7fff652aad0a1c8f790ea6260b9908e0df1af0d2b6f92877a8f99ea",
+      "git_blob": "9365890383db42ef8cfdf009ba24c882977df789"
+    },
+    "CausalGeometry/History/EventList.lean": {
+      "sha256": "6fa3ccf2ce766263456864b7f502656a4a35b4cee9daf62a94286a1bcf5b408a",
+      "git_blob": "6a7a2e9119a776cfca8d78779314dfe473f4f82f"
+    },
+    "CausalGeometry/Models/ExchangeThreeEvents.lean": {
+      "sha256": "560547aadedb55c49598b17351514a3d91e8c3103b2b669e2db9af2daa98e55d",
+      "git_blob": "07303ecc18ef7bcea2219a3267dc6d63d93790bc"
+    },
+    "CausalGeometry/Variational/DiscreteAction.lean": {
+      "sha256": "6f8de51ed85a600a306b74e29716f70a650ab46a1093ef076e829f57476c2fa7",
+      "git_blob": "968d65a50794ebed80b10333657eb65d25144c06"
+    },
+    "CausalGeometry/Variational/ElementaryEulerLagrange.lean": {
+      "sha256": "863d51845b3c4ac408b3c894a82e4209a3710ea069596432afc94c73fe98c7b3",
+      "git_blob": "c8d712ff5f76b70f102218116e5d440fc88365a8"
+    },
+    "verification/cx-i1/KernelAudit.lean": {
+      "sha256": "d842a053e8ea80e50c5d87ac263f341692defcde356098456fde4e64b00b8b32",
+      "git_blob": "7a6c8fb582cacf6571bbad87d9883450a108be4b"
+    },
+    "tests/test_cx_i1.py": {
+      "sha256": "49ad36da77117337fc10245227bc783a5b7ad3c62bf633849e4cf128e265ef14",
+      "git_blob": "a120ac6f0766fbe62588063c4da5adb41e268e6e"
+    },
+    "tools/verify_cx_i1.py": {
+      "sha256": "8d058d8053964ceb1392ba61899722af4f014879a09db3f67ffe8b8d86db1904",
+      "git_blob": "f8c5851cb902a6a62d8a7a11a804b8dcadfb97ec"
+    }
+  },
+  "mathlib_pin": "v4.32.1",
+  "native_api_blobs": {
+    "Mathlib/CategoryTheory/PathCategory/Basic.lean": "335601a33bc996c3cf4027feb00cbad381a9e729",
+    "Mathlib/CategoryTheory/Types/Basic.lean": "9846c88ea9917262bbe470551577bb6993a9dc64"
+  },
+  "baseline_blobs": {
+    "CausalGeometry.lean": "03f949dba89d35432f2daa5e2068014f485a5a30",
+    "CausalGeometry/Variational/DiscreteAction.lean": "b79c34284030ef9945b123b261997b995c4ce7c8",
+    "CausalGeometry/Variational/ElementaryEulerLagrange.lean": "a12119debe90b78f985029de54bc6d149d8d7215"
+  },
+  "coverage": {
+    "CX00": "partial inventory of exact prerequisite cone",
+    "CX01.01-CX01.05": "chronological sector source written",
+    "CX02.01-CX02.03": "native free paths and contextual functors source written",
+    "CX04.01-CX04.02": "three-event same-type observer controls source written",
+    "CA09/CA21": "contextual variational consumer source written",
+    "CX02.04-CX02.08": "not implemented in this increment",
+    "ECIA": "untouched"
+  }
+}
