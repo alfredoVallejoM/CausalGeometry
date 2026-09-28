@@ -365,3 +365,9 @@ import CausalGeometry.Exchange.Reversible
 import CausalGeometry.Exchange.Defect
 import CausalGeometry.Exchange.EquationFamily
 import CausalGeometry.Models.ExchangeReversibleControls
+
+import CausalGeometry.Exchange.LocalOperator
+import CausalGeometry.Exchange.ArtinPresentation
+import CausalGeometry.Exchange.CausalOperator
+import CausalGeometry.Exchange.CausalArtin
+import CausalGeometry.Models.ExchangeOperatorControls

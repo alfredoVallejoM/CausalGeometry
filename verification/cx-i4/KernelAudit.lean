@@ -1,0 +1,40 @@
+import CausalGeometry.Models.ExchangeOperatorControls
+
+/-! Pending actual Lean execution; source commands are not an axiom transcript. -/
+#print axioms CausalGeometry.Exchange.LocalOperator.stepList_length
+#print axioms CausalGeometry.Exchange.LocalOperator.stepList_prefix
+#print axioms CausalGeometry.Exchange.LocalOperator.stepList_suffix
+#print axioms CausalGeometry.Exchange.LocalOperator.stepList_far
+#print axioms CausalGeometry.Exchange.LocalOperator.stepList_braid
+#print axioms CausalGeometry.Exchange.LocalOperator.stepList_leftInverse
+#print axioms CausalGeometry.Exchange.LocalOperator.act_far
+#print axioms CausalGeometry.Exchange.LocalOperator.act_braid
+#print axioms CausalGeometry.Exchange.LocalOperator.act_leftInverse
+#print axioms CausalGeometry.Exchange.Artin.distant_identified
+#print axioms CausalGeometry.Exchange.Artin.adjacent_identified
+#print axioms CausalGeometry.Exchange.Artin.operator_respects
+#print axioms CausalGeometry.Exchange.Artin.positiveAction_square
+#print axioms CausalGeometry.Exchange.Artin.operator_respects_squares
+#print axioms CausalGeometry.Exchange.Artin.toSymmetric_square
+#print axioms CausalGeometry.Exchange.CausalOperator.step_has_two_slots
+#print axioms CausalGeometry.Exchange.CausalOperator.prefix_compatibility
+#print axioms CausalGeometry.Exchange.CausalOperator.suffix_compatibility
+#print axioms CausalGeometry.Exchange.CausalOperator.reversibleAction_positive
+#print axioms CausalGeometry.Exchange.CausalArtin.realization_square
+#print axioms CausalGeometry.Exchange.CausalArtin.observation_respects_realization
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.flip_yb
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.flip_involutive
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.copyRight_yb
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.copyRight_not_injective
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.toggleFirst_involutive
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.toggleFirst_not_yb
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.invalid_slot_breaks_braid
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.hurwitz_left_inverse
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.hurwitz_right_inverse
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.hurwitz_yb
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.hurwitz_product
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.hurwitz_list_product
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.causal_hurwitz_product
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.toggle_causal_left
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.toggle_causal_right
+#print axioms CausalGeometry.Models.ExchangeOperatorControls.toggle_causal_separates
