@@ -289,10 +289,10 @@ forces a sound connected singleton factor to be (1).
 | TAM-04 | Cyclic Tate (I_n) comparison deriving (c_v=n). | SOURCE IMPLEMENTED |
 | TAM-05 | Native Neron component carrier -> causal component shadow. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
 | TAM-06 | Native Tamagawa number = causal local index. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
-| TAM-07 | Native special-fiber rational point -> component map with explicit surjectivity obligation. | DOWNSTREAM IMPLEMENTED / SURJECTIVITY DOMAIN-SPECIFIC |
+| TAM-07 | Native special-fiber rational point -> component map with explicit surjectivity obligation. | DOWNSTREAM IMPLEMENTED; surjectivity proved for connected fibers and for every positive split type-I residual/transported fiber; other domains remain theorem-specific. |
 | TAM-08 | Causal finite product = existing geometric BSD-layer Tamagawa product; certificate independence. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
 | TAM-09 | Named causal-number source family -> local elliptic/Neron targets. | PARTIAL — generic common-source infrastructure and real two-source control implemented; intrinsic arithmetic realization from causal numbers remains OPEN. |
-| TAM-10 | Generic local elliptic/Neron integral points -> special-fiber component descent under exact local hypotheses. | PARTIAL — generic→integral→special-fiber→component chain implemented; identity-base full control and connected component descent proved; nontrivial DVR integral-reduction surjectivity remains OPEN. |
+| TAM-10 | Generic local elliptic/Neron integral points -> special-fiber component descent under exact local hypotheses. | PARTIAL — full chain implemented; minimal generic→component descent proved for effective good reduction and the concrete additive target; strong integral→special-fiber surjectivity proved for the concrete binary good-reduction DVR family. Split I_n special-fiber descent is proved; generic split I_n remains conditional only on analytic Tate uniformization. |
 | TAM-11 | Reduction-type consumers beyond good/split: concrete effective additive model is bridged with c_v=1 and a false I_3 mutation rejected; general additive/nonsplit classification remains open. | PARTIAL / TYPECHECK PENDING |
 | TAM-12 | Insert the certified Tamagawa product into a full BSD determinant/regulator/Sha comparison theorem. | OPEN |
 
@@ -486,3 +486,115 @@ GenContinuum already contains finite-level good-reduction transition
 surjectivity and independent Hensel/completion machinery, but these have not
 yet been identified with the Neron integral-section reduction map.  That
 comparison remains an explicit theorem obligation.
+
+
+## 17. Strong nonidentity-DVR good-reduction closure
+
+The downstream branch now contains a strong concrete local theorem for the
+certified binary good-reduction family.
+
+For every member of the family over Z_[2], the proof identifies the actual
+effective Neron special fiber with the arbitrary coefficient base change of
+the certified integral projective cubic.
+
+The existing projective field-section classification reduces every rational
+point of that fiber to a nonzero homogeneous solution over ZMod 2.  An
+exhaustive finite theorem proves that every such solution is projectively
+equivalent to the point at infinity.
+
+Hence the actual special-fiber rational-point type is a subsingleton.  It
+follows that reduction of integral Neron sections is surjective:
+
+[
+N(O_v) ->> N_k(k).
+]
+
+Combined with the already proved component descent, this supplies a complete
+strong local packet
+
+[
+E(K_v)
+<-> N(O_v)
+->> N_k(k_v)
+->> Phi_v(k_v)
+]
+
+for the concrete nonidentity DVR family.
+
+The corresponding common-source GenericDescentFamily has empty bad support
+and global Tamagawa product one.
+
+This is stronger than the earlier identity-base non-vacuity control.  It is
+still a target-side/control realization rather than an intrinsic derivation
+of the elliptic curve from internal causal arithmetic.
+
+## 18. All-depth split type-I special-fiber descent
+
+The bridge now proves two reusable facts:
+
+- a geometric section of a component projection implies surjectivity on
+  rational component points;
+- RationalPointComponentDescent is invariant under transport of a component
+  quotient across a special-fiber group isomorphism.
+
+The explicit split product Phi_N x G_m has such a component section.
+Transport therefore proves rational-point component descent for:
+
+- I_1 through its connected component quotient;
+- I_2 through the exceptional smooth-locus comparison;
+- every I_N with N >= 3 through the cyclic nodal smooth-locus comparison;
+- the all-depth residual dispatcher;
+- every supplied actual Neron fiber after SplitTypeISpecialFiberComparison.
+
+Thus the split type-I special-fiber side of Tamagawa has no remaining
+surjectivity lock.
+
+## 19. Remaining type-I generic lock
+
+The independently built Tate period quotient already gives
+
+[
+K_v^x / q^Z ->> Z/nZ
+]
+
+and the actual transported Neron component carrier is already equivalent to
+that cyclic target.
+
+What is still missing is the analytic theorem identifying the actual generic
+elliptic point group with the Tate period quotient in a square compatible with
+the Neron component coordinate.
+
+This is isolated as GenericTateUniformizationComparison.
+
+Once supplied, the downstream code derives automatically:
+
+[
+E(K_v) ->> Phi_v(k_v),
+qquad
+c_v=n,
+qquad
+prod c_v=n
+]
+
+for a one-bad-place common-source family, and identifies the product with the
+existing BSD componentTamagawaProduct.
+
+Cardinal equality alone is explicitly retained as weaker evidence and does
+not discharge this lock.
+
+## 20. Local verification gate
+
+The downstream branch now provides:
+
+scripts/verify-ecia-tamagawa.sh
+
+It checks the exact CausalGeometry dependency pin, the manifest pin, the
+absence of forbidden proof shortcuts, the generic bridge modules, the strong
+binary-DVR module, the Tate conditional bridge, and the dedicated Scratch
+audit harness.
+
+The gate is local-only and delegates resource limits to
+scripts/verify-lean-tier.sh.  It does not use GitHub Actions.
+
+Lean/Lake are unavailable in the current execution environment, so these new
+source results remain typecheck-pending until that local gate is executed.
