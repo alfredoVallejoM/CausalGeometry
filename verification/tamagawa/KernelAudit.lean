@@ -4,6 +4,7 @@ import CausalGeometry.Realization.LocalArithmeticSource
 import CausalGeometry.Models.TamagawaControls
 import CausalGeometry.Models.IndexedFamilyControls
 import CausalGeometry.Models.CommonSourceControls
+import CausalGeometry.Models.LocalArithmeticSourceControls
 
 /-! Directed kernel audit for the CA-24 Tamagawa source tranche. -/
 
@@ -14,6 +15,7 @@ open Tamagawa
 open Models.TamagawaControls
 open Models.IndexedFamilyControls
 open Models.CommonSourceControls
+open Models.LocalArithmeticSourceControls
 
 /-! Local structural quotient laws. -/
 
@@ -80,6 +82,29 @@ example :
     emptyCausalNumber ≠ singletonCausalNumber :=
   empty_ne_singleton
 
+universe u w
+
+variable
+    {A : Type u}
+    {C : EndDiaryCompositionSystem.{u, w} A}
+
+example
+    (L : LengthObservable C)
+    (X : EndDiary.{u, w} A) :
+    L.atomicSource.depth
+        Models.CausalLengthAtomic.atom X =
+      L.length X :=
+  L.atom_depth X
+
+example
+    (L : LengthObservable C)
+    (X : EndDiary.{u, w} A) :
+    L.atomicSource.primarySupport X =
+      if L.length X = 0
+      then ∅
+      else {Models.CausalLengthAtomic.atom} :=
+  L.primarySupport_eq X
+
 #print axioms CausalGeometry.Tamagawa.LocalComponentQuotient.tamagawaIndex_pos
 #print axioms CausalGeometry.Tamagawa.Family.globalTamagawaIndex_pos
 #print axioms CausalGeometry.Tamagawa.Family.globalTamagawaIndex_ne_zero
@@ -95,5 +120,7 @@ example :
 #print axioms CausalGeometry.AtomicLocalSource.primarySupport_compose
 #print axioms CausalGeometry.Tamagawa.ExactAtomicSupportCompatibility.target_support_compose
 #print axioms CausalGeometry.Tamagawa.AtomicSupportUpperBound.tamagawaIndex_eq_one_of_not_mem_primarySupport
+#print axioms CausalGeometry.Models.CausalLengthAtomic.domain_valuation
+#print axioms CausalGeometry.Models.LocalArithmeticSourceControls.LengthObservable.primarySupport_eq
 
 end CausalGeometry.Verification.Tamagawa
