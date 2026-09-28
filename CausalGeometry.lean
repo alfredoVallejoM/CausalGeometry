@@ -340,6 +340,7 @@ import CausalGeometry.Models.HodgeControls
 import CausalGeometry.Number.IrreduciblePrimitiveBridge
 
 import CausalGeometry.Models.CausalLengthAtomic
+import CausalGeometry.Models.LocalArithmeticSourceControls
 
 import CausalGeometry.Models.IrreduciblePrimitiveControls
 import CausalGeometry.Models.TamagawaControls
