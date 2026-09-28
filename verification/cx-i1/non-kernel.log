@@ -1,0 +1,30 @@
+test_all_observer_formulas (test_cx_i1.FiniteCausalChecks.test_all_observer_formulas) ... ok
+test_all_reflections_involutive (test_cx_i1.FiniteCausalChecks.test_all_reflections_involutive) ... ok
+test_bad_position_rejected (test_cx_i1.FiniteCausalChecks.test_bad_position_rejected) ... ok
+test_conflict_rejected (test_cx_i1.FiniteCausalChecks.test_conflict_rejected) ... ok
+test_contextual_action_defect (test_cx_i1.FiniteCausalChecks.test_contextual_action_defect) ... ok
+test_dependency_rejected (test_cx_i1.FiniteCausalChecks.test_dependency_rejected) ... ok
+test_nonstationary_action_not_promoted (test_cx_i1.FiniteCausalChecks.test_nonstationary_action_not_promoted) ... ok
+test_only_zero_offset_collapses_the_pair (test_cx_i1.FiniteCausalChecks.test_only_zero_offset_collapses_the_pair) ... ok
+test_prefix_and_suffix_contexts (test_cx_i1.FiniteCausalChecks.test_prefix_and_suffix_contexts) ... ok
+test_repeated_occurrence_rejected (test_cx_i1.FiniteCausalChecks.test_repeated_occurrence_rejected) ... ok
+test_routes_have_same_endpoints (test_cx_i1.FiniteCausalChecks.test_routes_have_same_endpoints) ... ok
+test_six_actual_histories (test_cx_i1.FiniteCausalChecks.test_six_actual_histories) ... ok
+test_stationary_action_on_all_histories (test_cx_i1.FiniteCausalChecks.test_stationary_action_on_all_histories) ... ok
+test_three_four_discriminator (test_cx_i1.FiniteCausalChecks.test_three_four_discriminator) ... ok
+test_twelve_witnessed_edges (test_cx_i1.FiniteCausalChecks.test_twelve_witnessed_edges) ... ok
+test_zero_offset_same_type_control (test_cx_i1.FiniteCausalChecks.test_zero_offset_same_type_control) ... ok
+test_all_new_modules_exist_and_imported (test_cx_i1.SourceReuseChecks.test_all_new_modules_exist_and_imported) ... ok
+test_audit_includes_source_and_historical_theorems (test_cx_i1.SourceReuseChecks.test_audit_includes_source_and_historical_theorems) ... ok
+test_composition_exact_relocation (test_cx_i1.SourceReuseChecks.test_composition_exact_relocation) ... ok
+test_diamond_relocation_and_single_proof_repair (test_cx_i1.SourceReuseChecks.test_diamond_relocation_and_single_proof_repair) ... ok
+test_legacy_variational_consumers_remain (test_cx_i1.SourceReuseChecks.test_legacy_variational_consumers_remain) ... ok
+test_native_path_universality_reused (test_cx_i1.SourceReuseChecks.test_native_path_universality_reused) ... ok
+test_no_downstream_import (test_cx_i1.SourceReuseChecks.test_no_downstream_import) ... ok
+test_no_forbidden_proof_shortcuts_in_changed_sources (test_cx_i1.SourceReuseChecks.test_no_forbidden_proof_shortcuts_in_changed_sources) ... ok
+test_root_only_appends_new_modules (test_cx_i1.SourceReuseChecks.test_root_only_appends_new_modules) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.006s
+
+OK
