@@ -1,0 +1,53 @@
+test_all_generated_steps_preserve_start_end_and_length (test_cx_i2.QuotientFiniteChecks.test_all_generated_steps_preserve_start_end_and_length) ... ok
+test_bounded_search_does_not_promote_exhaustion (test_cx_i2.QuotientFiniteChecks.test_bounded_search_does_not_promote_exhaustion) ... ok
+test_causal_history_contexts_shift_positions_not_route_count (test_cx_i2.QuotientFiniteChecks.test_causal_history_contexts_shift_positions_not_route_count) ... ok
+test_composition_contexts_preserve_generated_pair (test_cx_i2.QuotientFiniteChecks.test_composition_contexts_preserve_generated_pair) ... ok
+test_empty_policy_does_not_identify (test_cx_i2.QuotientFiniteChecks.test_empty_policy_does_not_identify) ... ok
+test_equivalence_classes_are_equal_for_related_words (test_cx_i2.QuotientFiniteChecks.test_equivalence_classes_are_equal_for_related_words) ... ok
+test_invertible_boundary_relabelling_cannot_fix_offset_two (test_cx_i2.QuotientFiniteChecks.test_invertible_boundary_relabelling_cannot_fix_offset_two) ... ok
+test_more_relations_can_only_merge_classes (test_cx_i2.QuotientFiniteChecks.test_more_relations_can_only_merge_classes) ... ok
+test_named_pair_identified_and_reflexive (test_cx_i2.QuotientFiniteChecks.test_named_pair_identified_and_reflexive) ... ok
+test_no_inverse_cancellation_imposed (test_cx_i2.QuotientFiniteChecks.test_no_inverse_cancellation_imposed) ... ok
+test_nonrespecting_observer_is_not_declared_well_defined (test_cx_i2.QuotientFiniteChecks.test_nonrespecting_observer_is_not_declared_well_defined) ... ok
+test_only_zero_offset_respects_generating_equation (test_cx_i2.QuotientFiniteChecks.test_only_zero_offset_respects_generating_equation) ... ok
+test_raw_routes_are_distinct_with_same_target (test_cx_i2.QuotientFiniteChecks.test_raw_routes_are_distinct_with_same_target) ... ok
+test_relation_is_not_universal_yang_baxter (test_cx_i2.QuotientFiniteChecks.test_relation_is_not_universal_yang_baxter) ... ok
+test_three_and_five_exchanges_not_identified (test_cx_i2.QuotientFiniteChecks.test_three_and_five_exchanges_not_identified) ... ok
+test_zero_offset_respects_all_finite_generated_classes (test_cx_i2.QuotientFiniteChecks.test_zero_offset_respects_all_finite_generated_classes) ... ok
+test_all_i1_payload_files_unchanged_except_append_only_root (test_cx_i2.SourceContractChecks.test_all_i1_payload_files_unchanged_except_append_only_root) ... ok
+test_contexts_are_not_only_route_composition (test_cx_i2.SourceContractChecks.test_contexts_are_not_only_route_composition) ... ok
+test_kernel_audit_covers_new_and_old_consumers (test_cx_i2.SourceContractChecks.test_kernel_audit_covers_new_and_old_consumers) ... ok
+test_native_quotient_and_uniqueness_reused (test_cx_i2.SourceContractChecks.test_native_quotient_and_uniqueness_reused) ... ok
+test_new_modules_imported_exactly_once (test_cx_i2.SourceContractChecks.test_new_modules_imported_exactly_once) ... ok
+test_no_downstream_or_forbidden_proof_shortcuts (test_cx_i2.SourceContractChecks.test_no_downstream_or_forbidden_proof_shortcuts) ... ok
+test_up_to_iso_not_only_strict_descent (test_cx_i2.SourceContractChecks.test_up_to_iso_not_only_strict_descent) ... ok
+test_all_observer_formulas (cx_i1_unchanged_regression.FiniteCausalChecks.test_all_observer_formulas) ... ok
+test_all_reflections_involutive (cx_i1_unchanged_regression.FiniteCausalChecks.test_all_reflections_involutive) ... ok
+test_bad_position_rejected (cx_i1_unchanged_regression.FiniteCausalChecks.test_bad_position_rejected) ... ok
+test_conflict_rejected (cx_i1_unchanged_regression.FiniteCausalChecks.test_conflict_rejected) ... ok
+test_contextual_action_defect (cx_i1_unchanged_regression.FiniteCausalChecks.test_contextual_action_defect) ... ok
+test_dependency_rejected (cx_i1_unchanged_regression.FiniteCausalChecks.test_dependency_rejected) ... ok
+test_nonstationary_action_not_promoted (cx_i1_unchanged_regression.FiniteCausalChecks.test_nonstationary_action_not_promoted) ... ok
+test_only_zero_offset_collapses_the_pair (cx_i1_unchanged_regression.FiniteCausalChecks.test_only_zero_offset_collapses_the_pair) ... ok
+test_prefix_and_suffix_contexts (cx_i1_unchanged_regression.FiniteCausalChecks.test_prefix_and_suffix_contexts) ... ok
+test_repeated_occurrence_rejected (cx_i1_unchanged_regression.FiniteCausalChecks.test_repeated_occurrence_rejected) ... ok
+test_routes_have_same_endpoints (cx_i1_unchanged_regression.FiniteCausalChecks.test_routes_have_same_endpoints) ... ok
+test_six_actual_histories (cx_i1_unchanged_regression.FiniteCausalChecks.test_six_actual_histories) ... ok
+test_stationary_action_on_all_histories (cx_i1_unchanged_regression.FiniteCausalChecks.test_stationary_action_on_all_histories) ... ok
+test_three_four_discriminator (cx_i1_unchanged_regression.FiniteCausalChecks.test_three_four_discriminator) ... ok
+test_twelve_witnessed_edges (cx_i1_unchanged_regression.FiniteCausalChecks.test_twelve_witnessed_edges) ... ok
+test_zero_offset_same_type_control (cx_i1_unchanged_regression.FiniteCausalChecks.test_zero_offset_same_type_control) ... ok
+test_all_new_modules_exist_and_imported (cx_i1_unchanged_regression.SourceReuseChecks.test_all_new_modules_exist_and_imported) ... ok
+test_audit_includes_source_and_historical_theorems (cx_i1_unchanged_regression.SourceReuseChecks.test_audit_includes_source_and_historical_theorems) ... ok
+test_composition_exact_relocation (cx_i1_unchanged_regression.SourceReuseChecks.test_composition_exact_relocation) ... ok
+test_diamond_relocation_and_single_proof_repair (cx_i1_unchanged_regression.SourceReuseChecks.test_diamond_relocation_and_single_proof_repair) ... ok
+test_legacy_variational_consumers_remain (cx_i1_unchanged_regression.SourceReuseChecks.test_legacy_variational_consumers_remain) ... ok
+test_native_path_universality_reused (cx_i1_unchanged_regression.SourceReuseChecks.test_native_path_universality_reused) ... ok
+test_no_downstream_import (cx_i1_unchanged_regression.SourceReuseChecks.test_no_downstream_import) ... ok
+test_no_forbidden_proof_shortcuts_in_changed_sources (cx_i1_unchanged_regression.SourceReuseChecks.test_no_forbidden_proof_shortcuts_in_changed_sources) ... ok
+test_root_only_appends_new_modules (cx_i1_unchanged_regression.SourceReuseChecks.test_root_only_appends_new_modules) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 0.050s
+
+OK

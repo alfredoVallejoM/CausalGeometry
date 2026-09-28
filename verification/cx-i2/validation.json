@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "increment": "CX-I2",
+  "base_commit": "c517fcc282c748d51d54151f1c1b8035c61b2f6c",
+  "implementation_commit": "836d975bbd0547b8519cd37b5035ac53ea652a3e",
+  "status": "NON_KERNEL_PASS_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "executed": {
+    "tests_total": 48,
+    "new_finite_tests": 16,
+    "new_source_contract_tests": 7,
+    "unchanged_i1_tests": 25,
+    "result": "PASS",
+    "python_syntax": "PASS",
+    "non_kernel_gate_exit": 3,
+    "missing_toolchain_gate_exit": 3,
+    "manifest_guard_checks": [
+      {
+        "case": "missing",
+        "exit_code": 1,
+        "compiler_invoked": false
+      },
+      {
+        "case": "mismatch",
+        "exit_code": 1,
+        "compiler_invoked": false
+      }
+    ],
+    "cpu_affinity": [
+      0,
+      1
+    ]
+  },
+  "first_attempt": {
+    "result": "47 PASS / 1 FAIL",
+    "cause": "test expected more than 100 directed applications; exact enumeration and independent count give 98",
+    "correction": "exact count sum((n-2)*2**(n-2), n=3..6); no producer or mathematical rule changed",
+    "log": "verification/cx-i2/first-tests.log"
+  },
+  "proof_boundary": {
+    "lean_available": false,
+    "lake_available": false,
+    "network_probe": "curl could not resolve github.com",
+    "not_executed": [
+      "Lean elaboration",
+      "22+36 actual kernel axiom outputs",
+      "whole-repository source audit",
+      "full workspace build",
+      "ECIA consumers"
+    ]
+  },
+  "source_context": "mounted CX-I1 archive plus new local files; hash-verified against source commit blobs, not a hydrated git checkout",
+  "remote_blob_matches": {
+    "CausalGeometry.lean": "42a3512ddb023a8ef598ef6a37ff8ff09a9af7f5",
+    "CausalGeometry/Exchange/Quotient.lean": "07cef41a19a3978566d4e923ab509d1c6f4b9dfb",
+    "CausalGeometry/Exchange/ContextRelation.lean": "d98650da3dc9204aa42cc7d6b3cc8e9da2770e2d",
+    "CausalGeometry/Models/ExchangeCoherenceControls.lean": "336b09d4dbe04665207f282c015cac2355209a6d",
+    "tests/test_cx_i2.py": "75dfe118689f7125cf60a7185f8b62bd51b0b043",
+    "tools/verify_cx_i2.py": "a53964830b9ddf8f65ac5e5937f53cb8235a87b5",
+    "verification/cx-i2/KernelAudit.lean": "0af1632f51bceeadbcc26691b8217e58f9bebcd2",
+    "verification/cx-i2/manifest.json": "fb2ebe9a6b2f5f0299c1936b801adcceb6016222"
+  },
+  "finite_scope": {
+    "word_vertices": 762,
+    "directed_relation_applications": 98,
+    "boundary_relabelling_pairs": 14400,
+    "claim": "finite word checks only; not a complete encoding theorem for all Lean exchange witnesses"
+  },
+  "review": "author static review plus executable finite checks; not an independent review",
+  "evidence_sha256": {
+    "missing-toolchain.log": "344e61f38057f50dc5a13a24f93a311515aabd10c0168f5675b55557dc558e2d",
+    "manifest.json": "f60cab17f818f49fc253431769efc0281131746bce2a1baab9320d5c2189110b",
+    "non-kernel-receipt.json": "622a7c74f108ea8098c7de502df41545b2b1ffd30acb2b9a84e7927c92852865",
+    "toolchain-receipt.json": "5888365995c312aa4b83373870193ee8afc7dc779d4377ed5f6bc65731890df9",
+    "plan.json": "233d1aa19716718e93313f508099d552365665cabc60f806a78f88903e477d2d",
+    "KernelAudit.lean": "44b29695143cac3e064782adb6ae6c3fc8f5d63b9f0d5d2dbd39ce7c71d30158",
+    "non-kernel-run.log": "e42150b58de9b83622cf80062d0b38a8bee644a988f13bd7629a513b8be8f565",
+    "gate-controls.json": "a72c0216ccf39cd3c90fd6f503bf38922bf5dc113dc8eff05c00cccc1653ba75",
+    "tests.log": "d9328f056093cf8151cf94132774042a4c199ddf1e924457b64ed9c6c112e1be",
+    "first-tests.log": "5fa8632a5998bfaa604f7284003a45cf341b82238023a728f7676a260d7e6578"
+  },
+  "evidence_bundle": "Complete uncompressed logs and original runner snapshots are included in CausalGeometry_CX-I2_incremento.zip supplied with this delivery.",
+  "evidence_layout": "Repository: validation.json, tests.log, manifest and kernel harness. first-tests.log and original unique runner receipts/logs remain unmodified in the downloadable increment."
+}

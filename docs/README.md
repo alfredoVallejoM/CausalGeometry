@@ -77,3 +77,19 @@ Current status: **SOURCE-WRITTEN / 25 NON-KERNEL TESTS PASS / LEAN TYPECHECK
 PENDING**. No additional row is accredited. ECIA, generated coherence
 quotients, general braid/cactus sectors and higher cells remain separate.
 The non-kernel gate deliberately exits 3 even when its tests pass.
+
+## CX-I2 — coherence quotients and exact observer descent (2026-09-28)
+
+[Implementation and evidence boundary](campaigns/CX_I2_IMPLEMENTATION.md)
+records native quotient/descent, genuine causal context saturation, canonical
+comparison functors and the exact ZMod 5 observer criterion, including natural
+isomorphisms. A length observer proves that the quotient is not indiscrete.
+
+Source SHA: `836d975bbd0547b8519cd37b5035ac53ea652a3e`.
+Current-root gate: `python3 tools/verify_cx_i2.py`.
+Evidence: `verification/cx-i2/manifest.json`, `tests.log`, `validation.json`.
+
+Status: **SOURCE-WRITTEN / 48 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
+All 25 I1 tests are preserved through a checked append-only root projection;
+the old I1 manifest is not rewritten. I2 adds 23 checks and plans 36 kernel
+axiom outputs, in addition to I1's 22. No new campaign row is accredited.
