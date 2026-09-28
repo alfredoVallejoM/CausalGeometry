@@ -291,7 +291,7 @@ forces a sound connected singleton factor to be (1).
 | TAM-06 | Native Tamagawa number = causal local index. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
 | TAM-07 | Native special-fiber rational point -> component map with explicit surjectivity obligation. | DOWNSTREAM IMPLEMENTED; surjectivity proved for connected fibers and for every positive split type-I residual/transported fiber; other domains remain theorem-specific. |
 | TAM-08 | Causal finite product = existing geometric BSD-layer Tamagawa product; certificate independence. | DOWNSTREAM IMPLEMENTED / TYPECHECK PENDING |
-| TAM-09 | Named causal-number source family -> local elliptic/Neron targets. | PARTIAL — generic common-source infrastructure and real two-source control implemented; intrinsic arithmetic realization from causal numbers remains OPEN. |
+| TAM-09 | Named causal-number source family -> local elliptic/Neron targets. | PARTIAL — causal local arithmetic provenance is now implemented via EndDiaryCommutativeShadow/AtomicLocalSource with finite derived primary support, equivalence invariance and composition laws; common-source downstream infrastructure and real controls exist. The actual comparison from this derived causal local data to elliptic/Neron targets remains OPEN. |
 | TAM-10 | Generic local elliptic/Neron integral points -> special-fiber component descent under exact local hypotheses. | PARTIAL — full chain implemented; minimal generic→component descent proved for effective good reduction and the concrete additive target; strong integral→special-fiber surjectivity proved for the concrete binary good-reduction DVR family. Split I_n special-fiber descent is proved; generic split I_n remains conditional only on analytic Tate uniformization. |
 | TAM-11 | Reduction-type consumers beyond good/split: concrete effective additive model is bridged with c_v=1 and a false I_3 mutation rejected; general additive/nonsplit classification remains open. | PARTIAL / TYPECHECK PENDING |
 | TAM-12 | Insert the certified Tamagawa product into a full BSD determinant/regulator/Sha comparison theorem. | OPEN |
@@ -598,3 +598,143 @@ scripts/verify-lean-tier.sh.  It does not use GitHub Actions.
 
 Lean/Lake are unavailable in the current execution environment, so these new
 source results remain typecheck-pending until that local gate is executed.
+
+
+## 21. Causal arithmetic provenance for local places
+
+The source side now derives local arithmetic places rather than accepting an
+unexplained place/support list.
+
+An `EndDiaryCommutativeShadow C alpha` is a realization of a weak end-diary
+composition system into a cancellative commutative arithmetic carrier.  It
+must prove
+
+[
+S(X\sim Y) \Rightarrow S(X)=S(Y),\qquad
+S(1_C)=1,\qquad
+S(X\circ_C Y)=S(X)S(Y).
+]
+
+When the arithmetic carrier has a certified canonical atomic domain,
+`AtomicLocalSource` defines
+
+[
+d_p(X)=v_p(S(X))
+]
+
+and
+
+[
+\operatorname{Supp}_{\rm prim}(X)
+=
+\{p:d_p(X)>0\}.
+]
+
+The support is finite because it is literally the support of the canonical
+finitely-supported atomic profile.
+
+The source proves:
+
+[
+d_p(X\circ_CY)=d_p(X)+d_p(Y),
+]
+
+[
+\operatorname{Supp}_{\rm prim}(X\circ_CY)
+=
+\operatorname{Supp}_{\rm prim}(X)
+\cup
+\operatorname{Supp}_{\rm prim}(Y),
+]
+
+and invariance of both depth and support under the chosen causal equivalence.
+
+This layer is target-neutral.  It does not call an active source atom a bad
+elliptic prime.
+
+Two explicit downstream theorem locks are provided:
+
+1. `ExactAtomicSupportCompatibility`, when the target Tamagawa support is
+   proved equal to the causal primary support;
+2. `AtomicSupportUpperBound`, when target bad places are only known to lie
+   inside the causal primary support.
+
+In both cases a place outside the causal primary support is forced to have
+Tamagawa factor one.
+
+### Concrete source control
+
+The existing nonclassical causal-length monoid
+
+[
+\operatorname{Multiplicative}(\mathbb N)
+]
+
+already has a canonical atomic domain with one primitive causal-step atom.
+Its valuation is now proved exactly:
+
+[
+v_p(n)=
+\begin{cases}
+n,&p=\text{atom},\\
+0,&p\ne\text{atom}.
+\end{cases}
+]
+
+Therefore any weak causal composition system carrying an additive,
+equivalence-invariant causal length observable produces a genuine
+`AtomicLocalSource` whose primary support is
+
+[
+\varnothing
+\quad\text{at length }0,
+\qquad
+\{\text{atom}\}
+\quad\text{at positive length}.
+]
+
+This is the first source-derived local-place control in the Tamagawa
+campaign.
+
+It does **not** solve the remaining arithmetic-geometric realization theorem:
+GenContinuum is still pinned to the earlier CausalGeometry code SHA until the
+new source gate is run locally.  After that gate passes, the next downstream
+step is to consume this source support in a Neron/Tamagawa family and prove
+the appropriate exact/subset support comparison instead of using an
+equality-to-one-object control domain.
+
+## 22. Source Tamagawa support robustness
+
+The global source factor now additionally proves:
+
+- `globalTamagawaIndex_pos`;
+- `globalTamagawaIndex_ne_zero`;
+- independence from the chosen finite support certificate whenever all
+  omitted places have factor one;
+- invariance under adding arbitrary neutral places.
+
+The adversarial control `mixedFamily` has one factor two and one factor one.
+It proves that enlarging support by the neutral place leaves the product
+unchanged, while omitting the nontrivial place changes the product.
+
+Thus the finite support is bookkeeping for a finitely supported local factor,
+not part of the numerical invariant itself.
+
+## 23. Dedicated source gate
+
+CausalGeometry now provides:
+
+`tools/verify_tamagawa.py`
+
+and
+
+`verification/tamagawa/KernelAudit.lean`.
+
+The directed gate checks the Tamagawa structural contract, indexed-family
+loss laws, support independence, source-derived local arithmetic support and
+the causal-length control.  It records exact source SHA and per-file SHA-256
+values in a local receipt and audits `#print axioms` output against the
+native whitelist.
+
+As with the downstream gate, absence of Lean/Lake yields a blocked/pending
+status rather than a false PASS.
