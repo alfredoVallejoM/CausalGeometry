@@ -253,6 +253,7 @@ import CausalGeometry.Realization.ECIAGradedContract
 import CausalGeometry.Realization.ECIASpectralContract
 import CausalGeometry.Realization.ECIATamagawaContract
 import CausalGeometry.Realization.TamagawaIndexedFamily
+import CausalGeometry.Realization.LocalArithmeticSource
 import CausalGeometry.Cyclic.PrimitiveSystem
 import CausalGeometry.Cyclic.FiniteTransfer
 import CausalGeometry.Cyclic.Hashimoto
