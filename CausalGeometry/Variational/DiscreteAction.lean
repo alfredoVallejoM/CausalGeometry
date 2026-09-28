@@ -1,4 +1,4 @@
-import CausalGeometry.History.Path
+import CausalGeometry.History.Composition
 import CausalGeometry.Calculus.CubeShift
 import Mathlib.Tactic
 
@@ -9,49 +9,6 @@ open EventSystem
 
 variable {Event : Type u} {Label : Type v}
 variable {S : EventSystem Event Label}
-
-namespace CausalPath
-
-/-- Concatenation of derived causal paths. -/
-def comp :
-    {C D E : Configuration S} →
-      CausalPath S C D →
-      CausalPath S D E →
-      CausalPath S C E
-  | _, _, _, .nil _, q => q
-  | _, _, _, .step e h tail, q =>
-      .step e h (comp tail q)
-
-@[simp] theorem nil_comp
-    {C D : Configuration S}
-    (q : CausalPath S C D) :
-    (CausalPath.nil C).comp q = q :=
-  rfl
-
-@[simp] theorem step_comp
-    {C D E : Configuration S}
-    (e : Event)
-    (h : S.Enabled C e)
-    (tail : CausalPath S (S.extend C e h) D)
-    (q : CausalPath S D E) :
-    (CausalPath.step e h tail).comp q =
-      CausalPath.step e h (tail.comp q) :=
-  rfl
-
-theorem length_comp
-    {C D E : Configuration S}
-    (p : CausalPath S C D)
-    (q : CausalPath S D E) :
-    (p.comp q).length =
-      p.length + q.length := by
-  induction p with
-  | nil =>
-      simp [comp]
-  | step e h tail ih =>
-      simp [comp, ih, Nat.add_assoc, Nat.add_comm,
-        Nat.add_left_comm]
-
-end CausalPath
 
 /-- Local discrete causal Lagrangian attached to one enabled primitive event. -/
 abbrev CausalStepLagrangian
