@@ -59,6 +59,21 @@ closure requires its own mathematical producer and internal consumers; it does
 not wait for unrelated ECIA targets. Downstream closure requires the concrete
 source/target comparison and exact-SHA evidence separately.
 
-Current CX status: **PLANNED / NOT LEAN-ACCREDITED**. Only documentation was
-changed by this planning increment; no new Lean implementation, dependency pin,
-runner or workflow is implied.
+Status of the original planning increment: **PLANNED / NOT LEAN-ACCREDITED**.
+That increment only changed documentation. The first implementation follows.
+
+## CX-I1 — first autonomous source increment (2026-09-28)
+
+[Implementation and remaining obligations](campaigns/CX_I1_IMPLEMENTATION.md)
+records seven source modules, the exact relocation of historical path and
+diamond producers, contextual exchanges, native free paths, the genuine
+three-event discriminator and a variational consumer.
+
+Code/verifier SHA: `4004720716de078c2f82d61f8627b9c595081a8e`.
+Evidence: `verification/cx-i1/manifest.json`, `non-kernel.log`, `validation.json`.
+Local gate: `python3 tools/verify_cx_i1.py`.
+
+Current status: **SOURCE-WRITTEN / 25 NON-KERNEL TESTS PASS / LEAN TYPECHECK
+PENDING**. No additional row is accredited. ECIA, generated coherence
+quotients, general braid/cactus sectors and higher cells remain separate.
+The non-kernel gate deliberately exits 3 even when its tests pass.
