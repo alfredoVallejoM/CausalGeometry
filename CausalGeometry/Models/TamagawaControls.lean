@@ -5,6 +5,7 @@ namespace CausalGeometry
 namespace Models
 namespace TamagawaControls
 
+open scoped BigOperators
 open Tamagawa
 
 /-- Same local point carrier, with all points collapsed to the identity
