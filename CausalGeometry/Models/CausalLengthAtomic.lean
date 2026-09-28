@@ -313,6 +313,37 @@ def domain :
   profile_unique :=
     profile_unique
 
+/-- The intrinsic valuation of the one-generator causal-length domain is
+completely explicit: the unique atom occurs once per causal step, and every
+other candidate place has multiplicity zero. -/
+theorem domain_valuation
+    (p x : CausalLength) :
+    domain.valuation p x =
+      if p = atom then x.toAdd else 0 := by
+  change
+    profile (factors x) p =
+      if p = atom then x.toAdd else 0
+  rw [profile_apply_eq_count]
+  simp [factors]
+
+/-- In particular, the unique causal atom has valuation exactly the causal
+length. -/
+@[simp]
+theorem domain_atom_valuation
+    (x : CausalLength) :
+    domain.valuation atom x =
+      x.toAdd := by
+  rw [domain_valuation]
+  simp
+
+/-- Any different candidate place has zero intrinsic depth. -/
+theorem domain_valuation_eq_zero_of_ne_atom
+    {p x : CausalLength}
+    (hp : p ≠ atom) :
+    domain.valuation p x = 0 := by
+  rw [domain_valuation]
+  simp [hp]
+
 /-- Nontrivial regression: causal length three has a genuine three-atom
 factorization. -/
 theorem length_three_factorization :
