@@ -94,3 +94,38 @@ A row closes only when its applicable evidence contract is satisfied:
 9. resource/complexity audit where computation is material.
 
 Source presence is therefore weaker than campaign accreditation.
+
+## CX planning subledger — 2026-09-28
+
+The exchange/coherence extension is now specified in
+[campaigns/CX_EXCHANGE_COHERENCE.md](campaigns/CX_EXCHANGE_COHERENCE.md).
+Its [operational subledger](campaigns/CX_OBLIGATIONS.md) contains 96 planned
+subobligations, CX00.01–CX11.08, in twelve eight-row blocks.
+
+This is an additive, cross-cutting planning refinement. It does **not** change
+the 636 historical atomic rows, their existing statuses, the Lean campaign
+enumerator or its cardinality proofs. No CX row is accredited by publication
+of the plan. A future formal registration must explicitly decide parent-row
+coverage versus genuinely additional scope and avoid double counting.
+
+CX makes the source side of CA-13.15 broader than a universal braid assumption:
+typed contextual exchanges first; invertibility, far commutativity,
+Yang–Baxter, involutivity, cactus laws and higher coherence as independently
+specified specializations. The original braided realization remains required.
+CA-13.16 retains its separate actual ribbon-consumer obligation.
+
+Source links include CA02/03 composition and histories, CA06/07/18/22
+noncommutative arithmetic, CA09 semantic/predictive quotients, CA10/14/19
+realization/loss, CA17 paired restriction and CA21 calculus. ECIA applications
+remain downstream under CA11/13/23/24/25. None of their pre-existing routes is
+removed or substituted by the exchange programme.
+
+For a purely source row, its real consumer may be a theorem or model inside
+CausalGeometry. Such a row does not wait for an ECIA consumer. For an actual
+realization row, source and downstream evidence are both required. The two
+tracks advance concurrently with producer-specific dependencies.
+
+The companion [resource contract](campaigns/CX_COMPLEXITY_AND_VALIDATION.md)
+and [ECIA realization plan](campaigns/CX_ECIA_REALIZATIONS.md) define separate
+gates and distinguish documentation, finite model checks, Lean typechecking
+and full campaign accreditation.
