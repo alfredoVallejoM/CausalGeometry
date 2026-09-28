@@ -124,6 +124,84 @@ def globalTamagawaIndex
     (F.local place).tamagawaIndex = 1 :=
   F.unit_outside_support place hplace
 
+/-- The finite global Tamagawa product is always positive. -/
+theorem globalTamagawaIndex_pos
+    (F : Family.{w, x, y} Place) :
+    0 < F.globalTamagawaIndex := by
+  unfold globalTamagawaIndex
+  exact
+    Finset.prod_pos
+      (fun place hplace =>
+        (F.local place).tamagawaIndex_pos)
+
+/-- In particular the global Tamagawa product cannot vanish. -/
+theorem globalTamagawaIndex_ne_zero
+    (F : Family.{w, x, y} Place) :
+    F.globalTamagawaIndex ≠ 0 :=
+  F.globalTamagawaIndex_pos.ne'
+
+/-- Any alternative finite support which contains every nonunit local factor
+computes the same global Tamagawa product.
+
+Thus the global factor depends on the local component quotients, not on the
+chosen finite support certificate. -/
+theorem globalTamagawaIndex_eq_prod_of_unit_outside
+    (F : Family.{w, x, y} Place)
+    (alternativeSupport : Finset Place)
+    (hAlternative :
+      ∀ place,
+        place ∉ alternativeSupport →
+          (F.local place).tamagawaIndex = 1) :
+    F.globalTamagawaIndex =
+      ∏ place in alternativeSupport,
+        (F.local place).tamagawaIndex := by
+  unfold globalTamagawaIndex
+
+  let unionSupport :=
+    F.support ∪ alternativeSupport
+
+  have hSource :
+      (∏ place in F.support,
+        (F.local place).tamagawaIndex) =
+      ∏ place in unionSupport,
+        (F.local place).tamagawaIndex := by
+    apply Finset.prod_subset
+      Finset.subset_union_left
+    intro place hUnion hOutside
+    exact F.unit_outside_support place hOutside
+
+  have hAlternative' :
+      (∏ place in alternativeSupport,
+        (F.local place).tamagawaIndex) =
+      ∏ place in unionSupport,
+        (F.local place).tamagawaIndex := by
+    apply Finset.prod_subset
+      Finset.subset_union_right
+    intro place hUnion hOutside
+    exact hAlternative place hOutside
+
+  exact hSource.trans hAlternative'.symm
+
+/-- Adding any finite collection of neutral places to the declared support
+does not change the global product. -/
+theorem globalTamagawaIndex_insert_neutral
+    (F : Family.{w, x, y} Place)
+    (extra : Finset Place)
+    (hExtra :
+      ∀ place,
+        place ∈ extra →
+          (F.local place).tamagawaIndex = 1) :
+    F.globalTamagawaIndex =
+      ∏ place in (F.support ∪ extra),
+        (F.local place).tamagawaIndex := by
+  apply F.globalTamagawaIndex_eq_prod_of_unit_outside
+  intro place hOutside
+  by_cases hSupport : place ∈ F.support
+  · exact False.elim
+      (hOutside
+        (Finset.mem_union_left extra hSupport))
+  · exact F.unit_outside_support place hSupport
+
 end Family
 
 /-- Typed comparison with a concrete Neron component carrier.
