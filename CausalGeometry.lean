@@ -383,3 +383,9 @@ import CausalGeometry.Calculus.GradedDefectCompatibility
 import CausalGeometry.Exchange.TensorTransportDefect
 import CausalGeometry.Exchange.LinearizedCausalAction
 import CausalGeometry.Models.ExchangeLinearDefectControls
+
+import CausalGeometry.Calculus.LinearInvariantCore
+import CausalGeometry.Calculus.PersistentLinearCompatibility
+import CausalGeometry.Calculus.LinearInvariantPaths
+import CausalGeometry.Exchange.PersistentCompatibility
+import CausalGeometry.Models.ExchangePersistentControls
