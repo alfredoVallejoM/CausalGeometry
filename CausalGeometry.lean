@@ -377,3 +377,9 @@ import CausalGeometry.Exchange.CausalOperatorTransport
 import CausalGeometry.Exchange.ArtinOperatorTransport
 import CausalGeometry.Exchange.CausalArtinComparison
 import CausalGeometry.Models.ExchangeTransportControls
+
+import CausalGeometry.Calculus.LinearSquareDefect
+import CausalGeometry.Calculus.GradedDefectCompatibility
+import CausalGeometry.Exchange.TensorTransportDefect
+import CausalGeometry.Exchange.LinearizedCausalAction
+import CausalGeometry.Models.ExchangeLinearDefectControls
