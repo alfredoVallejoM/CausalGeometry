@@ -1,0 +1,46 @@
+{
+  "scalars": "exact rational arithmetic",
+  "model_states": 8,
+  "causal_histories": 6,
+  "max_enumerated_continuation_length": 4,
+  "examples": {
+    "flip_copy": {
+      "vertices": 6,
+      "directed_edges": 12,
+      "local_dimension": 2,
+      "persistent_dimension": 2,
+      "rounds": 1,
+      "annihilator_total_ranks": [
+        36,
+        36
+      ],
+      "status": "EXACT_FIXED_POINT"
+    },
+    "flip_toggle": {
+      "vertices": 6,
+      "directed_edges": 12,
+      "local_dimension": 1,
+      "persistent_dimension": 1,
+      "rounds": 1,
+      "annihilator_total_ranks": [
+        42,
+        42
+      ],
+      "status": "EXACT_FIXED_POINT"
+    },
+    "flip_wake": {
+      "vertices": 6,
+      "directed_edges": 12,
+      "local_dimension": 5,
+      "persistent_dimension": 4,
+      "rounds": 2,
+      "annihilator_total_ranks": [
+        18,
+        24,
+        24
+      ],
+      "status": "EXACT_FIXED_POINT"
+    }
+  },
+  "scope": "Independent finite oracle, not a Lean theorem about all Step witnesses."
+}

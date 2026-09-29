@@ -1,0 +1,5 @@
+CX-I7: NON_KERNEL_PASS_TYPECHECK_PENDING
+Baseline: 159 tests PASS.
+Current: 192 tests PASS (24 exact finite + 9 source contracts + 159 prior).
+Kernel: NOT RUN. 52 new axiom requests, 304 cumulative.
+

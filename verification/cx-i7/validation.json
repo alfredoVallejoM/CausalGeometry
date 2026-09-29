@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "increment": "CX-I7",
+  "source_base_sha": "8ee861b695c774ff1ea4425f8a55f5f1f23e53f4",
+  "implementation_commit": "8f96161174f3b43e804e89cb313892040a0509be",
+  "status": "NON_KERNEL_PASS_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "executed": {
+    "baseline_i6_tests": 159,
+    "total_tests": 192,
+    "new_exact_finite_tests": 24,
+    "new_source_contract_tests": 9,
+    "prior_tests_unchanged": 159,
+    "result": "PASS",
+    "python_syntax": "PASS",
+    "non_kernel_exit": 3,
+    "missing_toolchain_exit": 3,
+    "manifest_guards": [
+      {
+        "case": "missing",
+        "exit_code": 1,
+        "expected": 1,
+        "compiler_invoked": false
+      },
+      {
+        "case": "wrong_hash",
+        "exit_code": 1,
+        "expected": 1,
+        "compiler_invoked": false
+      }
+    ],
+    "affinity": [
+      0,
+      1
+    ]
+  },
+  "finite_scope": {
+    "scalars": "exact rational arithmetic",
+    "model_states": 8,
+    "causal_histories": 6,
+    "max_enumerated_continuation_length": 4,
+    "examples": {
+      "flip_copy": {
+        "vertices": 6,
+        "directed_edges": 12,
+        "local_dimension": 2,
+        "persistent_dimension": 2,
+        "rounds": 1,
+        "annihilator_total_ranks": [
+          36,
+          36
+        ],
+        "status": "EXACT_FIXED_POINT"
+      },
+      "flip_toggle": {
+        "vertices": 6,
+        "directed_edges": 12,
+        "local_dimension": 1,
+        "persistent_dimension": 1,
+        "rounds": 1,
+        "annihilator_total_ranks": [
+          42,
+          42
+        ],
+        "status": "EXACT_FIXED_POINT"
+      },
+      "flip_wake": {
+        "vertices": 6,
+        "directed_edges": 12,
+        "local_dimension": 5,
+        "persistent_dimension": 4,
+        "rounds": 2,
+        "annihilator_total_ranks": [
+          18,
+          24,
+          24
+        ],
+        "status": "EXACT_FIXED_POINT"
+      }
+    },
+    "scope": "Independent finite oracle, not a Lean theorem about all Step witnesses."
+  },
+  "proof_boundary": {
+    "lean_available": false,
+    "lake_available": false,
+    "network_probe": "curl: could not resolve github.com",
+    "not_executed": [
+      "Lean elaboration",
+      "304 actual axiom outputs",
+      "whole-repository source/import audit",
+      "full workspace",
+      "ECIA consumers"
+    ]
+  },
+  "source_context": "Mounted I1-I6 increment ZIPs, not a hydrated upstream checkout. Original runner receipts keep source_sha=null. Published source/test/runner blobs are checked against local test inputs.",
+  "remote_blob_matches": {
+    "CausalGeometry.lean": "da113c1d91bcec271d0577530cfb8c5bb8d33a81",
+    "CausalGeometry/Calculus/LinearInvariantCore.lean": "bd457f58d6f692c0faabbfec4ac2ee9948c42d23",
+    "CausalGeometry/Calculus/PersistentLinearCompatibility.lean": "dd2c163964168bebb5c37c57326cfac657ffb4e0",
+    "CausalGeometry/Calculus/LinearInvariantPaths.lean": "831183806895004620059790cf00346ffd4fbafe",
+    "CausalGeometry/Exchange/PersistentCompatibility.lean": "dab7639424a4500fabd26513d75b7a11f05af1cd",
+    "CausalGeometry/Models/ExchangePersistentControls.lean": "ebccbf945386c51e0e339b8bb466456a58535705",
+    "tests/test_cx_i7.py": "05170242d8dc2296565e23ffa8efb06bf9c5f391",
+    "tools/verify_cx_i7.py": "ce67df803faa772fe315096a0b3c6110d59e016d",
+    "verification/cx-i7/KernelAudit.lean": "2136f4d0af805ebc5264cdd47fbbc5290d25378b",
+    "verification/cx-i7/manifest.json": "e19d65deaa5a7ad4f4d4705b2096d1f8459baa58"
+  },
+  "publication_correction": "A stray inactive line introduced during tool-payload transcription was removed in an unreferenced tree before the source commit. Tested local source was unchanged; all ten final blobs match.",
+  "review": "Author static review and exact finite checks; no independent review claimed.",
+  "preservation": "No prior mathematical producer, manifest, test, runner, pin or downstream file changed; root appends five imports.",
+  "evidence_archive": "downloadable increment: verification/cx-i7/evidence.tar.gz",
+  "evidence_archive_sha256": "0d5cb49379d3f8d4041f6fb583e26d89023a00643b444fc874c974736c6bb4d7",
+  "evidence_sha256": {
+    "verification/cx-i7/baseline-i6.log": "56a2b5d2f5419204435ed8908e6a99bb2096f964184ea46e365834d7dcfcbcc5",
+    "verification/cx-i7/guard-missing.log": "4dd40b7a58ae9ac1cad80bf08a577326338e705625f7496555c02b633e2771b3",
+    "verification/cx-i7/guard-results.json": "254fda0a4b4f3f54f4a8084a9ec0516962f15377793e2480225b0699bfa9add3",
+    "verification/cx-i7/guard-wrong_hash.log": "fb9f9e33f01e25041a319cab74dd5204f2a10dbff333b805fd90706ac36197b8",
+    "verification/cx-i7/non-kernel-final.log": "c7fd7a5d7807ced4857ba6bec07b0ccf1ad96907eff00435dc57caeec3bb2f23",
+    "verification/cx-i7/non-kernel.log": "e0f93b1e1ca3429fc6a2dd0816dd88f50962efe8e44d15b86f13ef997680fb4c",
+    "verification/cx-i7/plan.json": "1893199532ea07cf3470b0305103fd8a93254aaaa6533ff2a004a0170a206df2",
+    "verification/cx-i7/tests-first.log": "a791b738cb28821d635813be25ebbcfa7c327ef99688b1e8c8ed9dbda602a200",
+    "verification/cx-i7/toolchain.log": "c771d615e3dbd4d9f9f7fe703994997dce37df8931fd75fa7484117351e8f294",
+    "verification/local-runner/cx-i7/20260929T111212.109849Z-80006bb3/00.log": "05fb3740873d72c19b1221e0d68ee05039a7e0e0079007988b4417f4c84cb4c4",
+    "verification/local-runner/cx-i7/20260929T111212.109849Z-80006bb3/receipt.json": "c673e7b717d76bcc8a5037a4e3a5881d83bf29c2d4dee30eb39f61c557132922",
+    "verification/local-runner/cx-i7/20260929T111216.178085Z-8faf227b/receipt.json": "a49cca488e131d13558b44b1b6bfe441ef81e5d0730d46f2a6a8febb523f08df",
+    "verification/local-runner/cx-i7/20260929T111524.703937Z-09ab6f12/receipt.json": "bf5cc38b9e3cae8b71d2890e063a3be05ccf4bda31be730628f023731dca380f",
+    "verification/local-runner/cx-i7/20260929T111525.618726Z-e58936bd/receipt.json": "a21ad8b1daf1ae1d9b7f08f573a6ef9886750737684f5a2f29a45d3c71f06ac8",
+    "verification/local-runner/cx-i7/20260929T112543.783669Z-4328e06d/00.log": "c18db184665d5da7516ffe1cb47c07bee423c2fd2c5ec9ea28c356e7e35f768b",
+    "verification/local-runner/cx-i7/20260929T112543.783669Z-4328e06d/receipt.json": "7fd8f216409ace3a759032f295187582c85bf7c42dbe90297099b00d858e29ec"
+  },
+  "evidence_layout": "Repository: test-summary, finite-scope, manifest and validation. Downloadable increment: compressed full original logs and unmodified runner receipts."
+}

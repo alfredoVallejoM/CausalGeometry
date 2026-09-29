@@ -156,3 +156,19 @@ Status: **SOURCE-WRITTEN / 159 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
 All 127 prior tests are retained; 24 exact finite controls and 8 source contracts
 are added. The cumulative axiom harness requests 252 outputs, none executed in
 this increment. No prior producer, pin, ECIA consumer or accreditation changed.
+
+## CX-I7 — persistent compatibility domains (2026-09-29)
+
+[Implementation and exact scope](campaigns/CX_I7_IMPLEMENTATION.md) constructs
+the greatest invariant part of local defect kernels, restricted linear functors
+and natural transport, and a global finite-horizon stopping criterion. The
+causal instance uses actual exchange routes with fixed frontiers, not a
+claim about all extensions by new events. Delayed-failure and proper-domain
+controls reuse the earlier three-event source.
+
+Gate: `python3 tools/verify_cx_i7.py`. Evidence: `verification/cx-i7/`.
+Status: **SOURCE-WRITTEN / 192 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
+All 159 prior tests remain unchanged. The 24 exact finite controls and nine
+source contracts add no kernel accreditation. The 52 new requested axiom
+outputs make 304 across I1–I7, all pending actual execution in this environment.
+No prior producer, dependency pin, unrelated campaign or ECIA consumer changed.
