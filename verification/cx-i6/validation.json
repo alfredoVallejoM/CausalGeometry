@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "increment": "CX-I6",
+  "source_base_sha": "9171badcbb3617e1221975f3dc1fd3f7859b7713",
+  "implementation_commit": "3e61dd843ebbdc961ed67d0f118953632fbf1f93",
+  "status": "NON_KERNEL_PASS_TYPECHECK_PENDING",
+  "new_accredited_rows": 0,
+  "executed": {
+    "baseline_i5_tests": 127,
+    "tests_total": 159,
+    "new_exact_finite_tests": 24,
+    "new_source_contracts": 8,
+    "unchanged_prior_tests": 127,
+    "result": "PASS",
+    "python_syntax": "PASS",
+    "non_kernel_exit": 3,
+    "missing_toolchain_exit": 3,
+    "manifest_guards": [
+      {
+        "case": "missing",
+        "exit_code": 1,
+        "expected": 1,
+        "compiler_invoked": false
+      },
+      {
+        "case": "wrong_hash",
+        "exit_code": 1,
+        "expected": 1,
+        "compiler_invoked": false
+      }
+    ],
+    "final_test_seconds": 1.419,
+    "cpu_affinity": [
+      0,
+      1
+    ]
+  },
+  "baseline_recovery": {
+    "first_attempt": "126 PASS / 1 ERROR",
+    "cause": "The mounted incremental archives omitted existing Foundation/PairedTransform.lean",
+    "action": "Fetched the exact existing file via GitHub at base SHA; verified blob 6ee6735ce2d962ba4f0562911993011a7cb0a8b8. No producer or test changed. Baseline then 127 PASS.",
+    "failed_log": "verification/cx-i6/baseline-i5.log",
+    "restored_log": "verification/cx-i6/baseline-i5-restored.log"
+  },
+  "mathematical_scope": {
+    "scalars": "exact rational arithmetic",
+    "horizontal_rectangular_cases": 64,
+    "vertical_rectangular_cases": 64,
+    "tensor_composition_cases": 16,
+    "graded_identity_cases": 64,
+    "closed_defect_exactness_cases": 64,
+    "basis_state_domain": "8 Boolean triple states on actual-history finite model",
+    "controls": [
+      "nonzero defects cancel",
+      "forward compatibility does not imply backward compatibility",
+      "compatible round trip need not be identity",
+      "pointwise defect kernel need not be invariant",
+      "augmentation erases nonzero defect",
+      "nontrivial coefficient ring required to reflect state equality",
+      "tensor diagonal lift has cross terms"
+    ]
+  },
+  "remote_blob_matches": {
+    "CausalGeometry.lean": "8cd7d2003f7de74179b012f2c1fb7d52a7ec1466",
+    "CausalGeometry/Calculus/LinearSquareDefect.lean": "e94945bf1646b66eb9a8fd9f1ee1856170ca27f3",
+    "CausalGeometry/Calculus/GradedDefectCompatibility.lean": "04b434f50215c5ed019076b168e14150a0893ef0",
+    "CausalGeometry/Exchange/TensorTransportDefect.lean": "a8204e65f56ca9dafc7bbb45a82a7849b298df8c",
+    "CausalGeometry/Exchange/LinearizedCausalAction.lean": "11b509ac2562d2ea9e0b72bd555d9ef2a354d59c",
+    "CausalGeometry/Models/ExchangeLinearDefectControls.lean": "9aab26df859abd0d09bd5ef56da82c2e5bcbfb94",
+    "tests/test_cx_i6.py": "f9cfadcd46d739446aeee4943ba8c43c8f34884c",
+    "tools/verify_cx_i6.py": "dad6235e0d4067c66ad4e408ea221f43584077f9",
+    "verification/cx-i6/KernelAudit.lean": "94bd506c5a2e4d9bc59c59c777f8d76341233cff",
+    "verification/cx-i6/manifest.json": "2183facf672408936ca807f906992a934c3e02b5"
+  },
+  "not_executed": [
+    "Lean elaboration",
+    "252 actual kernel axiom outputs (22+36+38+37+60+59)",
+    "whole-repository source/import audit",
+    "full combined workspace",
+    "ECIA consumer"
+  ],
+  "environment": {
+    "lean_available": false,
+    "lake_available": false,
+    "network_probe_exit": 6,
+    "network_reason": "Could not resolve host: github.com"
+  },
+  "source_context": "Mounted I1-I5 increment ZIPs plus one exact prerequisite read from live GitHub; not a hydrated upstream checkout. Real runner receipts retain source_sha=null. A separate synthetic git may be used only for patch validation, never kernel evidence.",
+  "preservation": "No old Lean producer, test, runner, manifest, pin or ECIA source changed. Root adds exactly five imports. CA21 defect consumed unchanged.",
+  "publication_correction": "An extra duplicate historical root import was detected in an unreferenced tree and removed before the source commit. Final tested root matches remote blob 8cd7d2003f7de74179b012f2c1fb7d52a7ec1466.",
+  "review": "Author static review and executed exact finite controls; not independent review.",
+  "evidence_sha256": {
+    "verification/cx-i6/KernelAudit.lean": "899db68845ffc735d608b33066344edbb92ff56ab477240f2c7c351663ee39d8",
+    "verification/cx-i6/baseline-i5-restored.log": "0516ace21d50ca43e756573d0330513f5c06688f0f434f7a667601f2ea3534c8",
+    "verification/cx-i6/baseline-i5.log": "5bdb63651bed30c34aba8af542923cf0d3a4b5d12ded5d979d797892c31ce2b5",
+    "verification/cx-i6/guard-missing.log": "3d6a1f7abb9bbb955b1fa5976302ef65efbc128b1207cefc629e8882766923f6",
+    "verification/cx-i6/guard-results.json": "254fda0a4b4f3f54f4a8084a9ec0516962f15377793e2480225b0699bfa9add3",
+    "verification/cx-i6/guard-wrong-hash.log": "dea654a39a83b8002610cfa22e161438fb8402eb222bca2bca1594a02a85a3d8",
+    "verification/cx-i6/manifest.json": "94e2868e46f01ff00ae3ca0360cb063646ce9ebb031d953c25446d64a484ba4f",
+    "verification/cx-i6/network-probe.log": "2fa4b6a0bdf976f9aacc0c68190f7221e7532239f97eee62284fd33330fc123e",
+    "verification/cx-i6/non-kernel-final.log": "0d80a677d24609d77eee9d9295a7170799d0ec2017e077a9e8332dedd316bfe3",
+    "verification/cx-i6/non-kernel.log": "82a87f9c3e5aa422d267702c8f58f23049d57d42976c8b1d8a9404b373eefdb5",
+    "verification/cx-i6/plan.json": "e74f19fe745e7bf1d2d4d77d7f2cce73c5d8d1a841b3bade606d9d4d9c72f952",
+    "verification/cx-i6/test-summary.txt": "8bbd069924e9ea96cc471505e6ea69ac89f45c28e31a7e05291a926d3d87514f",
+    "verification/cx-i6/tests-first.log": "894feea4c67bb046b18c2c37c1f6537bda6b3958dcc6f8436538e151e9ab8919",
+    "verification/cx-i6/toolchain.log": "404771fdaab4f65b576b59b0d5430461a5a0e20acf02f66a99ea476437c9e191"
+  },
+  "runner_receipts_sha256": {
+    "verification/local-runner/cx-i6/20260929T100730.957710Z-14dc070a/receipt.json": "8d5ddbc3969c1bff44241ba83964f9eb97129e4bdc684148178267fef57dfed2",
+    "verification/local-runner/cx-i6/20260929T100733.569279Z-639255db/receipt.json": "7153b3efd40a683677eef87ebe0d8b8102d8bde183a6a967ed7b1f08c8453299",
+    "verification/local-runner/cx-i6/20260929T100806.435483Z-b0f0c8d7/receipt.json": "9b97ce9067228fef1155baecb6cd5fd60303af4649d253b91f78fda660dba8dd",
+    "verification/local-runner/cx-i6/20260929T100807.106653Z-d1e21172/receipt.json": "86da4fee752acf1ad0876d5f358f368375b3f4075f571cf2724a8e35562e74c3",
+    "verification/local-runner/cx-i6/20260929T102152.309328Z-0c1288e8/receipt.json": "ff9116603cdc2dbb6219e926695950b6fac1cf3034db23b5c764960f7f307825"
+  },
+  "evidence_layout": "Repository retains this validation, manifest, kernel harness and exact test summary. Downloadable increment retains all original raw logs and unique receipts including the missing-prerequisite baseline failure."
+}

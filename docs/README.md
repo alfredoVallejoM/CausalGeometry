@@ -141,3 +141,18 @@ Status: **SOURCE-WRITTEN / 127 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
 All 99 previous tests and source producers are retained, with a checked
 append-only root projection. There are 60 new axiom-output requests, 193 in
 total, none claimed executed here. No ECIA consumer or new accreditation.
+
+## CX-I6 — causal linear/tensor defects and graded compatibility (2026-09-29)
+
+[Implementation and proof boundary](campaigns/CX_I6_IMPLEMENTATION.md) records
+heterogeneous linear squares, true tensor transport, canonical free-module
+linearization of existing causal actions, independent Phi/Psi defects and
+compatibility with CA21. Raw differential defects on cocycles are proved exact
+in the written source, not advertised as new nonzero cohomology classes.
+
+Source SHA: `3e61dd843ebbdc961ed67d0f118953632fbf1f93`.
+Gate: `python3 tools/verify_cx_i6.py`. Evidence: `verification/cx-i6/`.
+Status: **SOURCE-WRITTEN / 159 NON-KERNEL TESTS PASS / LEAN TYPECHECK PENDING**.
+All 127 prior tests are retained; 24 exact finite controls and 8 source contracts
+are added. The cumulative axiom harness requests 252 outputs, none executed in
+this increment. No prior producer, pin, ECIA consumer or accreditation changed.

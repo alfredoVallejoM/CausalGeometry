@@ -1,0 +1,4 @@
+CX-I6 independent validation (not Lean)
+Ran 159 tests in 1.419s
+OK
+Kernel: NOT_RUN / 252 outputs pending
